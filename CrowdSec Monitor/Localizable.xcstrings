@@ -1,0 +1,472 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Access token" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token de acceso"
+          }
+        }
+      }
+    },
+    "An application to control your CrowdSec instance" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una aplicación para controlar tu instancia de CrowdSec"
+          }
+        }
+      }
+    },
+    "API information" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información sobre la API"
+          }
+        }
+      }
+    },
+    "Authentication" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autenticación"
+          }
+        }
+      }
+    },
+    "Back" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atrás"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        }
+      }
+    },
+    "Connect" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectar"
+          }
+        }
+      }
+    },
+    "Connection error" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de conexión"
+          }
+        }
+      }
+    },
+    "Connection method" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Método de conexión"
+          }
+        }
+      }
+    },
+    "Connection was not successful" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La conexión no funcionó"
+          }
+        }
+      }
+    },
+    "Could not connect to server: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not connect to server: %@"
+          }
+        }
+      }
+    },
+    "Dashboard" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tablero"
+          }
+        }
+      }
+    },
+    "Error" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "Error interpreting server response" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error al interpretar la respuesta del servidor"
+          }
+        }
+      }
+    },
+    "Example" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ejemplo"
+          }
+        }
+      }
+    },
+    "Get started" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empezar"
+          }
+        }
+      }
+    },
+    "HTTP" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        }
+      }
+    },
+    "HTTPS" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTPS"
+          }
+        }
+      }
+    },
+    "Invalid credentials. Please verify your username, password, or token." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credenciales no válidas. Por favor verifica tu usuario, contraseña o token."
+          }
+        }
+      }
+    },
+    "Invalid server response" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respuesta del servidor inválida"
+          }
+        }
+      }
+    },
+    "Invalid values" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valores no válidos"
+          }
+        }
+      }
+    },
+    "IP address or domain" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección IP o dominio"
+          }
+        }
+      }
+    },
+    "IP/Domain field is required" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Campo IP/Dominio es requerido"
+          }
+        }
+      }
+    },
+    "Method" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Método"
+          }
+        }
+      }
+    },
+    "Network error: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network error: %@"
+          }
+        }
+      }
+    },
+    "Next" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente"
+          }
+        }
+      }
+    },
+    "None" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ninguno"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraseña"
+          }
+        }
+      }
+    },
+    "Password is required for basic authentication" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La contraseña es requerida para una autenticación basic"
+          }
+        }
+      }
+    },
+    "Path" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruta"
+          }
+        }
+      }
+    },
+    "Port" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puerto"
+          }
+        }
+      }
+    },
+    "Port must be a valid number" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El puerto debe ser un número válido"
+          }
+        }
+      }
+    },
+    "Port must be between 1 and 65535" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El puerto debe ser un número entre 1 y 65535"
+          }
+        }
+      }
+    },
+    "Remove server" : {
+
+    },
+    "Server error: code %lld" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server error: code %lld"
+          }
+        }
+      }
+    },
+    "Server route" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruta del servidor"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
+    },
+    "Setup the server connection" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura la conexión al servidor"
+          }
+        }
+      }
+    },
+    "This application requires an intermediate API to function. This API is responsible for obtaining data from CrowdSec, processing it, and delivering it appropriately to this application. \nBefore continuing, ensure that you have correctly deployed it on your machine alongside CrowdSec." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta aplicación necesita de una API intermedia para funcionar. Esta API se encarga de obtener los datos de CrowdSec, procesarlos y entregarlos de manera adecuada a esta aplicación. \nAntes de continuar, asegúrate de que tienes esta API correctamente desplegada en tu máquina junto a CrowdSec"
+          }
+        }
+      }
+    },
+    "Token" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token"
+          }
+        }
+      }
+    },
+    "Token is required for Bearer authentication" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El token es requerido para una autenticación Bearer"
+          }
+        }
+      }
+    },
+    "Username" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de usuario"
+          }
+        }
+      }
+    },
+    "Username and password" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de usuario y contraseña"
+          }
+        }
+      }
+    },
+    "Username is required for basic authentication" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El nombre de usuario es requerido para una autenticación basic"
+          }
+        }
+      }
+    },
+    "View API repository on GitHub" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver repositorio de la API en GitHub"
+          }
+        }
+      }
+    },
+    "Welcome to CrowdSec Monitor" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenido a CrowdSec Monitor"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

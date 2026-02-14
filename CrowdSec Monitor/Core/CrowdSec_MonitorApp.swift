@@ -1,12 +1,5 @@
-//
-//  CrowdSec_MonitorApp.swift
-//  CrowdSec Monitor
-//
-//  Created by Juan Gilsanz Polo on 14/2/26.
-//
-
 import SwiftUI
-import CoreData
+internal import CoreData
 
 @main
 struct CrowdSec_MonitorApp: App {
@@ -16,6 +9,8 @@ struct CrowdSec_MonitorApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(AuthViewModel.shared)
+                .environment(OnboardingViewModel.shared)
         }
     }
 }
