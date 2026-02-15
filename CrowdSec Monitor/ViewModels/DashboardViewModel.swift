@@ -13,8 +13,9 @@ class DashboardViewModel {
     var state: Enums.LoadingState<StatisticsResponse> = .loading
     
     func fetchDashboardData() async {
+        let amountItems = UserDefaults.shared.object(forKey: StorageKeys.topItemsDashboard) as! Int? ?? Defaults.topItemsDashboard
         do {
-            let result = try await apiClient.statistics.fetchStatistics()
+            let result = try await apiClient.statistics.fetchStatistics(amount: amountItems)
             state = .success(result.body)
         } catch {
             print(error)

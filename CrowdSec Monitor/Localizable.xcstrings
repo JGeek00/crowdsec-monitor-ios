@@ -151,6 +151,16 @@
         }
       }
     },
+    "Countries" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paises"
+          }
+        }
+      }
+    },
     "Dashboard" : {
       "localizations" : {
         "es" : {
@@ -247,6 +257,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dirección IP o dominio"
+          }
+        }
+      }
+    },
+    "IP owners" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propietarios de IPs"
           }
         }
       }
@@ -381,6 +401,16 @@
         }
       }
     },
+    "Scenaries" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escenarios"
+          }
+        }
+      }
+    },
     "Server error: code %lld" : {
       "localizations" : {
         "es" : {
@@ -417,6 +447,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configura la conexión al servidor"
+          }
+        }
+      }
+    },
+    "Targets" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objetivos"
           }
         }
       }
@@ -517,6 +557,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El nombre de usuario es requerido para una autenticación basic"
+          }
+        }
+      }
+    },
+    "View all" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todos"
           }
         }
       }

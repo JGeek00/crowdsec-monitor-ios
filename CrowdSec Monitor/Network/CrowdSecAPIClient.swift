@@ -7,7 +7,7 @@ class CrowdSecAPIClient {
     
     init(_ server: CSServer) {
         self.httpClient = HttpClient(server: server)
-        self.statistics = StatisticsAPIClient(httpClient: self.httpClient)
+        self.statistics = StatisticsAPIClient(self.httpClient)
     }
     
     /// Check LAPI status

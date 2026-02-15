@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @Environment(DashboardViewModel.self) private var viewModel
+    @Environment(AuthViewModel.self) private var authViewModel
     
     var body: some View {
         NavigationStack {
@@ -45,11 +46,11 @@ struct DashboardView: View {
             if !data.topCountries.isEmpty {
                 Section("Top Countries") {
                     ForEach(data.topCountries, id: \.self) { item in
-                        HStack {
-                            CountryFlag(countryCode: item.countryCode)
-                            Spacer()
-                            Text("\(item.amount)")
-                        }
+                        DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount)
+                    }
+                    NavigationLink("View all") {
+                        FullListDashboardItemView()
+                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .country))
                     }
                 }
             }
@@ -57,11 +58,11 @@ struct DashboardView: View {
             if !data.topIpOwners.isEmpty {
                 Section("Top IP owners") {
                     ForEach(data.topIpOwners, id: \.self) { item in
-                        HStack {
-                            Text(verbatim: item.ipOwner)
-                            Spacer()
-                            Text("\(item.amount)")
-                        }
+                        DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount)
+                    }
+                    NavigationLink("View all") {
+                        FullListDashboardItemView()
+                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .ipOwner))
                     }
                 }
             }
@@ -69,17 +70,11 @@ struct DashboardView: View {
             if !data.topScenarios.isEmpty {
                 Section("Top scenarios") {
                     ForEach(data.topScenarios, id: \.self) { item in
-                        let splitted = item.scenario.split(separator: "/")
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(verbatim: String(splitted[0]))
-                                    .font(.system(size: 14))
-                                    .foregroundStyle(Color.gray)
-                                Text(verbatim: String(splitted[1]))
-                            }
-                            Spacer()
-                            Text("\(item.amount)")
-                        }
+                        DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount)
+                    }
+                    NavigationLink("View all") {
+                        FullListDashboardItemView()
+                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .scenary))
                     }
                 }
             }
@@ -87,11 +82,11 @@ struct DashboardView: View {
             if !data.topTargets.isEmpty {
                 Section("Top targets") {
                     ForEach(data.topTargets, id: \.self) { item in
-                        HStack {
-                            Text(verbatim: item.target)
-                            Spacer()
-                            Text("\(item.amount)")
-                        }
+                        DashboardItem(itemType: .target, label: item.target, amount: item.amount)
+                    }
+                    NavigationLink("View all") {
+                        FullListDashboardItemView()
+                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .target))
                     }
                 }
             }

@@ -48,6 +48,13 @@ class Enums {
         case alerts
         case decisions
     }
+    
+    enum DashboardItemType: String {
+        case country
+        case ipOwner
+        case scenary
+        case target
+    }
 }
 
 extension Enums.LoadingState: Equatable where T: Equatable {
