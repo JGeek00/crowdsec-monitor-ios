@@ -30,6 +30,37 @@ struct AlertDetailsView: View {
     @ViewBuilder
     func content(_ data: AlertDetailsResponse) -> some View {
         List {
+            Section {
+                VStack(alignment: .leading) {
+                    Image(systemName: "info")
+                        .foregroundStyle(Color.white)
+                        .fontWeight(.bold)
+                        .font(.system(size: 28))
+                        .frame(width: 50, height: 50)
+                        .condition { view in
+                            if #available(iOS 26.0, *) {
+                                view
+                                    .glassEffect(.regular.tint(.blue), in: .rect(cornerRadius: 12))
+                            }
+                            else {
+                                view
+                                    .background(Color.blue)
+                                    .clipShape(.rect(cornerRadius: 8))
+                            }
+                        }
+                    Spacer()
+                        .frame(height: 12)
+                    Text("Message")
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
+                    Spacer()
+                        .frame(height: 4)
+                    Text(verbatim: data.message)
+                        .font(.system(size: 16))
+                        .foregroundStyle(Color.gray)
+                }
+            }
+            
             Section("Scenario") {
                 let scenarioSplit = data.scenario.split(separator: "/")
                 Button {

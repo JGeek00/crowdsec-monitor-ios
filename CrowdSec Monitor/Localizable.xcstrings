@@ -471,6 +471,16 @@
         }
       }
     },
+    "Message" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mensaje"
+          }
+        }
+      }
+    },
     "Method" : {
       "localizations" : {
         "es" : {
