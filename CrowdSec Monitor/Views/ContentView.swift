@@ -19,6 +19,13 @@ struct ContentView: View {
                         }
                         
                         Tab {
+                            AlertsListView()
+                                .environment(AlertsListViewModel(apiClient))
+                        } label: {
+                            Label("Alerts", systemImage: "exclamationmark.triangle")
+                        }
+                        
+                        Tab {
                             SettingsView()
                         } label: {
                             Label("Settings", systemImage: "gear")
@@ -28,10 +35,19 @@ struct ContentView: View {
                 else {
                     TabView {
                         DashboardView()
+                            .environment(DashboardViewModel(apiClient))
                             .tabItem {
                                 Label("Dashboard", systemImage: "house.fill")
                             }
                             .tag(Enums.TabViewTabs.dashboard)
+                        
+                        AlertsListView()
+                            .environment(AlertsListViewModel(apiClient))
+                            .tabItem {
+                                Label("Alerts", systemImage: "exclamationmark.triangle")
+                            }
+                            .tag(Enums.TabViewTabs.alerts)
+                        
                         SettingsView()
                             .tabItem {
                                 Label("Settings", systemImage: "gear")

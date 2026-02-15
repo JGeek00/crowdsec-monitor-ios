@@ -113,12 +113,12 @@ class HttpClient: NSObject {
     
     // MARK: - HTTP methods (internal - used by API clients)
     
-    func get<T: Decodable>(endpoint: String, queryParams: [String: String]? = nil) async throws -> HttpResponse<T> {
+    func get<T: Decodable>(endpoint: String, queryParams: [URLQueryItem]? = nil) async throws -> HttpResponse<T> {
         return try await request(method: "GET", endpoint: endpoint, queryParams: queryParams)
     }
     
     func post<T: Encodable, R: Decodable>(endpoint: String, body: T) async throws -> HttpResponse<R> {
-        return try await request(method: "POST", endpoint: endpoint, body: body)
+        return try await request(method: "POST", endpoint: endpoint, body: body, queryParams: nil)
     }
     
     // MARK: - Private helpers
@@ -127,7 +127,7 @@ class HttpClient: NSObject {
         method: String,
         endpoint: String,
         body: T? = nil as String?,
-        queryParams: [String: String]? = nil
+        queryParams: [URLQueryItem]? = nil
     ) async throws -> HttpResponse<R> {
         var request = try buildRequest(method: method, endpoint: endpoint, body: body, queryParams: queryParams)
         let (data, statusCode) = try await performRequest(&request)
@@ -144,14 +144,14 @@ class HttpClient: NSObject {
         method: String,
         endpoint: String,
         body: T?,
-        queryParams: [String: String]? = nil
+        queryParams: [URLQueryItem]? = nil
     ) throws -> URLRequest {
         var url = baseURL.appendingPathComponent(endpoint)
         
         // Add query parameters if present
         if let queryParams = queryParams, !queryParams.isEmpty {
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-            components?.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+            components?.queryItems = queryParams
             
             if let urlWithQuery = components?.url {
                 url = urlWithQuery

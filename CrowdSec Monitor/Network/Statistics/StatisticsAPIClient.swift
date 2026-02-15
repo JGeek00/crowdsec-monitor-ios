@@ -20,14 +20,14 @@ class StatisticsAPIClient {
     
     /// Fetch main statistics
     func fetchStatistics(amount: Int? = nil, since: Date? = nil) async throws -> HttpResponse<StatisticsResponse> {
-        var queryParams: [String: String] = [:]
+        var queryParams: [URLQueryItem] = []
         
         if let amount = amount {
-            queryParams["amount"] = String(amount)
+            queryParams.append(URLQueryItem(name: "amount", value: String(amount)))
         }
         
         if let since = since {
-            queryParams["since"] = since.toYYYYMMDD()
+            queryParams.append(URLQueryItem(name: "since", value: since.toYYYYMMDD()))
         }
         
         return try await httpClient.get(endpoint: "/api/v1/statistics", queryParams: queryParams.isEmpty ? nil : queryParams)

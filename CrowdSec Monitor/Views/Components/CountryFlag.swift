@@ -2,12 +2,19 @@ import SwiftUI
 
 struct CountryFlag: View {
     let countryCode: String
+    let onlyFlag: Bool
+    
+    init(countryCode: String, onlyFlag: Bool = false) {
+        self.countryCode = countryCode
+        self.onlyFlag = onlyFlag
+    }
     
     var body: some View {
         HStack {
             Text(flag)
-                .font(.system(size: 24))
-            Text(countryName)
+            if onlyFlag == false {
+                Text(countryName)
+            }
         }
     }
     

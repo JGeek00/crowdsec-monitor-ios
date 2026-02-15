@@ -41,6 +41,16 @@
         }
       }
     },
+    "Alerts" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alertas"
+          }
+        }
+      }
+    },
     "Alerts last 24 hours" : {
       "localizations" : {
         "es" : {
@@ -531,6 +541,16 @@
         }
       }
     },
+    "today" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hoy"
+          }
+        }
+      }
+    },
     "Token" : {
       "localizations" : {
         "es" : {
@@ -657,6 +677,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bienvenido a CrowdSec Monitor"
+          }
+        }
+      }
+    },
+    "yesterday" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ayer"
           }
         }
       }
