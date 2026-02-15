@@ -23,7 +23,7 @@ class AlertsListViewModel {
         }
         
         do {
-            let result = try await apiClient.fetchAlerts(requestParams: defaultRequest)
+            let result = try await apiClient.alerts.fetchAlerts(requestParams: defaultRequest)
             state = .success(result.body)
         } catch {
             state = .failure(error)
@@ -45,7 +45,7 @@ class AlertsListViewModel {
             requestParams.pagination.offset = newOffset
 
             do {
-                let result = try await apiClient.fetchAlerts(requestParams: requestParams)
+                let result = try await apiClient.alerts.fetchAlerts(requestParams: requestParams)
                 
                 let existingIDs = Set(previousItems.map { $0.id })
                 let uniqueNewItems = result.body.items.filter { !existingIDs.contains($0.id) }

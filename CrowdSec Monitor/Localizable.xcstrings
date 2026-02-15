@@ -41,6 +41,16 @@
         }
       }
     },
+    "Alert #%lld" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Alerta #%lld"
+          }
+        }
+      }
+    },
     "Alerts" : {
       "localizations" : {
         "es" : {
@@ -131,6 +141,26 @@
         }
       }
     },
+    "Capacity" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capacidad"
+          }
+        }
+      }
+    },
+    "Choose an alert from the list to view its details" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una alerta de la lista para ver sus detalles"
+          }
+        }
+      }
+    },
     "Close" : {
       "localizations" : {
         "es" : {
@@ -201,6 +231,16 @@
         }
       }
     },
+    "Country" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "País"
+          }
+        }
+      }
+    },
     "Dashboard" : {
       "localizations" : {
         "es" : {
@@ -257,6 +297,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error al interpretar la respuesta del servidor"
+          }
+        }
+      }
+    },
+    "Event details" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalles de evento"
+          }
+        }
+      }
+    },
+    "Events" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eventos"
+          }
+        }
+      }
+    },
+    "Expired" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expirada"
           }
         }
       }
@@ -321,12 +391,32 @@
         }
       }
     },
+    "IP address" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección IP"
+          }
+        }
+      }
+    },
     "IP address or domain" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dirección IP o dominio"
+          }
+        }
+      }
+    },
+    "IP owner" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propietario de IP"
           }
         }
       }
@@ -351,12 +441,32 @@
         }
       }
     },
+    "Leakspeed" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periodo"
+          }
+        }
+      }
+    },
     "Loading..." : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cargando..."
+          }
+        }
+      }
+    },
+    "Location" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Localización"
           }
         }
       }
@@ -397,6 +507,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ninguno"
+          }
+        }
+      }
+    },
+    "Origin" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Origen"
           }
         }
       }
@@ -477,6 +597,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Escenarios"
+          }
+        }
+      }
+    },
+    "Scenario" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escenario"
+          }
+        }
+      }
+    },
+    "Select an alert" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una alerta"
           }
         }
       }
@@ -621,6 +761,16 @@
         }
       }
     },
+    "User agent not available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User agent no disponible"
+          }
+        }
+      }
+    },
     "Username" : {
       "localizations" : {
         "es" : {
@@ -647,6 +797,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El nombre de usuario es requerido para una autenticación basic"
+          }
+        }
+      }
+    },
+    "Version" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión"
           }
         }
       }

@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct AlertsListView: View {
+    @Environment(AuthViewModel.self) private var authViewModel
     @Environment(AlertsListViewModel.self) private var viewModel
+    @State private var selectedAlertId: Int?
     
     var body: some View {
-        NavigationStack {
+        NavigationSplitView {
             Group {
                 switch viewModel.state {
                 case .loading:
@@ -20,6 +22,17 @@ struct AlertsListView: View {
                 }
             }
             .navigationTitle("Alerts")
+        } detail: {
+            if let selectedAlertId = selectedAlertId {
+                AlertDetailsView()
+                    .environment(AlertDetailsViewModel(authViewModel.apiClient!, alertId: selectedAlertId))
+            } else {
+                ContentUnavailableView(
+                    "Select an alert",
+                    systemImage: "list.bullet",
+                    description: Text("Choose an alert from the list to view its details")
+                )
+            }
         }
         .task {
             await viewModel.initialFetchAlerts()
@@ -28,7 +41,7 @@ struct AlertsListView: View {
     
     @ViewBuilder
     func content(_ data: AlertsResponse) -> some View {
-        List(data.items, id: \.id) { alert in
+        List(data.items, id: \.id, selection: $selectedAlertId) { alert in
             let scenarioSplit = alert.scenario.split(separator: "/")
             HStack {
                 VStack(alignment: .leading, spacing: 4) {

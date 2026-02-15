@@ -3,7 +3,7 @@ import Foundation
 // MARK: - AlertsResponse
 struct AlertsResponse: Codable, Hashable {
     let filtering: Filtering
-    let items: [Item]
+    let items: [Alert]
     let pagination: Pagination
 }
 
@@ -12,8 +12,8 @@ struct Filtering: Codable, Hashable {
     let countries, scenarios, ipOwners, targets: [String]
 }
 
-// MARK: - Item
-struct Item: Codable, Hashable {
+// MARK: - Alert
+struct Alert: Codable, Hashable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
