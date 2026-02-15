@@ -43,6 +43,10 @@ struct DashboardView: View {
                 .padding(.horizontal, -20)
             }
             
+            Section {
+                DashboardBarChart(activityHistory: data.activityHistory)
+            }
+            
             if !data.topCountries.isEmpty {
                 Section("Top Countries") {
                     ForEach(data.topCountries, id: \.self) { item in

@@ -23,5 +23,8 @@ extension View {
         #endif
     }
     
-    
+    @ViewBuilder
+    func condition<Content: View>(@ViewBuilder transform: (Self) -> Content) -> some View {
+        transform(self)
+    }
 }

@@ -31,12 +31,42 @@
         }
       }
     },
+    "Activity History" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historial de actividad"
+          }
+        }
+      }
+    },
     "Alerts last 24 hours" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alertas últ. 24 h"
+          }
+        }
+      }
+    },
+    "Alerts: %lld" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alertas: %lld"
+          }
+        }
+      }
+    },
+    "Amount" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cantidad"
           }
         }
       }
@@ -167,6 +197,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tablero"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha"
+          }
+        }
+      }
+    },
+    "Decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decisiones"
+          }
+        }
+      }
+    },
+    "Decisions: %lld" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decisiones: %lld"
           }
         }
       }
@@ -527,6 +587,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Top objetivos"
+          }
+        }
+      }
+    },
+    "Type" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
           }
         }
       }
