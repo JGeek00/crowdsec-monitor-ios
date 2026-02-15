@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
     "Access token" : {
       "localizations" : {
         "es" : {
@@ -11,12 +21,42 @@
         }
       }
     },
+    "Active decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decisiones activas"
+          }
+        }
+      }
+    },
+    "Alerts last 24 hours" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alertas últ. 24 h"
+          }
+        }
+      }
+    },
     "An application to control your CrowdSec instance" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Una aplicación para controlar tu instancia de CrowdSec"
+          }
+        }
+      }
+    },
+    "An error occured when fetching the data" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al cargar los datos"
           }
         }
       }
@@ -122,7 +162,6 @@
       }
     },
     "Error" : {
-      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -138,17 +177,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error al interpretar la respuesta del servidor"
-          }
-        }
-      }
-    },
-    "Example" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ejemplo"
           }
         }
       }
@@ -233,6 +261,16 @@
         }
       }
     },
+    "Loading..." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando..."
+          }
+        }
+      }
+    },
     "Method" : {
       "localizations" : {
         "es" : {
@@ -269,17 +307,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ninguno"
-          }
-        }
-      }
-    },
-    "OK" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
           }
         }
       }
@@ -345,7 +372,14 @@
       }
     },
     "Remove server" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar servidor"
+          }
+        }
+      }
     },
     "Server error: code %lld" : {
       "localizations" : {
@@ -413,6 +447,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El token es requerido para una autenticación Bearer"
+          }
+        }
+      }
+    },
+    "Top Countries" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top países"
+          }
+        }
+      }
+    },
+    "Top IP owners" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top propietarios de IPs"
+          }
+        }
+      }
+    },
+    "Top scenarios" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top escenarios"
+          }
+        }
+      }
+    },
+    "Top targets" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top objetivos"
           }
         }
       }

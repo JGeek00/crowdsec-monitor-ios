@@ -124,7 +124,7 @@ class OnboardingViewModel {
             let basicPasswordValue = authMethod == .basic ? basicPassword : nil
             let bearerTokenValue = authMethod == .bearer ? bearerToken : nil
             
-            let testClient = CrowdSecAPIClient(
+            let testClient = HttpClient(
                 connectionMethod: connectionMethod.rawValue,
                 ipDomain: ipDomain,
                 port: portValue,
@@ -135,7 +135,7 @@ class OnboardingViewModel {
                 bearerToken: bearerTokenValue
             )
             
-            let healthResponse = try await testClient.checkLAPIStatus()
+            let healthResponse: HttpResponse<LAPIStatusResponse> = try await testClient.get(endpoint: "/api/v1/lapi-status")
             
             guard healthResponse.successful == true else {
                 connectionErrorAlert = true

@@ -1,4 +1,4 @@
-class LAPIStatusResponse: Codable {
+struct LAPIStatusResponse: Codable {
     let status: String;
     let message: String;
     let lastSuccessfulSync: String;

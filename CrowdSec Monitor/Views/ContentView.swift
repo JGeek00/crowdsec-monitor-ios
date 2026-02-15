@@ -8,11 +8,12 @@ struct ContentView: View {
         @Bindable var bindableOnboarding = onboardingViewModel
         
         Group {
-            if authViewModel.apiClient != nil {
+            if let apiClient = authViewModel.apiClient {
                 if #available(iOS 26.0, *) {
                     TabView {
                         Tab {
                             DashboardView()
+                                .environment(DashboardViewModel(apiClient))
                         } label: {
                             Label("Dashboard", systemImage: "house.fill")
                         }

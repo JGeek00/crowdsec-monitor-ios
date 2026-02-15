@@ -33,7 +33,7 @@ class AuthViewModel {
             
             if let server = server {
                 currentServer = server
-                apiClient = CrowdSecAPIClient(server: server)
+                apiClient = CrowdSecAPIClient(server)
             } else {
                 currentServer = nil
                 apiClient = nil

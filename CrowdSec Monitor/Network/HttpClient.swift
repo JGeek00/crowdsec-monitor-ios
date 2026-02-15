@@ -113,8 +113,8 @@ class HttpClient: NSObject {
     
     // MARK: - HTTP methods (internal - used by API clients)
     
-    func get<T: Decodable>(endpoint: String) async throws -> HttpResponse<T> {
-        return try await request(method: "GET", endpoint: endpoint)
+    func get<T: Decodable>(endpoint: String, queryParams: [String: String]? = nil) async throws -> HttpResponse<T> {
+        return try await request(method: "GET", endpoint: endpoint, queryParams: queryParams)
     }
     
     func post<T: Encodable, R: Decodable>(endpoint: String, body: T) async throws -> HttpResponse<R> {
@@ -126,9 +126,10 @@ class HttpClient: NSObject {
     private func request<T: Encodable, R: Decodable>(
         method: String,
         endpoint: String,
-        body: T? = nil as String?
+        body: T? = nil as String?,
+        queryParams: [String: String]? = nil
     ) async throws -> HttpResponse<R> {
-        var request = try buildRequest(method: method, endpoint: endpoint, body: body)
+        var request = try buildRequest(method: method, endpoint: endpoint, body: body, queryParams: queryParams)
         let (data, statusCode) = try await performRequest(&request)
         let decodedBody: R = try decode(data)
         
@@ -142,9 +143,21 @@ class HttpClient: NSObject {
     private func buildRequest<T: Encodable>(
         method: String,
         endpoint: String,
-        body: T?
+        body: T?,
+        queryParams: [String: String]? = nil
     ) throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(endpoint)
+        var url = baseURL.appendingPathComponent(endpoint)
+        
+        // Add query parameters if present
+        if let queryParams = queryParams, !queryParams.isEmpty {
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            components?.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+            
+            if let urlWithQuery = components?.url {
+                url = urlWithQuery
+            }
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
