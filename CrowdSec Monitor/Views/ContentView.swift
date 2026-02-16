@@ -34,7 +34,6 @@ struct ContentView: View {
                         Tab {
                             AlertsListView()
                                 .environment(AlertsListViewModel.shared)
-                                .environment(AlertDetailsViewModel())
 
                         } label: {
                             Label("Alerts", systemImage: "exclamationmark.triangle")
@@ -62,7 +61,6 @@ struct ContentView: View {
                                 Label("Alerts", systemImage: "exclamationmark.triangle")
                             }
                             .tag(Enums.TabViewTabs.alerts)
-                            .environment(AlertDetailsViewModel())
                         
                         SettingsView()
                             .tabItem {

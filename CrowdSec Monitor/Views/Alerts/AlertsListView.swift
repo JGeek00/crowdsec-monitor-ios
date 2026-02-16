@@ -3,7 +3,6 @@ import SwiftUI
 struct AlertsListView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(AlertsListViewModel.self) private var viewModel
-    @Environment(AlertDetailsViewModel.self) private var alertDetailsViewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -49,31 +48,33 @@ struct AlertsListView: View {
     func content(_ data: AlertsResponse) -> some View {
         List(data.items, id: \.id, selection: $selectedAlertId) { alert in
             let scenarioSplit = alert.scenario.split(separator: "/")
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(scenarioSplit[0])
-                        .foregroundStyle(Color.gray)
-                        .font(.system(size: 12))
-                        .fontWeight(.semibold)
-                    Text(scenarioSplit[1])
-                        .font(.system(size: 16))
-                        .fontWeight(.medium)
-                    CountryFlag(countryCode: alert.source.cn)
-                        .font(.system(size: 14))
-                        .foregroundStyle(Color.gray)
-                        .fontWeight(.semibold)
-                        
-                }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 4) {
-                    if let date = alert.crowdsecCreatedAt.toDateFromISO8601() {
-                        Text(date.toRelativeDayString())
+            NavigationLink(value: alert.id) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(scenarioSplit[0])
+                            .foregroundStyle(Color.gray)
                             .font(.system(size: 12))
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color.gray)
-                        Text(date.toTimeString())
+                        Text(scenarioSplit[1])
+                            .font(.system(size: 16))
+                            .fontWeight(.medium)
+                        CountryFlag(countryCode: alert.source.cn)
                             .font(.system(size: 14))
+                            .foregroundStyle(Color.gray)
                             .fontWeight(.semibold)
+                            
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 4) {
+                        if let date = alert.crowdsecCreatedAt.toDateFromISO8601() {
+                            Text(date.toRelativeDayString())
+                                .font(.system(size: 12))
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.gray)
+                            Text(date.toTimeString())
+                                .font(.system(size: 14))
+                                .fontWeight(.semibold)
+                        }
                     }
                 }
             }

@@ -3,11 +3,12 @@ import SwiftUI
 struct AlertDetailsView: View {
     let alertId: Int
     
+    @State private var viewModel: AlertDetailsViewModel
+    
     init(alertId: Int) {
         self.alertId = alertId
+        _viewModel = State(wrappedValue: AlertDetailsViewModel(alertId: alertId))
     }
-    
-    @Environment(AlertDetailsViewModel.self) private var viewModel
     
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
@@ -28,10 +29,11 @@ struct AlertDetailsView: View {
             }
         }
         .navigationTitle("Alert #\(alertId)")
-        .onChange(of: alertId, initial: true) { _, newValue in
-            Task {
-                await viewModel.fetchData(alertId: newValue, showLoader: true)
-            }
+        .task(id: alertId) {
+            await viewModel.fetchData()
+        }
+        .onChange(of: alertId) { _, newValue in
+            viewModel.updateAlertId(alertId: newValue)
         }
     }
     
@@ -146,7 +148,7 @@ struct AlertDetailsView: View {
             }
         }
         .refreshable {
-            await viewModel.fetchData(alertId: alertId)
+            await viewModel.fetchData()
         }
     }
     
