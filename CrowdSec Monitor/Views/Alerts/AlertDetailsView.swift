@@ -1,7 +1,16 @@
 import SwiftUI
 
 struct AlertDetailsView: View {
-    @Environment(AlertDetailsViewModel.self) private var viewModel
+    let alertId: Int
+    
+    @State private var viewModel: AlertDetailsViewModel
+    
+    @Environment(AuthViewModel.self) private var authViewModel
+
+    init(alertId: Int, apiClient: CrowdSecAPIClient) {
+        self.alertId = alertId
+        _viewModel = State(initialValue: AlertDetailsViewModel(apiClient, alertId: alertId))
+    }
     
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
