@@ -10,7 +10,7 @@ struct Welcome: View {
         
         VStack(alignment: .center) {
             VStack(alignment: .center) {
-                Image("AppIconImage")
+                Image("AppIconOnboarding")
                     .resizable()
                     .frame(width: verticalSizeClass == .regular ? 130 : 90, height: verticalSizeClass == .regular ? 130 : 90)
                     .cornerRadius(12)

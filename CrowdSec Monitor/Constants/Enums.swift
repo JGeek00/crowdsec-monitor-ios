@@ -12,6 +12,12 @@ class Enums {
         case bearer
     }
     
+    enum Theme: String {
+        case system
+        case light
+        case dark
+    }
+    
     enum TabViewTabs: String {
         case dashboard
         case alerts

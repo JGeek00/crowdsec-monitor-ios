@@ -11,6 +11,16 @@
         }
       }
     },
+    "About the app" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobre la app"
+          }
+        }
+      }
+    },
     "Access token" : {
       "localizations" : {
         "es" : {
@@ -91,6 +101,16 @@
         }
       }
     },
+    "Amount of items to display in dashboard lists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cantidad de elementos a mostrarse en las listas del tablero"
+          }
+        }
+      }
+    },
     "An application to control your CrowdSec instance" : {
       "localizations" : {
         "es" : {
@@ -121,6 +141,36 @@
         }
       }
     },
+    "App version" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión de la app"
+          }
+        }
+      }
+    },
+    "Application settings" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes de la aplicación"
+          }
+        }
+      }
+    },
+    "Are you sure you want to remove the server connection? You will have to create the connection from scratch." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Estás seguro de que quieres eliminar la conexión al servidor? Tendrás que crear la conexión de nuevo."
+          }
+        }
+      }
+    },
     "Authentication" : {
       "localizations" : {
         "es" : {
@@ -137,6 +187,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atrás"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         }
       }
@@ -167,6 +227,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cerrar"
+          }
+        }
+      }
+    },
+    "Configuration" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración"
           }
         }
       }
@@ -241,6 +311,36 @@
         }
       }
     },
+    "Created on 🇪🇸 by JGeek00" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creado en 🇪🇸 por JGeek00"
+          }
+        }
+      }
+    },
+    "CrowdSec website" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitio web de CrowdSec"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscuro"
+          }
+        }
+      }
+    },
     "Dashboard" : {
       "localizations" : {
         "es" : {
@@ -277,6 +377,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decisiones: %lld"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
           }
         }
       }
@@ -451,6 +561,16 @@
         }
       }
     },
+    "Light" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        }
+      }
+    },
     "Loading..." : {
       "localizations" : {
         "es" : {
@@ -487,6 +607,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Método"
+          }
+        }
+      }
+    },
+    "More information about the app" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mas información sobre la app"
+          }
+        }
+      }
+    },
+    "My other apps" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis otras aplicaciones"
           }
         }
       }
@@ -591,12 +731,22 @@
         }
       }
     },
-    "Remove server" : {
+    "Remove server connection" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eliminar servidor"
+            "value" : "Eliminar conexión al servidor"
+          }
+        }
+      }
+    },
+    "Removing server" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminando servidor"
           }
         }
       }
@@ -627,6 +777,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige una alerta"
+          }
+        }
+      }
+    },
+    "Server" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor"
           }
         }
       }
@@ -671,12 +831,32 @@
         }
       }
     },
+    "System defined" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definido por el sistema"
+          }
+        }
+      }
+    },
     "Targets" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Objetivos"
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
           }
         }
       }

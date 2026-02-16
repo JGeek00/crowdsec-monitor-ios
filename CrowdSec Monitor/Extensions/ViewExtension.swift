@@ -18,7 +18,7 @@ extension View {
         if #available(iOS 26.0, *) {
             self.buttonStyle(.glass)
         } else {
-            self.buttonStyle(.bordered)
+            self.buttonStyle(.borderless)
         }
         #endif
     }

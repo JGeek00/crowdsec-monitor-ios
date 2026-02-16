@@ -4,4 +4,7 @@ class URLs {
         let scenarioSplit = scenario.split(separator: "/")
         return "https://app.crowdsec.net/hub/author/\(scenarioSplit[0])/scenarios/\(scenarioSplit[1])"
     }
+    static let crowdsecWeb = "https://crowdsec.net"
+    static let appDetailsPage = ""
+    static let myOtherApps = "https://apps.jgeek00.com"
 }
