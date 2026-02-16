@@ -4,6 +4,22 @@ struct ContentView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     
+    @AppStorage(StorageKeys.theme, store: UserDefaults.shared) private var theme: Enums.Theme = .system
+    
+    @State private var dashboardViewModel: DashboardViewModel?
+    @State private var alertsListViewModel: AlertsListViewModel?
+    
+    func getColorScheme(theme: Enums.Theme) -> ColorScheme? {
+        switch theme {
+            case .system:
+                return nil
+            case .light:
+                return ColorScheme.light
+            case .dark:
+                return ColorScheme.dark
+        }
+    }
+    
     var body: some View {
         @Bindable var bindableOnboarding = onboardingViewModel
         
@@ -58,8 +74,12 @@ struct ContentView: View {
                
             }
         }
+        .fontDesign(.rounded)
+        .preferredColorScheme(getColorScheme(theme: theme))
         .fullScreenCover(isPresented: $bindableOnboarding.showOnboarding, content: {
             OnboardingView()
+                .fontDesign(.rounded)
+                .preferredColorScheme(getColorScheme(theme: theme))
         })
     }
 }
