@@ -16,6 +16,11 @@
 			path = "CrowdSec Monitor";
 			sourceTree = "<group>";
 		};
+		0D941A1F2F43A8DF002CC07C /* AppIcons */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AppIcons;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +39,7 @@
 			children = (
 				0D9416392F40B181002CC07C /* CrowdSec Monitor */,
 				0D9416382F40B181002CC07C /* Products */,
+				0D941A1F2F43A8DF002CC07C /* AppIcons */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +68,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0D9416392F40B181002CC07C /* CrowdSec Monitor */,
+				0D941A1F2F43A8DF002CC07C /* AppIcons */,
 			);
 			name = "CrowdSec Monitor";
 			packageProductDependencies = (
@@ -252,8 +259,9 @@
 		0D9416482F40B182002CC07C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PurpleYellowIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "CrowdSec Monitor/CrowdSec Monitor.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -288,8 +296,9 @@
 		0D9416492F40B182002CC07C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PurpleYellowIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "CrowdSec Monitor/CrowdSec Monitor.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
