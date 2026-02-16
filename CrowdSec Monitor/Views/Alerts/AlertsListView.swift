@@ -3,6 +3,7 @@ import SwiftUI
 struct AlertsListView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(AlertsListViewModel.self) private var viewModel
+    @Environment(AlertDetailsViewModel.self) private var alertDetailsViewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -26,21 +27,18 @@ struct AlertsListView: View {
             }
             .navigationTitle("Alerts")
         } detail: {
-            Group {
-                if let selectedAlertId = selectedAlertId {
-                    AlertDetailsView(alertId: selectedAlertId, apiClient: authViewModel.apiClient!)
-                } else {
-                    // Prevent content unavailable from being shown momentarily when an alert is selected
-                    if horizontalSizeClass == .regular {
-                        ContentUnavailableView(
-                            "Select an alert",
-                            systemImage: "list.bullet",
-                            description: Text("Choose an alert from the list to view its details")
-                        )
-                    }
+            if let selectedAlertId = selectedAlertId {
+                AlertDetailsView(alertId: selectedAlertId)
+            } else {
+                // Prevent content unavailable from being shown momentarily when an alert is selected
+                if horizontalSizeClass == .regular {
+                    ContentUnavailableView(
+                        "Select an alert",
+                        systemImage: "list.bullet",
+                        description: Text("Choose an alert from the list to view its details")
+                    )
                 }
             }
-            .id(selectedAlertId ?? -1)  // Ensures recreation of the view when a new alert is selected
         }
         .task {
             await viewModel.initialFetchAlerts()

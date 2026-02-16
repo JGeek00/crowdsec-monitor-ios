@@ -53,8 +53,7 @@ struct DashboardView: View {
                         DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount)
                     }
                     NavigationLink("View all") {
-                        FullListDashboardItemView()
-                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .country))
+                        FullListDashboardItemView(dashboardItem: .country)
                     }
                 }
             }
@@ -65,8 +64,7 @@ struct DashboardView: View {
                         DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount)
                     }
                     NavigationLink("View all") {
-                        FullListDashboardItemView()
-                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .ipOwner))
+                        FullListDashboardItemView(dashboardItem: .ipOwner)
                     }
                 }
             }
@@ -77,8 +75,7 @@ struct DashboardView: View {
                         DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount)
                     }
                     NavigationLink("View all") {
-                        FullListDashboardItemView()
-                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .scenary))
+                        FullListDashboardItemView(dashboardItem: .scenary)
                     }
                 }
             }
@@ -89,8 +86,7 @@ struct DashboardView: View {
                         DashboardItem(itemType: .target, label: item.target, amount: item.amount)
                     }
                     NavigationLink("View all") {
-                        FullListDashboardItemView()
-                            .environment(FullListDashboardItemViewModel(authViewModel.apiClient!, dashboardItem: .target))
+                        FullListDashboardItemView(dashboardItem: .target)
                     }
                 }
             }

@@ -6,18 +6,14 @@ fileprivate let defaultRequest = AlertsRequest(filters: AlertsRequestFilters(cou
 @MainActor
 @Observable
 class AlertsListViewModel {
-    private let apiClient: CrowdSecAPIClient
-    
-    var requestParams: AlertsRequest
-    
-    init(_ apiClient: CrowdSecAPIClient) {
-        self.apiClient = apiClient
-        self.requestParams = defaultRequest
-    }
+    public static let shared = AlertsListViewModel()
+        
+    var requestParams: AlertsRequest = defaultRequest
     
     var state: Enums.LoadingState<AlertsResponse> = .loading
     
     func initialFetchAlerts(force: Bool = false) async {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return }
         if state.data != nil && !force {
             return
         }
@@ -35,6 +31,7 @@ class AlertsListViewModel {
     }
 
     func fetchMore() async {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return }
         if let data = state.data {
             if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
                 return

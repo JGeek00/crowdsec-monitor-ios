@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct FullListDashboardItemView: View {
-    @Environment(FullListDashboardItemViewModel.self) private var viewModel
+    @State private var viewModel: FullListDashboardItemViewModel
+    
+    init(dashboardItem: Enums.DashboardItemType) {
+        _viewModel = State(initialValue: FullListDashboardItemViewModel(dashboardItem: dashboardItem))
+    }
     
     var body: some View {
         let title: String = {

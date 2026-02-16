@@ -9,30 +9,29 @@ struct FullItemDashboardItemData: Hashable {
 @MainActor
 @Observable
 class FullListDashboardItemViewModel {
-    private let apiClient: CrowdSecAPIClient
     let dashboardItem: Enums.DashboardItemType
     
-    init(_ apiClient: CrowdSecAPIClient, dashboardItem: Enums.DashboardItemType) {
-        self.apiClient = apiClient
+    init(dashboardItem: Enums.DashboardItemType) {
         self.dashboardItem = dashboardItem
     }
     
     var state: Enums.LoadingState<[FullItemDashboardItemData]> = .loading
     
     func fetchData() async {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
             switch self.dashboardItem {
             case .country:
-                let result = try await self.apiClient.statistics.countries.fetchCountriesStatistics()
+                let result = try await apiClient.statistics.countries.fetchCountriesStatistics()
                 state = .success(result.body.map { FullItemDashboardItemData(item: $0.countryCode, value: $0.amount) })
             case .ipOwner:
-                let result = try await self.apiClient.statistics.ipOwners.fetchIpOwnersStatistics()
+                let result = try await apiClient.statistics.ipOwners.fetchIpOwnersStatistics()
                 state = .success(result.body.map { FullItemDashboardItemData(item: $0.ipOwner, value: $0.amount) })
             case .scenary:
-                let result = try await self.apiClient.statistics.scenaries.fetchScenariesStatistics()
+                let result = try await apiClient.statistics.scenaries.fetchScenariesStatistics()
                 state = .success(result.body.map { FullItemDashboardItemData(item: $0.scenario, value: $0.amount) })
             case .target:
-                let result = try await self.apiClient.statistics.targets.fetchTargetsStatistics()
+                let result = try await apiClient.statistics.targets.fetchTargetsStatistics()
                 state = .success(result.body.map { FullItemDashboardItemData(item: $0.target, value: $0.amount) })
             }
         } catch {

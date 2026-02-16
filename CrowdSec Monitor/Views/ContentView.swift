@@ -6,9 +6,6 @@ struct ContentView: View {
     
     @AppStorage(StorageKeys.theme, store: UserDefaults.shared) private var theme: Enums.Theme = .system
     
-    @State private var dashboardViewModel: DashboardViewModel?
-    @State private var alertsListViewModel: AlertsListViewModel?
-    
     func getColorScheme(theme: Enums.Theme) -> ColorScheme? {
         switch theme {
             case .system:
@@ -24,19 +21,21 @@ struct ContentView: View {
         @Bindable var bindableOnboarding = onboardingViewModel
         
         Group {
-            if let apiClient = authViewModel.apiClient {
+            if authViewModel.apiClient != nil {
                 if #available(iOS 26.0, *) {
                     TabView {
                         Tab {
                             DashboardView()
-                                .environment(DashboardViewModel(apiClient))
+                                .environment(DashboardViewModel.shared)
                         } label: {
                             Label("Dashboard", systemImage: "house.fill")
                         }
                         
                         Tab {
                             AlertsListView()
-                                .environment(AlertsListViewModel(apiClient))
+                                .environment(AlertsListViewModel.shared)
+                                .environment(AlertDetailsViewModel())
+
                         } label: {
                             Label("Alerts", systemImage: "exclamationmark.triangle")
                         }
@@ -51,18 +50,19 @@ struct ContentView: View {
                 else {
                     TabView {
                         DashboardView()
-                            .environment(DashboardViewModel(apiClient))
+                            .environment(DashboardViewModel.shared)
                             .tabItem {
                                 Label("Dashboard", systemImage: "house.fill")
                             }
                             .tag(Enums.TabViewTabs.dashboard)
                         
                         AlertsListView()
-                            .environment(AlertsListViewModel(apiClient))
+                            .environment(AlertsListViewModel.shared)
                             .tabItem {
                                 Label("Alerts", systemImage: "exclamationmark.triangle")
                             }
                             .tag(Enums.TabViewTabs.alerts)
+                            .environment(AlertDetailsViewModel())
                         
                         SettingsView()
                             .tabItem {

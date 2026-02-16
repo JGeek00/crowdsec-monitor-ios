@@ -3,14 +3,11 @@ import SwiftUI
 struct AlertDetailsView: View {
     let alertId: Int
     
-    @State private var viewModel: AlertDetailsViewModel
-    
-    @Environment(AuthViewModel.self) private var authViewModel
-
-    init(alertId: Int, apiClient: CrowdSecAPIClient) {
+    init(alertId: Int) {
         self.alertId = alertId
-        _viewModel = State(initialValue: AlertDetailsViewModel(apiClient, alertId: alertId))
     }
+    
+    @Environment(AlertDetailsViewModel.self) private var viewModel
     
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
@@ -30,9 +27,11 @@ struct AlertDetailsView: View {
                 )
             }
         }
-        .navigationTitle("Alert #\(viewModel.alertId)")
-        .task {
-            await viewModel.fetchData()
+        .navigationTitle("Alert #\(alertId)")
+        .onChange(of: alertId, initial: true) { _, newValue in
+            Task {
+                await viewModel.fetchData(alertId: newValue, showLoader: true)
+            }
         }
     }
     
@@ -147,7 +146,7 @@ struct AlertDetailsView: View {
             }
         }
         .refreshable {
-            await viewModel.fetchData()
+            await viewModel.fetchData(alertId: alertId)
         }
     }
     
