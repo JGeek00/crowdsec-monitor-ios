@@ -60,14 +60,18 @@ struct DashboardSummaryItem: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
-        .background(Color.background)
+        .background(Color.listItemBackground)
         .clipShape(.rect(cornerRadius: 20))
     }
 }
 
 #Preview {
-    DashboardSummaryItem(type: .alerts, value: 152)
-}
-#Preview {
-    DashboardSummaryItem(type: .decisions, value: 6)
+    List {
+        Section {} header: {
+            HStack(spacing: 16) {
+                DashboardSummaryItem(type: .alerts, value: 152)
+                DashboardSummaryItem(type: .decisions, value: 6)
+            }
+        }
+    }
 }
