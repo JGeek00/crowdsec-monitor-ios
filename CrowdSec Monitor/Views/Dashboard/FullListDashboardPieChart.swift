@@ -123,20 +123,51 @@ fileprivate struct TooltipView: View {
         VStack(spacing: 4) {
             Text(displayName)
                 .font(.headline)
-                .foregroundColor(.white)
+                .condition { view in
+                    if #available(iOS 26.0, *) {
+                        view.foregroundStyle(Color.foreground)
+                    }
+                    else {
+                        view.foregroundStyle(Color.white)
+                    }
+                }
             Text("\(item.value)")
                 .font(.subheadline)
-                .foregroundColor(.white)
+                .fontWeight(.medium)
+                .condition { view in
+                    if #available(iOS 26.0, *) {
+                        view.foregroundStyle(Color.foreground)
+                    }
+                    else {
+                        view.foregroundStyle(Color.white)
+                    }
+                }
             Text(verbatim: "\(Int(item.percentage * 100))%")
                 .font(.caption)
-                .foregroundColor(.white.opacity(0.8))
+                .condition { view in
+                    if #available(iOS 26.0, *) {
+                        view.foregroundStyle(Color.foreground)
+                    }
+                    else {
+                        view.foregroundStyle(Color.white)
+                    }
+                }
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 24)
         .padding(.vertical, 8)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.black.opacity(0.8))
-        )
+        .condition { view in
+            if #available(iOS 26.0, *) {
+                view
+                    .glassEffect()
+            }
+            else {
+                view
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.black.opacity(0.8))
+                    )
+            }
+        }
         .shadow(radius: 4)
     }
     
