@@ -45,7 +45,7 @@ struct AlertsListView: View {
     }
     
     @ViewBuilder
-    func content(_ data: AlertsResponse) -> some View {
+    func content(_ data: AlertsListResponse) -> some View {
         List(data.items, id: \.id, selection: $selectedAlertId) { alert in
             let scenarioSplit = alert.scenario.split(separator: "/")
             NavigationLink(value: alert.id) {

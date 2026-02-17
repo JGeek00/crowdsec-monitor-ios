@@ -10,11 +10,11 @@ struct AlertDetailsResponse: Codable, Hashable {
     let simulated, remediation: Bool
     let eventsCount: Int
     let machineID: String
-    let source: Source
-    let meta: [AlertDetailsMeta]
-    let events: [Event]
+    let source: AlertDetailsResponse_Source
+    let meta: [AlertDetailsResponse_Meta]
+    let events: [AlertDetailsResponse_Event]
     let crowdsecCreatedAt, startAt, stopAt: Date
-    let decisions: [AlertDetailsDecision]
+    let decisions: [AlertDetailsResponse_Decision]
 
     enum CodingKeys: String, CodingKey {
         case id, uuid, scenario
@@ -31,14 +31,20 @@ struct AlertDetailsResponse: Codable, Hashable {
     }
 }
 
-// MARK: - Decision
-struct AlertDetailsDecision: Codable, Hashable {
+// MARK: - AlertDetailsResponse_Meta
+struct AlertDetailsResponse_Meta: Codable, Hashable {
+    let key: String
+    let value: String
+}
+
+// MARK: - AlertDetailsResponse_Decision
+struct AlertDetailsResponse_Decision: Codable, Hashable {
     let id, alertID: Int
     let origin, type, scope, value: String
     let expiration: Date
     let scenario: String
     let simulated: Bool
-    let source: Source
+    let source: AlertDetailsResponse_Source
     let crowdsecCreatedAt: Date
 
     enum CodingKeys: String, CodingKey {
@@ -49,8 +55,8 @@ struct AlertDetailsDecision: Codable, Hashable {
     }
 }
 
-// MARK: - AlertDetailsSource
-struct AlertDetailsSource: Codable, Hashable {
+// MARK: - AlertDetailsResponse_Source
+struct AlertDetailsResponse_Source: Codable, Hashable {
     let asName, asNumber, cn, ip: String
     let latitude, longitude: Double
     let range, scope, value: String
@@ -62,13 +68,13 @@ struct AlertDetailsSource: Codable, Hashable {
     }
 }
 
-// MARK: - AlertDetailsEvent
-struct AlertDetailsEvent: Codable, Hashable {
-    let meta: [AlertDetailsMeta]
+// MARK: - AlertDetailsResponse_Event
+struct AlertDetailsResponse_Event: Codable, Hashable {
+    let meta: [AlertDetailsResponse_Event_Meta]
     let timestamp: Date
 }
 
-// MARK: - AlertDetailsMeta
-struct AlertDetailsMeta: Codable, Hashable {
+// MARK: - AlertDetailsResponse_Event_Meta
+struct AlertDetailsResponse_Event_Meta: Codable, Hashable {
     let key, value: String
 }

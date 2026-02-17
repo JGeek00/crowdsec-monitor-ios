@@ -10,7 +10,7 @@ class AlertsListViewModel {
         
     var requestParams: AlertsRequest = defaultRequest
     
-    var state: Enums.LoadingState<AlertsResponse> = .loading
+    var state: Enums.LoadingState<AlertsListResponse> = .loading
     
     func initialFetchAlerts(force: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
@@ -48,7 +48,7 @@ class AlertsListViewModel {
                 let uniqueNewItems = result.body.items.filter { !existingIDs.contains($0.id) }
                 
                 let newItems = previousItems + uniqueNewItems
-                let newResponse = AlertsResponse(filtering: result.body.filtering, items: newItems, pagination: result.body.pagination)
+                let newResponse = AlertsListResponse(filtering: result.body.filtering, items: newItems, pagination: result.body.pagination)
                 state = .success(newResponse)
             } catch {
                 state = .failure(error)

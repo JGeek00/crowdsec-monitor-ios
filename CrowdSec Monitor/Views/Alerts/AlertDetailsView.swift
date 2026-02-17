@@ -121,9 +121,7 @@ struct AlertDetailsView: View {
                     }
                     .fontWeight(.medium)
                 }
-                if let asName = data.source.asName {
-                    normalRow(title: String(localized: "IP owner"), value: asName)
-                }
+                normalRow(title: String(localized: "IP owner"), value: data.source.asName)
             }
             
             Section("Decisions") {
@@ -133,8 +131,8 @@ struct AlertDetailsView: View {
             }
             
             Section("Events") {
-                ForEach(data.events, id: \.self) { event in
-                    EventItem(data: event.meta.map({ EventItemDataElement(key: $0.key.rawValue, value: $0.value) }))
+                ForEach(Array(data.events.enumerated()), id: \.offset) { index, event in
+                    EventItem(data: event.meta.map({ EventItemDataElement(key: $0.key, value: $0.value) }))
                 }
             }
         }

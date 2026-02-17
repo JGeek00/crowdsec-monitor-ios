@@ -7,7 +7,7 @@ class AlertsAPIClient {
     }
     
     /// Fetch alerts
-    func fetchAlerts(requestParams: AlertsRequest) async throws -> HttpResponse<AlertsResponse> {
+    func fetchAlerts(requestParams: AlertsRequest) async throws -> HttpResponse<AlertsListResponse> {
         var queryParams: [URLQueryItem] = []
         
         if let countries = requestParams.filters.countries {
