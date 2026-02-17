@@ -58,6 +58,7 @@ struct DashboardView: View {
                 ]
                 LazyVGrid(columns: gridItems, spacing: 32) {
                     if !data.topCountries.isEmpty {
+                        let totalAmount = data.topCountries.reduce(0) { $0 + $1.amount }
                         StyledListContainerWithNavLink(
                             sectionTitle: String(localized: "Top countries"),
                             data: data.topCountries,
@@ -66,11 +67,12 @@ struct DashboardView: View {
                                 FullListDashboardItemView(dashboardItem: .country)
                             }
                         ) { item in
-                            DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount)
+                            DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                         }
                     }
                     
                     if !data.topIpOwners.isEmpty {
+                        let totalAmount = data.topIpOwners.reduce(0) { $0 + $1.amount }
                         StyledListContainerWithNavLink(
                             sectionTitle: String(localized: "Top IP owners"),
                             data: data.topIpOwners,
@@ -79,11 +81,12 @@ struct DashboardView: View {
                                 FullListDashboardItemView(dashboardItem: .ipOwner)
                             }
                         ) { item in
-                            DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount)
+                            DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                         }
                     }
                     
                     if !data.topScenarios.isEmpty {
+                        let totalAmount = data.topScenarios.reduce(0) { $0 + $1.amount }
                         StyledListContainerWithNavLink(
                             sectionTitle: String(localized: "Top scenarios"),
                             data: data.topScenarios,
@@ -92,11 +95,12 @@ struct DashboardView: View {
                                 FullListDashboardItemView(dashboardItem: .scenary)
                             }
                         ) { item in
-                            DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount)
+                            DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                         }
                     }
                     
                     if !data.topTargets.isEmpty {
+                        let totalAmount = data.topTargets.reduce(0) { $0 + $1.amount }
                         StyledListContainerWithNavLink(
                             sectionTitle: String(localized: "Top targets"),
                             data: data.topTargets,
@@ -105,13 +109,15 @@ struct DashboardView: View {
                                 FullListDashboardItemView(dashboardItem: .target)
                             }
                         ) { item in
-                            DashboardItem(itemType: .target, label: item.target, amount: item.amount)
+                            DashboardItem(itemType: .target, label: item.target, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                         }
                     }
                 }
             }
+            .padding(.horizontal, 24)
+            Spacer()
+                .frame(height: 16)
         }
-        .padding(.horizontal, 24)
         .background(Color.listBackground)
     }
     
@@ -131,9 +137,10 @@ struct DashboardView: View {
             }
             
             if !data.topCountries.isEmpty {
+                let totalAmount = data.topCountries.reduce(0) { $0 + $1.amount }
                 Section("Top countries") {
                     ForEach(data.topCountries, id: \.self) { item in
-                        DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount)
+                        DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                     }
                     NavigationLink("View all") {
                         FullListDashboardItemView(dashboardItem: .country)
@@ -142,9 +149,10 @@ struct DashboardView: View {
             }
             
             if !data.topIpOwners.isEmpty {
+                let totalAmount = data.topIpOwners.reduce(0) { $0 + $1.amount }
                 Section("Top IP owners") {
                     ForEach(data.topIpOwners, id: \.self) { item in
-                        DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount)
+                        DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                     }
                     NavigationLink("View all") {
                         FullListDashboardItemView(dashboardItem: .ipOwner)
@@ -153,9 +161,10 @@ struct DashboardView: View {
             }
             
             if !data.topScenarios.isEmpty {
+                let totalAmount = data.topScenarios.reduce(0) { $0 + $1.amount }
                 Section("Top scenarios") {
                     ForEach(data.topScenarios, id: \.self) { item in
-                        DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount)
+                        DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                     }
                     NavigationLink("View all") {
                         FullListDashboardItemView(dashboardItem: .scenary)
@@ -164,9 +173,10 @@ struct DashboardView: View {
             }
             
             if !data.topTargets.isEmpty {
+                let totalAmount = data.topTargets.reduce(0) { $0 + $1.amount }
                 Section("Top targets") {
                     ForEach(data.topTargets, id: \.self) { item in
-                        DashboardItem(itemType: .target, label: item.target, amount: item.amount)
+                        DashboardItem(itemType: .target, label: item.target, amount: item.amount, percentage: Double(item.amount) / Double(totalAmount))
                     }
                     NavigationLink("View all") {
                         FullListDashboardItemView(dashboardItem: .target)

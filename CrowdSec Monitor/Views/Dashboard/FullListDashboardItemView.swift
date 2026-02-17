@@ -7,6 +7,8 @@ struct FullListDashboardItemView: View {
         _viewModel = State(initialValue: FullListDashboardItemViewModel(dashboardItem: dashboardItem))
     }
     
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
     var body: some View {
         let title: String = {
             switch viewModel.dashboardItem {
@@ -26,7 +28,11 @@ struct FullListDashboardItemView: View {
             case .loading:
                 ProgressView("Loading...")
             case .success(let data):
-                content(data)
+                if horizontalSizeClass == .regular {
+                    contentRegular(data)
+                } else {
+                    contentCompact(data)
+                }
             case .failure:
                 ContentUnavailableView(
                     "Error",
@@ -43,18 +49,61 @@ struct FullListDashboardItemView: View {
     }
     
     @ViewBuilder
-    func content(_ data: [FullItemDashboardItemData]) -> some View {
-        List(data, id: \.self) { item in
-            switch viewModel.dashboardItem {
-            case .country:
-                DashboardItem(itemType: .country, label: item.item, amount: item.value)
-            case .ipOwner:
-                DashboardItem(itemType: .ipOwner, label: item.item, amount: item.value)
-            case .scenary:
-                DashboardItem(itemType: .scenary, label: item.item, amount: item.value)
-            case .target:
-                DashboardItem(itemType: .target, label: item.item, amount: item.value)
+    func contentCompact(_ data: [FullItemDashboardItemDataForView]) -> some View {
+        List {
+            Section {
+                HStack {
+                    Spacer()
+                    FullListDashboardPieChart(data: viewModel.chartData)
+                    Spacer()
+                }
             }
+            
+            Section {
+                ForEach(data, id: \.self) { item in
+                    switch viewModel.dashboardItem {
+                    case .country:
+                        DashboardItem(itemType: .country, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                    case .ipOwner:
+                        DashboardItem(itemType: .ipOwner, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                    case .scenary:
+                        DashboardItem(itemType: .scenary, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                    case .target:
+                        DashboardItem(itemType: .target, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func contentRegular(_ data: [FullItemDashboardItemDataForView]) -> some View {
+        GeometryReader { geometry in
+            let width = geometry.size.width - 64
+            ScrollView {
+                HStack(alignment: .top, spacing: 32) {
+                    StyledListContainer(
+                        data: data,
+                    ) { item in
+                        switch viewModel.dashboardItem {
+                        case .country:
+                            DashboardItem(itemType: .country, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                        case .ipOwner:
+                            DashboardItem(itemType: .ipOwner, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                        case .scenary:
+                            DashboardItem(itemType: .scenary, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                        case .target:
+                            DashboardItem(itemType: .target, label: item.item, amount: item.value, percentage: item.percentage, color: item.color)
+                        }
+                    }
+                    .frame(width: width * 0.65)
+                    
+                    FullListDashboardPieChart(data: viewModel.chartData)
+                        .frame(width: (width-32) * 0.35)
+                }
+                .padding(.horizontal, 24)
+            }
+            .background(Color.listBackground)
         }
     }
 }

@@ -4,11 +4,15 @@ struct DashboardItem: View {
     let itemType: Enums.DashboardItemType
     let label: String
     let amount: Int
+    let percentage: Double
+    let color: Color?
     
-    init(itemType: Enums.DashboardItemType, label: String, amount: Int) {
+    init(itemType: Enums.DashboardItemType, label: String, amount: Int, percentage: Double, color: Color? = nil) {
         self.itemType = itemType
         self.label = label
         self.amount = amount
+        self.percentage = percentage
+        self.color = color
     }
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -17,13 +21,16 @@ struct DashboardItem: View {
         switch itemType {
         case .country:
             HStack {
+                colorCircle(color)
                 CountryFlag(countryCode: label)
                 Spacer()
-                Text("\(amount)")
+                Text(verbatim: "\(amount)")
+                percentageText(percentage)
             }
             
         case .ipOwner:
             HStack {
+                colorCircle(color)
                 Text(verbatim: label)
                     .condition { view in
                         if horizontalSizeClass == .regular {
@@ -31,13 +38,16 @@ struct DashboardItem: View {
                                 .lineLimit(1)
                                 .truncationMode(.tail)
                         }
+                        else { view }
                     }
                 Spacer()
-                Text("\(amount)")
+                Text(verbatim: "\(amount)")
+                percentageText(percentage)
             }
         case .scenary:
             let splitted = label.split(separator: "/")
             HStack {
+                colorCircle(color)
                 if horizontalSizeClass == .compact {
                     VStack(alignment: .leading) {
                         Text(verbatim: String(splitted[0]))
@@ -65,9 +75,11 @@ struct DashboardItem: View {
                 }
                 Spacer()
                 Text("\(amount)")
+                percentageText(percentage)
             }
         case .target:
             HStack {
+                colorCircle(color)
                 Text(verbatim: label)
                     .condition { view in
                         if horizontalSizeClass == .regular {
@@ -75,24 +87,49 @@ struct DashboardItem: View {
                                 .lineLimit(1)
                                 .truncationMode(.tail)
                         }
+                        else { view }
                     }
                 Spacer()
-                Text("\(amount)")
+                Text(verbatim: "\(amount)")
+                percentageText(percentage)
             }
         }
+    }
+    
+    @ViewBuilder
+    func colorCircle(_ color: Color?) -> some View {
+        if let color = color {
+            HStack {
+                Circle()
+                    .frame(width: 16, height: 16)
+                    .foregroundStyle(color)
+                Spacer()
+                    .frame(width: 16)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func percentageText(_ value: Double) -> some View {
+        Spacer()
+            .frame(width: 4)
+        Text(verbatim: "(\(Int(percentage*100.rounded()))%)")
+            .foregroundStyle(.secondary)
+            .font(.system(size: 14))
+            .fontDesign(.monospaced)
     }
 }
 
 #Preview {
-    DashboardItem(itemType: .country, label: "ES", amount: 6)
+    DashboardItem(itemType: .country, label: "ES", amount: 6, percentage: 14.4)
 }
 #Preview {
-    DashboardItem(itemType: .ipOwner, label: "MICROSOFT", amount: 5)
+    DashboardItem(itemType: .ipOwner, label: "MICROSOFT", amount: 5,percentage: 3.8)
 }
 #Preview {
-    DashboardItem(itemType: .scenary, label: "crowdsec/bad-user-agent", amount: 12)
+    DashboardItem(itemType: .scenary, label: "crowdsec/bad-user-agent", amount: 12, percentage: 43.1)
 }
 #Preview {
-    DashboardItem(itemType: .target, label: "app.mydomain.com", amount: 8)
+    DashboardItem(itemType: .target, label: "app.mydomain.com", amount: 8, percentage: 22.6)
 }
 
