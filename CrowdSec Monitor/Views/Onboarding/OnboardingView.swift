@@ -50,16 +50,16 @@ struct OnboardingView: View {
                         .tabViewStyle(.page(indexDisplayMode: .never))
                         .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     }
+                    .background(Color.listBackground)
                     .frame(maxWidth: 600, maxHeight: 800)
                     .cornerRadius(24)
+                    .shadow(radius: 20)
                     Spacer()
                 }
                 Spacer()
             }
-            .background(colorScheme == .dark ? LinearGradient(gradient: Gradient(colors: [Color.init("156487"), Color.init("0A3345")]), startPoint: .top, endPoint: .bottom) : LinearGradient(gradient: Gradient(colors: [Color.init("38BDF7"), Color.init("277A9F")]), startPoint: .top, endPoint: .bottom))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
-            .shadow(radius: 20)
         }
     }
 }

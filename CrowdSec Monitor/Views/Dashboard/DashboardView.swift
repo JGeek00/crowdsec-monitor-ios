@@ -4,6 +4,8 @@ struct DashboardView: View {
     @Environment(DashboardViewModel.self) private var viewModel
     @Environment(AuthViewModel.self) private var authViewModel
     
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
     var body: some View {
         NavigationStack {
             Group {
@@ -12,7 +14,12 @@ struct DashboardView: View {
                     ProgressView("Loading...")
                     
                 case .success(let data):
-                    dashboardContent(data: data)
+                    if horizontalSizeClass == .regular {
+                        dashboardContentRegular(data: data)
+                    }
+                    else {
+                        dashboardContentCompact(data: data)
+                    }
                     
                 case .failure:
                     ContentUnavailableView(
@@ -33,7 +40,83 @@ struct DashboardView: View {
     }
     
     @ViewBuilder
-    private func dashboardContent(data: StatisticsResponse) -> some View {
+    private func dashboardContentRegular(data: StatisticsResponse) -> some View {
+        ScrollView {
+            LazyVStack(spacing: 32) {
+                HStack(spacing: 16) {
+                    DashboardSummaryItem(type: .alerts, value: data.alertsLast24Hours)
+                    DashboardSummaryItem(type: .decisions, value: data.activeDecisions)
+                }
+                .background(Color.listBackground)
+                
+                DashboardBarChart(activityHistory: data.activityHistory)
+                    .listContainerStyling()
+                
+                let gridItems = [
+                    GridItem(.flexible(), spacing: 24, alignment: .top),
+                    GridItem(.flexible(), spacing: 24, alignment: .top)
+                ]
+                LazyVGrid(columns: gridItems, spacing: 32) {
+                    if !data.topCountries.isEmpty {
+                        StyledListContainerWithNavLink(
+                            sectionTitle: String(localized: "Top countries"),
+                            data: data.topCountries,
+                            navLinkTitle: String(localized: "View all"),
+                            navLinkDestination: {
+                                FullListDashboardItemView(dashboardItem: .country)
+                            }
+                        ) { item in
+                            DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount)
+                        }
+                    }
+                    
+                    if !data.topIpOwners.isEmpty {
+                        StyledListContainerWithNavLink(
+                            sectionTitle: String(localized: "Top IP owners"),
+                            data: data.topIpOwners,
+                            navLinkTitle: String(localized: "View all"),
+                            navLinkDestination: {
+                                FullListDashboardItemView(dashboardItem: .ipOwner)
+                            }
+                        ) { item in
+                            DashboardItem(itemType: .ipOwner, label: item.ipOwner, amount: item.amount)
+                        }
+                    }
+                    
+                    if !data.topScenarios.isEmpty {
+                        StyledListContainerWithNavLink(
+                            sectionTitle: String(localized: "Top scenarios"),
+                            data: data.topScenarios,
+                            navLinkTitle: String(localized: "View all"),
+                            navLinkDestination: {
+                                FullListDashboardItemView(dashboardItem: .scenary)
+                            }
+                        ) { item in
+                            DashboardItem(itemType: .scenary, label: item.scenario, amount: item.amount)
+                        }
+                    }
+                    
+                    if !data.topTargets.isEmpty {
+                        StyledListContainerWithNavLink(
+                            sectionTitle: String(localized: "Top targets"),
+                            data: data.topTargets,
+                            navLinkTitle: String(localized: "View all"),
+                            navLinkDestination: {
+                                FullListDashboardItemView(dashboardItem: .target)
+                            }
+                        ) { item in
+                            DashboardItem(itemType: .target, label: item.target, amount: item.amount)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, 24)
+        .background(Color.listBackground)
+    }
+    
+    @ViewBuilder
+    private func dashboardContentCompact(data: StatisticsResponse) -> some View {
         List {
             Section {} header: {
                 HStack(spacing: 16) {
@@ -48,7 +131,7 @@ struct DashboardView: View {
             }
             
             if !data.topCountries.isEmpty {
-                Section("Top Countries") {
+                Section("Top countries") {
                     ForEach(data.topCountries, id: \.self) { item in
                         DashboardItem(itemType: .country, label: item.countryCode, amount: item.amount)
                     }
