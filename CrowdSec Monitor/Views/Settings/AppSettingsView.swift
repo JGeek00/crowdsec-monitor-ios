@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AppSettingsView: View {
     @SharedAppStorage(StorageKeys.topItemsDashboard) private var amountItemsDashboard: Int = Defaults.topItemsDashboard
+    @SharedAppStorage(StorageKeys.showDefaultActiveDecisions) private var showDefaultActiveDecisions: Bool = Defaults.showDefaultActiveDecisions
     
     @Environment(AuthViewModel.self) private var authViewModel
     
@@ -18,6 +19,15 @@ struct AppSettingsView: View {
                         .monospacedDigit()
                         .background(Circle().fill(Color.gray.opacity(0.2)).frame(width: 30, height: 30))
                 }
+            }
+            
+            Section("Decisions") {
+                Toggle("Show by default only active decisions", isOn: $showDefaultActiveDecisions)
+            }
+            .onChange(of: showDefaultActiveDecisions) { _, newValue in
+                var newFilters = DecisionsListViewModel.shared.requestParams.filters
+                newFilters.onlyActive = newValue
+                DecisionsListViewModel.shared.updateFilters(newFilters)
             }
             
             Section("Server") {

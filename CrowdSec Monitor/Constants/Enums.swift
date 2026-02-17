@@ -21,6 +21,7 @@ class Enums {
     enum TabViewTabs: String {
         case dashboard
         case alerts
+        case decisions
         case settings
     }
     

@@ -28,7 +28,7 @@ struct AlertDetailsView: View {
                 )
             }
         }
-        .navigationTitle("Alert #\(alertId)")
+        .navigationTitle("Alert #\(String(alertId))")
         .task(id: alertId) {
             await viewModel.fetchData()
         }

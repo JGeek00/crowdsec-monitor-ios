@@ -40,6 +40,14 @@ struct ContentView: View {
                         }
                         
                         Tab {
+                            DecisionsListView()
+                                .environment(DecisionsListViewModel.shared)
+
+                        } label: {
+                            Label("Decisions", systemImage: "shield")
+                        }
+                        
+                        Tab {
                             SettingsView()
                         } label: {
                             Label("Settings", systemImage: "gear")
@@ -61,6 +69,13 @@ struct ContentView: View {
                                 Label("Alerts", systemImage: "exclamationmark.triangle")
                             }
                             .tag(Enums.TabViewTabs.alerts)
+                        
+                        DecisionsListView()
+                            .environment(DecisionsListViewModel.shared)
+                            .tabItem {
+                                Label("Decisions", systemImage: "shield")
+                            }
+                            .tag(Enums.TabViewTabs.decisions)
                         
                         SettingsView()
                             .tabItem {

@@ -1,19 +1,19 @@
 import Foundation
 
 // MARK: - DecisionsListResponse
-struct DecisionsListResponse: Codable {
+struct DecisionsListResponse: Codable, Hashable, Equatable {
     let filtering: DecisionsListResponse_Filtering
     let items: [DecisionsListResponse_Item]
     let pagination: DecisionsListResponse_Pagination
 }
 
 // MARK: - Filtering
-struct DecisionsListResponse_Filtering: Codable {
+struct DecisionsListResponse_Filtering: Codable, Hashable, Equatable {
     let countries, ipOwners: [String]
 }
 
 // MARK: - DecisionItem
-struct DecisionsListResponse_Item: Codable {
+struct DecisionsListResponse_Item: Codable, Hashable, Equatable {
     let id, alertId: Int
     let origin: String
     let type: String
@@ -32,7 +32,7 @@ struct DecisionsListResponse_Item: Codable {
 }
 
 // MARK: - DecisionsListResponse_Item_Source
-struct DecisionsListResponse_Item_Source: Codable {
+struct DecisionsListResponse_Item_Source: Codable, Hashable, Equatable {
     let asName: String?
     let asNumber, cn, ip: String
     let latitude, longitude: Double
@@ -48,6 +48,6 @@ struct DecisionsListResponse_Item_Source: Codable {
 }
 
 // MARK: - Pagination
-struct DecisionsListResponse_Pagination: Codable {
+struct DecisionsListResponse_Pagination: Codable, Hashable, Equatable {
     let page, amount, total: Int
 }

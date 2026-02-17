@@ -4,11 +4,11 @@ import Combine
 struct DecisionItem: View {
     let decisionId: Int
     let ipAddress: String
-    let expirationDate: Date
+    let expirationDate: Date?
     let countryCode: String?
     let decisionType: String
     
-    init(decisionId: Int, ipAddress: String, expirationDate: Date, countryCode: String?, decisionType: String) {
+    init(decisionId: Int, ipAddress: String, expirationDate: Date?, countryCode: String?, decisionType: String) {
         self.decisionId = decisionId
         self.ipAddress = ipAddress
         self.expirationDate = expirationDate
@@ -18,39 +18,47 @@ struct DecisionItem: View {
     
     @State private var currentTime = Date()
     
-    private var timeRemaining: String {
-        let timeInterval = expirationDate.timeIntervalSince(currentTime)
-        
-        if timeInterval <= 0 {
-            return String(localized: "Expired")
+    private var timeRemaining: String? {
+        if let expirationDate = expirationDate {
+            let timeInterval = expirationDate.timeIntervalSince(currentTime)
+            
+            if timeInterval <= 0 {
+                return String(localized: "Expired")
+            }
+            
+            let totalSeconds = Int(timeInterval)
+            let days = totalSeconds / 86400
+            let hours = (totalSeconds % 86400) / 3600
+            let minutes = (totalSeconds % 3600) / 60
+            let seconds = totalSeconds % 60
+            
+            var components: [String] = []
+            
+            if days > 0 {
+                components.append("\(days)d")
+            }
+            if hours > 0 {
+                components.append("\(hours)h")
+            }
+            if minutes > 0 {
+                components.append("\(minutes)m")
+            }
+            if seconds > 0 || components.isEmpty {
+                components.append("\(seconds)s")
+            }
+            
+            return components.joined(separator: " ")
         }
-        
-        let totalSeconds = Int(timeInterval)
-        let days = totalSeconds / 86400
-        let hours = (totalSeconds % 86400) / 3600
-        let minutes = (totalSeconds % 3600) / 60
-        let seconds = totalSeconds % 60
-        
-        var components: [String] = []
-        
-        if days > 0 {
-            components.append("\(days)d")
-        }
-        if hours > 0 {
-            components.append("\(hours)h")
-        }
-        if minutes > 0 {
-            components.append("\(minutes)m")
-        }
-        if seconds > 0 || components.isEmpty {
-            components.append("\(seconds)s")
-        }
-        
-        return components.joined(separator: " ")
+        return nil
     }
     
-    private var isExpired: Bool {
-        expirationDate.timeIntervalSince(currentTime) <= 0
+    private var isExpired: Bool? {
+        if let expirationDate = expirationDate {
+            return expirationDate.timeIntervalSince(currentTime) <= 0
+        }
+        else {
+            return nil
+        }
     }
     
     var body: some View {
@@ -70,14 +78,16 @@ struct DecisionItem: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text(verbatim: ipAddress)
                     .fontWeight(.semibold)
-                HStack(spacing: 10) {
-                    Image(systemName: isExpired ? "clock.badge.xmark" : "clock")
-                        .font(.system(size: 14))
-                    Text(verbatim: timeRemaining)
-                        .font(.system(size: 14))
+                if let isExpired = isExpired, let timeRemaining = timeRemaining {
+                    HStack(spacing: 10) {
+                        Image(systemName: isExpired ? "clock.badge.xmark" : "clock")
+                            .font(.system(size: 14))
+                        Text(verbatim: timeRemaining)
+                            .font(.system(size: 14))
+                    }
+                    .fontWeight(.semibold)
+                    .foregroundColor(isExpired ? .gray : .green)
                 }
-                .fontWeight(.semibold)
-                .foregroundColor(isExpired ? .gray : .green)
                 if let country = countryCode {
                     CountryFlag(countryCode: country)
                         .font(.system(size: 14))

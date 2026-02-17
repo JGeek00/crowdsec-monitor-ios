@@ -51,12 +51,12 @@
         }
       }
     },
-    "Alert #%lld" : {
+    "Alert #%@" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Alerta #%lld"
+            "value" : "Alerta #%@"
           }
         }
       }
@@ -211,6 +211,16 @@
         }
       }
     },
+    "Choose a decision from the list to view its details" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una decisión de la lista para ver sus detalles"
+          }
+        }
+      }
+    },
     "Choose an alert from the list to view its details" : {
       "localizations" : {
         "es" : {
@@ -357,6 +367,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fecha"
+          }
+        }
+      }
+    },
+    "Decision #%@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decisión #%@"
           }
         }
       }
@@ -771,6 +791,16 @@
         }
       }
     },
+    "Select a decision" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona una decisión"
+          }
+        }
+      }
+    },
     "Select an alert" : {
       "localizations" : {
         "es" : {
@@ -827,6 +857,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configura la conexión al servidor"
+          }
+        }
+      }
+    },
+    "Show by default only active decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar por defecto solo decisiones activas"
           }
         }
       }

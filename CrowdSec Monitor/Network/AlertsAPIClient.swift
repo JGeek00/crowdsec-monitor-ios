@@ -1,4 +1,5 @@
 import Foundation
+
 class AlertsAPIClient {
     private let httpClient: HttpClient
     
