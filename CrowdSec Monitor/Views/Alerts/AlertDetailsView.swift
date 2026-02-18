@@ -32,7 +32,7 @@ struct AlertDetailsView: View {
         }
         .navigationTitle("Alert #\(String(alertId))")
         .task(id: alertId) {
-            await viewModel.fetchData()
+            await viewModel.fetchData(showLoading: true)
         }
         .onChange(of: alertId) { _, newValue in
             viewModel.updateAlertId(alertId: newValue)

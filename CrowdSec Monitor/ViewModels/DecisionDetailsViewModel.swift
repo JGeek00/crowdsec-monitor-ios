@@ -11,9 +11,13 @@ class DecisionDetailsViewModel {
     
     var state: Enums.LoadingState<DecisionItemResponse> = .loading
     
-    func fetchData() async {
+    func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
+            if showLoading == true {
+                state = .loading
+            }
+            
             let response = try await apiClient.decisions.fetchDecisionDetails(decisionId: decisionId)
             state = .success(response.body)
         } catch {
@@ -24,7 +28,7 @@ class DecisionDetailsViewModel {
     func updateDecisionId(decisionId: Int) {
         self.decisionId = decisionId
         Task {
-            await fetchData()
+            await fetchData(showLoading: true)
         }
     }
 }

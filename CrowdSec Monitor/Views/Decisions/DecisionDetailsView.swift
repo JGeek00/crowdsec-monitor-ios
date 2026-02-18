@@ -32,7 +32,7 @@ struct DecisionDetailsView: View {
         }
         .navigationTitle("Decision #\(String(decisionId))")
         .task(id: decisionId) {
-            await viewModel.fetchData()
+            await viewModel.fetchData(showLoading: true)
         }
         .onChange(of: decisionId) { _, newValue in
             viewModel.updateDecisionId(decisionId: decisionId)

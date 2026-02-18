@@ -30,6 +30,7 @@ struct AlertsListView: View {
             NavigationStack {
                 if let selectedAlertId = selectedAlertId {
                     AlertDetailsView(alertId: selectedAlertId)
+                        .id(selectedAlertId)
                 } else {
                     // Prevent content unavailable from being shown momentarily when an alert is selected
                     if horizontalSizeClass == .regular {

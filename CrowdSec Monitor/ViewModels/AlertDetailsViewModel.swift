@@ -11,9 +11,13 @@ class AlertDetailsViewModel {
     
     var state: Enums.LoadingState<AlertDetailsResponse> = .loading
     
-    func fetchData() async {
+    func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
+            if showLoading == true {
+                state = .loading
+            }
+            
             let response = try await apiClient.alerts.fetchAlertDetails(alertId: alertId)
             state = .success(response.body)
         } catch {
@@ -24,7 +28,7 @@ class AlertDetailsViewModel {
     func updateAlertId(alertId: Int) {
         self.alertId = alertId
         Task {
-            await fetchData()
+            await fetchData(showLoading: true)
         }
     }
 }

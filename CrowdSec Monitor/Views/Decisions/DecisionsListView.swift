@@ -30,6 +30,7 @@ struct DecisionsListView: View {
             NavigationStack {
                 if let selectedDecisionId = selectedDecisionId {
                     DecisionDetailsView(decisionId: selectedDecisionId)
+                        .id(selectedDecisionId)
                 } else {
                     // Prevent content unavailable from being shown momentarily when an alert is selected
                     if horizontalSizeClass == .regular {
