@@ -88,6 +88,14 @@ class DecisionsListViewModel {
         }
     }
     
+    func resetFilters() {
+        self.filters = defaultRequest.filters
+        self.requestParams.filters = defaultRequest.filters
+        Task {
+            await fetchDecisions(showLoading: true, params: defaultRequest)
+        }
+    }
+    
     func resetFiltersPanelToAppliedOnes() {
         filters = requestParams.filters
     }

@@ -29,16 +29,28 @@ struct DecisionsFilters: View {
                     CloseButton(onClose: onClose)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        onClose()
+                        viewModel.resetFilters()
+                    } label: {
+                        Label("Reset", systemImage: "eraser")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     if #available(iOS 26.0, *) {
-                        Button("Apply", role: .confirm) {
+                        Button(role: .confirm) {
                             onClose()
                             viewModel.applyFilters()
+                        } label: {
+                            Label("Apply", systemImage: "checkmark")
                         }
                     }
                     else {
-                        Button("Apply") {
+                        Button {
                             onClose()
                             viewModel.applyFilters()
+                        } label: {
+                            Label("Apply", systemImage: "checkmark")
                         }
                     }
                 }
