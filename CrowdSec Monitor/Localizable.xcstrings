@@ -51,6 +51,16 @@
         }
       }
     },
+    "Alert" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alerta"
+          }
+        }
+      }
+    },
     "Alert #%@" : {
       "localizations" : {
         "es" : {
@@ -461,6 +471,16 @@
         }
       }
     },
+    "General information" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información general"
+          }
+        }
+      }
+    },
     "Get started" : {
       "localizations" : {
         "es" : {
@@ -747,6 +767,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El puerto debe ser un número entre 1 y 65535"
+          }
+        }
+      }
+    },
+    "Remaining time" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo restante"
           }
         }
       }

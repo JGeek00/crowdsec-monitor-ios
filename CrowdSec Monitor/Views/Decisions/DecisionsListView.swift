@@ -24,18 +24,20 @@ struct DecisionsListView: View {
                     )
                 }
             }
-            .navigationTitle("Alerts")
+            .navigationTitle("Decisions")
         } detail: {
-            if let selectedDecisionId = selectedDecisionId {
-                DecisionDetailsView(decisionId: selectedDecisionId)
-            } else {
-                // Prevent content unavailable from being shown momentarily when an alert is selected
-                if horizontalSizeClass == .regular {
-                    ContentUnavailableView(
-                        "Select a decision",
-                        systemImage: "list.bullet",
-                        description: Text("Choose a decision from the list to view its details")
-                    )
+            NavigationStack {
+                if let selectedDecisionId = selectedDecisionId {
+                    DecisionDetailsView(decisionId: selectedDecisionId)
+                } else {
+                    // Prevent content unavailable from being shown momentarily when an alert is selected
+                    if horizontalSizeClass == .regular {
+                        ContentUnavailableView(
+                            "Select a decision",
+                            systemImage: "list.bullet",
+                            description: Text("Choose a decision from the list to view its details")
+                        )
+                    }
                 }
             }
         }

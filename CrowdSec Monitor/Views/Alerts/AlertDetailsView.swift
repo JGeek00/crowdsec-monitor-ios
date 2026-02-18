@@ -2,11 +2,13 @@ import SwiftUI
 
 struct AlertDetailsView: View {
     let alertId: Int
+    let allowNavigateDecision: Bool
     
     @State private var viewModel: AlertDetailsViewModel
     
-    init(alertId: Int) {
+    init(alertId: Int, allowNavigateDecision: Bool = true) {
         self.alertId = alertId
+        self.allowNavigateDecision = allowNavigateDecision
         _viewModel = State(wrappedValue: AlertDetailsViewModel(alertId: alertId))
     }
     
@@ -80,7 +82,6 @@ struct AlertDetailsView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(scenarioSplit[0])
                                 .font(.system(size: 14))
-                                .fontWeight(.medium)
                                 .foregroundStyle(Color.gray)
                             Text(scenarioSplit[1])
                                 .fontWeight(.medium)
@@ -103,7 +104,7 @@ struct AlertDetailsView: View {
                     Text("Country")
                     Spacer()
                     CountryFlag(countryCode: data.source.cn)
-                        .fontWeight(.medium)
+                        .foregroundStyle(.secondary)
                 }
                 HStack {
                     Text("Location")
@@ -119,14 +120,23 @@ struct AlertDetailsView: View {
                             Text(verbatim: "N/A")
                         }
                     }
-                    .fontWeight(.medium)
+                    .foregroundStyle(.secondary)
                 }
                 normalRow(title: String(localized: "IP owner"), value: data.source.asName)
             }
             
             Section("Decisions") {
                 ForEach(data.decisions, id: \.id) { decision in
-                    DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+                    if allowNavigateDecision == true {
+                        NavigationLink {
+                            DecisionDetailsView(decisionId: decision.id, allowNavigateAlert: false)
+                        } label: {
+                            DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+                        }
+                    }
+                    else {
+                        DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+                    }
                 }
             }
             
@@ -156,7 +166,7 @@ struct AlertDetailsView: View {
             Text(verbatim: title)
             Spacer()
             Text(verbatim: value)
-                .fontWeight(.medium)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.trailing)
         }
     }

@@ -26,16 +26,18 @@ struct AlertsListView: View {
             }
             .navigationTitle("Alerts")
         } detail: {
-            if let selectedAlertId = selectedAlertId {
-                AlertDetailsView(alertId: selectedAlertId)
-            } else {
-                // Prevent content unavailable from being shown momentarily when an alert is selected
-                if horizontalSizeClass == .regular {
-                    ContentUnavailableView(
-                        "Select an alert",
-                        systemImage: "list.bullet",
-                        description: Text("Choose an alert from the list to view its details")
-                    )
+            NavigationStack {
+                if let selectedAlertId = selectedAlertId {
+                    AlertDetailsView(alertId: selectedAlertId)
+                } else {
+                    // Prevent content unavailable from being shown momentarily when an alert is selected
+                    if horizontalSizeClass == .regular {
+                        ContentUnavailableView(
+                            "Select an alert",
+                            systemImage: "list.bullet",
+                            description: Text("Choose an alert from the list to view its details")
+                        )
+                    }
                 }
             }
         }
