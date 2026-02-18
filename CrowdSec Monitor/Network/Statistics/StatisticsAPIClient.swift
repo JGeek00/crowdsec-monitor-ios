@@ -5,14 +5,14 @@ class StatisticsAPIClient {
     
     let countries: CountriesStatisticsAPIClient
     let ipOwners: IpOwnersStatisticsAPIClient
-    let scenaries: ScenariesStatisticsAPIClient
+    let scenarios: ScenariosStatisticsAPIClient
     let targets: TargetsStatisticsAPIClient
     
     init(_ httpClient: HttpClient) {
         self.httpClient = httpClient
         self.countries = CountriesStatisticsAPIClient(self.httpClient)
         self.ipOwners = IpOwnersStatisticsAPIClient(self.httpClient)
-        self.scenaries = ScenariesStatisticsAPIClient(self.httpClient)
+        self.scenarios = ScenariosStatisticsAPIClient(self.httpClient)
         self.targets = TargetsStatisticsAPIClient(self.httpClient)
     }
     

@@ -11,6 +11,46 @@
         }
       }
     },
+    "%lld selected" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld selected"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld selected"
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seleccionado"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seleccionados"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "About the app" : {
       "localizations" : {
         "es" : {
@@ -227,6 +267,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Capacidad"
+          }
+        }
+      }
+    },
+    "Change the filtering criteria to see more alerts" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambia los criterios de filtrado para ver mas alertas"
+          }
+        }
+      }
+    },
+    "Change the filtering criteria to see more decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambia los criterios de filtrado para ver mas decisiones"
           }
         }
       }
@@ -731,6 +791,26 @@
         }
       }
     },
+    "No alerts to display" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay alertas para mostrar"
+          }
+        }
+      }
+    },
+    "No decisions to display" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay decisiones para mostrar"
+          }
+        }
+      }
+    },
     "None" : {
       "localizations" : {
         "es" : {
@@ -841,15 +921,8 @@
         }
       }
     },
-    "Scenaries" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escenarios"
-          }
-        }
-      }
+    "Reset" : {
+
     },
     "Scenario" : {
       "localizations" : {
@@ -857,6 +930,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Escenario"
+          }
+        }
+      }
+    },
+    "Scenarios" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escenarios"
           }
         }
       }

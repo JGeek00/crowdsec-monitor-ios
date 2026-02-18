@@ -47,7 +47,3 @@ struct DecisionsFilters: View {
         .navigationTitle("Filters")
     }
 }
-
-#Preview {
-    DecisionsFilters {}
-}

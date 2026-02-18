@@ -17,7 +17,7 @@ struct FullListDashboardItemView: View {
             case .ipOwner:
                 return String(localized: "IP owners")
             case .scenary:
-                return String(localized: "Scenaries")
+                return String(localized: "Scenarios")
             case .target:
                 return String(localized: "Targets")
             }

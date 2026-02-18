@@ -73,7 +73,7 @@ class FullListDashboardItemViewModel {
                 let result = try await apiClient.statistics.ipOwners.fetchIpOwnersStatistics()
                 state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.ipOwner, value: $0.amount) }))
             case .scenary:
-                let result = try await apiClient.statistics.scenaries.fetchScenariesStatistics()
+                let result = try await apiClient.statistics.scenarios.fetchScenariosStatistics()
                 state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.scenario, value: $0.amount) }))
             case .target:
                 let result = try await apiClient.statistics.targets.fetchTargetsStatistics()

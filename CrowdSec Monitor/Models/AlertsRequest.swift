@@ -4,10 +4,10 @@ struct AlertsRequest {
 }
 
 struct AlertsRequestFilters {
-    var countries: [String]?
-    var scenarios: [String]?
-    var ipOwners: [String]?
-    var targets: [String]?
+    var countries: [String]
+    var scenarios: [String]
+    var ipOwners: [String]
+    var targets: [String]
 }
 
 struct AlertsRequestPagination {

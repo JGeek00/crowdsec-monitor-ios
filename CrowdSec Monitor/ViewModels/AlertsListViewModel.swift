@@ -1,35 +1,57 @@
 import Foundation
 import SwiftUI
 
-fileprivate let defaultRequest = AlertsRequest(filters: AlertsRequestFilters(countries: nil, scenarios: nil, ipOwners: nil, targets: nil), pagination: AlertsRequestPagination(offset: 0, limit: Config.alertsAmoutBatch))
+fileprivate let defaultRequest = AlertsRequest(filters: AlertsRequestFilters(countries: [], scenarios: [], ipOwners: [], targets: []), pagination: AlertsRequestPagination(offset: 0, limit: Config.alertsAmoutBatch))
 
 @MainActor
 @Observable
 class AlertsListViewModel {
     public static let shared = AlertsListViewModel()
         
-    var requestParams: AlertsRequest = defaultRequest
+    var requestParams: AlertsRequest
+    var filters: AlertsRequestFilters
+    
+    init() {
+        self.requestParams = defaultRequest
+        self.filters = defaultRequest.filters
+    }
     
     var state: Enums.LoadingState<AlertsListResponse> = .loading
     
-    func initialFetchAlerts(force: Bool = false) async {
+    private func fetchAlerts(showLoading: Bool = false, params: AlertsRequest? = nil) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
-        if state.data != nil && !force {
-            return
+
+        if showLoading == true {
+            state = .loading
         }
-        
+       
         do {
-            let result = try await apiClient.alerts.fetchAlerts(requestParams: defaultRequest)
+            let result = try await apiClient.alerts.fetchAlerts(requestParams: params ?? requestParams)
             state = .success(result.body)
         } catch {
-            print(error.localizedDescription)
-
             state = .failure(error)
         }
     }
     
+    func initialFetchAlerts() async {
+        await fetchAlerts(showLoading: true)
+    }
+    
     func refreshAlerts() async {
-        await initialFetchAlerts(force: true)
+        var req = requestParams
+        req.pagination = defaultRequest.pagination
+        requestParams = req
+        await fetchAlerts(params: req)
+    }
+    
+    func applyFilters() {
+        var req = requestParams
+        req.pagination = defaultRequest.pagination
+        req.filters = filters
+        requestParams = req
+        Task {
+            await fetchAlerts(showLoading: true, params: req)
+        }
     }
 
     func fetchMore() async {
@@ -56,5 +78,21 @@ class AlertsListViewModel {
                 state = .failure(error)
             }
         }
+    }
+    
+    func updateFilters(_ filters: AlertsRequestFilters) {
+        self.filters = filters
+    }
+    
+    func resetFilters() {
+        self.filters = defaultRequest.filters
+        self.requestParams.filters = defaultRequest.filters
+        Task {
+            await fetchAlerts(showLoading: true, params: defaultRequest)
+        }
+    }
+    
+    func resetFiltersPanelToAppliedOnes() {
+        filters = requestParams.filters
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-class ScenariesStatisticsAPIClient {
+class ScenariosStatisticsAPIClient {
     private let httpClient: HttpClient
     
     init(_ httpClient: HttpClient) {
@@ -9,7 +9,7 @@ class ScenariesStatisticsAPIClient {
     
     // MARK: - API Endpoints
     
-    func fetchScenariesStatistics() async throws -> HttpResponse<[TopScenario]> {
+    func fetchScenariosStatistics() async throws -> HttpResponse<[TopScenario]> {
         return try await httpClient.get(endpoint: "/api/v1/statistics/scenarios")
     }
 }

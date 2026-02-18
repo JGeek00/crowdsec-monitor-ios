@@ -11,20 +11,20 @@ class AlertsAPIClient {
     func fetchAlerts(requestParams: AlertsRequest) async throws -> HttpResponse<AlertsListResponse> {
         var queryParams: [URLQueryItem] = []
         
-        if let countries = requestParams.filters.countries {
-            queryParams.append(contentsOf: countries.map { URLQueryItem(name: "country", value: $0) })
+        if !requestParams.filters.countries.isEmpty {
+            queryParams.append(contentsOf: requestParams.filters.countries.map { URLQueryItem(name: "country", value: $0) })
         }
         
-        if let scenarios = requestParams.filters.scenarios {
-            queryParams.append(contentsOf: scenarios.map { URLQueryItem(name: "scenario", value: $0) })
+        if !requestParams.filters.scenarios.isEmpty {
+            queryParams.append(contentsOf: requestParams.filters.scenarios.map { URLQueryItem(name: "scenario", value: $0) })
         }
         
-        if let ipOwners = requestParams.filters.ipOwners {
-            queryParams.append(contentsOf: ipOwners.map { URLQueryItem(name: "ipOwner", value: $0) })
+        if !requestParams.filters.ipOwners.isEmpty {
+            queryParams.append(contentsOf: requestParams.filters.ipOwners.map { URLQueryItem(name: "ipOwner", value: $0) })
         }
         
-        if let targets = requestParams.filters.targets {
-            queryParams.append(contentsOf: targets.map { URLQueryItem(name: "target", value: $0) })
+        if !requestParams.filters.targets.isEmpty {
+            queryParams.append(contentsOf: requestParams.filters.targets.map { URLQueryItem(name: "target", value: $0) })
         }
         
         // pagination
