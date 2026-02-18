@@ -19,10 +19,10 @@ struct DecisionsFilters: View {
                     get: { viewModel.filters.onlyActive ?? false },
                     set: { viewModel.filters.onlyActive = $0 }
                 ))
-                Toggle("Hide active duplicated decisions", isOn: Binding(
-                    get: { viewModel.filters.hideActiveDuplicated ?? false },
-                    set: { viewModel.filters.hideActiveDuplicated = $0 }
-                ))
+                // Toggle("Hide active duplicated decisions", isOn: Binding(
+                //    get: { viewModel.filters.hideActiveDuplicated ?? false },
+                //    set: { viewModel.filters.hideActiveDuplicated = $0 }
+                // ))
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -43,7 +43,8 @@ struct DecisionsFilters: View {
                     }
                 }
             }
+            .navigationTitle("Filters")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Filters")
     }
 }

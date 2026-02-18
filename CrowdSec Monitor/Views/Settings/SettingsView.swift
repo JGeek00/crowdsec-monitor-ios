@@ -32,6 +32,11 @@ struct SettingsView: View {
                     } label: {
                         ListRowWithIconEntry(systemIcon: "gear", iconColor: .blue, label: "Application settings")
                     }
+                    NavigationLink {
+                        ServerSettingsView()
+                    } label: {
+                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings")
+                    }
                 }
                 
                 Section {

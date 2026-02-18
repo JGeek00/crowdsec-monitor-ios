@@ -5,7 +5,6 @@ struct DecisionsRequest {
 
 struct DecisionsRequestFilters {
     var onlyActive: Bool?
-    var hideActiveDuplicated: Bool?
 }
 
 struct DecisionsRequestPagination {

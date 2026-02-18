@@ -22,69 +22,71 @@ struct ContentView: View {
         
         Group {
             if authViewModel.apiClient != nil {
-                if #available(iOS 26.0, *) {
-                    TabView {
-                        Tab {
-                            DashboardView()
-                                .environment(DashboardViewModel.shared)
-                        } label: {
-                            Label("Dashboard", systemImage: "house.fill")
-                        }
-                        
-                        Tab {
-                            AlertsListView()
-                                .environment(AlertsListViewModel.shared)
-
-                        } label: {
-                            Label("Alerts", systemImage: "exclamationmark.triangle")
-                        }
-                        
-                        Tab {
-                            DecisionsListView()
-                                .environment(DecisionsListViewModel.shared)
-
-                        } label: {
-                            Label("Decisions", systemImage: "shield")
-                        }
-                        
-                        Tab {
-                            SettingsView()
-                        } label: {
-                            Label("Settings", systemImage: "gear")
-                        }
-                    }
-                }
-                else {
-                    TabView {
-                        DashboardView()
-                            .environment(DashboardViewModel.shared)
-                            .tabItem {
+                Group {
+                    if #available(iOS 26.0, *) {
+                        TabView {
+                            Tab {
+                                DashboardView()
+                                    .environment(DashboardViewModel.shared)
+                            } label: {
                                 Label("Dashboard", systemImage: "house.fill")
                             }
-                            .tag(Enums.TabViewTabs.dashboard)
-                        
-                        AlertsListView()
-                            .environment(AlertsListViewModel.shared)
-                            .tabItem {
+                            
+                            Tab {
+                                AlertsListView()
+                                    .environment(AlertsListViewModel.shared)
+
+                            } label: {
                                 Label("Alerts", systemImage: "exclamationmark.triangle")
                             }
-                            .tag(Enums.TabViewTabs.alerts)
-                        
-                        DecisionsListView()
-                            .environment(DecisionsListViewModel.shared)
-                            .tabItem {
+                            
+                            Tab {
+                                DecisionsListView()
+                                    .environment(DecisionsListViewModel.shared)
+
+                            } label: {
                                 Label("Decisions", systemImage: "shield")
                             }
-                            .tag(Enums.TabViewTabs.decisions)
-                        
-                        SettingsView()
-                            .tabItem {
+                            
+                            Tab {
+                                SettingsView()
+                            } label: {
                                 Label("Settings", systemImage: "gear")
                             }
-                            .tag(Enums.TabViewTabs.settings)
+                        }
+                    }
+                    else {
+                        TabView {
+                            DashboardView()
+                                .environment(DashboardViewModel.shared)
+                                .tabItem {
+                                    Label("Dashboard", systemImage: "house.fill")
+                                }
+                                .tag(Enums.TabViewTabs.dashboard)
+                            
+                            AlertsListView()
+                                .environment(AlertsListViewModel.shared)
+                                .tabItem {
+                                    Label("Alerts", systemImage: "exclamationmark.triangle")
+                                }
+                                .tag(Enums.TabViewTabs.alerts)
+                            
+                            DecisionsListView()
+                                .environment(DecisionsListViewModel.shared)
+                                .tabItem {
+                                    Label("Decisions", systemImage: "shield")
+                                }
+                                .tag(Enums.TabViewTabs.decisions)
+                            
+                            SettingsView()
+                                .tabItem {
+                                    Label("Settings", systemImage: "gear")
+                                }
+                                .tag(Enums.TabViewTabs.settings)
+                        }
                     }
                 }
-               
+                .environment(ServerStatusViewModel.shared)
             }
         }
         .fontDesign(.rounded)

@@ -19,9 +19,6 @@ class DecisionsListViewModel {
     init() {
         let defaultOnlyActive = UserDefaults.shared.object(forKey: StorageKeys.showDefaultActiveDecisions) as! Bool? ?? Defaults.showDefaultActiveDecisions
         defaultRequest.filters.onlyActive = defaultOnlyActive
-
-        let defaultHideDuplicated = UserDefaults.shared.object(forKey: StorageKeys.hideDefaultDuplicatedDecisions) as! Bool? ?? Defaults.hideDefaultDuplicatedDecisions
-        defaultRequest.filters.hideActiveDuplicated = defaultHideDuplicated
         
         self.requestParams = defaultRequest
         self.filters = defaultRequest.filters

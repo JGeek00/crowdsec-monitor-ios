@@ -18,7 +18,7 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "%lld selected"
                 }
               },
@@ -187,6 +187,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Información sobre la API"
+          }
+        }
+      }
+    },
+    "API version" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión de la API"
           }
         }
       }
@@ -411,6 +421,26 @@
         }
       }
     },
+    "CrowdSec LAPI is offline" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAPI de CrowdSec está sin conexión"
+          }
+        }
+      }
+    },
+    "CrowdSec LAPI is online" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAPI de CrowdSec está en línea"
+          }
+        }
+      }
+    },
     "CrowdSec website" : {
       "localizations" : {
         "es" : {
@@ -571,26 +601,6 @@
         }
       }
     },
-    "Hide active duplicated decisions" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ocultar decisiones duplicadas activas"
-          }
-        }
-      }
-    },
-    "Hide by default active duplicated decisions" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ocultar por defecto decisiones duplicadas activas"
-          }
-        }
-      }
-    },
     "HTTP" : {
       "localizations" : {
         "es" : {
@@ -607,6 +617,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "HTTPS"
+          }
+        }
+      }
+    },
+    "Information" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información"
           }
         }
       }
@@ -687,6 +707,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Campo IP/Dominio es requerido"
+          }
+        }
+      }
+    },
+    "LAPI status" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado de LAPI"
           }
         }
       }
@@ -821,6 +851,36 @@
         }
       }
     },
+    "Offline" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuera de línea"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aceptar"
+          }
+        }
+      }
+    },
+    "Online" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En línea"
+          }
+        }
+      }
+    },
     "Origin" : {
       "localizations" : {
         "es" : {
@@ -922,7 +982,14 @@
       }
     },
     "Reset" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetear"
+          }
+        }
+      }
     },
     "Scenario" : {
       "localizations" : {
@@ -964,16 +1031,6 @@
         }
       }
     },
-    "Server" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Servidor"
-          }
-        }
-      }
-    },
     "Server error: code %lld" : {
       "localizations" : {
         "es" : {
@@ -990,6 +1047,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ruta del servidor"
+          }
+        }
+      }
+    },
+    "Server settings" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes del servidor"
           }
         }
       }
@@ -1050,6 +1117,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Objetivos"
+          }
+        }
+      }
+    },
+    "The CrowdSec LAPI is offline or the API is having trouble connecting to it. Some data may not be up to date or available." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAPI de CrowdSec está fuera de conexión o la API está teniendo problemas para conectarse a ella. Alguna información puede no estar actualizada o no estar disponible."
+          }
+        }
+      }
+    },
+    "The CrowdSec LAPI is online and the API is pulling data from it correctly." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAPI de CrowdSec está en línea y la API está obteniendo datos correctamente."
           }
         }
       }

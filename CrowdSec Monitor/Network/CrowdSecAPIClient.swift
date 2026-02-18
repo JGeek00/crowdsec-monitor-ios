@@ -14,8 +14,8 @@ class CrowdSecAPIClient {
         self.decisions = DecisionsAPIClient(self.httpClient)
     }
     
-    /// Check LAPI status
-    func checkLAPIStatus() async throws -> HttpResponse<LAPIStatusResponse> {
-        return try await httpClient.get(endpoint: "/api/v1/lapi-status")
+    /// Check API status
+    func checkApiStatus() async throws -> HttpResponse<ApiStatusResponse> {
+        return try await httpClient.get(endpoint: "/api/v1/status")
     }
 }

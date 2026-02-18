@@ -135,7 +135,7 @@ class OnboardingViewModel {
                 bearerToken: bearerTokenValue
             )
             
-            let healthResponse: HttpResponse<LAPIStatusResponse> = try await testClient.get(endpoint: "/api/v1/lapi-status")
+            let healthResponse: HttpResponse<ApiStatusResponse> = try await testClient.get(endpoint: "/api/v1/status")
             
             guard healthResponse.successful == true else {
                 connectionErrorAlert = true

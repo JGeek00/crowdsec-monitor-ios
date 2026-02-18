@@ -15,9 +15,9 @@ class DecisionsAPIClient {
             queryParams.append(URLQueryItem(name: "only_active", value: String(onlyActive)))
         }
         
-        if let hideActiveDuplicated = requestParams.filters.hideActiveDuplicated {
-            queryParams.append(URLQueryItem(name: "hide_active_duplicated", value: String(hideActiveDuplicated)))
-        }
+        // if let hideActiveDuplicated = requestParams.filters.hideActiveDuplicated {
+        //    queryParams.append(URLQueryItem(name: "hide_active_duplicated", value: String(hideActiveDuplicated)))
+        // }
         
         // pagination
         queryParams.append(URLQueryItem(name: "offset", value: String(requestParams.pagination.offset)))
