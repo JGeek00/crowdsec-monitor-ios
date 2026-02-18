@@ -22,6 +22,8 @@ class AlertsListViewModel {
             let result = try await apiClient.alerts.fetchAlerts(requestParams: defaultRequest)
             state = .success(result.body)
         } catch {
+            print(error.localizedDescription)
+
             state = .failure(error)
         }
     }

@@ -41,6 +41,12 @@ struct AlertsListResponse_Alert: Codable, Hashable {
     }
 }
 
+// MARK: - AlertsListResponse_ItemMeta
+struct AlertsListResponse_ItemMeta: Codable, Hashable {
+    let key: String
+    let value: [String]
+}
+
 // MARK: - AlertsListResponse_Event
 struct AlertsListResponse_Event: Codable, Hashable {
     let meta: [AlertsListResponse_Event_EventMeta]
@@ -49,12 +55,6 @@ struct AlertsListResponse_Event: Codable, Hashable {
 
 // MARK: - AlertsListResponse_Event_EventMeta
 struct AlertsListResponse_Event_EventMeta: Codable, Hashable {
-    let key: String
-    let value: String
-}
-
-// MARK: - ItemMeta
-struct AlertsListResponse_ItemMeta: Codable, Hashable {
     let key: String
     let value: [String]
 }

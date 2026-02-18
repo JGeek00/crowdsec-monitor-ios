@@ -56,7 +56,8 @@ struct DecisionItemResponse_Alert_Event: Codable, Hashable {
 
 // MARK: - DecisionItemResponse_Alert_Meta
 struct DecisionItemResponse_Alert_Meta: Codable, Hashable {
-    let key, value: String
+    let key: String
+    let value: [String]
 }
 
 // MARK: - DecisionItemResponse_Source

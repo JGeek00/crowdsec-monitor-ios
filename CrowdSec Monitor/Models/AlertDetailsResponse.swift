@@ -34,7 +34,7 @@ struct AlertDetailsResponse: Codable, Hashable {
 // MARK: - AlertDetailsResponse_Meta
 struct AlertDetailsResponse_Meta: Codable, Hashable {
     let key: String
-    let value: String
+    let value: [String]
 }
 
 // MARK: - AlertDetailsResponse_Decision
@@ -76,5 +76,6 @@ struct AlertDetailsResponse_Event: Codable, Hashable {
 
 // MARK: - AlertDetailsResponse_Event_Meta
 struct AlertDetailsResponse_Event_Meta: Codable, Hashable {
-    let key, value: String
+    let key: String
+    let value: [String]
 }
