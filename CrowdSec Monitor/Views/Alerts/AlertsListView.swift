@@ -7,6 +7,7 @@ struct AlertsListView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State private var selectedAlertId: Int?
+    @State private var activeAlertId: Int?
     @State private var showFiltersSheet: Bool = false
     
     var body: some View {
@@ -28,9 +29,8 @@ struct AlertsListView: View {
             .navigationTitle("Alerts")
         } detail: {
             NavigationStack {
-                if let selectedAlertId = selectedAlertId {
-                    AlertDetailsView(alertId: selectedAlertId)
-                        .id(selectedAlertId)
+                if let alertId = activeAlertId {
+                    AlertDetailsView(alertId: alertId)
                 } else {
                     // Prevent content unavailable from being shown momentarily when an alert is selected
                     if horizontalSizeClass == .regular {
@@ -45,6 +45,17 @@ struct AlertsListView: View {
         }
         .task {
             await viewModel.initialFetchAlerts()
+        }
+        .onChange(of: selectedAlertId, initial: true) { oldValue, newValue in
+            if oldValue != nil && newValue == nil {
+                // To prevent disposing details view before back transition ends
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    activeAlertId = nil
+                }
+            }
+            else {
+                activeAlertId = newValue
+            }
         }
     }
     

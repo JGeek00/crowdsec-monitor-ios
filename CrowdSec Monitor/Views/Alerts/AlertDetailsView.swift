@@ -31,9 +31,7 @@ struct AlertDetailsView: View {
             }
         }
         .navigationTitle("Alert #\(String(alertId))")
-        .task(id: alertId) {
-            await viewModel.fetchData(showLoading: true)
-        }
+        .navigationBarTitleDisplayMode(.inline)
         .onChange(of: alertId) { _, newValue in
             viewModel.updateAlertId(alertId: newValue)
         }

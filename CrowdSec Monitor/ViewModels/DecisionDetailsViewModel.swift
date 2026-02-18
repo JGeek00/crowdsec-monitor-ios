@@ -7,6 +7,10 @@ class DecisionDetailsViewModel {
     
     init(decisionId: Int) {
         self.decisionId = decisionId
+        
+        Task {
+            await fetchData()
+        }
     }
     
     var state: Enums.LoadingState<DecisionItemResponse> = .loading

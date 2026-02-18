@@ -7,6 +7,7 @@ struct DecisionsListView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State private var selectedDecisionId: Int?
+    @State private var activeDecisionId: Int?
     @State private var showFiltersSheet = false
     
     var body: some View {
@@ -28,9 +29,8 @@ struct DecisionsListView: View {
             .navigationTitle("Decisions")
         } detail: {
             NavigationStack {
-                if let selectedDecisionId = selectedDecisionId {
-                    DecisionDetailsView(decisionId: selectedDecisionId)
-                        .id(selectedDecisionId)
+                if let decisionId = activeDecisionId {
+                    DecisionDetailsView(decisionId: decisionId)
                 } else {
                     // Prevent content unavailable from being shown momentarily when an alert is selected
                     if horizontalSizeClass == .regular {
@@ -45,6 +45,17 @@ struct DecisionsListView: View {
         }
         .task {
             await viewModel.initialFetchDecisions()
+        }
+        .onChange(of: selectedDecisionId, initial: true) { oldValue, newValue in
+            if oldValue != nil && newValue == nil {
+                // To prevent disposing details view before back transition ends
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    activeDecisionId = nil
+                }
+            }
+            else {
+                activeDecisionId = newValue
+            }
         }
     }
     

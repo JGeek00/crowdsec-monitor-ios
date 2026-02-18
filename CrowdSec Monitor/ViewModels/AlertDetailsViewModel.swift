@@ -7,6 +7,10 @@ class AlertDetailsViewModel {
     
     init(alertId: Int) {
         self.alertId = alertId
+        
+        Task {
+            await fetchData()
+        }
     }
     
     var state: Enums.LoadingState<AlertDetailsResponse> = .loading

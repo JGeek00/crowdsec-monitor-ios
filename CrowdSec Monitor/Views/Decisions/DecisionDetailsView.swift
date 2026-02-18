@@ -31,9 +31,7 @@ struct DecisionDetailsView: View {
             }
         }
         .navigationTitle("Decision #\(String(decisionId))")
-        .task(id: decisionId) {
-            await viewModel.fetchData(showLoading: true)
-        }
+        .navigationBarTitleDisplayMode(.inline)
         .onChange(of: decisionId) { _, newValue in
             viewModel.updateDecisionId(decisionId: decisionId)
         }
