@@ -8,32 +8,61 @@ fileprivate var defaultRequest = DecisionsRequest(filters: DecisionsRequestFilte
 class DecisionsListViewModel {
     public static let shared = DecisionsListViewModel()
         
+    // This params are persisted to be sent to the request
     var requestParams: DecisionsRequest
+    
+    // This are the params that are currently being edited on the filters sheet and haven't been persisted yet to be sent to the request
+    var filters: DecisionsRequestFilters
+    
+    private var isFetching = false
     
     init() {
         let defaultOnlyActive = UserDefaults.shared.object(forKey: StorageKeys.showDefaultActiveDecisions) as! Bool? ?? Defaults.showDefaultActiveDecisions
         defaultRequest.filters.onlyActive = defaultOnlyActive
+
+        let defaultHideDuplicated = UserDefaults.shared.object(forKey: StorageKeys.hideDefaultDuplicatedDecisions) as! Bool? ?? Defaults.hideDefaultDuplicatedDecisions
+        defaultRequest.filters.hideActiveDuplicated = defaultHideDuplicated
+        
         self.requestParams = defaultRequest
+        self.filters = defaultRequest.filters
     }
     
     var state: Enums.LoadingState<DecisionsListResponse> = .loading
-    
-    func initialFetchDecisions(force: Bool = false) async {
+
+    private func fetchDecisions(showLoading: Bool = false, params: DecisionsRequest? = nil) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
-        if state.data != nil && !force {
-            return
+
+        if showLoading == true {
+            state = .loading
         }
-        
+       
         do {
-            let result = try await apiClient.decisions.fetchDecisions(requestParams: requestParams)
+            let result = try await apiClient.decisions.fetchDecisions(requestParams: params ?? requestParams)
             state = .success(result.body)
         } catch {
             state = .failure(error)
         }
     }
     
+    func initialFetchDecisions() async {
+        await fetchDecisions(showLoading: true)
+    }
+    
     func refreshDecisions() async {
-        await initialFetchDecisions(force: true)
+        var req = requestParams
+        req.pagination = defaultRequest.pagination
+        requestParams = req
+        await fetchDecisions(params: req)
+    }
+    
+    func applyFilters() {
+        var req = requestParams
+        req.pagination = defaultRequest.pagination
+        req.filters = filters
+        requestParams = req
+        Task {
+            await fetchDecisions(showLoading: true, params: req)
+        }
     }
 
     func fetchMore() async {
@@ -62,7 +91,7 @@ class DecisionsListViewModel {
         }
     }
     
-    func updateFilters(_ filters: DecisionsRequestFilters) {
-        requestParams.filters = filters
+    func resetFiltersPanelToAppliedOnes() {
+        filters = requestParams.filters
     }
 }

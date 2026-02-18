@@ -7,6 +7,7 @@ struct DecisionsListView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State private var selectedDecisionId: Int?
+    @State private var showFiltersSheet = false
     
     var body: some View {
         NavigationSplitView {
@@ -63,5 +64,21 @@ struct DecisionsListView: View {
         .refreshable {
             await viewModel.refreshDecisions()
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showFiltersSheet = true
+                } label: {
+                    Label("Filters", systemImage: "line.3.horizontal.decrease.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $showFiltersSheet, onDismiss: {
+            viewModel.resetFiltersPanelToAppliedOnes()
+        }, content: {
+            DecisionsFilters {
+                showFiltersSheet = false
+            }
+        })
     }
 }

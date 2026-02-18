@@ -171,6 +171,16 @@
         }
       }
     },
+    "Apply" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplicar"
+          }
+        }
+      }
+    },
     "Are you sure you want to remove the server connection? You will have to create the connection from scratch." : {
       "localizations" : {
         "es" : {
@@ -471,6 +481,16 @@
         }
       }
     },
+    "Filters" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtros"
+          }
+        }
+      }
+    },
     "General information" : {
       "localizations" : {
         "es" : {
@@ -487,6 +507,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empezar"
+          }
+        }
+      }
+    },
+    "Hide active duplicated decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar decisiones duplicadas activas"
+          }
+        }
+      }
+    },
+    "Hide by default active duplicated decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar por defecto decisiones duplicadas activas"
           }
         }
       }
@@ -897,6 +937,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar por defecto solo decisiones activas"
+          }
+        }
+      }
+    },
+    "Show only active decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar solo decisiones activas"
           }
         }
       }

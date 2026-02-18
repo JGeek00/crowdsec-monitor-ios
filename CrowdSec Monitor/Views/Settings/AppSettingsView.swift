@@ -3,6 +3,7 @@ import SwiftUI
 struct AppSettingsView: View {
     @SharedAppStorage(StorageKeys.topItemsDashboard) private var amountItemsDashboard: Int = Defaults.topItemsDashboard
     @SharedAppStorage(StorageKeys.showDefaultActiveDecisions) private var showDefaultActiveDecisions: Bool = Defaults.showDefaultActiveDecisions
+    @SharedAppStorage(StorageKeys.hideDefaultDuplicatedDecisions) private var hideDefaultDuplicatedDecisions: Bool = Defaults.hideDefaultDuplicatedDecisions
     
     @Environment(AuthViewModel.self) private var authViewModel
     
@@ -23,11 +24,7 @@ struct AppSettingsView: View {
             
             Section("Decisions") {
                 Toggle("Show by default only active decisions", isOn: $showDefaultActiveDecisions)
-            }
-            .onChange(of: showDefaultActiveDecisions) { _, newValue in
-                var newFilters = DecisionsListViewModel.shared.requestParams.filters
-                newFilters.onlyActive = newValue
-                DecisionsListViewModel.shared.updateFilters(newFilters)
+                Toggle("Hide by default active duplicated decisions", isOn: $hideDefaultDuplicatedDecisions)
             }
             
             Section("Server") {
