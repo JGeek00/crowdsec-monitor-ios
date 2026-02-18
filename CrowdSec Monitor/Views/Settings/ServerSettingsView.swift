@@ -21,16 +21,13 @@ struct ServerSettingsView: View {
                             ProgressView()
                         case .success(let data):
                             if data.csLapi.lapiConnected == true {
-                                Label("Online", systemImage: "checkmark")
-                                    .foregroundStyle(Color.green)
+                                online()
                             }
                             else {
-                                Label("Offline", systemImage: "xmark")
-                                    .foregroundStyle(Color.red)
+                                offline()
                             }
                         case .failure:
-                            Label("Offline", systemImage: "xmark")
-                                .foregroundStyle(Color.red)
+                           offline()
                         }
                     }
                 }
@@ -67,6 +64,28 @@ struct ServerSettingsView: View {
         } message: {
             Text("Are you sure you want to remove the server connection? You will have to create the connection from scratch.")
         }
+    }
+    
+    @ViewBuilder
+    func online() -> some View {
+        HStack {
+            Image(systemName: "checkmark")
+            Spacer()
+                .frame(width: 8)
+            Text("Online")
+        }
+        .foregroundStyle(Color.green)
+    }
+    
+    @ViewBuilder
+    func offline() -> some View {
+        HStack {
+            Image(systemName: "xmark")
+            Spacer()
+                .frame(width: 8)
+            Text("Offline")
+        }
+        .foregroundStyle(Color.red)
     }
 }
 
