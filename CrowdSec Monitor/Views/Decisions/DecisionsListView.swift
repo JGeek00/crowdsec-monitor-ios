@@ -51,7 +51,12 @@ struct DecisionsListView: View {
     func content(_ data: DecisionsListResponse) -> some View {
         Group {
             if data.items.isEmpty {
-                ContentUnavailableView("No decisions to display", systemImage: "list.bullet", description: Text("Change the filtering criteria to see more decisions"))
+                if viewModel.requestParams.filters.onlyActive == true {
+                    ContentUnavailableView("No active decisions", systemImage: "checkmark.shield", description: Text("Disable show only active decisions on filters to see all decisions"))
+                }
+                else {
+                    ContentUnavailableView("No decisions to display", systemImage: "list.bullet", description: Text("Change the filtering criteria to see more decisions"))
+                }
             }
             else {
                 List(data.items, id: \.self, selection: $selectedDecisionId) { decision in

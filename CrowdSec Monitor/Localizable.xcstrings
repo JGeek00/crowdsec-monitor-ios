@@ -521,6 +521,16 @@
         }
       }
     },
+    "Disable show only active decisions on filters to see all decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desactiva mostrar solo decisiones activas en filtros para ver todas las decisiones"
+          }
+        }
+      }
+    },
     "Error" : {
       "localizations" : {
         "es" : {
@@ -817,6 +827,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siguiente"
+          }
+        }
+      }
+    },
+    "No active decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay decisiones activas"
           }
         }
       }
