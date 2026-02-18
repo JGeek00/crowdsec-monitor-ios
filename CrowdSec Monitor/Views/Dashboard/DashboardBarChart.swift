@@ -12,14 +12,15 @@ struct DashboardBarChart: View {
     @State private var plotWidth: CGFloat = 0
     
     var body: some View {
+        let lasty7Days = activityHistory.suffix(7)
         VStack {
             HStack {
-                Text("Activity History")
+                Text("Activity history last \(lasty7Days.count) days")
                     .fontWeight(.semibold)
                     .font(.system(size: 16))
             }
             Chart {
-                ForEach(activityHistory) { item in
+                ForEach(lasty7Days) { item in
                     let dateString = item.date.toDateFromYYYYMMDD()?.toShortDateString() ?? item.date
                     
                     BarMark(
@@ -60,7 +61,7 @@ struct DashboardBarChart: View {
             }
             .chartXSelection(value: $selectedDate)
             .chartLegend(position: .bottom, alignment: .center)
-            .animation(.easeOut, value: self.activityHistory)
+            .animation(.easeOut, value: lasty7Days)
             .frame(height: 200)
             .padding()
             .chartBackground { chartProxy in
@@ -70,7 +71,7 @@ struct DashboardBarChart: View {
                             .fill(.clear)
                         
                         if let selectedDate,
-                           let selectedItem = activityHistory.first(where: {
+                           let selectedItem = lasty7Days.first(where: {
                                ($0.date.toDateFromYYYYMMDD()?.toShortDateString() ?? $0.date) == selectedDate
                            }),
                            let xPosition = chartProxy.position(forX: selectedDate) {

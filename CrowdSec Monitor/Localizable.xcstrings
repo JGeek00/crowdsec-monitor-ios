@@ -81,12 +81,12 @@
         }
       }
     },
-    "Activity History" : {
+    "Activity history last %lld days" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Historial de actividad"
+            "value" : "Histórico de actividad últimos %lld días"
           }
         }
       }
