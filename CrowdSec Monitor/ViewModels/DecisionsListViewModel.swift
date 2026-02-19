@@ -42,7 +42,9 @@ class DecisionsListViewModel {
     }
     
     func initialFetchDecisions() async {
-        await fetchDecisions(showLoading: true)
+        if state.data == nil {
+            await fetchDecisions(showLoading: true)
+        }
     }
     
     func refreshDecisions() async {

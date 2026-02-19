@@ -34,7 +34,9 @@ class AlertsListViewModel {
     }
     
     func initialFetchAlerts() async {
-        await fetchAlerts(showLoading: true)
+        if state.data == nil {
+            await fetchAlerts(showLoading: true)
+        }
     }
     
     func refreshAlerts() async {
