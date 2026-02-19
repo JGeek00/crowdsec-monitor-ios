@@ -631,6 +631,16 @@
         }
       }
     },
+    "Icon" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icono"
+          }
+        }
+      }
+    },
     "Information" : {
       "localizations" : {
         "es" : {
