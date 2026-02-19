@@ -53,6 +53,7 @@ struct ContentView: View {
                             } label: {
                                 Label("Settings", systemImage: "gear")
                             }
+                            .badge(ServerStatusViewModel.shared.status.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
                         }
                     }
                     else {
@@ -83,6 +84,7 @@ struct ContentView: View {
                                     Label("Settings", systemImage: "gear")
                                 }
                                 .tag(Enums.TabViewTabs.settings)
+                                .badge(ServerStatusViewModel.shared.status.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
                         }
                     }
                 }

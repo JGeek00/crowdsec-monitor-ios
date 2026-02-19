@@ -6,13 +6,15 @@ struct ListRowWithIconEntry: View {
     var iconColor: Color
     var textColor: Color
     var label: String.LocalizationValue
+    var badge: Int?
     
-    init(systemIcon: String, iconColor: Color, textColor: Color = .foreground, label: String.LocalizationValue) {
+    init(systemIcon: String, iconColor: Color, textColor: Color = .foreground, label: String.LocalizationValue, badge: Int? = nil) {
         self.systemIcon = systemIcon
         self.assetIcon = nil
         self.textColor = textColor
         self.iconColor = iconColor
         self.label = label
+        self.badge = badge
     }
     
     init(assetIcon: String, iconColor: Color, textColor: Color = .foreground, label: String.LocalizationValue) {
@@ -47,6 +49,22 @@ struct ListRowWithIconEntry: View {
             }
             Text(String(localized: label))
                 .padding(.leading, 8)
+            if let badge = badge {
+                Spacer()
+                Text(verbatim: "\(badge)")
+                    .foregroundStyle(.white)
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
+                    .padding(.horizontal, 4)
+                    .condition(transform: { view in
+                        if badge < 10 {
+                            view.background(Circle().fill(Color.red).frame(width: 20, height: 20))
+                        }
+                        else {
+                            view.background(Capsule().fill(Color.red).frame(height: 20))
+                        }
+                    })
+            }
         }
         .foregroundStyle(textColor)
     }
@@ -57,3 +75,10 @@ struct ListRowWithIconEntry: View {
         ListRowWithIconEntry(systemIcon: "gear", iconColor: .blue, label: "Settings")
     }
 }
+
+#Preview("With badge") {
+    List {
+        ListRowWithIconEntry(systemIcon: "gear", iconColor: .blue, label: "Settings", badge: 5)
+    }
+}
+

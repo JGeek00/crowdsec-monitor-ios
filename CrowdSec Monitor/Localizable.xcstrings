@@ -831,6 +831,16 @@
         }
       }
     },
+    "New version available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva versión disponible"
+          }
+        }
+      }
+    },
     "Next" : {
       "localizations" : {
         "es" : {

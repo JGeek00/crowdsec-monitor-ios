@@ -8,6 +8,7 @@ struct ServerSettingsView: View {
     @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
     
     @State private var showDeleteAlert = false
+    @State private var showApiPackageBrowser = false
 
     var body: some View {
         List {
@@ -44,6 +45,23 @@ struct ServerSettingsView: View {
                             Text(verbatim: "N/A")
                         }
                     }
+                }
+                if let newVersion = serverStatusViewModel.status.data?.csMonitorAPI.newVersionAvailable {
+                    Button {
+                        showApiPackageBrowser = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.up.circle")
+                            Spacer()
+                                .frame(width: 6)
+                            Text("New version available")
+                            Spacer()
+                            Text(verbatim: newVersion)
+                        }
+                    }
+                    .foregroundStyle(Color.green)
+                    .fontWeight(.semibold)
+                    .safariView(isPresented: $showApiPackageBrowser, urlString: URLs.apiPackageUrl)
                 }
             }
             Section {

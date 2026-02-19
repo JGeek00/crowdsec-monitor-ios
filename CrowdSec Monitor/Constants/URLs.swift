@@ -7,4 +7,5 @@ class URLs {
     static let crowdsecWeb = "https://crowdsec.net"
     static let appDetailsPage = ""
     static let myOtherApps = "https://apps.jgeek00.com"
+    static let apiPackageUrl = "https://github.com/JGeek00/crowdsec-monitor-api/pkgs/container/crowdsec-monitor-api"
 }
