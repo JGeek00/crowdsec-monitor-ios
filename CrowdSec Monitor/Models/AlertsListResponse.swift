@@ -62,8 +62,8 @@ struct AlertsListResponse_Event_EventMeta: Codable, Hashable {
 // MARK: - AlertsListResponse_Alert_Source
 struct AlertsListResponse_Alert_Source: Codable, Hashable {
     let asName: String?
-    let asNumber, cn, ip: String
-    let latitude, longitude: Double
+    let asNumber, cn, ip: String?
+    let latitude, longitude: Double?
     let range: String?
     let scope: String
     let value: String

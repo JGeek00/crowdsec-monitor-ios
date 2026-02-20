@@ -14,7 +14,6 @@ class CrowdSecAPIClient {
         self.decisions = DecisionsAPIClient(self.httpClient)
     }
     
-    /// Check API status
     func checkApiStatus() async throws -> HttpResponse<ApiStatusResponse> {
         return try await httpClient.get(endpoint: "/api/v1/status")
     }

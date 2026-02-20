@@ -8,6 +8,16 @@ struct HttpResponse<T: Decodable>: Decodable {
     let body: T
 }
 
+// MARK: - Empty Response (for DELETE, etc.)
+
+struct EmptyResponse: Decodable {
+    init() {}
+    
+    init(from decoder: Decoder) throws {
+        // No-op - can decode from any data
+    }
+}
+
 class HttpClient: NSObject {
     private let baseURL: URL
     private var session: URLSession
@@ -119,6 +129,14 @@ class HttpClient: NSObject {
     
     func post<T: Encodable, R: Decodable>(endpoint: String, body: T) async throws -> HttpResponse<R> {
         return try await request(method: "POST", endpoint: endpoint, body: body, queryParams: nil)
+    }
+    
+    func put<T: Encodable, R: Decodable>(endpoint: String, body: T) async throws -> HttpResponse<R> {
+        return try await request(method: "PUT", endpoint: endpoint, body: body, queryParams: nil)
+    }
+    
+    func delete<T: Decodable>(endpoint: String, queryParams: [URLQueryItem]? = nil) async throws -> HttpResponse<T> {
+        return try await request(method: "DELETE", endpoint: endpoint, queryParams: queryParams)
     }
     
     // MARK: - Private helpers

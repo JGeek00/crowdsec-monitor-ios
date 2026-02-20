@@ -9,6 +9,16 @@ struct DecisionsListView: View {
     @State private var selectedDecisionId: Int?
     @State private var activeDecisionId: Int?
     @State private var showFiltersSheet = false
+    @State private var errorDeleteDecision = false
+    
+    func handleDecisionDelete(_ decisionId: Int) {
+        Task {
+            let result = await viewModel.expireDecision(decisionId: decisionId)
+            if result == false {
+                errorDeleteDecision = true
+            }
+        }
+    }
     
     var body: some View {
         NavigationSplitView {
@@ -57,6 +67,13 @@ struct DecisionsListView: View {
                 activeDecisionId = newValue
             }
         }
+        .alert("Error expiring decision", isPresented: $errorDeleteDecision) {
+            Button("OK") {
+                errorDeleteDecision = false
+            }
+        } message: {
+            Text("An error occurred while making the decision expired. Please try again.")
+        }
     }
     
     @ViewBuilder
@@ -73,7 +90,9 @@ struct DecisionsListView: View {
             else {
                 List(data.items, id: \.self, selection: $selectedDecisionId) { decision in
                     NavigationLink(value: decision.id) {
-                        DecisionItem(decisionId: decision.id, ipAddress: decision.source.ip, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type)
+                        DecisionItem(decisionId: decision.id, ipAddress: decision.source.value, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type) { decisionId in
+                            handleDecisionDelete(decisionId)
+                        }
                     }
                     .onAppear {
                         if decision == data.items.last {

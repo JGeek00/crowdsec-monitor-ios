@@ -14,6 +14,16 @@ struct AlertDetailsView: View {
     
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
+    @State private var errorExpireDecision = false
+    
+    func handleDecisionExpire(_ decisionId: Int) {
+        Task {
+            let result = await viewModel.handleDecisionExpire(decisionId: decisionId)
+            if result == false {
+                errorExpireDecision = true
+            }
+        }
+    }
     
     var body: some View {
         Group {
@@ -91,70 +101,95 @@ struct AlertDetailsView: View {
                 }
                 .foregroundStyle(Color.foreground)
                 .safariView(isPresented: $showSafariScenario, url: URL(string: URLs.crowdsecHubScenario(scenario: data.scenario)))
-                normalRow(title: String(localized: "Version"), value: data.scenarioVersion)
+                if data.scenarioVersion != "" {
+                    normalRow(title: String(localized: "Version"), value: data.scenarioVersion)
+                }
                 normalRow(title: String(localized: "Capacity"), value: String(data.capacity))
                 normalRow(title: String(localized: "Leakspeed"), value: data.leakspeed)
             }
             
             Section("Origin") {
-                normalRow(title: String(localized: "IP address"), value: data.source.ip)
-                HStack {
-                    Text("Country")
-                    Spacer()
-                    CountryFlag(countryCode: data.source.cn)
+                normalRow(title: String(localized: "IP address"), value: data.source.value)
+                if let country = data.source.cn {
+                    HStack {
+                        Text("Country")
+                        Spacer()
+                        CountryFlag(countryCode: country)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                if data.source.latitude != nil && data.source.longitude != nil {
+                    HStack {
+                        Text("Location")
+                        Spacer()
+                        Group {
+                            switch geocodedLocation {
+                            case .loading:
+                                ProgressView()
+                            case .success(let data):
+                                Text(verbatim: data)
+                                    .multilineTextAlignment(.trailing)
+                            case .failure:
+                                Text(verbatim: "N/A")
+                            }
+                        }
                         .foregroundStyle(.secondary)
-                }
-                HStack {
-                    Text("Location")
-                    Spacer()
-                    Group {
-                        switch geocodedLocation {
-                        case .loading:
-                            ProgressView()
-                        case .success(let data):
-                            Text(verbatim: data)
-                                .multilineTextAlignment(.trailing)
-                        case .failure:
-                            Text(verbatim: "N/A")
-                        }
                     }
-                    .foregroundStyle(.secondary)
                 }
-                normalRow(title: String(localized: "IP owner"), value: data.source.asName)
+                if let ipOwner =  data.source.asName {
+                    normalRow(title: String(localized: "IP owner"), value: ipOwner)
+                }
             }
             
-            Section("Decisions") {
-                ForEach(data.decisions, id: \.id) { decision in
-                    if allowNavigateDecision == true {
-                        NavigationLink {
-                            DecisionDetailsView(decisionId: decision.id, allowNavigateAlert: false)
-                        } label: {
-                            DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+            if !data.decisions.isEmpty {
+                Section("Decisions") {
+                    ForEach(data.decisions, id: \.id) { decision in
+                        if allowNavigateDecision == true {
+                            NavigationLink {
+                                DecisionDetailsView(decisionId: decision.id, allowNavigateAlert: false)
+                            } label: {
+                                DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type) { decisionId in
+                                    handleDecisionExpire(decisionId)
+                                }
+                            }
                         }
-                    }
-                    else {
-                        DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+                        else {
+                            DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type) { decisionId in
+                                handleDecisionExpire(decisionId)
+                            }
+                        }
                     }
                 }
             }
             
-            Section("Events") {
-                ForEach(Array(data.events.enumerated()), id: \.offset) { index, event in
-                    EventItem(data: event.meta.map({ EventItemDataElement(key: $0.key, value: $0.value) }))
+            if !data.events.isEmpty {
+                Section("Events") {
+                    ForEach(Array(data.events.enumerated()), id: \.offset) { index, event in
+                        EventItem(data: event.meta.map({ EventItemDataElement(key: $0.key, value: $0.value) }))
+                    }
                 }
             }
         }
         .task {
-            let res = await reverseGeocode(lat: data.source.latitude, lon: data.source.longitude)
-            if let res = res {
-                geocodedLocation = .success(res)
-            }
-            else {
-                geocodedLocation = .failure(NSError())
+            if let latitude = data.source.latitude, let longitude = data.source.longitude {
+                let res = await reverseGeocode(lat: latitude, lon: longitude)
+                if let res = res {
+                    geocodedLocation = .success(res)
+                }
+                else {
+                    geocodedLocation = .failure(NSError())
+                }
             }
         }
         .refreshable {
             await viewModel.fetchData()
+        }
+        .alert("Error expiring decision", isPresented: $errorExpireDecision) {
+            Button("OK") {
+                errorExpireDecision = false
+            }
+        } message: {
+            Text("An error occurred while making the decision expired. Please try again.")
         }
     }
     

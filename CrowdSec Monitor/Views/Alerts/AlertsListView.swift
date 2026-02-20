@@ -9,6 +9,16 @@ struct AlertsListView: View {
     @State private var selectedAlertId: Int?
     @State private var activeAlertId: Int?
     @State private var showFiltersSheet: Bool = false
+    @State private var errorDeleteAlert: Bool = false
+    
+    func handleDeleteAlert(_ alertId: Int) {
+        Task {
+            let result = await viewModel.deleteAlert(alertId: alertId)
+            if result == false {
+                errorDeleteAlert = true
+            }
+        }
+    }
     
     var body: some View {
         NavigationSplitView {
@@ -57,6 +67,13 @@ struct AlertsListView: View {
                 activeAlertId = newValue
             }
         }
+        .alert("Error delete alert", isPresented: $errorDeleteAlert) {
+            Button("OK", role: .cancel) {
+                errorDeleteAlert = false
+            }
+        } message: {
+            Text("An error occured when trying to delete the alert. Please try again.")
+        }
     }
     
     @ViewBuilder
@@ -68,7 +85,9 @@ struct AlertsListView: View {
             else {
                 List(data.items, id: \.id, selection: $selectedAlertId) { alert in
                     NavigationLink(value: alert.id) {
-                        AlertItem(scenario: alert.scenario, countryCode: alert.source.cn, creationDate: alert.crowdsecCreatedAt.toDateFromISO8601())
+                        AlertItem(scenario: alert.scenario, countryCode: alert.source.cn, creationDate: alert.crowdsecCreatedAt.toDateFromISO8601()) {
+                            handleDeleteAlert(alert.id)
+                        }
                     }
                     .onAppear {
                         if alert == data.items.last {

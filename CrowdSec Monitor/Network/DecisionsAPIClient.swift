@@ -7,7 +7,6 @@ class DecisionsAPIClient {
         self.httpClient = httpClient
     }
     
-    /// Fetch alerts
     func fetchDecisions(requestParams: DecisionsRequest) async throws -> HttpResponse<DecisionsListResponse> {
         var queryParams: [URLQueryItem] = []
         
@@ -26,8 +25,15 @@ class DecisionsAPIClient {
         return try await httpClient.get(endpoint: "/api/v1/decisions", queryParams: queryParams.isEmpty ? nil : queryParams)
     }
     
-    /// Fetch decision details
     func fetchDecisionDetails(decisionId: Int) async throws -> HttpResponse<DecisionItemResponse> {
         return try await httpClient.get(endpoint: "/api/v1/decisions/\(decisionId)")
+    }
+    
+    func createDecision(body: CreateDecisionRequest) async throws -> HttpResponse<EmptyResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/decisions", body: body)
+    }
+    
+    func deleteDecision(decisionId: Int) async throws -> HttpResponse<EmptyResponse> {
+        return try await httpClient.delete(endpoint: "/api/v1/decisions/\(decisionId)")
     }
 }

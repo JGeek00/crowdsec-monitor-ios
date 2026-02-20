@@ -7,7 +7,6 @@ class AlertsAPIClient {
         self.httpClient = httpClient
     }
     
-    /// Fetch alerts
     func fetchAlerts(requestParams: AlertsRequest) async throws -> HttpResponse<AlertsListResponse> {
         var queryParams: [URLQueryItem] = []
         
@@ -34,8 +33,11 @@ class AlertsAPIClient {
         return try await httpClient.get(endpoint: "/api/v1/alerts", queryParams: queryParams.isEmpty ? nil : queryParams)
     }
     
-    /// Fetch alert details
     func fetchAlertDetails(alertId: Int) async throws -> HttpResponse<AlertDetailsResponse> {
         return try await httpClient.get(endpoint: "/api/v1/alerts/\(alertId)")
+    }
+    
+    func deleteAlert(alertId: Int) async throws -> HttpResponse<EmptyResponse> {
+        return try await httpClient.delete(endpoint: "/api/v1/alerts/\(alertId)")
     }
 }

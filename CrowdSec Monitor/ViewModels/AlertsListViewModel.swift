@@ -97,4 +97,15 @@ class AlertsListViewModel {
     func resetFiltersPanelToAppliedOnes() {
         filters = requestParams.filters
     }
+    
+    func deleteAlert(alertId: Int) async -> Bool {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return false }
+        do {
+            _ = try await apiClient.alerts.deleteAlert(alertId: alertId)
+            await refreshAlerts()
+            return true
+        } catch {
+            return false
+        }
+    }
 }

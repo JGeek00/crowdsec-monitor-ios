@@ -62,9 +62,10 @@ struct DecisionItemResponse_Alert_Meta: Codable, Hashable {
 
 // MARK: - DecisionItemResponse_Source
 struct DecisionItemResponse_Source: Codable, Hashable {
-    let asName, asNumber, cn, ip: String
-    let latitude, longitude: Double
-    let range, scope, value: String
+    let asName, asNumber, cn, ip: String?
+    let latitude, longitude: Double?
+    let range: String?
+    let scope, value: String
 
     enum CodingKeys: String, CodingKey {
         case asName = "as_name"

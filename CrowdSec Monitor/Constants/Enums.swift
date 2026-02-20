@@ -63,6 +63,11 @@ class Enums {
         case scenary
         case target
     }
+    
+    enum DecisionReason: String, Codable {
+        case ban = "ban"
+        case captcha = "captcha"
+    }
 }
 
 extension Enums.LoadingState: Equatable where T: Equatable {

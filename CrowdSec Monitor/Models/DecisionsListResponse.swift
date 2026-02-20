@@ -34,8 +34,8 @@ struct DecisionsListResponse_Item: Codable, Hashable, Equatable {
 // MARK: - DecisionsListResponse_Item_Source
 struct DecisionsListResponse_Item_Source: Codable, Hashable, Equatable {
     let asName: String?
-    let asNumber, cn, ip: String
-    let latitude, longitude: Double
+    let asNumber, cn, ip: String?
+    let latitude, longitude: Double?
     let range: String?
     let scope: String
     let value: String

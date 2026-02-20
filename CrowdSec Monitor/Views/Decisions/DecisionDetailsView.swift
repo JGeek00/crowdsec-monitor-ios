@@ -14,6 +14,7 @@ struct DecisionDetailsView: View {
     
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
+    @State private var errorDeleteAlert = false
     
     var body: some View {
         Group {
@@ -34,6 +35,13 @@ struct DecisionDetailsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: decisionId) { _, newValue in
             viewModel.updateDecisionId(decisionId: decisionId)
+        }
+        .alert("Error delete alert", isPresented: $errorDeleteAlert) {
+            Button("OK", role: .cancel) {
+                errorDeleteAlert = false
+            }
+        } message: {
+            Text("An error occured when trying to delete the alert. Please try again.")
         }
     }
     
@@ -86,29 +94,35 @@ struct DecisionDetailsView: View {
             }
             
             Section("Origin") {
-                normalRow(title: String(localized: "IP address"), value: data.source.ip)
-                normalRow(title: String(localized: "IP owner"), value: data.source.asName)
-                HStack {
-                    Text("Country")
-                    Spacer()
-                    CountryFlag(countryCode: data.source.cn)
-                        .foregroundStyle(.secondary)
+                normalRow(title: String(localized: "IP address"), value: data.source.value)
+                if let ipOwner = data.source.asName {
+                    normalRow(title: String(localized: "IP owner"), value: ipOwner)
                 }
-                HStack {
-                    Text("Location")
-                    Spacer()
-                    Group {
-                        switch geocodedLocation {
-                        case .loading:
-                            ProgressView()
-                        case .success(let data):
-                            Text(verbatim: data)
-                                .multilineTextAlignment(.trailing)
-                        case .failure:
-                            Text(verbatim: "N/A")
-                        }
+                if let country = data.source.cn {
+                    HStack {
+                        Text("Country")
+                        Spacer()
+                        CountryFlag(countryCode: country)
+                            .foregroundStyle(.secondary)
                     }
-                    .foregroundStyle(.secondary)
+                }
+                if data.source.latitude != nil, data.source.longitude != nil {
+                    HStack {
+                        Text("Location")
+                        Spacer()
+                        Group {
+                            switch geocodedLocation {
+                            case .loading:
+                                ProgressView()
+                            case .success(let data):
+                                Text(verbatim: data)
+                                    .multilineTextAlignment(.trailing)
+                            case .failure:
+                                Text(verbatim: "N/A")
+                            }
+                        }
+                        .foregroundStyle(.secondary)
+                    }
                 }
             }
             
@@ -126,12 +140,14 @@ struct DecisionDetailsView: View {
             }
         }
         .task {
-            let res = await reverseGeocode(lat: data.source.latitude, lon: data.source.longitude)
-            if let res = res {
-                geocodedLocation = .success(res)
-            }
-            else {
-                geocodedLocation = .failure(NSError())
+            if let latitude = data.source.latitude, let longitude = data.source.longitude {
+                let res = await reverseGeocode(lat: latitude, lon: longitude)
+                if let res = res {
+                    geocodedLocation = .success(res)
+                }
+                else {
+                    geocodedLocation = .failure(NSError())
+                }
             }
         }
         .refreshable {

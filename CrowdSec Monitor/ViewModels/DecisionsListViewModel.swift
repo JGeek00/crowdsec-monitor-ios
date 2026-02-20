@@ -101,4 +101,15 @@ class DecisionsListViewModel {
     func resetFiltersPanelToAppliedOnes() {
         filters = requestParams.filters
     }
+    
+    func expireDecision(decisionId: Int) async -> Bool {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return false }
+        do {
+            _ = try await apiClient.decisions.deleteDecision(decisionId: decisionId)
+            await refreshDecisions()
+            return true
+        } catch {
+            return false
+        }
+    }
 }
