@@ -642,6 +642,7 @@
       }
     },
     "Expire" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -1166,7 +1167,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Server error: code %lld"
+            "value" : "Error del servidor: código %lld"
           }
         }
       }

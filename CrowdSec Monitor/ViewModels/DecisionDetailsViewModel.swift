@@ -35,14 +35,4 @@ class DecisionDetailsViewModel {
             await fetchData(showLoading: true)
         }
     }
-    
-    func handleAlertDelete(alertId: Int) async -> Bool {
-        let alertDeleted = await AlertsListViewModel.shared.deleteAlert(alertId: alertId)
-        if alertDeleted == true {
-            return true
-        }
-        else {
-            return false
-        }
-    }
 }

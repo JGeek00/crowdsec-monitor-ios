@@ -1,4 +1,5 @@
 import SwiftUI
+import CustomAlert
 
 struct DecisionsListView: View {
     @Environment(AuthViewModel.self) private var authViewModel
@@ -9,18 +10,9 @@ struct DecisionsListView: View {
     @State private var selectedDecisionId: Int?
     @State private var activeDecisionId: Int?
     @State private var showFiltersSheet = false
-    @State private var errorDeleteDecision = false
-    
-    func handleDecisionDelete(_ decisionId: Int) {
-        Task {
-            let result = await viewModel.expireDecision(decisionId: decisionId)
-            if result == false {
-                errorDeleteDecision = true
-            }
-        }
-    }
     
     var body: some View {
+        @Bindable var viewModel = viewModel
         NavigationSplitView {
             Group {
                 switch viewModel.state {
@@ -67,12 +59,14 @@ struct DecisionsListView: View {
                 activeDecisionId = newValue
             }
         }
-        .alert("Error expiring decision", isPresented: $errorDeleteDecision) {
-            Button("OK") {
-                errorDeleteDecision = false
+        .customAlert(isPresented: $viewModel.processingExpireDecision) {
+            HStack {
+                Spacer()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.foreground)
+                Spacer()
             }
-        } message: {
-            Text("An error occurred while making the decision expired. Please try again.")
         }
     }
     
@@ -90,9 +84,7 @@ struct DecisionsListView: View {
             else {
                 List(data.items, id: \.self, selection: $selectedDecisionId) { decision in
                     NavigationLink(value: decision.id) {
-                        DecisionItem(decisionId: decision.id, ipAddress: decision.source.value, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type) { decisionId in
-                            handleDecisionDelete(decisionId)
-                        }
+                        DecisionListItem(decision)
                     }
                     .onAppear {
                         if decision == data.items.last {
@@ -126,5 +118,53 @@ struct DecisionsListView: View {
                 viewModel.resetFiltersPanelToAppliedOnes()
             }
         }
+    }
+}
+
+struct DecisionListItem: View {
+    let decision: DecisionsListResponse_Item
+    
+    init(_ decision: DecisionsListResponse_Item) {
+        self.decision = decision
+    }
+    
+    @State private var errorDeleteDecision = false
+    @State private var expireDecisionConfirmationAlert = false
+    
+    @Environment(DecisionsListViewModel.self) private var viewModel
+    
+    func handleDecisionDelete(_ decisionId: Int) {
+        Task {
+            let result = await viewModel.expireDecision(decisionId: decisionId)
+            if result == false {
+                errorDeleteDecision = true
+            }
+        }
+    }
+    
+    var body: some View {
+        DecisionItem(decisionId: decision.id, ipAddress: decision.source.value, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type)
+            .contextMenu {
+                Button("Expire decision", systemImage: "clock.badge.checkmark", role: .destructive) {
+                    expireDecisionConfirmationAlert = true
+                }
+            }
+            .alert("Expire decision", isPresented: $expireDecisionConfirmationAlert) {
+                Button("Cancel", role: .cancel) {
+                    expireDecisionConfirmationAlert = false
+                }
+                Button("Expire", role: .destructive) {
+                    handleDecisionDelete(decision.id)
+                }
+            } message: {
+                Text("Are you sure you want to make this decision to expire now?")
+            }
+            .alert("Error expiring decision", isPresented: $errorDeleteDecision) {
+                Button("OK") {
+                    errorDeleteDecision = false
+                }
+            } message: {
+                Text("An error occurred while making the decision expired. Please try again.")
+            }
     }
 }

@@ -35,15 +35,4 @@ class AlertDetailsViewModel {
             await fetchData(showLoading: true)
         }
     }
-    
-    func handleDecisionExpire(decisionId: Int) async -> Bool {
-        let decisionDeleted = await DecisionsListViewModel.shared.expireDecision(decisionId: decisionId)
-        if decisionDeleted == true {
-            await fetchData(showLoading: true)
-            return true
-        }
-        else {
-            return false
-        }
-    }
 }

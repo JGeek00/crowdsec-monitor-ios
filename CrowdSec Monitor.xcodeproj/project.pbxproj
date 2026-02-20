@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0D942C1F2F491E8F002CC07C /* CustomAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 0D942C1E2F491E8F002CC07C /* CustomAlert */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0D9416372F40B181002CC07C /* CrowdSec Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CrowdSec Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D942C1F2F491E8F002CC07C /* CustomAlert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "CrowdSec Monitor";
 			packageProductDependencies = (
+				0D942C1E2F491E8F002CC07C /* CustomAlert */,
 			);
 			productName = "CrowdSec Monitor";
 			productReference = 0D9416372F40B181002CC07C /* CrowdSec Monitor.app */;
@@ -95,6 +101,9 @@
 			);
 			mainGroup = 0D94162E2F40B181002CC07C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0D942C1D2F491E8F002CC07C /* XCRemoteSwiftPackageReference "CustomAlert" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0D9416382F40B181002CC07C /* Products */;
 			projectDirPath = "";
@@ -347,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0D942C1D2F491E8F002CC07C /* XCRemoteSwiftPackageReference "CustomAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/divadretlaw/CustomAlert.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0D942C1E2F491E8F002CC07C /* CustomAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D942C1D2F491E8F002CC07C /* XCRemoteSwiftPackageReference "CustomAlert" */;
+			productName = CustomAlert;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0D94162F2F40B181002CC07C /* Project object */;
 }

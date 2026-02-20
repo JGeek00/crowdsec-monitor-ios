@@ -1,4 +1,5 @@
 import SwiftUI
+import CustomAlert
 
 struct AlertsListView: View {
     @Environment(AuthViewModel.self) private var authViewModel
@@ -9,18 +10,9 @@ struct AlertsListView: View {
     @State private var selectedAlertId: Int?
     @State private var activeAlertId: Int?
     @State private var showFiltersSheet: Bool = false
-    @State private var errorDeleteAlert: Bool = false
-    
-    func handleDeleteAlert(_ alertId: Int) {
-        Task {
-            let result = await viewModel.deleteAlert(alertId: alertId)
-            if result == false {
-                errorDeleteAlert = true
-            }
-        }
-    }
     
     var body: some View {
+        @Bindable var viewModel = viewModel
         NavigationSplitView {
             Group {
                 switch viewModel.state {
@@ -67,12 +59,14 @@ struct AlertsListView: View {
                 activeAlertId = newValue
             }
         }
-        .alert("Error delete alert", isPresented: $errorDeleteAlert) {
-            Button("OK", role: .cancel) {
-                errorDeleteAlert = false
+        .customAlert(isPresented: $viewModel.deletingAlertProcess) {
+            HStack {
+                Spacer()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.foreground)
+                Spacer()
             }
-        } message: {
-            Text("An error occured when trying to delete the alert. Please try again.")
         }
     }
     
@@ -85,9 +79,7 @@ struct AlertsListView: View {
             else {
                 List(data.items, id: \.id, selection: $selectedAlertId) { alert in
                     NavigationLink(value: alert.id) {
-                        AlertItem(scenario: alert.scenario, countryCode: alert.source.cn, creationDate: alert.crowdsecCreatedAt.toDateFromISO8601()) {
-                            handleDeleteAlert(alert.id)
-                        }
+                        AlertListItem(alert)
                     }
                     .onAppear {
                         if alert == data.items.last {
@@ -121,5 +113,53 @@ struct AlertsListView: View {
                 viewModel.resetFiltersPanelToAppliedOnes()
             }
         }
+    }
+}
+
+fileprivate struct AlertListItem: View {
+    let alert: AlertsListResponse_Alert
+    
+    init(_ alert: AlertsListResponse_Alert) {
+        self.alert = alert
+    }
+    
+    @Environment(AlertsListViewModel.self) private var viewModel
+    
+    @State var errorDeleteAlert: Bool = false
+    @State var confirmationDeletePresented: Bool = false
+    
+    func handleDeleteAlert(_ alertId: Int) {
+        Task {
+            let result = await viewModel.deleteAlert(alertId: alertId)
+            if result == false {
+                errorDeleteAlert = true
+            }
+        }
+    }
+    
+    var body: some View {
+        AlertItem(scenario: alert.scenario, countryCode: alert.source.cn, creationDate: alert.crowdsecCreatedAt.toDateFromISO8601())
+            .contextMenu {
+                Button("Delete alert", systemImage: "trash", role: .destructive) {
+                    confirmationDeletePresented = true
+                }
+            }
+            .alert("Delete alert", isPresented: $confirmationDeletePresented) {
+                Button("Cancel", role: .cancel) {
+                    confirmationDeletePresented = false
+                }
+                Button("Delete", role: .destructive) {
+                    handleDeleteAlert(alert.id)
+                }
+            } message: {
+                Text("Are you sure you want to delete this alert? This action cannot be undone.")
+            }
+            .alert("Error delete alert", isPresented: $errorDeleteAlert) {
+                Button("OK", role: .cancel) {
+                    errorDeleteAlert = false
+                }
+            } message: {
+                Text("An error occured when trying to delete the alert. Please try again.")
+            }
     }
 }

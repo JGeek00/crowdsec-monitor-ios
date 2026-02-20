@@ -14,16 +14,6 @@ struct AlertDetailsView: View {
     
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
-    @State private var errorExpireDecision = false
-    
-    func handleDecisionExpire(_ decisionId: Int) {
-        Task {
-            let result = await viewModel.handleDecisionExpire(decisionId: decisionId)
-            if result == false {
-                errorExpireDecision = true
-            }
-        }
-    }
     
     var body: some View {
         Group {
@@ -148,15 +138,11 @@ struct AlertDetailsView: View {
                             NavigationLink {
                                 DecisionDetailsView(decisionId: decision.id, allowNavigateAlert: false)
                             } label: {
-                                DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type) { decisionId in
-                                    handleDecisionExpire(decisionId)
-                                }
+                                DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
                             }
                         }
                         else {
-                            DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type) { decisionId in
-                                handleDecisionExpire(decisionId)
-                            }
+                            DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
                         }
                     }
                 }
@@ -183,13 +169,6 @@ struct AlertDetailsView: View {
         }
         .refreshable {
             await viewModel.fetchData()
-        }
-        .alert("Error expiring decision", isPresented: $errorExpireDecision) {
-            Button("OK") {
-                errorExpireDecision = false
-            }
-        } message: {
-            Text("An error occurred while making the decision expired. Please try again.")
         }
     }
     

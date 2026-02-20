@@ -25,6 +25,7 @@ class DecisionsListViewModel {
     }
     
     var state: Enums.LoadingState<DecisionsListResponse> = .loading
+    var processingExpireDecision = false
 
     private func fetchDecisions(showLoading: Bool = false, params: DecisionsRequest? = nil) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
@@ -105,10 +106,13 @@ class DecisionsListViewModel {
     func expireDecision(decisionId: Int) async -> Bool {
         guard let apiClient = AuthViewModel.shared.apiClient else { return false }
         do {
+            processingExpireDecision = true
             _ = try await apiClient.decisions.deleteDecision(decisionId: decisionId)
             await refreshDecisions()
+            processingExpireDecision = false
             return true
         } catch {
+            processingExpireDecision = false
             return false
         }
     }
