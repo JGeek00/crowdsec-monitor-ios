@@ -14,6 +14,7 @@ class DecisionDetailsViewModel {
     }
     
     var state: Enums.LoadingState<DecisionItemResponse> = .loading
+    var processingExpireDecision = false
     
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
@@ -33,6 +34,16 @@ class DecisionDetailsViewModel {
         self.decisionId = decisionId
         Task {
             await fetchData(showLoading: true)
+        }
+    }
+    
+    func expireDecision() {
+        Task {
+            processingExpireDecision = true
+            let result = await DecisionsListViewModel.shared.expireDecision(decisionId: decisionId)
+            await fetchData()
+            processingExpireDecision = false
+            return result
         }
     }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import CustomAlert
 
 struct DecisionDetailsView: View {
     let decisionId: Int
@@ -15,8 +16,10 @@ struct DecisionDetailsView: View {
     @State private var showSafariScenario = false
     @State private var geocodedLocation: Enums.LoadingState<String> = .loading
     @State private var errorDeleteAlert = false
+    @State private var confirmationExpirePresented = false
     
     var body: some View {
+        @Bindable var viewModel = viewModel
         Group {
             switch viewModel.state {
             case .loading:
@@ -42,6 +45,25 @@ struct DecisionDetailsView: View {
             }
         } message: {
             Text("An error occured when trying to delete the alert. Please try again.")
+        }
+        .alert("Expire decision", isPresented: $confirmationExpirePresented) {
+            Button("Cancel", role: .cancel) {
+                confirmationExpirePresented = false
+            }
+            Button("Expire", role: .destructive) {
+                viewModel.expireDecision()
+            }
+        } message: {
+            Text("Are you sure you want to expire this decision? This action cannot be undone.")
+        }
+        .customAlert(isPresented: $viewModel.processingExpireDecision) {
+            HStack {
+                Spacer()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.foreground)
+                Spacer()
+            }
         }
     }
     
@@ -136,6 +158,17 @@ struct DecisionDetailsView: View {
                 }
                 else {
                     AlertItem(scenario: data.scenario, countryCode: data.source.cn, creationDate: data.crowdsecCreatedAt.toDateFromISO8601())
+                }
+            }
+            
+            if let expirationDate = data.expiration.toDateFromISO8601(), expirationDate > Date() {
+                Section {
+                    Button(role: .destructive) {
+                        confirmationExpirePresented = true
+                    } label: {
+                        Label("Expire decision", systemImage: "clock.badge.checkmark")
+                            .foregroundStyle(.red)
+                    }
                 }
             }
         }
