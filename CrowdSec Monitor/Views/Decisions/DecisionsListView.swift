@@ -135,7 +135,7 @@ struct DecisionsListView: View {
     }
 }
 
-struct DecisionListItem: View {
+fileprivate struct DecisionListItem: View {
     let decision: DecisionsListResponse_Item
     
     init(_ decision: DecisionsListResponse_Item) {
