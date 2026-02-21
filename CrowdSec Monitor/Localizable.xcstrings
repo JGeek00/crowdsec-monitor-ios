@@ -521,6 +521,16 @@
         }
       }
     },
+    "Currently there are no options available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En este momento no hay opciones disponibles"
+          }
+        }
+      }
+    },
     "Dark" : {
       "localizations" : {
         "es" : {
@@ -777,6 +787,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empezar"
+          }
+        }
+      }
+    },
+    "Give a tip to the developer" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darle una propina al desarrollador"
+          }
+        }
+      }
+    },
+    "Hi! I'm the developer of CrowdSec Monitor.\nCrowdSec Monitor is free and I want it to remain free, but by offering this application on the App Store I run into some costs, such as Apple's developer license. I would appreciate a lot every donation to help me paying this costs.\nThank you." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Hola! Soy el desarrollador de CrowdSec Monitor. CrowdSec Monitor es gratis y quiero que continue siendo gratis, pero ofrecer esta aplicación en la App Store me supone unos costes, como la licencia de desarrollador de Apple. Apreciaría mucho cualquier donación que me ayude a pagar estos costes. Gracias."
           }
         }
       }
@@ -1191,6 +1221,26 @@
         }
       }
     },
+    "Purchase completed successfully" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compra completada correctamente"
+          }
+        }
+      }
+    },
+    "Purchase failed or cancelled" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compra fallida o cancelada"
+          }
+        }
+      }
+    },
     "Reason" : {
       "localizations" : {
         "es" : {
@@ -1411,6 +1461,26 @@
         }
       }
     },
+    "The purchase could not be completed. An error occured on the process or it has been cancelled by the user." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La compra no se ha podido completar. Ha ocurrido un error en el proceso o ha sido cancelada por el usuario."
+          }
+        }
+      }
+    },
+    "The purchase has been completed. Thank you for contributing with the development and mantenience of this application." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La compra se ha completado. Gracias por contribuir al desarrollo y mantenimiento de esta aplicación."
+          }
+        }
+      }
+    },
     "Theme" : {
       "localizations" : {
         "es" : {
@@ -1427,6 +1497,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta aplicación necesita de una API intermedia para funcionar. Esta API se encarga de obtener los datos de CrowdSec, procesarlos y entregarlos de manera adecuada a esta aplicación. \nAntes de continuar, asegúrate de que tienes esta API correctamente desplegada en tu máquina junto a CrowdSec"
+          }
+        }
+      }
+    },
+    "Tips" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propinas"
           }
         }
       }

@@ -1,0 +1,137 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "27055810",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "6759491555",
+      "localizations" : [
+        {
+          "description" : "Give a big tip to the developer",
+          "displayName" : "Big tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Darle una propina grande al desarrollador",
+          "displayName" : "Propina grande",
+          "locale" : "es_ES"
+        }
+      ],
+      "productID" : "com.jgeek00.CrowdSecMonitor.BigTip",
+      "referenceName" : "Big tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "24.99",
+      "familyShareable" : false,
+      "internalID" : "6759491615",
+      "localizations" : [
+        {
+          "description" : "Give a glorious tip to the developer",
+          "displayName" : "Glorious tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Darle una propina gloriosa al desarrollador",
+          "displayName" : "Propina gloriosa",
+          "locale" : "es_ES"
+        }
+      ],
+      "productID" : "com.jgeek00.CrowdSecMonitor.GloriousTip",
+      "referenceName" : "Glorious tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "6759491511",
+      "localizations" : [
+        {
+          "description" : "Give a medium tip to the developer",
+          "displayName" : "Medium tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Darle una propina mediana al desarrollador",
+          "displayName" : "Propina mediana",
+          "locale" : "es_ES"
+        }
+      ],
+      "productID" : "com.jgeek00.CrowdSecMonitor.MediumTip",
+      "referenceName" : "Medium tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "6759491274",
+      "localizations" : [
+        {
+          "description" : "Darle una propina pequeña al desarrollador",
+          "displayName" : "Propina pequeña",
+          "locale" : "es_ES"
+        },
+        {
+          "description" : "Give a small tip to the developer",
+          "displayName" : "Small tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jgeek00.CrowdSecMonitor.SmallTip",
+      "referenceName" : "Small Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "16.99",
+      "familyShareable" : false,
+      "internalID" : "6759491400",
+      "localizations" : [
+        {
+          "description" : "Give a very big tip to the developer",
+          "displayName" : "Very big tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jgeek00.CrowdSecMonitor.VeryBigTip",
+      "referenceName" : "Very big tip",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6759268371",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_developerTeamID" : "38Z3B9TJTR",
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 793379166.33144104,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

@@ -12,6 +12,7 @@ struct CrowdSec_MonitorApp: App {
                 .environment(AuthViewModel.shared)
                 .environment(OnboardingViewModel.shared)
                 .environment(AppIconManager.shared)
+                .environment(TipsViewModel())
         }
     }
 }
