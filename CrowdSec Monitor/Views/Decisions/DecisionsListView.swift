@@ -159,19 +159,19 @@ fileprivate struct DecisionListItem: View {
     var body: some View {
         DecisionItem(decisionId: decision.id, ipAddress: decision.source.value, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type)
             .contextMenu {
-                Button("Expire decision", systemImage: "clock.badge.checkmark", role: .destructive) {
+                Button(String(localized: "Expire decision"), systemImage: "clock.badge.checkmark", role: .destructive) {
                     expireDecisionConfirmationAlert = true
                 }
             }
             .alert("Expire decision", isPresented: $expireDecisionConfirmationAlert) {
-                Button("Cancel", role: .cancel) {
+                Button(String(localized: "Cancel"), role: .cancel) {
                     expireDecisionConfirmationAlert = false
                 }
-                Button("Expire", role: .destructive) {
+                Button(String(localized: "Expire"), role: .destructive) {
                     handleDecisionDelete(decision.id)
                 }
             } message: {
-                Text("Are you sure you want to make this decision to expire now?")
+                Text("Are you sure you want to make this decision to expire now? This action cannot be undone.")
             }
             .alert("Error expiring decision", isPresented: $errorDeleteDecision) {
                 Button("OK") {

@@ -140,15 +140,15 @@ fileprivate struct AlertListItem: View {
     var body: some View {
         AlertItem(scenario: alert.scenario, countryCode: alert.source.cn, creationDate: alert.crowdsecCreatedAt.toDateFromISO8601())
             .contextMenu {
-                Button("Delete alert", systemImage: "trash", role: .destructive) {
+                Button(String(localized: "Delete alert"), systemImage: "trash", role: .destructive) {
                     confirmationDeletePresented = true
                 }
             }
             .alert("Delete alert", isPresented: $confirmationDeletePresented) {
-                Button("Cancel", role: .cancel) {
+                Button(String(localized: "Cancel"), role: .cancel) {
                     confirmationDeletePresented = false
                 }
-                Button("Delete", role: .destructive) {
+                Button(String(localized: "Delete"), role: .destructive) {
                     handleDeleteAlert(alert.id)
                 }
             } message: {

@@ -271,22 +271,12 @@
         }
       }
     },
-    "Are you sure you want to expire this decision? This action cannot be undone." : {
+    "Are you sure you want to make this decision to expire now? This action cannot be undone." : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Estás seguro de que deseas hacer expirar esta decisión? Esta acción no se puede deshacer."
-          }
-        }
-      }
-    },
-    "Are you sure you want to make this decision to expire now?" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Estás seguro de que deseas hacer que esta decisión expire ahora mismo?"
+            "value" : "¿Estás seguro de que deseas hacer expirar esta decisión ahora? Esta acción no se puede deshacer."
           }
         }
       }
@@ -727,6 +717,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eventos"
+          }
+        }
+      }
+    },
+    "Expire" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expirar"
           }
         }
       }

@@ -54,7 +54,7 @@ struct DecisionDetailsView: View {
                 viewModel.expireDecision()
             }
         } message: {
-            Text("Are you sure you want to expire this decision? This action cannot be undone.")
+            Text("Are you sure you want to make this decision to expire now? This action cannot be undone.")
         }
         .customAlert(isPresented: $viewModel.processingExpireDecision) {
             HStack {
