@@ -191,6 +191,16 @@
         }
       }
     },
+    "An error occurred while creating the decision. Please try again." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al crear la decisión. Prueba de nuevo."
+          }
+        }
+      }
+    },
     "An error occurred while making the decision expired. Please try again." : {
       "localizations" : {
         "es" : {
@@ -461,6 +471,26 @@
         }
       }
     },
+    "Create a decision" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear una decisión"
+          }
+        }
+      }
+    },
+    "Create decision" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear decisión"
+          }
+        }
+      }
+    },
     "Created on 🇪🇸 by JGeek00" : {
       "localizations" : {
         "es" : {
@@ -531,12 +561,32 @@
         }
       }
     },
+    "days" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "días"
+          }
+        }
+      }
+    },
     "Decision #%@" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decisión #%@"
+          }
+        }
+      }
+    },
+    "Decision type" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de decisión"
           }
         }
       }
@@ -587,6 +637,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desactiva mostrar solo decisiones activas en filtros para ver todas las decisiones"
+          }
+        }
+      }
+    },
+    "Discard changes" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descartar cambios"
+          }
+        }
+      }
+    },
+    "Duration" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duración"
+          }
+        }
+      }
+    },
+    "Duration must be greater than 0" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La duración debe ser mayor que 0"
           }
         }
       }
@@ -701,6 +781,16 @@
         }
       }
     },
+    "hours" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "horas"
+          }
+        }
+      }
+    },
     "HTTP" : {
       "localizations" : {
         "es" : {
@@ -777,6 +867,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dirección IP"
+          }
+        }
+      }
+    },
+    "IP Address is invalid" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección IP no válida"
+          }
+        }
+      }
+    },
+    "IP Address is required" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección IP requerida"
           }
         }
       }
@@ -1081,6 +1191,26 @@
         }
       }
     },
+    "Reason" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motivo"
+          }
+        }
+      }
+    },
+    "Reason is required" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motivo requerido"
+          }
+        }
+      }
+    },
     "Remaining time" : {
       "localizations" : {
         "es" : {
@@ -1117,6 +1247,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Resetear"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar"
           }
         }
       }

@@ -104,7 +104,12 @@ class AlertsListViewModel {
         do {
             deletingAlertProcess = true
             _ = try await apiClient.alerts.deleteAlert(alertId: alertId)
-            await refreshAlerts()
+           
+            // Refresh alerts and decisions
+            async let alertsRefresh: Void = refreshAlerts()
+            async let decisionsRefresh: Void = DecisionsListViewModel.shared.refreshDecisions()
+            _ = await (alertsRefresh, decisionsRefresh)
+            
             deletingAlertProcess = false
             return true
         } catch {

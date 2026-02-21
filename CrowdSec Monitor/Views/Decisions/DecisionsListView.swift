@@ -10,6 +10,7 @@ struct DecisionsListView: View {
     @State private var selectedDecisionId: Int?
     @State private var activeDecisionId: Int?
     @State private var showFiltersSheet = false
+    @State private var showCreateDecisionSheet = false
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -107,7 +108,20 @@ struct DecisionsListView: View {
                     Label("Filters", systemImage: "line.3.horizontal.decrease.circle")
                 }
             }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showCreateDecisionSheet = true
+                } label: {
+                    Label("Create decision", systemImage: "plus")
+                }
+            }
         }
+        .sheet(isPresented: $showCreateDecisionSheet, content: {
+            CreateDecisionFormView {
+                showCreateDecisionSheet = false
+            }
+            .interactiveDismissDisabled()
+        })
         .sheet(isPresented: $showFiltersSheet) {
             DecisionsFilters {
                 showFiltersSheet = false

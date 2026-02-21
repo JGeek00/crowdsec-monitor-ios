@@ -64,9 +64,38 @@ class Enums {
         case target
     }
     
-    enum DecisionReason: String, Codable {
+    enum DecisionType: String, Codable, CaseIterable {
         case ban = "ban"
         case captcha = "captcha"
+    }
+    
+    enum DecisionDuration: String, CaseIterable {
+        case oneHour = "1h"
+        case fourHours = "4h"
+        case twelveHours = "12h"
+        case oneDay = "24h"
+        case threeDays = "72h"
+        case oneWeek = "168h"
+        case oneMonth = "720h"
+        
+        var displayName: String {
+            switch self {
+            case .oneHour:
+                return "1 hora"
+            case .fourHours:
+                return "4 horas"
+            case .twelveHours:
+                return "12 horas"
+            case .oneDay:
+                return "1 día"
+            case .threeDays:
+                return "3 días"
+            case .oneWeek:
+                return "1 semana"
+            case .oneMonth:
+                return "1 mes"
+            }
+        }
     }
 }
 
