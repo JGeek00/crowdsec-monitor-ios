@@ -65,6 +65,16 @@ struct ServerSettingsView: View {
                 }
             }
             Section {
+                if let currentServer = authViewModel.currentServer {
+                    let serverValues = buildUrl(server: currentServer)
+                    HStack {
+                        Text(verbatim: serverValues)
+                        Spacer()
+                        Image(systemName: "server.rack")
+                    }
+                    .foregroundStyle(Color.gray)
+                    .fontWeight(.medium)
+                }
                 Button("Remove server connection", role: .destructive) {
                     showDeleteAlert = true
                 }

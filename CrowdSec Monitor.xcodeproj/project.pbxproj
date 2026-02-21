@@ -14,22 +14,9 @@
 		0D9416372F40B181002CC07C /* CrowdSec Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CrowdSec Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0D4CC0002F4A033100784A28 /* Exceptions for "CrowdSec Monitor" folder in "CrowdSec Monitor" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"CrowdSec-Monitor-Info.plist",
-			);
-			target = 0D9416362F40B181002CC07C /* CrowdSec Monitor */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0D9416392F40B181002CC07C /* CrowdSec Monitor */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0D4CC0002F4A033100784A28 /* Exceptions for "CrowdSec Monitor" folder in "CrowdSec Monitor" target */,
-			);
 			path = "CrowdSec Monitor";
 			sourceTree = "<group>";
 		};

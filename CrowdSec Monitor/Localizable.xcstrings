@@ -961,6 +961,16 @@
         }
       }
     },
+    "IP/Domain value is not valid" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El valor de IP/Dominio no es válido"
+          }
+        }
+      }
+    },
     "LAPI status" : {
       "localizations" : {
         "es" : {

@@ -24,19 +24,7 @@ class HttpClient: NSObject {
     private var authHeader: [String: String]?
     
     init(server: CSServer) {
-        var urlString = "\(server.http ?? "https")://\(server.domain ?? "")"
-        
-        if server.port > 0 {
-            urlString += ":\(server.port)"
-        }
-        
-        if let path = server.path, !path.isEmpty {
-            if path.hasPrefix("/") {
-                urlString += path
-            } else {
-                urlString += "/\(path)"
-            }
-        }
+        var urlString = buildUrl(server: server)
         
         guard let url = URL(string: urlString) else {
             fatalError("Invalid server configuration URL: \(urlString)")

@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Network
 
 @MainActor
 @Observable
@@ -53,14 +54,18 @@ class OnboardingViewModel {
         invalidValuesAlert = false
         invalidValuesMessage = ""
         
-        // Validate IP/Domain
         if ipDomain.isEmpty {
             invalidValuesAlert = true
             invalidValuesMessage = String(localized: "IP/Domain field is required")
             return false
         }
         
-        // Validate port if provided
+        if (try? RegExps.domain.wholeMatch(in: ipDomain)) == nil && IPv4Address(ipDomain) == nil && IPv6Address(ipDomain) == nil {
+            invalidValuesAlert = true
+            invalidValuesMessage = String(localized: "IP/Domain value is not valid")
+            return false
+        }
+        
         if !port.isEmpty {
             if let portNumber = Int32(port) {
                 if portNumber <= 0 || portNumber > 65535 {
@@ -75,7 +80,6 @@ class OnboardingViewModel {
             }
         }
         
-        // Validate authentication based on method
         if authMethod == .basic {
             if basicUser.isEmpty {
                 invalidValuesAlert = true
