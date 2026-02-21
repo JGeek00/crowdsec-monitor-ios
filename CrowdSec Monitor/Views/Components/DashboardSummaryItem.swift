@@ -61,7 +61,14 @@ struct DashboardSummaryItem: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
         .background(Color.listItemBackground)
-        .clipShape(.rect(cornerRadius: 20))
+        .condition { view in
+            if #available(iOS 26.0, *) {
+                view.clipShape(.rect(cornerRadius: 20))
+            }
+            else {
+                view.clipShape(.rect(cornerRadius: 10))
+            }
+        }
     }
 }
 
