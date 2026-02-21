@@ -19,6 +19,9 @@ CrowdSec Monitor gets it's data from an intermediate API between the app and Cro
 
 This API is available [here](https://github.com/JGeek00/crowdsec-monitor-api).
 
+## Disclaimer
+This is a third party software that is not related in any way with the official CrowdSec software or with the CrowdSec team.
+
 <br>
 <br>
 <br>
