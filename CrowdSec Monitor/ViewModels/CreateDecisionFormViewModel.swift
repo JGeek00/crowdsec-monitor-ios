@@ -67,14 +67,18 @@ class CreateDecisionFormViewModel {
         
         do {
             creatingDecision = true
+            
             let body = CreateDecisionRequest(ip: ipAddress, duration: durationString, type: type, reason: reason)
             _ = try await apiClient.decisions.createDecision(body: body)
-            await DecisionsListViewModel.shared.refreshDecisions()
+            
+            async let alertsRefresh: Void = AlertsListViewModel.shared.refreshAlerts()
+            async let decisionsRefresh: Void = DecisionsListViewModel.shared.refreshDecisions()
+            _ = await (alertsRefresh, decisionsRefresh)
+            
             creatingDecision = false
             
             return true
         } catch {
-            print(error.localizedDescription)
             errorCreatingDecisionAlert = true
             creatingDecision = false
             

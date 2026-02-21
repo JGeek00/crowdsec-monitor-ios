@@ -7,7 +7,6 @@ struct AlertsListView: View {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @State private var selectedAlertId: Int?
     @State private var activeAlertId: Int?
     @State private var showFiltersSheet: Bool = false
     
@@ -48,7 +47,7 @@ struct AlertsListView: View {
         .task {
             await viewModel.initialFetchAlerts()
         }
-        .onChange(of: selectedAlertId, initial: true) { oldValue, newValue in
+        .onChange(of: viewModel.selectedAlert, initial: true) { oldValue, newValue in
             if oldValue != nil && newValue == nil {
                 // To prevent disposing details view before back transition ends
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
@@ -72,12 +71,13 @@ struct AlertsListView: View {
     
     @ViewBuilder
     func content(_ data: AlertsListResponse) -> some View {
+        @Bindable var viewModel = viewModel
         Group {
             if data.items.isEmpty {
                 ContentUnavailableView("No alerts to display", systemImage: "list.bullet", description: Text("Change the filtering criteria to see more alerts"))
             }
             else {
-                List(data.items, id: \.id, selection: $selectedAlertId) { alert in
+                List(data.items, id: \.id, selection: $viewModel.selectedAlert) { alert in
                     NavigationLink(value: alert.id) {
                         AlertListItem(alert)
                     }

@@ -18,6 +18,7 @@ class AlertsListViewModel {
     
     var state: Enums.LoadingState<AlertsListResponse> = .loading
     var deletingAlertProcess: Bool = false
+    var selectedAlert: Int? = nil
     
     private func fetchAlerts(showLoading: Bool = false, params: AlertsRequest? = nil) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
@@ -104,6 +105,9 @@ class AlertsListViewModel {
         do {
             deletingAlertProcess = true
             _ = try await apiClient.alerts.deleteAlert(alertId: alertId)
+            if selectedAlert == alertId {
+                selectedAlert = nil
+            }
            
             // Refresh alerts and decisions
             async let alertsRefresh: Void = refreshAlerts()
