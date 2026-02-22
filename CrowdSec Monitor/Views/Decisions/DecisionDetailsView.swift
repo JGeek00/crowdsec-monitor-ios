@@ -47,10 +47,10 @@ struct DecisionDetailsView: View {
             Text("An error occured when trying to delete the alert. Please try again.")
         }
         .alert("Expire decision", isPresented: $confirmationExpirePresented) {
-            Button("Cancel", role: .cancel) {
+            Button(String(localized: "Cancel"), role: .cancel) {
                 confirmationExpirePresented = false
             }
-            Button("Expire", role: .destructive) {
+            Button(String(localized: "Expire"), role: .destructive) {
                 viewModel.expireDecision()
             }
         } message: {

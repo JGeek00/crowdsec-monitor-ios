@@ -24,7 +24,7 @@ class HttpClient: NSObject {
     private var authHeader: [String: String]?
     
     init(server: CSServer) {
-        var urlString = buildUrl(server: server)
+        let urlString = buildUrl(server: server)
         
         guard let url = URL(string: urlString) else {
             fatalError("Invalid server configuration URL: \(urlString)")
