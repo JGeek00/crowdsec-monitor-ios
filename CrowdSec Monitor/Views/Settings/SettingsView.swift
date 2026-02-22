@@ -87,7 +87,7 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .safariView(isPresented: $crowdsecWebOpen, urlString: URLs.crowdsecWeb)
-            // .safariView(isPresented: $appDetailsOpen, url: URLs.appDetailsPage)
+            .safariView(isPresented: $appDetailsOpen, urlString: URLs.appDetailsPage)
             .safariView(isPresented: $myOtherAppsOpen, urlString: URLs.myOtherApps)
         }
     }
