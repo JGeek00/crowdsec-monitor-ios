@@ -14,7 +14,8 @@ struct ApiStatusResponse: Codable {
 // MARK: - ApiStatusResponse_CSLapi
 struct ApiStatusResponse_CSLapi: Codable {
     let lapiConnected: Bool
-    let lastSuccessfulSync, timestamp: String
+    let lastSuccessfulSync: String?
+    let timestamp: String?
 }
 
 // MARK: - ApiStatusResponse_CSMonitorAPI
