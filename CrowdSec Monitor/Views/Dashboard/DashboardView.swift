@@ -56,7 +56,7 @@ struct DashboardView: View {
                             Button {
                                 lapiOfflineAlertPresented = true
                             } label: {
-                                Label("CrowdSec LAPI is online", systemImage: "exlamationmark.circle")
+                                Label("CrowdSec LAPI is online", systemImage: "exclamationmark.circle")
                             }
                             .buttonStyle(.plain)
                             .foregroundStyle(Color.red)
