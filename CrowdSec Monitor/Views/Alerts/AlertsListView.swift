@@ -90,6 +90,7 @@ struct AlertsListView: View {
                         }
                     }
                 }
+                .animation(.default, value: data.items)
             }
         }
         .refreshable {

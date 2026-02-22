@@ -96,6 +96,7 @@ struct DecisionsListView: View {
                         }
                     }
                 }
+                .animation(.default, value: data.items)
             }
         }
         .refreshable {
