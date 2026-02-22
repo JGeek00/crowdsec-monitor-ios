@@ -42,6 +42,7 @@ struct FullListDashboardItemView: View {
                 
             }
         }
+        .transition(.opacity)
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
         .task {

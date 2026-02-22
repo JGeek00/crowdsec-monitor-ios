@@ -20,13 +20,19 @@ class DecisionDetailsViewModel {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
             if showLoading == true {
-                state = .loading
+                withAnimation {
+                    state = .loading
+                }
             }
             
             let response = try await apiClient.decisions.fetchDecisionDetails(decisionId: decisionId)
-            state = .success(response.body)
+            withAnimation {
+                state = .success(response.body)
+            }
         } catch {
-            state = .failure(error)
+            withAnimation {
+                state = .failure(error)
+            }
         }
     }
     

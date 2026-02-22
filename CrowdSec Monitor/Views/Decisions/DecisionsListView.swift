@@ -29,6 +29,7 @@ struct DecisionsListView: View {
                     )
                 }
             }
+            .transition(.opacity)
             .navigationTitle("Decisions")
         } detail: {
             NavigationStack {

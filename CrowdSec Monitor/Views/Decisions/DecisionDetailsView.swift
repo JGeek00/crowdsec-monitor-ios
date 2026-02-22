@@ -34,6 +34,7 @@ struct DecisionDetailsView: View {
                 )
             }
         }
+        .transition(.opacity)
         .navigationTitle("Decision #\(String(decisionId))")
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: decisionId) { _, newValue in

@@ -29,9 +29,13 @@ class DashboardViewModel {
         let amountItems = UserDefaults.shared.object(forKey: StorageKeys.topItemsDashboard) as! Int? ?? Defaults.topItemsDashboard
         do {
             let result = try await apiClient.statistics.fetchStatistics(amount: amountItems)
-            state = .success(result.body)
+            withAnimation {
+                state = .success(result.body)
+            }
         } catch {
-            state = .failure(error)
+            withAnimation {
+                state = .failure(error)
+            }
         }
     }
         

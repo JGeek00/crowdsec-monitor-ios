@@ -27,6 +27,7 @@ struct AlertsListView: View {
                     )
                 }
             }
+            .transition(.opacity)
             .navigationTitle("Alerts")
         } detail: {
             NavigationStack {

@@ -24,14 +24,20 @@ class AlertsListViewModel {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
 
         if showLoading == true {
-            state = .loading
+            withAnimation {
+                state = .loading
+            }
         }
        
         do {
             let result = try await apiClient.alerts.fetchAlerts(requestParams: params ?? requestParams)
-            state = .success(result.body)
+            withAnimation {
+                state = .success(result.body)
+            }
         } catch {
-            state = .failure(error)
+            withAnimation {
+                state = .failure(error)
+            }
         }
     }
     

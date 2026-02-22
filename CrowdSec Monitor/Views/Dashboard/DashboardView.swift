@@ -33,6 +33,7 @@ struct DashboardView: View {
                     )
                 }
             }
+            .transition(.opacity)
             .navigationTitle("Dashboard")
             .refreshable {
                 await viewModel.fetchDashboardData()

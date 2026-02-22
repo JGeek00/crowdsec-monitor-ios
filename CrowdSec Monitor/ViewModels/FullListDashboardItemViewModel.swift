@@ -68,19 +68,29 @@ class FullListDashboardItemViewModel {
             switch self.dashboardItem {
             case .country:
                 let result = try await apiClient.statistics.countries.fetchCountriesStatistics()
-                state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.countryCode, value: $0.amount) }))
+                withAnimation {
+                    state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.countryCode, value: $0.amount) }))
+                }
             case .ipOwner:
                 let result = try await apiClient.statistics.ipOwners.fetchIpOwnersStatistics()
-                state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.ipOwner, value: $0.amount) }))
+                withAnimation {
+                    state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.ipOwner, value: $0.amount) }))
+                }
             case .scenary:
                 let result = try await apiClient.statistics.scenarios.fetchScenariosStatistics()
-                state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.scenario, value: $0.amount) }))
+                withAnimation {
+                    state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.scenario, value: $0.amount) }))
+                }
             case .target:
                 let result = try await apiClient.statistics.targets.fetchTargetsStatistics()
-                state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.target, value: $0.amount) }))
+                withAnimation {
+                    state = .success(generateViewData(result.body.map { FullItemDashboardItemData(item: $0.target, value: $0.amount) }))
+                }
             }
         } catch {
-            state = .failure(error)
+            withAnimation {
+                state = .failure(error)
+            }
         }
     }
 }
