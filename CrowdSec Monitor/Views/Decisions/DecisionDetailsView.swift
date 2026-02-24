@@ -113,6 +113,7 @@ struct DecisionDetailsView: View {
                     Text("Remaining time")
                     Spacer()
                     DecisionTimer(expirationDate: data.expiration.toDateFromISO8601())
+                        .font(.system(size: 14))
                 }
             }
             

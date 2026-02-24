@@ -139,11 +139,11 @@ struct AlertDetailsView: View {
                             NavigationLink {
                                 DecisionDetailsView(decisionId: decision.id, allowNavigateAlert: false)
                             } label: {
-                                DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+                                DecisionItem(decisionId: decision.id, scenario: decision.scenario, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
                             }
                         }
                         else {
-                            DecisionItem(decisionId: decision.id, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
+                            DecisionItem(decisionId: decision.id, scenario: decision.scenario, ipAddress: decision.value, expirationDate: decision.expiration, countryCode: nil, decisionType: decision.type)
                         }
                     }
                 }

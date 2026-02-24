@@ -4,6 +4,7 @@ struct AppSettingsView: View {
     @SharedAppStorage(StorageKeys.topItemsDashboard) private var amountItemsDashboard: Int = Defaults.topItemsDashboard
     @SharedAppStorage(StorageKeys.showDefaultActiveDecisions) private var showDefaultActiveDecisions: Bool = Defaults.showDefaultActiveDecisions
     @SharedAppStorage(StorageKeys.hideDefaultDuplicatedDecisions) private var hideDefaultDuplicatedDecisions: Bool = Defaults.hideDefaultDuplicatedDecisions
+    @SharedAppStorage(StorageKeys.disableDecisionTimerAnimation) private var disableDecisionTimerAnimation: Bool = Defaults.disableDecisionTimerAnimation
     
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(AppIconManager.self) private var appIconManager
@@ -24,6 +25,7 @@ struct AppSettingsView: View {
             Section("Decisions") {
                 Toggle("Show by default only active decisions", isOn: $showDefaultActiveDecisions)
                 // Toggle("Hide by default active duplicated decisions", isOn: $hideDefaultDuplicatedDecisions)
+                Toggle("Disable timer animation", isOn: $disableDecisionTimerAnimation)
             }
             
             Section("Icon") {

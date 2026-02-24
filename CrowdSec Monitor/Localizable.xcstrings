@@ -641,6 +641,16 @@
         }
       }
     },
+    "Disable timer animation" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desactivar animación del temporizador"
+          }
+        }
+      }
+    },
     "Discard changes" : {
       "localizations" : {
         "es" : {

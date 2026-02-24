@@ -159,7 +159,7 @@ fileprivate struct DecisionListItem: View {
     }
     
     var body: some View {
-        DecisionItem(decisionId: decision.id, ipAddress: decision.source.value, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type)
+        DecisionItem(decisionId: decision.id, scenario: decision.scenario, ipAddress: decision.source.value, expirationDate: decision.expiration.toDateFromISO8601(), countryCode: decision.source.cn, decisionType: decision.type)
             .contextMenu {
                 Button(String(localized: "Expire decision"), systemImage: "clock.badge.checkmark", role: .destructive) {
                     expireDecisionConfirmationAlert = true

@@ -4,11 +4,13 @@ struct DecisionTypeChip: View {
     let label: String
     let color: Color
     let systemImage: String?
+    let inverse: Bool
     
-    init(label: String, color: Color, systemImage: String?) {
+    init(label: String, color: Color, systemImage: String?, inverse: Bool = false) {
         self.label = label
         self.color = color
         self.systemImage = systemImage
+        self.inverse = inverse
     }
     
     var body: some View {
@@ -18,12 +20,21 @@ struct DecisionTypeChip: View {
             }
             Text(verbatim: label)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 4)
-        .background(color)
         .fontWeight(.semibold)
-        .foregroundStyle(Color.white)
-        .clipShape(.rect(cornerRadius: 20))
+        .condition { view in
+            if inverse == true {
+                view
+                    .foregroundStyle(color)
+            }
+            else {
+                view
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(color)
+                    .foregroundStyle(Color.white)
+                    .clipShape(.rect(cornerRadius: 20))
+            }
+        }
     }
 }
 

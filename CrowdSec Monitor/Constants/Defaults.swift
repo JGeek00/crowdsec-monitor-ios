@@ -4,4 +4,5 @@ class Defaults {
     static let showDefaultActiveDecisions = true
     static let hideDefaultDuplicatedDecisions = true
     static let appIcon = AppIcon.purpleYellow
+    static let disableDecisionTimerAnimation = false
 }

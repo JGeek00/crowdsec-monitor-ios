@@ -4,4 +4,5 @@ class StorageKeys {
     static let showDefaultActiveDecisions = "SHOW_DEFAULT_ACTIVE_DECISIONS"
     static let hideDefaultDuplicatedDecisions = "HIDE_DEFAULT_DUPLICATED_DECISIONS"
     static let selectedAppIcon = "SELECTED_APP_ICON"
+    static let disableDecisionTimerAnimation = "DISABLE_DECISION_TIMER_ANIMATION"
 }

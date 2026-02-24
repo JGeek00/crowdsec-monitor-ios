@@ -8,14 +8,25 @@ struct DecisionTimer: View {
         self.expirationDate = expirationDate
     }
     
-    @State private var currentTime = Date()
+    @SharedAppStorage(StorageKeys.disableDecisionTimerAnimation) private var disableDecisionTimerAnimation: Bool = Defaults.disableDecisionTimerAnimation
     
-    private var timeRemaining: String? {
+    @State private var currentTime = Date()
+    @State private var remainingTime: [Int]? = nil
+    
+    func calculateRemainingTime() {
         if let expirationDate = expirationDate {
             let timeInterval = expirationDate.timeIntervalSince(currentTime)
             
-            if timeInterval <= 0 {
-                return String(localized: "Expired")
+            if timeInterval < 1 {
+                if disableDecisionTimerAnimation == true {
+                    remainingTime = nil
+                }
+                else {
+                    withAnimation {
+                        remainingTime = nil
+                    }
+                }
+                return
             }
             
             let totalSeconds = Int(timeInterval)
@@ -24,57 +35,60 @@ struct DecisionTimer: View {
             let minutes = (totalSeconds % 3600) / 60
             let seconds = totalSeconds % 60
             
-            var components: [String] = []
-            
-            if days > 0 {
-                components.append("\(days)d")
+            if disableDecisionTimerAnimation == true {
+                remainingTime = [days, hours, minutes, seconds]
             }
-            if hours > 0 {
-                components.append("\(hours)h")
+            else {
+                withAnimation {
+                    remainingTime = [days, hours, minutes, seconds]
+                }
             }
-            if minutes > 0 {
-                components.append("\(minutes)m")
-            }
-            if seconds > 0 || components.isEmpty {
-                components.append("\(seconds)s")
-            }
-            
-            return components.joined(separator: " ")
-        }
-        return nil
-    }
-    
-    private var isExpired: Bool? {
-        if let expirationDate = expirationDate {
-            return expirationDate.timeIntervalSince(currentTime) <= 0
-        }
-        else {
-            return nil
         }
     }
     
     var body: some View {
         Group {
-            if let isExpired = isExpired, let timeRemaining = timeRemaining {
-                HStack(spacing: 10) {
-                    Image(systemName: isExpired ? "clock.badge.xmark" : "clock")
-                        .font(.system(size: 14))
-                    Text(verbatim: timeRemaining)
-                        .font(.system(size: 14))
+            HStack(spacing: 6) {
+                Image(systemName: remainingTime == nil ? "clock.badge.xmark" : "clock")
+                HStack(spacing: 4) {
+                    if let remainingTime = remainingTime {
+                        if remainingTime[0] > 0 {
+                            Text(verbatim: "\(remainingTime[0])d")
+                        }
+                        if remainingTime[1] > 0 {
+                            Text(verbatim: "\(remainingTime[1])h")
+                        }
+                        if remainingTime[2] > 0 {
+                            Text(verbatim: "\(remainingTime[2])m")
+                        }
+                        if remainingTime[3] > 0 {
+                            Text(verbatim: "\(remainingTime[3])s")
+                        }
+                    }
+                    else {
+                        Text("Expired")
+                    }
                 }
-                .fontWeight(.semibold)
-                .foregroundColor(isExpired ? .gray : .green)
             }
+            .contentTransition(.numericText())
+            .fontWeight(.semibold)
+            .foregroundColor(remainingTime == nil ? .gray : .green)
         }
         .onAppear {
             currentTime = Date()
+            calculateRemainingTime()
         }
         .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
             currentTime = Date()
+            calculateRemainingTime()
         }
     }
 }
 
-#Preview {
+#Preview("5 minutes") {
     DecisionTimer(expirationDate: Calendar.current.date(byAdding: .minute, value: 5, to: Date()))
+}
+
+#Preview("10 seconds") {
+    DecisionTimer(expirationDate: Calendar.current.date(byAdding: .second, value: 10, to: Date()))
 }
