@@ -22,6 +22,7 @@ class Enums {
         case dashboard
         case alerts
         case decisions
+        case allowlists
         case settings
     }
     

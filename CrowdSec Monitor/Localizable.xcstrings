@@ -11,6 +11,46 @@
         }
       }
     },
+    "%lld IPs addresses" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld IPs address"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld IPs addresses"
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld dirección IP"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld direcciones IP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld selected" : {
       "localizations" : {
         "en" : {
@@ -137,6 +177,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alertas: %lld"
+          }
+        }
+      }
+    },
+    "Allowlist not found" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista de permitidos no encontrada"
+          }
+        }
+      }
+    },
+    "Allowlists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allowlists"
           }
         }
       }
@@ -371,6 +431,16 @@
         }
       }
     },
+    "Choose an allowlist to see the list of IPs" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una lista de permitidos para ver el listado de IPs"
+          }
+        }
+      }
+    },
     "Close" : {
       "localizations" : {
         "es" : {
@@ -487,6 +557,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Creado en 🇪🇸 por JGeek00"
+          }
+        }
+      }
+    },
+    "Created: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creado: %@"
           }
         }
       }
@@ -737,6 +817,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eventos"
+          }
+        }
+      }
+    },
+    "Expiration: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expira: %@"
           }
         }
       }
@@ -1121,6 +1211,16 @@
         }
       }
     },
+    "No allowlists to display" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay listas de permitidos para mostrar"
+          }
+        }
+      }
+    },
     "No decisions to display" : {
       "localizations" : {
         "es" : {
@@ -1371,6 +1471,16 @@
         }
       }
     },
+    "Select an allowlist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una lista de permitidos"
+          }
+        }
+      }
+    },
     "Server error: code %lld" : {
       "localizations" : {
         "es" : {
@@ -1511,6 +1621,16 @@
         }
       }
     },
+    "There are no allowlists on CrowdSec" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay listas de permitidos en CrowdSec"
+          }
+        }
+      }
+    },
     "This application requires an intermediate API to function. This API is responsible for obtaining data from CrowdSec, processing it, and delivering it appropriately to this application. \nBefore continuing, ensure that you have correctly deployed it on your machine alongside CrowdSec." : {
       "localizations" : {
         "es" : {
@@ -1607,6 +1727,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipo"
+          }
+        }
+      }
+    },
+    "Updated: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado: %@"
           }
         }
       }

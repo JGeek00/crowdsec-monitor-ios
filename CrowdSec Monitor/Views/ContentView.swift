@@ -49,6 +49,14 @@ struct ContentView: View {
                             }
                             
                             Tab {
+                                AllowlistsListView()
+                                    .environment(AllowlistsListViewModel.shared)
+
+                            } label: {
+                                Label("Allowlists", systemImage: "checkmark.shield")
+                            }
+                            
+                            Tab {
                                 SettingsView()
                             } label: {
                                 Label("Settings", systemImage: "gear")
@@ -78,6 +86,14 @@ struct ContentView: View {
                                     Label("Decisions", systemImage: "shield")
                                 }
                                 .tag(Enums.TabViewTabs.decisions)
+                            
+                            
+                            AllowlistsListView()
+                                .environment(AllowlistsListViewModel.shared)
+                                .tabItem {
+                                    Label("Allowlists", systemImage: "checkmark.shield")
+                                }
+                                .tag(Enums.TabViewTabs.allowlists)
                             
                             SettingsView()
                                 .tabItem {
