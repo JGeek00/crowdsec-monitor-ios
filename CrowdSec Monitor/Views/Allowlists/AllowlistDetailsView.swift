@@ -25,7 +25,7 @@ struct AllowlistDetailsView: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                         }
-                        if let expiration = item.expiration.toDateFromISO8601() {
+                        if let expiration = item.expiration?.toDateFromISO8601() {
                             HStack(spacing: 8) {
                                 Image(systemName: "clock.badge.xmark")
                                 Text("Expiration: \(expiration.formatted(date: .abbreviated, time: .shortened))")

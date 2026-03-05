@@ -131,6 +131,16 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir"
+          }
+        }
+      }
+    },
     "Alert" : {
       "localizations" : {
         "es" : {
@@ -187,6 +197,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lista de permitidos no encontrada"
+          }
+        }
+      }
+    },
+    "Allowlist: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista: %@"
           }
         }
       }
@@ -411,6 +431,16 @@
         }
       }
     },
+    "Check IP addresses" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprobar direcciones IP"
+          }
+        }
+      }
+    },
     "Choose a decision from the list to view its details" : {
       "localizations" : {
         "es" : {
@@ -447,6 +477,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cerrar"
+          }
+        }
+      }
+    },
+    "Close validator?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cerrar validación?"
           }
         }
       }
@@ -961,12 +1001,32 @@
         }
       }
     },
+    "Input an IP address" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce una dirección IP"
+          }
+        }
+      }
+    },
     "Invalid credentials. Please verify your username, password, or token." : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Credenciales no válidas. Por favor verifica tu usuario, contraseña o token."
+          }
+        }
+      }
+    },
+    "Invalid IP address" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección IP no válida"
           }
         }
       }
@@ -1027,6 +1087,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dirección IP o dominio"
+          }
+        }
+      }
+    },
+    "IP addresses checker" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprobador de direcciones IP"
+          }
+        }
+      }
+    },
+    "IP addresses in allowlists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direcciones IP en listas permitidas"
+          }
+        }
+      }
+    },
+    "IP addresses to validate" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direcciones IP para validar"
           }
         }
       }
@@ -1267,6 +1357,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En línea"
+          }
+        }
+      }
+    },
+    "Options" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opciones"
           }
         }
       }
@@ -1611,6 +1711,16 @@
         }
       }
     },
+    "The value introduced doesn't correspond to a valid IPv4 or IPv6 address." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El valor introducido no corresponde a una dirección IPv4 o IPv6 válida"
+          }
+        }
+      }
+    },
     "Theme" : {
       "localizations" : {
         "es" : {
@@ -1637,6 +1747,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta aplicación necesita de una API intermedia para funcionar. Esta API se encarga de obtener los datos de CrowdSec, procesarlos y entregarlos de manera adecuada a esta aplicación. \nAntes de continuar, asegúrate de que tienes esta API correctamente desplegada en tu máquina junto a CrowdSec"
+          }
+        }
+      }
+    },
+    "This IP is not in any allowlist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta IP no está en ninguna lista de permitidos"
           }
         }
       }

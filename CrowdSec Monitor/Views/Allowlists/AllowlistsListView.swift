@@ -8,6 +8,7 @@ struct AllowlistsListView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State private var activeAllowlistName: String?
+    @State private var showIPsCheckerSheet = false
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -28,6 +29,17 @@ struct AllowlistsListView: View {
             }
             .transition(.opacity)
             .navigationTitle("Allowlists")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
+                            showIPsCheckerSheet = true
+                        }
+                    } label: {
+                        Label("Options", systemImage: "ellipsis")
+                    }
+                }
+            }
         } detail: {
             NavigationStack {
                 if let allowlistName = activeAllowlistName {
@@ -57,6 +69,13 @@ struct AllowlistsListView: View {
             else {
                 activeAllowlistName = newValue
             }
+        }
+        .sheet(isPresented: $showIPsCheckerSheet) {
+            AllowlistsIPsCheckerView {
+                showIPsCheckerSheet = false
+            }
+            .environment(AllowlistsIPsCheckerViewModel())
+            .interactiveDismissDisabled()
         }
     }
     

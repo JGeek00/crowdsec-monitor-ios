@@ -21,7 +21,9 @@ struct AllowlistsListResponse_Allowlist: Codable, Hashable {
 
 // MARK: - AllowlistsListResponse_Allowlist_Item
 struct AllowlistsListResponse_Allowlist_Item: Codable, Hashable {
-    let createdAt, expiration, value: String
+    let createdAt: String
+    let expiration: String?
+    let value: String
 
     enum CodingKeys: String, CodingKey {
         case createdAt = "created_at"
