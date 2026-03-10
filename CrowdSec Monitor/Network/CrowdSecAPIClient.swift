@@ -7,6 +7,7 @@ class CrowdSecAPIClient {
     let alerts: AlertsAPIClient
     let decisions: DecisionsAPIClient
     let allowlists: AllowlistsAPIClient
+    let blocklists: BlocklistsAPIClient
     
     init(_ server: CSServer) {
         self.httpClient = HttpClient(server: server)
@@ -14,6 +15,7 @@ class CrowdSecAPIClient {
         self.alerts = AlertsAPIClient(self.httpClient)
         self.decisions = DecisionsAPIClient(self.httpClient)
         self.allowlists = AllowlistsAPIClient(self.httpClient)
+        self.blocklists = BlocklistsAPIClient(self.httpClient)
     }
     
     func checkApiStatus() async throws -> HttpResponse<ApiStatusResponse> {

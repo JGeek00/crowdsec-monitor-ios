@@ -10,56 +10,39 @@ struct AllowlistsListView: View {
     @State private var activeAllowlistName: String?
     @State private var showIPsCheckerSheet = false
     
+    @Binding var selectedAllowlist: String?
+    
     var body: some View {
         @Bindable var viewModel = viewModel
-        NavigationSplitView {
-            Group {
-                switch viewModel.state {
-                case .loading:
-                    ProgressView("Loading...")
-                case .success(let data):
-                    content(data)
-                case .failure:
-                    ContentUnavailableView(
-                        "Error",
-                        systemImage: "exclamationmark.circle",
-                        description: Text("An error occured when fetching the data")
-                    )
-                }
+        Group {
+            switch viewModel.state {
+            case .loading:
+                ProgressView("Loading...")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            case .success(let data):
+                content(data)
+            case .failure:
+                ContentUnavailableView(
+                    "Error",
+                    systemImage: "exclamationmark.circle",
+                    description: Text("An error occured when fetching the data")
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
-            .transition(.opacity)
-            .navigationTitle("Allowlists")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
-                            showIPsCheckerSheet = true
-                        }
-                    } label: {
-                        Label("Options", systemImage: "ellipsis")
+        }
+        .transition(.opacity)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
+                        showIPsCheckerSheet = true
                     }
-                }
-            }
-        } detail: {
-            NavigationStack {
-                if let allowlistName = activeAllowlistName {
-                    AllowlistDetailsView(allowlistName: allowlistName)
-                } else {
-                    // Prevent content unavailable from being shown momentarily when an allowlist is selected
-                    if horizontalSizeClass == .regular {
-                        ContentUnavailableView(
-                            "Select an allowlist",
-                            systemImage: "list.bullet",
-                            description: Text("Choose an allowlist to see the list of IPs")
-                        )
-                    }
+                } label: {
+                    Label("Options", systemImage: "ellipsis")
                 }
             }
         }
-        .task {
-            await viewModel.fetchData()
-        }
-        .onChange(of: viewModel.selectedAllowlistName, initial: true) { oldValue, newValue in
+        .onChange(of: selectedAllowlist, initial: true) { oldValue, newValue in
             if oldValue != nil && newValue == nil {
                 // To prevent disposing details view before back transition ends
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
@@ -77,6 +60,9 @@ struct AllowlistsListView: View {
             .environment(AllowlistsIPsCheckerViewModel())
             .interactiveDismissDisabled()
         }
+        .task {
+            await viewModel.fetchData()
+        }
     }
     
     @ViewBuilder
@@ -87,7 +73,7 @@ struct AllowlistsListView: View {
                 ContentUnavailableView("No allowlists to display", systemImage: "list.bullet", description: Text("There are no allowlists on CrowdSec"))
             }
             else {
-                List(data.data, id: \.name, selection: $viewModel.selectedAllowlistName) { allowlist in
+                List(data.data, id: \.name, selection: $selectedAllowlist) { allowlist in
                     NavigationLink(value: allowlist.name) {
                         AllowlistListItem(allowlist)
                     }

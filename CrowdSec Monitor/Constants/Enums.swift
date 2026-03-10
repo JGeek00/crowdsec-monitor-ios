@@ -22,7 +22,7 @@ class Enums {
         case dashboard
         case alerts
         case decisions
-        case allowlists
+        case lists
         case settings
     }
     
@@ -97,6 +97,11 @@ class Enums {
                 return "1 mes"
             }
         }
+    }
+    
+    enum ListType: String {
+        case blocklist
+        case allowlist
     }
 }
 

@@ -35,7 +35,6 @@ struct ContentView: View {
                             Tab {
                                 AlertsListView()
                                     .environment(AlertsListViewModel.shared)
-
                             } label: {
                                 Label("Alerts", systemImage: "exclamationmark.triangle")
                             }
@@ -43,17 +42,16 @@ struct ContentView: View {
                             Tab {
                                 DecisionsListView()
                                     .environment(DecisionsListViewModel.shared)
-
                             } label: {
-                                Label("Decisions", systemImage: "shield")
+                                Label("Decisions", systemImage: "hammer")
                             }
                             
                             Tab {
-                                AllowlistsListView()
+                                ListsView()
                                     .environment(AllowlistsListViewModel.shared)
-
+                                    .environment(BlocklistsListViewModel.shared)
                             } label: {
-                                Label("Allowlists", systemImage: "checkmark.shield")
+                                Label("Lists", systemImage: "shield")
                             }
                             
                             Tab {
@@ -83,17 +81,18 @@ struct ContentView: View {
                             DecisionsListView()
                                 .environment(DecisionsListViewModel.shared)
                                 .tabItem {
-                                    Label("Decisions", systemImage: "shield")
+                                    Label("Decisions", systemImage: "hammer")
                                 }
                                 .tag(Enums.TabViewTabs.decisions)
                             
-                            
-                            AllowlistsListView()
+                          
+                            ListsView()
                                 .environment(AllowlistsListViewModel.shared)
+                                .environment(BlocklistsListViewModel.shared)
                                 .tabItem {
-                                    Label("Allowlists", systemImage: "checkmark.shield")
+                                    Label("Lists", systemImage: "shield")
                                 }
-                                .tag(Enums.TabViewTabs.allowlists)
+                                .tag(Enums.TabViewTabs.lists)
                             
                             SettingsView()
                                 .tabItem {

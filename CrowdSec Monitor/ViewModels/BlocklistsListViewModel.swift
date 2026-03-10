@@ -2,12 +2,13 @@ import SwiftUI
 
 @MainActor
 @Observable
-class AllowlistsListViewModel {
-    static let shared = AllowlistsListViewModel()
+class BlocklistsListViewModel {
+    static let shared = BlocklistsListViewModel()
     
     init() {}
     
-    var state: Enums.LoadingState<AllowlistsListResponse> = .loading
+    var state: Enums.LoadingState<BlocklistsListResponse> = .loading
+    var selectedListName: String? = nil
     
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
@@ -18,7 +19,7 @@ class AllowlistsListViewModel {
                 }
             }
             
-            let response = try await apiClient.allowlists.fetchAllowlists()
+            let response = try await apiClient.blocklists.fetchBlocklists()
             withAnimation {
                 state = .success(response.body)
             }

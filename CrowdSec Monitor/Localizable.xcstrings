@@ -11,6 +11,28 @@
         }
       }
     },
+    "%lld blocked IP addresses" : {
+      "localizations" : {
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld dirección IP bloqueada"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld direcciones IP bloqueadas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld IPs addresses" : {
       "localizations" : {
         "en" : {
@@ -216,7 +238,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allowlists"
+            "value" : "Listas de permitidos"
           }
         }
       }
@@ -391,6 +413,16 @@
         }
       }
     },
+    "Blocklists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas de bloqueados"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "es" : {
@@ -451,22 +483,22 @@
         }
       }
     },
+    "Choose a list to see the list of IPs" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una lista para ver el listado de IPs"
+          }
+        }
+      }
+    },
     "Choose an alert from the list to view its details" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige una alerta de la lista para ver sus detalles"
-          }
-        }
-      }
-    },
-    "Choose an allowlist to see the list of IPs" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elige una lista de permitidos para ver el listado de IPs"
           }
         }
       }
@@ -1191,6 +1223,16 @@
         }
       }
     },
+    "Lists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas"
+          }
+        }
+      }
+    },
     "Loading..." : {
       "localizations" : {
         "es" : {
@@ -1307,6 +1349,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay listas de permitidos para mostrar"
+          }
+        }
+      }
+    },
+    "No blocklists to display" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay listas de bloqueos para mostrar"
           }
         }
       }
@@ -1561,6 +1613,16 @@
         }
       }
     },
+    "Select a list" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una lista"
+          }
+        }
+      }
+    },
     "Select an alert" : {
       "localizations" : {
         "es" : {
@@ -1571,12 +1633,12 @@
         }
       }
     },
-    "Select an allowlist" : {
+    "Selected list type" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elige una lista de permitidos"
+            "value" : "Tipo de lista seleccionado"
           }
         }
       }
@@ -1737,6 +1799,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay listas de permitidos en CrowdSec"
+          }
+        }
+      }
+    },
+    "There are no blocklists on CrowdSec" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay listas de bloqueados en CrowdSec"
           }
         }
       }
