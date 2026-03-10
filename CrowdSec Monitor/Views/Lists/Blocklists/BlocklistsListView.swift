@@ -7,9 +7,9 @@ struct BlocklistsListView: View {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @Binding var selectedBlocklist: String?
+    @Binding var selectedBlocklist: Int?
     
-    @State private var activeBlocklistId: String?
+    @State private var activeBlocklistId: Int?
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -54,10 +54,9 @@ struct BlocklistsListView: View {
                 ContentUnavailableView("No blocklists to display", systemImage: "list.bullet", description: Text("There are no blocklists on CrowdSec"))
             }
             else {
-                List(data.data, id: \.name, selection: $selectedBlocklist) { blocklist in
-                    NavigationLink(value: blocklist.name) {
-                        BlocklistListItem(blocklist)
-                    }
+                List(data.data, id: \.id, selection: $selectedBlocklist) { blocklist in
+                    BlocklistListItem(blocklist)
+                        .tag(blocklist.id)
                 }
                 .animation(.default, value: data.data)
             }

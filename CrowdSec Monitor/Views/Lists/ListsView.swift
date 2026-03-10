@@ -13,7 +13,7 @@ struct ListsView: View {
     
     @State private var selectedListType: Enums.ListType = .blocklist
     @State private var selectedAllowlist: String? = nil
-    @State private var selectedBlocklist: String? = nil
+    @State private var selectedBlocklist: Int? = nil
     @State private var selectedList: SelectedList? = nil
     
     var body: some View {
@@ -29,10 +29,20 @@ struct ListsView: View {
                 }
             }
             .navigationTitle("Lists")
+            .condition { view in
+                if #available(iOS 26.0, *) {
+                    view.navigationBarTitleDisplayMode(.inline)
+                }
+                else {
+                    view
+                }
+            }
             .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    picker()
-                        .padding(.bottom, 8)
+                if #unavailable(iOS 26.0) {
+                    ToolbarItem(placement: .bottomBar) {
+                        picker()
+                            .padding(.bottom, 8)
+                    }
                 }
             }
             .condition { view in
@@ -49,8 +59,10 @@ struct ListsView: View {
                 switch selectedList.type {
                 case .allowlist:
                     AllowlistDetailsView(allowlistName: selectedList.id)
+                        .id(selectedList.id)
                 case .blocklist:
-                    Rectangle()
+                    BlocklistDetailsView(blocklistId: Int(selectedList.id)!)
+                        .id(selectedList.id)
                 }
             }
             else {
@@ -71,7 +83,7 @@ struct ListsView: View {
         }
         .onChange(of: selectedBlocklist, initial: true) { _, value in
             if let value = value {
-                selectedList = SelectedList(type: .blocklist, id: value)
+                selectedList = SelectedList(type: .blocklist, id: String(value))
                 selectedAllowlist = nil
             }
         }

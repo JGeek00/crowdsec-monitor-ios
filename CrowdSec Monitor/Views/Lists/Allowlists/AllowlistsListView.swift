@@ -74,9 +74,8 @@ struct AllowlistsListView: View {
             }
             else {
                 List(data.data, id: \.name, selection: $selectedAllowlist) { allowlist in
-                    NavigationLink(value: allowlist.name) {
-                        AllowlistListItem(allowlist)
-                    }
+                    AllowlistListItem(allowlist)
+                        .tag(allowlist.name)
                 }
                 .animation(.default, value: data.data)
             }

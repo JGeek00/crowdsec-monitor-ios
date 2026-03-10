@@ -253,6 +253,16 @@
         }
       }
     },
+    "Amount of blocked IPs" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cantidad de IPs bloqueadas"
+          }
+        }
+      }
+    },
     "Amount of items to display in dashboard lists" : {
       "localizations" : {
         "es" : {
@@ -269,6 +279,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Una aplicación para controlar tu instancia de CrowdSec"
+          }
+        }
+      }
+    },
+    "An error occured when fetching the blocklist data" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al obtener la información de la lista de bloqueo"
           }
         }
       }
@@ -413,6 +433,26 @@
         }
       }
     },
+    "Blocked IPs" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IPs bloqueadas"
+          }
+        }
+      }
+    },
+    "Blocklist with no IPs" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista de bloqueados sin IPs"
+          }
+        }
+      }
+    },
     "Blocklists" : {
       "localizations" : {
         "es" : {
@@ -429,6 +469,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "Cannot get blocklist information" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede obtener la información de la lista de bloqueo"
           }
         }
       }
@@ -1293,6 +1343,16 @@
         }
       }
     },
+    "Name" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        }
+      }
+    },
     "Network error: %@" : {
       "localizations" : {
         "es" : {
@@ -1819,6 +1879,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta aplicación necesita de una API intermedia para funcionar. Esta API se encarga de obtener los datos de CrowdSec, procesarlos y entregarlos de manera adecuada a esta aplicación. \nAntes de continuar, asegúrate de que tienes esta API correctamente desplegada en tu máquina junto a CrowdSec"
+          }
+        }
+      }
+    },
+    "This blocklist does not contain any blocked IP address" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta lista de bloqueados no contiene ninguna dirección IP"
           }
         }
       }
