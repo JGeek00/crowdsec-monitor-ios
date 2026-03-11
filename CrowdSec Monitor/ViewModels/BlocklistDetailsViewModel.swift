@@ -16,6 +16,9 @@ class BlocklistDetailsViewModel {
     var status: Enums.LoadingState<BlocklistDataResponse> = .loading
     var ipsRound = 1
     
+    var searchPresented = false
+    var searchText = ""
+    
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {

@@ -70,5 +70,56 @@ struct BlocklistDetailsView: View {
                 }
             }
         }
+        .searchable(
+            text: Binding(
+                get: { viewModel.searchText },
+                set: { newValue in
+                    withAnimation {
+                        viewModel.searchText = newValue
+                    }
+                }
+            ),
+            isPresented: Binding(
+                get: { viewModel.searchPresented },
+                set: { newValue in
+                    withAnimation {
+                        viewModel.searchPresented = newValue
+                    }
+                }
+            ),
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Search IPs"
+        )
+        .refreshable {
+            await viewModel.fetchData()
+        }
+        .overlay {
+            if viewModel.searchPresented {
+                if viewModel.searchText.isEmpty {
+                    ContentUnavailableView("Input search text", systemImage: "magnifyingglass")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .background(Color.background)
+                        .transition(.opacity)
+                }
+                else {
+                    let filterIps = data.blocklistIPS.filter() { $0.hasPrefix(viewModel.searchText) }
+                    let endIndex = newMin > filterIps.count ? filterIps.count : newMin
+                    let slicedIps = Array(filterIps[0..<endIndex])
+                    if slicedIps.isEmpty {
+                        ContentUnavailableView("No results for '\(viewModel.searchText)'", systemImage: "magnifyingglass", description: Text("Change the inputted search term"))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .background(Color.background)
+                            .transition(.opacity)
+                    }
+                    else {
+                        List(slicedIps, id: \.self) { ip in
+                            Text(verbatim: ip)
+                        }
+                        .animation(.default, value: slicedIps)
+                        .transition(.opacity)
+                    }
+                }
+            }
+        }
     }
 }
