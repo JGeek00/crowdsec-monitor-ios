@@ -2,8 +2,8 @@ import Foundation
 
 // MARK: - BlocklistsListResponse
 struct BlocklistsListResponse: Codable, Hashable, Equatable {
-    let data: [BlocklistsListResponse_Blocklist]
-    let total, limit, offset: Int
+    let items: [BlocklistsListResponse_Blocklist]
+    let pagination: BlocklistsListResponse_Pagination
 }
 
 // MARK: - BlocklistsListResponse_Blocklist
@@ -17,3 +17,9 @@ struct BlocklistsListResponse_Blocklist: Codable, Hashable, Equatable {
         case countIPS = "count_ips"
     }
 }
+
+// MARK: - BlocklistsListResponse_Pagination
+struct BlocklistsListResponse_Pagination: Codable, Hashable {
+    let page, amount, total: Int
+}
+

@@ -7,8 +7,17 @@ class BlocklistsAPIClient {
         self.httpClient = httpClient
     }
     
-    func fetchBlocklists() async throws -> HttpResponse<BlocklistsListResponse> {
-        return try await httpClient.get(endpoint: "/api/v1/blocklists")
+    func fetchBlocklists(requestParams: BlocklistsRequest? = nil) async throws -> HttpResponse<BlocklistsListResponse> {
+        var queryParams: [URLQueryItem] = []
+        
+        if let value = requestParams?.limit {
+            queryParams.append(URLQueryItem(name: "limit", value: String(value)))
+        }
+        if let value = requestParams?.offset {
+            queryParams.append(URLQueryItem(name: "offset", value: String(value)))
+        }
+        
+        return try await httpClient.get(endpoint: "/api/v1/blocklists", queryParams: queryParams)
     }
     
     func fetchBlocklistData(blocklistId: Int) async throws -> HttpResponse<BlocklistDataResponse> {

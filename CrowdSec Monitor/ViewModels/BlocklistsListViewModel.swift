@@ -5,8 +5,12 @@ import SwiftUI
 class BlocklistsListViewModel {
     static let shared = BlocklistsListViewModel()
     
-    init() {}
+    var requestParams: BlocklistsRequest
     
+    init() {
+        self.requestParams = BlocklistsRequest(offset: 0, limit: Config.blocklistsAmountBatch)
+    }
+
     var state: Enums.LoadingState<BlocklistsListResponse> = .loading
     var selectedListName: String? = nil
     
@@ -25,6 +29,38 @@ class BlocklistsListViewModel {
             }
         } catch {
             withAnimation {
+                state = .failure(error)
+            }
+        }
+    }
+    
+    func initialFetch() async {
+        if state.data == nil {
+            await fetchData(showLoading: true)
+        }
+    }
+    
+    func fetchMore() async {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        if let data = state.data {
+            if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
+                return
+            }
+            
+            let previousItems = data.items
+            let newOffset = data.pagination.page * Config.alertsAmoutBatch
+            requestParams.offset = newOffset
+
+            do {
+                let result = try await apiClient.blocklists.fetchBlocklists(requestParams: requestParams)
+                
+                let existingIDs = Set(previousItems.map { $0.id })
+                let uniqueNewItems = result.body.items.filter { !existingIDs.contains($0.id) }
+                
+                let newItems = previousItems + uniqueNewItems
+                let newResponse = BlocklistsListResponse(items: newItems, pagination: result.body.pagination)
+                state = .success(newResponse)
+            } catch {
                 state = .failure(error)
             }
         }

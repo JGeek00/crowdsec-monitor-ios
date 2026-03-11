@@ -50,19 +50,26 @@ struct BlocklistsListView: View {
     func content(_ data: BlocklistsListResponse) -> some View {
         @Bindable var viewModel = viewModel
         Group {
-            if data.data.isEmpty {
+            if data.items.isEmpty {
                 ContentUnavailableView("No blocklists to display", systemImage: "list.bullet", description: Text("There are no blocklists on CrowdSec"))
             }
             else {
-                List(data.data, id: \.id, selection: $selectedBlocklist) { blocklist in
+                List(data.items, id: \.id, selection: $selectedBlocklist) { blocklist in
                     BlocklistListItem(blocklist)
                         .tag(blocklist.id)
+                        .onAppear {
+                            if blocklist == data.items.last {
+                                Task {
+                                    await viewModel.fetchMore()
+                                }
+                            }
+                        }
                 }
-                .animation(.default, value: data.data)
+                .animation(.default, value: data.items)
             }
         }
         .refreshable {
-            await viewModel.fetchData()
+            await viewModel.initialFetch()
         }
     }
 }

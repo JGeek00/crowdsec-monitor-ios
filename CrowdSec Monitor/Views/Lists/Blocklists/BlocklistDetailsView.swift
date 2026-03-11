@@ -13,7 +13,7 @@ struct BlocklistDetailsView: View {
     @Environment(BlocklistsListViewModel.self) private var blocklistsViewModel
     
     var body: some View {
-        let blocklist = blocklistsViewModel.state.data?.data.first { $0.id == blocklistId }
+        let blocklist = blocklistsViewModel.state.data?.items.first { $0.id == blocklistId }
         Group {
             switch viewModel.status {
             case .loading:
