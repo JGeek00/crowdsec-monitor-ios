@@ -12,6 +12,8 @@ struct BlocklistDetailsView: View {
     
     @Environment(BlocklistsListViewModel.self) private var blocklistsViewModel
     
+    @State private var browserOpen = false
+    
     var body: some View {
         let blocklist = blocklistsViewModel.state.data?.items.first { $0.id == blocklistId }
         Group {
@@ -45,6 +47,20 @@ struct BlocklistDetailsView: View {
                     Spacer()
                     Text(verbatim: data.name)
                         .foregroundStyle(Color.gray)
+                }
+                if let url = data.url {
+                    Button {
+                        browserOpen = true
+                    } label: {
+                        HStack {
+                            Text(verbatim: "URL")
+                            Spacer()
+                            Text(verbatim: url)
+                                .foregroundStyle(Color.gray)
+                        }
+                    }
+                    .foregroundStyle(Color.foreground)
+                    .safariView(isPresented: $browserOpen, urlString: url)
                 }
                 HStack {
                     Text("Amount of blocked IPs")
