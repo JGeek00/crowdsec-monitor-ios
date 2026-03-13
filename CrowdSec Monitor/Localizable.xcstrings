@@ -474,6 +474,7 @@
       }
     },
     "Blocklist added" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -1964,6 +1965,7 @@
       }
     },
     "The blocklist is currently being processed" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

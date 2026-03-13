@@ -40,4 +40,8 @@ class BlocklistsAPIClient {
     func addBlocklist(body: AddBlocklistRequestBody) async throws -> HttpResponse<EmptyResponse> {
         return try await httpClient.post(endpoint: "/api/v1/blocklists", body: body)
     }
+    
+    func toggleBlocklist(params: ToggleBlocklistRequestParams, body: ToggleBlocklistRequestBody) async throws -> HttpResponse<EmptyResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/blocklists/\(params.blocklistId)/enabled", body: body)
+    }
 }

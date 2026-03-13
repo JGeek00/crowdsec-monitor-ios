@@ -66,26 +66,21 @@ struct BlocklistsListView: View {
             }
         }
         .systemNotification(isActive: $blocklistAddedNotification) {
-            HStack(spacing: 12) {
-                Image(systemName: "checkmark")
-                    .fontWeight(.semibold)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Blocklist added")
-                        .fontWeight(.medium)
-                    Text("The blocklist is currently being processed")
-                        .font(.subheadline)
-                        
-                }
-            }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 8)
-            .condition { view in
-                if #available(iOS 26.0, *) {
-                    view.glassEffect()
-                }
-                else {
-                    view.background(Material.regular)
-                }
+            SystemNotification(icon: "checkmark", title: "Blocklist added", subtitle: "The blocklist was successfully added")
+        }
+        .systemNotification(isActive: $viewModel.errorEnableBlocklist) {
+            SystemNotification(icon: "exclamationmark.circle", title: "Error", subtitle: "The blocklist could not be enabled", color: Color.red)
+        }
+        .systemNotification(isActive: $viewModel.errorDisableBlocklist) {
+            SystemNotification(icon: "exclamationmark.circle", title: "Error", subtitle: "The blocklist could not be disabled", color: Color.red)
+        }
+        .customAlert(isPresented: $viewModel.processingModal) {
+            HStack {
+                Spacer()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.foreground)
+                Spacer()
             }
         }
     }
@@ -124,6 +119,8 @@ fileprivate struct BlocklistListItem: View {
     init(_ blocklist: BlocklistsListResponse_Item) {
         self.blocklist = blocklist
     }
+    
+    @Environment(BlocklistsListViewModel.self) private var viewModel
     
     var body: some View {
         HStack {
@@ -170,6 +167,27 @@ fileprivate struct BlocklistListItem: View {
                 }
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
+            }
+        }
+        .contextMenu {
+            if blocklist.type == .api {
+                if let enabled = blocklist.enabled {
+                    Section {
+                        Button(
+                            blocklist.enabled == true ? "Disable blocklist" : "Enable blocklist",
+                            systemImage: blocklist.enabled == true ? "xmark" : "checkmark"
+                        ) {
+                            Task {
+                                await viewModel.enableDisableBlocklist(blocklistId: blocklist.id, newStatus: !enabled)
+                            }
+                        }
+                    }
+                }
+                Section {
+                    Button("Delete blocklist", systemImage: "trash", role: .destructive) {
+                        
+                    }
+                }
             }
         }
     }

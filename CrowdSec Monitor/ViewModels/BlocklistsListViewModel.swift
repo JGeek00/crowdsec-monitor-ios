@@ -14,6 +14,10 @@ class BlocklistsListViewModel {
     var state: Enums.LoadingState<BlocklistsListResponse> = .loading
     var selectedListName: String? = nil
     
+    var processingModal = false
+    var errorDisableBlocklist = false
+    var errorEnableBlocklist = false
+    
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
@@ -66,6 +70,25 @@ class BlocklistsListViewModel {
                 state = .success(newResponse)
             } catch {
                 state = .failure(error)
+            }
+        }
+    }
+    
+    func enableDisableBlocklist(blocklistId: Int, newStatus: Bool) async {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        do {
+            processingModal = true
+            let params = ToggleBlocklistRequestParams(blocklistId: blocklistId)
+            let body = ToggleBlocklistRequestBody(enabled: newStatus)
+            _ = try await apiClient.blocklists.toggleBlocklist(params: params, body: body)
+            processingModal = false
+        } catch {
+            processingModal = false
+            if newStatus == true {
+                errorEnableBlocklist = true
+            }
+            else {
+                errorDisableBlocklist = true
             }
         }
     }
