@@ -52,6 +52,54 @@ struct BlocklistDetailsView: View {
                     Text(data.countIPS.formatted())
                         .foregroundStyle(Color.gray)
                 }
+                HStack {
+                    Text("Managed by")
+                    Spacer()
+                    switch data.type {
+                    case .api:
+                        Text(verbatim: "Monitor API")
+                            .foregroundStyle(Color.blue)
+                    case .crowdsec:
+                        Text(verbatim: "CrowdSec")
+                            .foregroundStyle(Color.orange)
+                    }
+                }
+                if let value = data.enabled {
+                    HStack {
+                        Text("Enabled")
+                        Spacer()
+                        Image(systemName: value ? "checkmark.circle.fill" : "x.circle.fill")
+                            .foregroundStyle(value ? .green : .red)
+                            .fontWeight(.semibold)
+                            .font(.system(size: 18))
+                    }
+                }
+                if let added = data.addedDate?.toDateFromISO8601() {
+                    HStack {
+                        Text("Added")
+                        Spacer()
+                        Text(added.formatted(date: .abbreviated, time: .shortened))
+                            .foregroundStyle(Color.gray)
+                    }
+                }
+                if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601() {
+                    let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
+                    let isBigDifference = diff >= 5 * 60
+                    HStack {
+                        Text(isBigDifference ? "Last successful refresh" : "Last refresh")
+                        Spacer()
+                        Text(lastSuccessfulRefresh.formatted(date: .abbreviated, time: .shortened))
+                            .foregroundStyle(Color.gray)
+                    }
+                    if isBigDifference {
+                        HStack {
+                            Text("Last refresh attempt")
+                            Spacer()
+                            Text(lastRefreshAttempt.formatted(date: .abbreviated, time: .shortened))
+                                .foregroundStyle(Color.red)
+                        }
+                    }
+                }
             }
             
             Section("Blocked IPs") {

@@ -163,6 +163,16 @@
         }
       }
     },
+    "Added" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadido"
+          }
+        }
+      }
+    },
     "Alert" : {
       "localizations" : {
         "es" : {
@@ -439,6 +449,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IPs bloqueadas"
+          }
+        }
+      }
+    },
+    "Blocklist refresh failed" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error al refrescar lista"
           }
         }
       }
@@ -893,6 +913,16 @@
         }
       }
     },
+    "Enabled" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activada"
+          }
+        }
+      }
+    },
     "Error" : {
       "localizations" : {
         "es" : {
@@ -1273,6 +1303,36 @@
         }
       }
     },
+    "Last refresh" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último refresco"
+          }
+        }
+      }
+    },
+    "Last refresh attempt" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último intento de refresco"
+          }
+        }
+      }
+    },
+    "Last successful refresh" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último refresco satisfactorio"
+          }
+        }
+      }
+    },
     "Leakspeed" : {
       "localizations" : {
         "es" : {
@@ -1319,6 +1379,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Localización"
+          }
+        }
+      }
+    },
+    "Managed by" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionada por"
+          }
+        }
+      }
+    },
+    "Managed by CrowdSec" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionada por CrowdSec"
+          }
+        }
+      }
+    },
+    "Managed by Monitor API" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionada por Monitor API"
           }
         }
       }

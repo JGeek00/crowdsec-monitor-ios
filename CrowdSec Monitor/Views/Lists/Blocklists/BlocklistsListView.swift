@@ -75,19 +75,58 @@ struct BlocklistsListView: View {
 }
 
 fileprivate struct BlocklistListItem: View {
-    let blocklist: BlocklistsListResponse_Blocklist
+    let blocklist: BlocklistsListResponse_Item
     
-    init(_ blocklist: BlocklistsListResponse_Blocklist) {
+    init(_ blocklist: BlocklistsListResponse_Item) {
         self.blocklist = blocklist
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(verbatim: blocklist.name)
-            Text("\(blocklist.countIPS) blocked IP addresses")
-                .font(.subheadline)
-                .foregroundStyle(Color.gray)
+        HStack {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(verbatim: blocklist.name)
+                Text("\(blocklist.countIPS) blocked IP addresses")
+                    .font(.subheadline)
+                    .foregroundStyle(Color.gray)
+                Group {
+                    switch blocklist.type {
+                    case .api:
+                        Text("Managed by Monitor API")
+                            .foregroundStyle(Color.blue)
+                    case .crowdsec:
+                        Text("Managed by CrowdSec")
+                            .foregroundStyle(Color.orange)
+                    }
+                }
+                .font(.system(size: 14))
+                if let lastRefreshAttempt = blocklist.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = blocklist.lastSuccessfulRefresh?.toDateFromISO8601() {
+                    let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
+                    let isBigDifference = diff >= 60 * 60   // 1 hour
+                    if isBigDifference == true {
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                            Text("Blocklist refresh failed")
+                        }
+                        .foregroundStyle(Color.red)
+                        .font(.system(size: 14))
+                    }
+                }
+            }
+            if let value = blocklist.enabled {
+                Spacer()
+                Group {
+                    if value == true {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(Color.green)
+                    }
+                    else {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(Color.red)
+                    }
+                }
+                .fontWeight(.semibold)
+                .font(.system(size: 20))
+            }
         }
-        .padding(.vertical, 4)
     }
 }
