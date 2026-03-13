@@ -68,11 +68,17 @@ struct BlocklistsListView: View {
         .systemNotification(isActive: $blocklistAddedNotification) {
             SystemNotification(icon: "checkmark", title: "Blocklist added", subtitle: "The blocklist was successfully added")
         }
+        .systemNotification(isActive: $viewModel.blocklistDeletedSuccessfully) {
+            SystemNotification(icon: "checkmark", title: "Blocklist deleted", subtitle: "The blocklist has been deleted")
+        }
         .systemNotification(isActive: $viewModel.errorEnableBlocklist) {
             SystemNotification(icon: "exclamationmark.circle", title: "Error", subtitle: "The blocklist could not be enabled", color: Color.red)
         }
         .systemNotification(isActive: $viewModel.errorDisableBlocklist) {
             SystemNotification(icon: "exclamationmark.circle", title: "Error", subtitle: "The blocklist could not be disabled", color: Color.red)
+        }
+        .systemNotification(isActive: $viewModel.errorDeleteBlocklist) {
+            SystemNotification(icon: "exclamationmark.circle", title: "Error", subtitle: "The blocklist could not be deleted", color: Color.red)
         }
         .customAlert(isPresented: $viewModel.processingModal) {
             HStack {
@@ -121,6 +127,8 @@ fileprivate struct BlocklistListItem: View {
     }
     
     @Environment(BlocklistsListViewModel.self) private var viewModel
+    
+    @State private var showDeleteConfirmation = false
     
     var body: some View {
         HStack {
@@ -174,7 +182,7 @@ fileprivate struct BlocklistListItem: View {
                 if let enabled = blocklist.enabled {
                     Section {
                         Button(
-                            blocklist.enabled == true ? "Disable blocklist" : "Enable blocklist",
+                            blocklist.enabled == true ? String(localized: "Disable blocklist") : String(localized: "Enable blocklist"),
                             systemImage: blocklist.enabled == true ? "xmark" : "checkmark"
                         ) {
                             Task {
@@ -184,11 +192,23 @@ fileprivate struct BlocklistListItem: View {
                     }
                 }
                 Section {
-                    Button("Delete blocklist", systemImage: "trash", role: .destructive) {
-                        
+                    Button(String(localized: "Delete blocklist"), systemImage: "trash", role: .destructive) {
+                        showDeleteConfirmation = true
                     }
                 }
             }
+        }
+        .alert("Delete blocklist", isPresented: $showDeleteConfirmation) {
+            Button(String(localized: "Cancel"), role: .cancel) {
+                showDeleteConfirmation = false
+            }
+            Button(String(localized: "Delete"), role: .destructive) {
+                Task {
+                    await viewModel.deleteBlocklist(blocklistId: blocklist.id)
+                }
+            }
+        } message: {
+            Text("Are you sure you want to delete this blocklist? This action cannot be undone.")
         }
     }
 }

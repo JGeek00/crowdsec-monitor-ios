@@ -17,6 +17,8 @@ class BlocklistsListViewModel {
     var processingModal = false
     var errorDisableBlocklist = false
     var errorEnableBlocklist = false
+    var errorDeleteBlocklist = false
+    var blocklistDeletedSuccessfully = false
     
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
@@ -82,6 +84,7 @@ class BlocklistsListViewModel {
             let body = ToggleBlocklistRequestBody(enabled: newStatus)
             _ = try await apiClient.blocklists.toggleBlocklist(params: params, body: body)
             processingModal = false
+            await refresh()
         } catch {
             processingModal = false
             if newStatus == true {
@@ -90,6 +93,21 @@ class BlocklistsListViewModel {
             else {
                 errorDisableBlocklist = true
             }
+        }
+    }
+    
+    func deleteBlocklist(blocklistId: Int) async {
+        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        do {
+            processingModal = true
+            let params = DeleteBlocklistRequestParams(blocklistId: blocklistId)
+            _ = try await apiClient.blocklists.deleteBlocklist(params: params)
+            processingModal = false
+            await refresh()
+            blocklistDeletedSuccessfully = true
+        } catch {
+            processingModal = false
+            errorDeleteBlocklist = true
         }
     }
 }
