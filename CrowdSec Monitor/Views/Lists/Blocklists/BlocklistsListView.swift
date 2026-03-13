@@ -1,5 +1,6 @@
 import SwiftUI
 import CustomAlert
+import SystemNotification
 
 struct BlocklistsListView: View {
     @Environment(AuthViewModel.self) private var authViewModel
@@ -10,6 +11,8 @@ struct BlocklistsListView: View {
     @Binding var selectedBlocklist: Int?
     
     @State private var activeBlocklistId: Int?
+    @State private var addBlocklistFormOpen = false
+    @State private var blocklistAddedNotification = false
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -30,6 +33,13 @@ struct BlocklistsListView: View {
             }
         }
         .transition(.opacity)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Add blocklist", systemImage: "plus") {
+                    addBlocklistFormOpen = true
+                }
+            }
+        }
         .onChange(of: selectedBlocklist, initial: true) { oldValue, newValue in
             if oldValue != nil && newValue == nil {
                 // To prevent disposing details view before back transition ends
@@ -43,6 +53,40 @@ struct BlocklistsListView: View {
         }
         .task {
             await viewModel.fetchData()
+        }
+        .sheet(isPresented: $addBlocklistFormOpen) {
+            AddBlocklistFormView { blocklistAdded in
+                addBlocklistFormOpen = false
+                if blocklistAdded {
+                    blocklistAddedNotification = true
+                    Task {
+                        await viewModel.refresh()
+                    }
+                }
+            }
+        }
+        .systemNotification(isActive: $blocklistAddedNotification) {
+            HStack(spacing: 12) {
+                Image(systemName: "checkmark")
+                    .fontWeight(.semibold)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Blocklist added")
+                        .fontWeight(.medium)
+                    Text("The blocklist is currently being processed")
+                        .font(.subheadline)
+                        
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 8)
+            .condition { view in
+                if #available(iOS 26.0, *) {
+                    view.glassEffect()
+                }
+                else {
+                    view.background(Material.regular)
+                }
+            }
         }
     }
     
@@ -69,7 +113,7 @@ struct BlocklistsListView: View {
             }
         }
         .refreshable {
-            await viewModel.initialFetch()
+            await viewModel.refresh()
         }
     }
 }

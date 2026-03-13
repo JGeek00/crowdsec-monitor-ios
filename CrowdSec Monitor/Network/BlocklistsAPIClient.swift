@@ -36,4 +36,8 @@ class BlocklistsAPIClient {
         
         return try await httpClient.get(endpoint: "/api/v1/blocklists/\(blocklistId)/ips", queryParams: queryParams)
     }
+    
+    func addBlocklist(body: AddBlocklistRequestBody) async throws -> HttpResponse<EmptyResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/blocklists", body: body)
+    }
 }

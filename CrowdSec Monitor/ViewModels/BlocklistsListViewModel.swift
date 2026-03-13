@@ -40,6 +40,10 @@ class BlocklistsListViewModel {
         }
     }
     
+    func refresh() async {
+        await fetchData()
+    }
+    
     func fetchMore() async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         if let data = state.data {

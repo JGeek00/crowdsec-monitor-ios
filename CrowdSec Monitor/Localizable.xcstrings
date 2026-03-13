@@ -163,6 +163,16 @@
         }
       }
     },
+    "Add blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir lista de bloqueo"
+          }
+        }
+      }
+    },
     "Added" : {
       "localizations" : {
         "es" : {
@@ -289,6 +299,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Una aplicación para controlar tu instancia de CrowdSec"
+          }
+        }
+      }
+    },
+    "An error occured when adding the blocklist, please try again" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al añadir la lista de bloqueo, prueba de nuevo más tarde"
           }
         }
       }
@@ -449,6 +469,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IPs bloqueadas"
+          }
+        }
+      }
+    },
+    "Blocklist added" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista de bloqueo añadida"
           }
         }
       }
@@ -1019,6 +1049,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Expirada"
+          }
+        }
+      }
+    },
+    "Fill all required fields" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completa todos los campos requeridos"
           }
         }
       }
@@ -1923,6 +1963,16 @@
         }
       }
     },
+    "The blocklist is currently being processed" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La lista de bloqueo se está procesando"
+          }
+        }
+      }
+    },
     "The CrowdSec LAPI is offline or the API is having trouble connecting to it. Some data may not be up to date or available." : {
       "localizations" : {
         "es" : {
@@ -1959,6 +2009,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La compra se ha completado. Gracias por contribuir al desarrollo y mantenimiento de esta aplicación."
+          }
+        }
+      }
+    },
+    "The value inputted on the URL field is not valid, please input a valid URL" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El valor introducido en el campo URL no es válido. Por favor, introduce una URL válida."
           }
         }
       }
@@ -2133,6 +2193,26 @@
         }
       }
     },
+    "URL" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        }
+      }
+    },
+    "URL value not valid" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valor de URL no válido"
+          }
+        }
+      }
+    },
     "User agent not available" : {
       "localizations" : {
         "es" : {
@@ -2219,6 +2299,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ayer"
+          }
+        }
+      }
+    },
+    "You must fill all the required fields to add the blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debes rellenar todos los campos requeridos para agregar la lista de bloqueo"
           }
         }
       }
