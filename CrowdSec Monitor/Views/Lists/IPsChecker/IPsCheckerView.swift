@@ -1,17 +1,17 @@
 import SwiftUI
 
-enum AllowlistsIPsCheckerNavigation: Hashable {
+enum IPsCheckerNavigation: Hashable {
     case results
 }
 
-struct AllowlistsIPsCheckerView: View {
+struct IPsCheckerView: View {
     let onClose: () -> Void
     
     init(onClose: @escaping () -> Void) {
         self.onClose = onClose
     }
     
-    @Environment(AllowlistsIPsCheckerViewModel.self) private var viewModel
+    @Environment(IPsCheckerViewModel.self) private var viewModel
     
     @State private var showInvalidIPAlert = false
     @State private var showConfirmationDialog = false
@@ -22,6 +22,17 @@ struct AllowlistsIPsCheckerView: View {
         
         NavigationStack {
             List {
+                Section {
+                    Picker("List type", selection: $viewModel.selectedListType) {
+                        Text("Blocklists").tag(Enums.ListType.blocklist)
+                        Text("Allowlists").tag(Enums.ListType.allowlist)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal, -16)
+                    .padding(.top, -16)
+                }
+                .listRowBackground(Color.white.opacity(0.0))
+                
                 Section("IP addresses to validate") {
                     ForEach(viewModel.ipsToCheck.indices, id: \.self) { index in
                         HStack {
@@ -69,7 +80,7 @@ struct AllowlistsIPsCheckerView: View {
             .navigationTitle("Check IP addresses")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $showResultsView, destination: {
-                AllowlistsIPsCheckerResultView()
+                IPsCheckerResultView()
             })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

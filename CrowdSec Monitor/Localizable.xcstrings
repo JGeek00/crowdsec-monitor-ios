@@ -503,6 +503,16 @@
         }
       }
     },
+    "Blocklist: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista: %@"
+          }
+        }
+      }
+    },
     "Blocklists" : {
       "localizations" : {
         "es" : {
@@ -1313,6 +1323,16 @@
         }
       }
     },
+    "IP addresses in blocklists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direcciones IP en listas de bloqueados"
+          }
+        }
+      }
+    },
     "IP addresses to validate" : {
       "localizations" : {
         "es" : {
@@ -1419,6 +1439,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claro"
+          }
+        }
+      }
+    },
+    "List type" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de lista"
           }
         }
       }
@@ -2109,6 +2139,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta IP no está en ninguna lista de permitidos"
+          }
+        }
+      }
+    },
+    "This IP is not in any blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta IP no está en ninguna lista de bloqueados"
           }
         }
       }

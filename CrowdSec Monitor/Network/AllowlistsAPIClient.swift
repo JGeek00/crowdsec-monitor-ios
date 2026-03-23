@@ -9,7 +9,7 @@ class AllowlistsAPIClient {
         return try await httpClient.get(endpoint: "/api/v1/allowlists")
     }
     
-    func checkIps(_ body: AllowlistsIPsCheckRequest) async throws -> HttpResponse<AllowlistsCheckIPSResponse> {
+    func checkIps(_ body: CheckIPsRequest) async throws -> HttpResponse<CheckIPsResponse> {
         return try await httpClient.post(endpoint: "/api/v1/allowlists/check", body: body)
     }
 }

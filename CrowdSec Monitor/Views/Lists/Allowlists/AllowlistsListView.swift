@@ -8,7 +8,6 @@ struct AllowlistsListView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State private var activeAllowlistName: String?
-    @State private var showIPsCheckerSheet = false
     
     @Binding var selectedAllowlist: String?
     
@@ -31,17 +30,6 @@ struct AllowlistsListView: View {
             }
         }
         .transition(.opacity)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
-                        showIPsCheckerSheet = true
-                    }
-                } label: {
-                    Label("Options", systemImage: "ellipsis")
-                }
-            }
-        }
         .onChange(of: selectedAllowlist, initial: true) { oldValue, newValue in
             if oldValue != nil && newValue == nil {
                 // To prevent disposing details view before back transition ends
@@ -52,13 +40,6 @@ struct AllowlistsListView: View {
             else {
                 activeAllowlistName = newValue
             }
-        }
-        .sheet(isPresented: $showIPsCheckerSheet) {
-            AllowlistsIPsCheckerView {
-                showIPsCheckerSheet = false
-            }
-            .environment(AllowlistsIPsCheckerViewModel())
-            .interactiveDismissDisabled()
         }
         .task {
             await viewModel.fetchData()

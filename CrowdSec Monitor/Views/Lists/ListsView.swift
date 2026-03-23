@@ -15,6 +15,7 @@ struct ListsView: View {
     @State private var selectedAllowlist: String? = nil
     @State private var selectedBlocklist: Int? = nil
     @State private var selectedList: SelectedList? = nil
+    @State private var showIPsCheckerSheet = false
     
     var body: some View {
         NavigationSplitView {
@@ -42,6 +43,15 @@ struct ListsView: View {
                     ToolbarItem(placement: .bottomBar) {
                         picker()
                             .padding(.bottom, 8)
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
+                            showIPsCheckerSheet = true
+                        }
+                    } label: {
+                        Label("Options", systemImage: "ellipsis")
                     }
                 }
             }
@@ -86,6 +96,13 @@ struct ListsView: View {
                 selectedList = SelectedList(type: .blocklist, id: String(value))
                 selectedAllowlist = nil
             }
+        }
+        .sheet(isPresented: $showIPsCheckerSheet) {
+            IPsCheckerView {
+                showIPsCheckerSheet = false
+            }
+            .environment(IPsCheckerViewModel())
+            .interactiveDismissDisabled()
         }
     }
     

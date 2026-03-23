@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct AllowlistsIPsCheckerResultView: View {
+struct IPsCheckerResultView: View {
     init() {}
 
-    @Environment(AllowlistsIPsCheckerViewModel.self) private var viewModel
+    @Environment(IPsCheckerViewModel.self) private var viewModel
     
     var body: some View {
         Group {
@@ -12,7 +12,7 @@ struct AllowlistsIPsCheckerResultView: View {
                 ProgressView("Loading...")
             case .success(let data):
                 List {
-                    Section("IP addresses in allowlists") {
+                    Section(viewModel.selectedListType == .allowlist ? "IP addresses in allowlists" : "IP addresses in blocklists") {
                         ForEach(data.results, id: \.self) { result in
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(result.ip)
@@ -21,8 +21,11 @@ struct AllowlistsIPsCheckerResultView: View {
                                     if let allowlist = result.allowlist {
                                         Text("Allowlist: \(allowlist)")
                                     }
+                                    else if let blocklist = result.blocklist {
+                                        Text("Blocklist: \(blocklist)")
+                                    }
                                     else {
-                                        Text("This IP is not in any allowlist")
+                                        Text(viewModel.selectedListType == .allowlist ? "This IP is not in any allowlist" : "This IP is not in any blocklist")
                                             .foregroundStyle(Color.gray)
                                     }
                                 }

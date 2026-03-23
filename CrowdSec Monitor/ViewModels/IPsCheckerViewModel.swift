@@ -22,12 +22,13 @@ struct IPField: Equatable {
 
 @MainActor
 @Observable
-class AllowlistsIPsCheckerViewModel {
+class IPsCheckerViewModel {
     init() {}
     
     var ipsToCheck: [IPField] = []
+    var selectedListType: Enums.ListType = .blocklist
     
-    var state: Enums.LoadingState<AllowlistsCheckIPSResponse> = .loading
+    var state: Enums.LoadingState<CheckIPsResponse> = .loading
     
     func validateIP(_ index: Int) {
         let ip = ipsToCheck[index]
@@ -50,8 +51,17 @@ class AllowlistsIPsCheckerViewModel {
             }
             do {
                 let map = ipsToCheck.map() { $0.value }
-                let body = AllowlistsIPsCheckRequest(ips: map)
-                let result = try await apiClient.allowlists.checkIps(body)
+                let body = CheckIPsRequest(ips: map)
+                
+                let result = try await {
+                    switch self.selectedListType {
+                    case .blocklist:
+                        return try await apiClient.blocklists.checkIps(body)
+                    case .allowlist:
+                        return try await apiClient.allowlists.checkIps(body)
+                    }
+                }()
+                
                 withAnimation {
                     state = .success(result.body)
                 }

@@ -48,4 +48,12 @@ class BlocklistsAPIClient {
     func deleteBlocklist(params: DeleteBlocklistRequestParams) async throws -> HttpResponse<EmptyResponse> {
         return try await httpClient.delete(endpoint: "/api/v1/blocklists/\(params.blocklistId)")
     }
+    
+    func checkIps(_ body: CheckIPsRequest) async throws -> HttpResponse<CheckIPsResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/blocklists/check", body: body)
+    }
+    
+    func checkDomain(_ body: BlocklistsCheckDomainRequest) async throws -> HttpResponse<BlocklistsCheckDomainResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/blocklists/check-domain", body: body)
+    }
 }
