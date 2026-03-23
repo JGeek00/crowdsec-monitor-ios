@@ -16,6 +16,7 @@ struct ListsView: View {
     @State private var selectedBlocklist: Int? = nil
     @State private var selectedList: SelectedList? = nil
     @State private var showIPsCheckerSheet = false
+    @State private var showCheckDomainReachableSheet = false
     
     var body: some View {
         NavigationSplitView {
@@ -49,6 +50,9 @@ struct ListsView: View {
                     Menu {
                         Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
                             showIPsCheckerSheet = true
+                        }
+                        Button(String(localized: "Domain reachable checker"), systemImage: "questionmark") {
+                            showCheckDomainReachableSheet = true
                         }
                     } label: {
                         Label("Options", systemImage: "ellipsis")
@@ -102,6 +106,13 @@ struct ListsView: View {
                 showIPsCheckerSheet = false
             }
             .environment(IPsCheckerViewModel())
+            .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $showCheckDomainReachableSheet) {
+            CheckDomainReachableView {
+                showCheckDomainReachableSheet = false
+            }
+            .environment(CheckDomainReachableViewModel())
             .interactiveDismissDisabled()
         }
     }

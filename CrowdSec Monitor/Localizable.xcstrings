@@ -343,6 +343,16 @@
         }
       }
     },
+    "An error occurred while checking the domain. Please try again." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al comprobar el dominio. Por favor prueba de nuevo."
+          }
+        }
+      }
+    },
     "An error occurred while creating the decision. Please try again." : {
       "localizations" : {
         "es" : {
@@ -583,12 +593,32 @@
         }
       }
     },
+    "Check domain" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprobar dominio"
+          }
+        }
+      }
+    },
     "Check IP addresses" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comprobar direcciones IP"
+          }
+        }
+      }
+    },
+    "Checking domain...\nThis may take up to one minute." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprobando dominio…\nEsto puede tardar hasta un minuto"
           }
         }
       }
@@ -953,6 +983,26 @@
         }
       }
     },
+    "Domain" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dominio"
+          }
+        }
+      }
+    },
+    "Domain reachable checker" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprobar dominio alcanzable"
+          }
+        }
+      }
+    },
     "Duration" : {
       "localizations" : {
         "es" : {
@@ -1229,6 +1279,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Credenciales no válidas. Por favor verifica tu usuario, contraseña o token."
+          }
+        }
+      }
+    },
+    "Invalid domain" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dominio no válido"
           }
         }
       }
@@ -2023,6 +2083,16 @@
         }
       }
     },
+    "The backend will trigger a traceroute command to the specified domain and check if any of the IP addresses are in a blocklist." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El backend lanzará un comando de traceroute al dominio especificado y comprobará si alguna de las direcciones IP está incluida en una blocklist."
+          }
+        }
+      }
+    },
     "The CrowdSec LAPI is offline or the API is having trouble connecting to it. Some data may not be up to date or available." : {
       "localizations" : {
         "es" : {
@@ -2039,6 +2109,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LAPI de CrowdSec está en línea y la API está obteniendo datos correctamente."
+          }
+        }
+      }
+    },
+    "The domain you entered is not valid. Please check the format and try again." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El dominio que has introducido no es válido. Comprueba el formato y prueba de nuevo."
           }
         }
       }
@@ -2229,6 +2309,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Top objetivos"
+          }
+        }
+      }
+    },
+    "Traceroute result" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultado de traceroute"
           }
         }
       }
