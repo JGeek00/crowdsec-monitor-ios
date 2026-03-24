@@ -1,22 +1,13 @@
 import Foundation
 
-// MARK: - BlocklistDataResponse
+// MARK: - BlocklistsCheckDomainResponse
 struct BlocklistsCheckDomainResponse: Codable, Hashable {
     let domain: String
-    let reachable: Bool
-    let hops: [BlocklistsCheckDomainResponse_Hop]
+    let ips: [BlocklistsCheckDomainResponse_IP]
 }
 
-// MARK: - BlocklistsCheckDomainResponse_Hop
-struct BlocklistsCheckDomainResponse_Hop: Codable, Hashable {
-    let hop: Int
-    let ip: String?
-    let timedOut: Bool
-    let blocklist: String?
-
-    enum CodingKeys: String, CodingKey {
-        case hop, ip
-        case timedOut = "timed_out"
-        case blocklist
-    }
+// MARK: - BlocklistsCheckDomainResponse_IP
+struct BlocklistsCheckDomainResponse_IP: Codable, Hashable {
+    let ip: String
+    let blocklists: [String]
 }

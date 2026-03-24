@@ -175,6 +175,8 @@ class OnboardingViewModel {
                 connectionErrorMessage = String(localized: "Error interpreting server response")
             case .networkError(let networkError):
                 connectionErrorMessage = String(localized: "Network error: \(networkError.localizedDescription)")
+            case .httpErrorWithMessage(statusCode: let statusCode, message: _):
+                connectionErrorMessage = String(localized: "Server error: code \(statusCode)")
             }
             connecting = false
         } catch {

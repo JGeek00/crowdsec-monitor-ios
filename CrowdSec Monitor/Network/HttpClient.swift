@@ -198,6 +198,10 @@ class HttpClient: NSObject {
         }
         
         guard (200...299).contains(statusCode) else {
+            // Try to extract an error message from the response body
+            if let errorBody = try? JSONDecoder().decode(ApiErrorResponse.self, from: data), let message = errorBody.resolvedMessage {
+                throw HttpClientError.httpErrorWithMessage(statusCode: statusCode, message: message)
+            }
             throw HttpClientError.httpError(statusCode: statusCode)
         }
         
@@ -266,6 +270,7 @@ enum HttpClientError: LocalizedError {
     case invalidResponse
     case unauthorized
     case httpError(statusCode: Int)
+    case httpErrorWithMessage(statusCode: Int, message: String)
     case decodingError(Error)
     case networkError(Error)
     
@@ -277,6 +282,8 @@ enum HttpClientError: LocalizedError {
             return "Unauthorized - Invalid credentials"
         case .httpError(let statusCode):
             return "HTTP Error: \(statusCode)"
+        case .httpErrorWithMessage(let statusCode, let message):
+            return "HTTP Error \(statusCode): \(message)"
         case .decodingError(let error):
             return "Failed to decode response: \(error.localizedDescription)"
         case .networkError(let error):

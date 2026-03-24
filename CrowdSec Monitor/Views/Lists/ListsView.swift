@@ -48,10 +48,10 @@ struct ListsView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Button(String(localized: "IP addresses checker"), systemImage: "questionmark") {
+                        Button(String(localized: "IP addresses checker")) {
                             showIPsCheckerSheet = true
                         }
-                        Button(String(localized: "Domain reachable checker"), systemImage: "questionmark") {
+                        Button(String(localized: "Domain reachable checker")) {
                             showCheckDomainReachableSheet = true
                         }
                     } label: {

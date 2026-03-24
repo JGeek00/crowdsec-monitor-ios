@@ -513,16 +513,6 @@
         }
       }
     },
-    "Blocklist: %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lista: %@"
-          }
-        }
-      }
-    },
     "Blocklists" : {
       "localizations" : {
         "es" : {
@@ -1003,6 +993,16 @@
         }
       }
     },
+    "Domain does not exist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dominio no existe"
+          }
+        }
+      }
+    },
     "Domain reachable checker" : {
       "localizations" : {
         "es" : {
@@ -1373,6 +1373,16 @@
         }
       }
     },
+    "IP addresses" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direcciones IP"
+          }
+        }
+      }
+    },
     "IP addresses checker" : {
       "localizations" : {
         "es" : {
@@ -1729,6 +1739,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ninguno"
+          }
+        }
+      }
+    },
+    "Not blocked" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No bloqueada"
           }
         }
       }
@@ -2093,12 +2113,12 @@
         }
       }
     },
-    "The backend will trigger a traceroute command to the specified domain and check if any of the IP addresses are in a blocklist." : {
+    "The backend will try to resolve the domain against a DNS server. If the domain is resolved correctly, the backend will check if the resolved IP addresses are listed in any blocklist. The result will show the resolved IP addresses and the blocklists they are listed in, if any." : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El backend lanzará un comando de traceroute al dominio especificado y comprobará si alguna de las direcciones IP está incluida en una blocklist."
+            "value" : "El backend intentará resolver el dominio contra el servidor DNS. Si el dominio se resuelve correctamente, el backend comprobará si las direcciones IP se encuentran en alguna lista de bloqueo. El resultado mostrará las direcciones IP resueltas y si se encuentran en alguna lista de bloqueo instalada."
           }
         }
       }
@@ -2119,6 +2139,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LAPI de CrowdSec está en línea y la API está obteniendo datos correctamente."
+          }
+        }
+      }
+    },
+    "The domain you entered could not be resolved. Please check the domain and try again." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El dominio que has introducido no ha podido ser resuelto. Por favor comprueba el dominio y prueba de nuevo."
           }
         }
       }
@@ -2319,16 +2349,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Top objetivos"
-          }
-        }
-      }
-    },
-    "Traceroute result" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Resultado de traceroute"
           }
         }
       }

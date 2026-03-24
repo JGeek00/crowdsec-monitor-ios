@@ -11,6 +11,7 @@ class CheckDomainReachableViewModel {
     
     var data: BlocklistsCheckDomainResponse? = nil
     var error = false
+    var domainNotResolvable = false
     var loading = false
     
     func checkDomain() {
@@ -33,11 +34,20 @@ class CheckDomainReachableViewModel {
                     self.data = result.body
                     self.loading = false
                     self.error = false
+                    self.domainNotResolvable = false
+                }
+            } catch HttpClientError.httpErrorWithMessage(let statusCode, _) where statusCode == 422 {
+                withAnimation {
+                    self.data = nil
+                    self.error = false
+                    self.domainNotResolvable = true
+                    self.loading = false
                 }
             } catch {
                 withAnimation {
                     self.data = nil
-                    self.error = false
+                    self.error = true
+                    self.domainNotResolvable = false
                     self.loading = false
                 }
             }

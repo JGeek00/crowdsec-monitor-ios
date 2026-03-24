@@ -21,7 +21,7 @@ struct CheckDomainReachableView: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.URL)
                 } footer: {
-                    Text("The backend will trigger a traceroute command to the specified domain and check if any of the IP addresses are in a blocklist.")
+                    Text("The backend will try to resolve the domain against a DNS server. If the domain is resolved correctly, the backend will check if the resolved IP addresses are listed in any blocklist. The result will show the resolved IP addresses and the blocklists they are listed in, if any.")
                 }
                 
                 Section {
@@ -45,6 +45,10 @@ struct CheckDomainReachableView: View {
                 }
                 if viewModel.error == true {
                     ContentUnavailableView("Error", systemImage: "exclamationmark.circle", description: Text("An error occurred while checking the domain. Please try again."))
+                        .transition(.opacity)
+                }
+                if viewModel.domainNotResolvable == true {
+                    ContentUnavailableView("Domain does not exist", systemImage: "exclamationmark.circle", description: Text("The domain you entered could not be resolved. Please check the domain and try again."))
                         .transition(.opacity)
                 }
             }
@@ -102,42 +106,24 @@ fileprivate struct TracerouteResult: View {
     }
     
     var body: some View {
-        Section("Traceroute result") {
-            ForEach(data.hops, id: \.self) { hop in
-                HStack(spacing: 12) {
-                    Text(verbatim: String(hop.hop))
-                        .fontWeight(.semibold)
-                        .foregroundStyle(Color.gray)
-                    VStack(alignment: .leading, spacing: 6) {
-                        Group {
-                            if let ip = hop.ip {
-                                Text(verbatim: ip)
-                            }
-                            else {
-                                Text(verbatim: "N/A")
-                            }
+        Section("IP addresses") {
+            ForEach(data.ips, id: \.self) { entry in
+                let blocklists = entry.blocklists.joined(separator: ", ")
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(verbatim: entry.ip)
+                        .fontWeight(.medium)
+                    Group {
+                        if blocklists.isEmpty {
+                            Text("Not blocked")
+                                .foregroundStyle(Color.gray)
                         }
-                        .font(.system(size: 16))
-                        if let blocklist = hop.blocklist {
-                            Text("Blocklist: \(blocklist)")
-                                .font(.system(size: 14))
-                                .fontWeight(.semibold)
+                        else {
+                            Text("Blocklists: \(blocklists)")
                                 .foregroundStyle(Color.red)
                         }
                     }
-                    if hop.timedOut == true {
-                        Spacer()
-                        HStack(spacing: 6) {
-                            Image(systemName: "exclamationmark")
-                            Text(verbatim: "Timed out")
-                        }
-                        .font(.system(size: 12))
-                        .foregroundStyle(Color.white)
-                        .fontWeight(.bold)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 4)
-                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.red))
-                    }
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
                 }
             }
         }
