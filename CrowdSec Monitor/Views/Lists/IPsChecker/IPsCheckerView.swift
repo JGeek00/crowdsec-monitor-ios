@@ -80,7 +80,12 @@ struct IPsCheckerView: View {
             .navigationTitle("Check IP addresses")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $showResultsView, destination: {
-                IPsCheckerResultView()
+                switch viewModel.selectedListType {
+                case .allowlist:
+                    AllowlistsIPsCheckerResultView()
+                case .blocklist:
+                    BlocklistsIPsCheckerResultView()
+                }
             })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

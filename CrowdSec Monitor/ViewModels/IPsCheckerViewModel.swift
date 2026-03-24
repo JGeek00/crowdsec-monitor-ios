@@ -28,7 +28,8 @@ class IPsCheckerViewModel {
     var ipsToCheck: [IPField] = []
     var selectedListType: Enums.ListType = .blocklist
     
-    var state: Enums.LoadingState<CheckIPsResponse> = .loading
+    var stateAllowlists: Enums.LoadingState<AllowlistsCheckIPsResponse> = .loading
+    var stateBlocklists: Enums.LoadingState<BlocklistsCheckIPsResponse> = .loading
     
     func validateIP(_ index: Int) {
         let ip = ipsToCheck[index]
@@ -46,28 +47,38 @@ class IPsCheckerViewModel {
     func validateIps() {
         Task {
             guard let apiClient = AuthViewModel.shared.apiClient else { return }
-            withAnimation {
-                state = .loading
-            }
-            do {
-                let map = ipsToCheck.map() { $0.value }
-                let body = CheckIPsRequest(ips: map)
-                
-                let result = try await {
-                    switch self.selectedListType {
-                    case .blocklist:
-                        return try await apiClient.blocklists.checkIps(body)
-                    case .allowlist:
-                        return try await apiClient.allowlists.checkIps(body)
+            switch selectedListType {
+            case .allowlist:
+                do {
+                    withAnimation {
+                        stateAllowlists = .loading
                     }
-                }()
-                
-                withAnimation {
-                    state = .success(result.body)
+                    let map = ipsToCheck.map() { $0.value }
+                    let body = AllowlistsCheckIPsRequest(ips: map)
+                    let result = try await apiClient.allowlists.checkIps(body)
+                    withAnimation {
+                        stateAllowlists = .success(result.body)
+                    }
+                } catch {
+                    withAnimation {
+                        stateAllowlists = .failure(error)
+                    }
                 }
-            } catch {
-                withAnimation {
-                    state = .failure(error)
+            case .blocklist:
+                do {
+                    withAnimation {
+                        stateBlocklists = .loading
+                    }
+                    let map = ipsToCheck.map() { $0.value }
+                    let body = BlocklistsCheckIPsRequest(ips: map)
+                    let result = try await apiClient.blocklists.checkIps(body)
+                    withAnimation {
+                        stateBlocklists = .success(result.body)
+                    }
+                } catch {
+                    withAnimation {
+                        stateBlocklists = .failure(error)
+                    }
                 }
             }
         }

@@ -49,7 +49,7 @@ class BlocklistsAPIClient {
         return try await httpClient.delete(endpoint: "/api/v1/blocklists/\(params.blocklistId)")
     }
     
-    func checkIps(_ body: CheckIPsRequest) async throws -> HttpResponse<CheckIPsResponse> {
+    func checkIps(_ body: BlocklistsCheckIPsRequest) async throws -> HttpResponse<BlocklistsCheckIPsResponse> {
         return try await httpClient.post(endpoint: "/api/v1/blocklists/check", body: body)
     }
     

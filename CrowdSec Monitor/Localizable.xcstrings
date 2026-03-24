@@ -533,6 +533,16 @@
         }
       }
     },
+    "Blocklists: %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listas: %@"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "es" : {
