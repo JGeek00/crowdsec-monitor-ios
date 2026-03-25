@@ -113,5 +113,8 @@ struct ContentView: View {
                 .fontDesign(.rounded)
                 .preferredColorScheme(getColorScheme(theme: theme))
         })
+        .onAppear {
+            requestAppReview()
+        }
     }
 }
