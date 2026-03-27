@@ -1,5 +1,5 @@
 func buildUrl(server: CSServer) -> String {
-    var urlString = "\(server.http ?? "https")://\(server.domain ?? "")"
+    var urlString = "\(server.http)://\(server.domain)"
     
     if server.port > 0 {
         urlString += ":\(server.port)"

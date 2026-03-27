@@ -115,6 +115,7 @@ struct ContentView: View {
         })
         .onAppear {
             requestAppReview()
+            showOnboardingIfNeeded()
         }
     }
 }

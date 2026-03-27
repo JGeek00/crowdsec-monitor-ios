@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24512" systemVersion="25D125" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CSServer" representedClassName="CSServer" syncable="YES" codeGenerationType="none">
-        <attribute name="authMethod" optional="YES" attributeType="String"/>
+        <attribute name="authMethod" attributeType="String" defaultValueString="none"/>
         <attribute name="basicPassword" optional="YES" attributeType="String"/>
         <attribute name="basicUser" optional="YES" attributeType="String"/>
         <attribute name="bearerToken" optional="YES" attributeType="String"/>
-        <attribute name="domain" attributeType="String"/>
-        <attribute name="http" attributeType="String"/>
+        <attribute name="domain" attributeType="String" defaultValueString=""/>
+        <attribute name="http" attributeType="String" defaultValueString="https"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name_stored" optional="YES" attributeType="String"/>
         <attribute name="path" optional="YES" attributeType="String"/>
         <attribute name="port" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>

@@ -7,4 +7,5 @@ class StorageKeys {
     static let disableDecisionTimerAnimation = "DISABLE_DECISION_TIMER_ANIMATION"
     static let appFirstLaunched = "APP_FIRST_LAUNCHED"
     static let hasRequestedReview = "HAS_REQUESTED_REVIEW"
+    static let onboardingCompleted = "ONBOARDING_COMPLETED"
 }

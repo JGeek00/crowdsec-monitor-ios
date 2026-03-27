@@ -16,7 +16,7 @@ struct OnboardingView: View {
                 ApiInformation()
                     .tag(1)
                     .contentShape(Rectangle()).simultaneousGesture(DragGesture())
-                ConnectionForm()
+                OnboardingForm()
                     .tag(2)
                     .contentShape(Rectangle()).simultaneousGesture(DragGesture())
             }
@@ -41,7 +41,7 @@ struct OnboardingView: View {
                             ApiInformation()
                                 .tag(1)
                                 .contentShape(Rectangle()).simultaneousGesture(DragGesture())
-                            ConnectionForm()
+                            OnboardingForm()
                                 .tag(2)
                                 .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                         }

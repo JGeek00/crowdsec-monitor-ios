@@ -363,6 +363,9 @@
         }
       }
     },
+    "An error occurred while deleting the server. This could mean that the database is corrupted. Please try deleting the server again. If the problem persists, uninstall the application and install it again." : {
+
+    },
     "An error occurred while making the decision expired. Please try again." : {
       "localizations" : {
         "es" : {
@@ -442,6 +445,9 @@
           }
         }
       }
+    },
+    "Are you sure you want to delete this server? This action cannot be undone." : {
+
     },
     "Are you sure you want to make this decision to expire now? This action cannot be undone." : {
       "localizations" : {
@@ -773,6 +779,9 @@
         }
       }
     },
+    "Create server" : {
+
+    },
     "Created on 🇪🇸 by JGeek00" : {
       "localizations" : {
         "es" : {
@@ -942,6 +951,9 @@
           }
         }
       }
+    },
+    "Delete server" : {
+
     },
     "Disable blocklist" : {
       "localizations" : {
@@ -1643,6 +1655,9 @@
         }
       }
     },
+    "Name field is required" : {
+
+    },
     "Network error: %@" : {
       "localizations" : {
         "es" : {
@@ -2052,6 +2067,9 @@
           }
         }
       }
+    },
+    "Servers" : {
+
     },
     "Settings" : {
       "localizations" : {
