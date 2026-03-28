@@ -27,6 +27,14 @@ class DecisionsListViewModel {
     var state: Enums.LoadingState<DecisionsListResponse> = .loading
     var processingExpireDecision = false
 
+    func reset() {
+        state = .loading
+        requestParams = defaultRequest
+        filters = defaultRequest.filters
+        processingExpireDecision = false
+        isFetching = false
+    }
+    
     private func fetchDecisions(showLoading: Bool = false, params: DecisionsRequest? = nil) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
 

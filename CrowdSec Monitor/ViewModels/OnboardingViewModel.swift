@@ -24,4 +24,9 @@ class OnboardingViewModel {
         selectedTab = 0
         showOnboarding = true
     }
+    
+    func finishOnboarding() {
+        UserDefaults.shared.set(true, forKey: StorageKeys.onboardingCompleted)
+        showOnboarding = false
+    }
 }

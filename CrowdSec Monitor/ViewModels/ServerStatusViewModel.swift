@@ -6,12 +6,18 @@ class ServerStatusViewModel {
     public static let shared = ServerStatusViewModel()
     
     init() {
-        Task {
-            await fetchStatus()
+        if AuthViewModel.shared.apiClient != nil {
+            Task {
+                await fetchStatus()
+            }
         }
     }
         
     var status: Enums.LoadingState<ApiStatusResponse> = .loading
+    
+    func reset() {
+        status = .loading
+    }
     
     func fetchStatus() async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }

@@ -53,7 +53,7 @@ class AuthViewModel {
         isLoading = false
     }
 
-    func saveServer(
+    func editServer(
         name: String,
         connectionMethod: Enums.ConnectionMethod,
         ipDomain: String,
@@ -66,7 +66,9 @@ class AuthViewModel {
     ) async throws {
         let server = servers.first ?? CSServer(context: viewContext)
         
-        server.id = server.id
+        if server.isInserted {
+            server.id = UUID()
+        }
         server.name = name
         server.http = connectionMethod.rawValue
         server.domain = ipDomain
@@ -82,13 +84,47 @@ class AuthViewModel {
         checkInstance()
     }
     
+    func createServer(
+        name: String,
+        connectionMethod: Enums.ConnectionMethod,
+        ipDomain: String,
+        port: Int32?,
+        path: String?,
+        authMethod: Enums.AuthMethod,
+        basicUser: String?,
+        basicPassword: String?,
+        bearerToken: String?
+    ) async throws {
+        let server = CSServer(context: viewContext)
+        
+        server.id = UUID()
+        server.name = name
+        server.http = connectionMethod.rawValue
+        server.domain = ipDomain
+        server.port = port ?? 0
+        server.path = path
+        server.authMethod = authMethod.rawValue
+        server.basicUser = basicUser
+        server.basicPassword = basicPassword
+        server.bearerToken = bearerToken
+        
+        try viewContext.save()
+        servers.append(server)
+        
+        currentServer = server
+        apiClient = CrowdSecAPIClient(server)
+        Task {
+            await ServerStatusViewModel.shared.fetchStatus()
+        }
+    }
+    
     func deleteServer(server: CSServer) -> Bool {
         do {
             viewContext.delete(server)
             try viewContext.save()
-            servers = servers.filter { $0.id != server.id }
+            servers = servers.filter { $0 != server }
             
-            if server.id == currentServer?.id {
+            if server == currentServer {
                 currentServer = nil
                 apiClient = nil
             }
@@ -96,6 +132,23 @@ class AuthViewModel {
             return true
         } catch {
             return false
+        }
+    }
+    
+    func changeCurrentServer(server: CSServer) {
+        currentServer = server
+        apiClient = CrowdSecAPIClient(server)
+        
+        // Reset all view models so they reload data for the new server
+        ServerStatusViewModel.shared.reset()
+        DashboardViewModel.shared.reset()
+        AlertsListViewModel.shared.reset()
+        DecisionsListViewModel.shared.reset()
+        BlocklistsListViewModel.shared.reset()
+        AllowlistsListViewModel.shared.reset()
+        
+        Task {
+            await ServerStatusViewModel.shared.fetchStatus()
         }
     }
     

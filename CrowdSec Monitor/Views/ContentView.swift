@@ -21,7 +21,7 @@ struct ContentView: View {
         @Bindable var bindableOnboarding = onboardingViewModel
         
         Group {
-            if authViewModel.apiClient != nil {
+            if authViewModel.hasServerConfigured == true {
                 Group {
                     if #available(iOS 26.0, *) {
                         TabView {
@@ -104,6 +104,36 @@ struct ContentView: View {
                     }
                 }
                 .environment(ServerStatusViewModel.shared)
+            }
+            else {
+                if #available(iOS 26.0, *) {
+                    TabView {
+                        Tab {
+                            NoServersView()
+                        } label: {
+                            Label("Home", systemImage: "house")
+                        }
+                        Tab {
+                            SettingsView()
+                        } label: {
+                            Label("Settings", systemImage: "gear")
+                        }
+                    }
+                }
+                else {
+                    TabView {
+                        NoServersView()
+                            .tabItem {
+                                Label("Home", systemImage: "house")
+                            }
+                            .tag(Enums.TabViewTabs.home)
+                        SettingsView()
+                            .tabItem {
+                                Label("Settings", systemImage: "gear")
+                            }
+                            .tag(Enums.TabViewTabs.settings)
+                    }
+                }
             }
         }
         .fontDesign(.rounded)

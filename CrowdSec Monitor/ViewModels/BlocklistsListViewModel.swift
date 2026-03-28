@@ -20,6 +20,17 @@ class BlocklistsListViewModel {
     var errorDeleteBlocklist = false
     var blocklistDeletedSuccessfully = false
     
+    func reset() {
+        state = .loading
+        requestParams = BlocklistsRequest(offset: 0, limit: Config.blocklistsAmountBatch)
+        selectedListName = nil
+        processingModal = false
+        errorDisableBlocklist = false
+        errorEnableBlocklist = false
+        errorDeleteBlocklist = false
+        blocklistDeletedSuccessfully = false
+    }
+    
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {

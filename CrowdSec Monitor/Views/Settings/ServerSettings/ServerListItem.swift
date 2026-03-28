@@ -14,13 +14,13 @@ struct ServerListItem: View {
     
     var body: some View {
         Button {
-            
+            authViewModel.changeCurrentServer(server: server)
         } label: {
             HStack {
                 Image(systemName: "server.rack")
                     .font(.system(size: 20))
                 Spacer()
-                    .frame(width: 24)
+                    .frame(width: 16)
                 VStack(alignment: .leading, spacing: 6) {
                     Text(server.name)
                         .font(.system(size: 16))
@@ -33,7 +33,7 @@ struct ServerListItem: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }
-                if server.id == authViewModel.currentServer?.id {
+                if server == authViewModel.currentServer {
                     Spacer()
                     Image(systemName: "checkmark")
                         .foregroundStyle(Color.blue)

@@ -8,8 +8,6 @@ struct ServerSettingsView: View {
     @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
     
     @State private var showCreateServerSheet = false
-    @State private var discardChangesAlert = false
-    @State private var connectionFormViewModel = ConnectionFormViewModel()
     
     var body: some View {
         List {
@@ -23,34 +21,12 @@ struct ServerSettingsView: View {
             }
             
             ServerInformationSection()
-            
-            ServerDataSection()
         }
         .navigationTitle("Server settings")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showCreateServerSheet) {
-            NavigationStack {
-                ConnectionForm(showHeader: false, viewModel: connectionFormViewModel)
-                    .interactiveDismissDisabled()
-                    .navigationTitle("Create server")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            CloseButton {
-                                discardChangesAlert = true
-                            }
-                            .confirmationDialog("Discard changes", isPresented: $discardChangesAlert) {
-                                Button("Discard changes", role: .destructive) {
-                                    showCreateServerSheet = false
-                                }
-                            }
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button("Save") {
-                                connectionFormViewModel.connect()
-                            }
-                        }
-                    }
+            CreateServerSheet {
+                showCreateServerSheet = false
             }
         }
     }

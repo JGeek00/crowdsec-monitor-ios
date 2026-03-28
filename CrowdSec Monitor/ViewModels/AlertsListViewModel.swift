@@ -20,6 +20,14 @@ class AlertsListViewModel {
     var deletingAlertProcess: Bool = false
     var selectedAlert: Int? = nil
     
+    func reset() {
+        state = .loading
+        requestParams = defaultRequest
+        filters = defaultRequest.filters
+        selectedAlert = nil
+        deletingAlertProcess = false
+    }
+    
     private func fetchAlerts(showLoading: Bool = false, params: AlertsRequest? = nil) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
 

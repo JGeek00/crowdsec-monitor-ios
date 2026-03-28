@@ -24,6 +24,10 @@ class DashboardViewModel {
         }
     }
     
+    func reset() {
+        state = .loading
+    }
+    
     func fetchDashboardData() async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         let amountItems = UserDefaults.shared.object(forKey: StorageKeys.topItemsDashboard) as! Int? ?? Defaults.topItemsDashboard

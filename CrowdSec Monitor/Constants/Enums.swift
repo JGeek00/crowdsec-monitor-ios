@@ -24,6 +24,7 @@ class Enums {
         case decisions
         case lists
         case settings
+        case home
     }
     
     enum LoadingState<T> {

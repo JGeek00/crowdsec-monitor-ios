@@ -101,14 +101,8 @@ class ConnectionFormViewModel {
         reset()
     }
     
-    func connect() {
-        Task {
-            await startConnection()
-        }
-    }
-    
-    private func startConnection() async {
-        guard checkValues() else { return }
+    func connect() async -> Bool {
+        guard checkValues() else { return false }
         
         connecting = true
         connectionErrorAlert = false
@@ -139,10 +133,10 @@ class ConnectionFormViewModel {
                 connectionErrorAlert = true
                 connectionErrorMessage = String(localized: "Connection was not successful")
                 connecting = false
-                return
+                return false
             }
             
-            try await AuthViewModel.shared.saveServer(
+            try await AuthViewModel.shared.createServer(
                 name: name,
                 connectionMethod: connectionMethod,
                 ipDomain: ipDomain,
@@ -155,6 +149,8 @@ class ConnectionFormViewModel {
             )
             
             connecting = false
+            
+            return true
             
         } catch let error as HttpClientError {
             connectionErrorAlert = true
@@ -173,10 +169,12 @@ class ConnectionFormViewModel {
                 connectionErrorMessage = String(localized: "Server error: code \(statusCode)")
             }
             connecting = false
+            return false
         } catch {
             connectionErrorAlert = true
             connectionErrorMessage = String(localized: "Could not connect to server: \(error.localizedDescription)")
             connecting = false
+            return false
         }
     }
     

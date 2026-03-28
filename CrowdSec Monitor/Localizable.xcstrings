@@ -364,7 +364,14 @@
       }
     },
     "An error occurred while deleting the server. This could mean that the database is corrupted. Please try deleting the server again. If the problem persists, uninstall the application and install it again." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ocurrido un error al eliminar el servidor. Esto puede significar que la base de datos está corrupta. Por favor, prueba de nuevo. Si el problema persiste, desinstala la aplicación e instálala de nuevo."
+          }
+        }
+      }
     },
     "An error occurred while making the decision expired. Please try again." : {
       "localizations" : {
@@ -447,7 +454,14 @@
       }
     },
     "Are you sure you want to delete this server? This action cannot be undone." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Estás seguro de que deseas eliminar este servidor? Esta acción no se puede deshacer."
+          }
+        }
+      }
     },
     "Are you sure you want to make this decision to expire now? This action cannot be undone." : {
       "localizations" : {
@@ -460,6 +474,7 @@
       }
     },
     "Are you sure you want to remove the server connection? You will have to create the connection from scratch." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -780,7 +795,14 @@
       }
     },
     "Create server" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear servidor"
+          }
+        }
+      }
     },
     "Created on 🇪🇸 by JGeek00" : {
       "localizations" : {
@@ -953,7 +975,14 @@
       }
     },
     "Delete server" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar servidor"
+          }
+        }
+      }
     },
     "Disable blocklist" : {
       "localizations" : {
@@ -1221,6 +1250,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Hola! Soy el desarrollador de CrowdSec Monitor. CrowdSec Monitor es gratis y quiero que continue siendo gratis, pero ofrecer esta aplicación en la App Store me supone unos costes, como la licencia de desarrollador de Apple. Apreciaría mucho cualquier donación que me ayude a pagar estos costes. Gracias."
+          }
+        }
+      }
+    },
+    "Home" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio"
           }
         }
       }
@@ -1656,7 +1695,14 @@
       }
     },
     "Name field is required" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Campo nombre es requerido"
+          }
+        }
+      }
     },
     "Network error: %@" : {
       "localizations" : {
@@ -1744,6 +1790,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay resultados para ‘%@’"
+          }
+        }
+      }
+    },
+    "No servers added" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay servidores añadidos"
           }
         }
       }
@@ -1928,26 +1984,6 @@
         }
       }
     },
-    "Remove server connection" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eliminar conexión al servidor"
-          }
-        }
-      }
-    },
-    "Removing server" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eliminando servidor"
-          }
-        }
-      }
-    },
     "Reset" : {
       "localizations" : {
         "es" : {
@@ -2048,6 +2084,16 @@
         }
       }
     },
+    "Server information" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información del servidor"
+          }
+        }
+      }
+    },
     "Server route" : {
       "localizations" : {
         "es" : {
@@ -2069,7 +2115,14 @@
       }
     },
     "Servers" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidores"
+          }
+        }
+      }
     },
     "Settings" : {
       "localizations" : {
@@ -2297,6 +2350,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Propinas"
+          }
+        }
+      }
+    },
+    "To start monitoring your CrowdSec instance, add a server." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para empezar a monitorizar tu instancia de CrowdSec, añade un servidor."
           }
         }
       }

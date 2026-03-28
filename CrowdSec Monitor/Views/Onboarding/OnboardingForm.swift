@@ -27,7 +27,12 @@ struct OnboardingForm: View {
                     Spacer()
                         .frame(width: 16)
                     Button {
-                        viewModel.connect()
+                        Task {
+                            let result = await viewModel.connect()
+                            if result == true {
+                                onboardingViewModel.finishOnboarding()
+                            }
+                        }
                     } label: {
                         Group {
                             Spacer()

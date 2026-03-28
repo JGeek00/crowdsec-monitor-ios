@@ -9,6 +9,10 @@ class AllowlistsListViewModel {
     
     var state: Enums.LoadingState<AllowlistsListResponse> = .loading
     
+    func reset() {
+        state = .loading
+    }
+    
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {

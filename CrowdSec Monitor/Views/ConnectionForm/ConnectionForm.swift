@@ -31,10 +31,12 @@ struct ConnectionForm: View {
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
-            Section("Server route") {
+            Section("Server information") {
                 TextField("Name", text: $viewModel.name)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.words)
+            }
+            Section("Server route") {
                 Picker("Connection method", selection: $viewModel.connectionMethod) {
                     Text("HTTP")
                         .tag(Enums.ConnectionMethod.http)
