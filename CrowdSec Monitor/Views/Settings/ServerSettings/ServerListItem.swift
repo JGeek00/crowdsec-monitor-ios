@@ -28,7 +28,7 @@ struct ServerListItem: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(server.name)
                         .font(.system(size: 16))
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .lineLimit(1)
                         .truncationMode(.tail)
                     Text(buildUrl(server: server))

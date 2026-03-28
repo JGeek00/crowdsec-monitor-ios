@@ -10,6 +10,15 @@ struct CreateServerSheet: View {
     @State private var discardChangesAlert = false
     @State private var connectionFormViewModel = ConnectionFormViewModel()
     
+    func handleConnect() {
+        Task {
+            let result = await connectionFormViewModel.connect()
+            if result == true {
+                onClose()
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             ConnectionForm(showHeader: false, viewModel: connectionFormViewModel)
@@ -29,24 +38,34 @@ struct CreateServerSheet: View {
                         .disabled(connectionFormViewModel.connecting)
                     }
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            Task {
-                                let result = await connectionFormViewModel.connect()
-                                if result == true {
-                                    onClose()
-                                }
+                        if #available(iOS 26.0, *) {
+                            Button(role: .confirm) {
+                                handleConnect()
+                            } label: {
+                                saveButton()
                             }
-                        } label: {
-                            if connectionFormViewModel.connecting {
-                                ProgressView()
-                            }
-                            else {
-                                Text("Connect")
-                            }
+                            .disabled(connectionFormViewModel.connecting)
                         }
-                        .disabled(connectionFormViewModel.connecting)
+                        else {
+                            Button {
+                                handleConnect()
+                            } label: {
+                                saveButton()
+                            }
+                            .disabled(connectionFormViewModel.connecting)
+                        }
                     }
                 }
+        }
+    }
+    
+    @ViewBuilder
+    func saveButton() -> some View {
+        if connectionFormViewModel.connecting {
+            ProgressView()
+        }
+        else {
+            Text("Connect")
         }
     }
 }
