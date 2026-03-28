@@ -40,7 +40,7 @@ class AuthViewModel {
         isLoading = true
         errorMessage = nil
         
-        let server = servers.first
+        let server = servers.first(where: { $0.isDefaultServer == true }) ?? servers.first
         
         if let server = server {
             currentServer = server
@@ -51,37 +51,6 @@ class AuthViewModel {
         }
         
         isLoading = false
-    }
-
-    func editServer(
-        name: String,
-        connectionMethod: Enums.ConnectionMethod,
-        ipDomain: String,
-        port: Int32?,
-        path: String?,
-        authMethod: Enums.AuthMethod,
-        basicUser: String?,
-        basicPassword: String?,
-        bearerToken: String?
-    ) async throws {
-        let server = servers.first ?? CSServer(context: viewContext)
-        
-        if server.isInserted {
-            server.id = UUID()
-        }
-        server.name = name
-        server.http = connectionMethod.rawValue
-        server.domain = ipDomain
-        server.port = port ?? 0
-        server.path = path
-        server.authMethod = authMethod.rawValue
-        server.basicUser = basicUser
-        server.basicPassword = basicPassword
-        server.bearerToken = bearerToken
-        
-        try viewContext.save()
-        
-        checkInstance()
     }
     
     func createServer(
@@ -149,6 +118,22 @@ class AuthViewModel {
         
         Task {
             await ServerStatusViewModel.shared.fetchStatus()
+        }
+    }
+    
+    func setDefaultServer(_ server: CSServer) -> Bool {
+        if let current = servers.first(where: { $0.isDefaultServer == true }) {
+            current.isDefaultServer = nil
+        }
+        
+        server.isDefaultServer = true
+        
+        do {
+            try viewContext.save()
+            loadServers()
+            return true
+        } catch {
+           return false
         }
     }
     

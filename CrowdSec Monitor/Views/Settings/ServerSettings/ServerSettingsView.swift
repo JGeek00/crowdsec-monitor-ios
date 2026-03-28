@@ -1,4 +1,5 @@
 import SwiftUI
+import SystemNotification
 
 struct ServerSettingsView: View {
     
@@ -8,12 +9,15 @@ struct ServerSettingsView: View {
     @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
     
     @State private var showCreateServerSheet = false
+    @State private var newDefaultServer: String? = nil
     
     var body: some View {
         List {
             Section("Servers") {
                 ForEach(authViewModel.servers, id: \.id) { server in
-                    ServerListItem(server: server)
+                    ServerListItem(server: server) { name in
+                        newDefaultServer = name
+                    }
                 }
                 Button("Create server", systemImage: "plus") {
                     showCreateServerSheet = true
@@ -28,6 +32,9 @@ struct ServerSettingsView: View {
             CreateServerSheet {
                 showCreateServerSheet = false
             }
+        }
+        .systemNotification(isActive: Binding(get: { newDefaultServer != nil }, set: { _ in newDefaultServer = nil })) {
+            SystemNotification(icon: "star.fill", title: String(localized: "Default server"), subtitle: String(localized: "\(String(newDefaultServer ?? "N/A")) is now the default server"))
         }
     }
 }

@@ -17,6 +17,11 @@ class CSServer: NSManagedObject {
     }
 
     // MARK: - Optional attributes
+    @NSManaged private var defaultServer: NSNumber?
+    var isDefaultServer: Bool? {
+        get { defaultServer?.boolValue }
+        set { defaultServer = newValue.map { NSNumber(value: $0) } }
+    }
     @NSManaged var basicPassword: String?
     @NSManaged var basicUser: String?
     @NSManaged var bearerToken: String?

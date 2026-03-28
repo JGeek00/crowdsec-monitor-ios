@@ -1,16 +1,20 @@
 import SwiftUI
+import SystemNotification
 
 struct ServerListItem: View {
     let server: CSServer
+    let onSetNewDefaultServer: ((String) -> Void)
     
-    init(server: CSServer) {
+    init(server: CSServer, onSetNewDefaultServer: @escaping ((String) -> Void)) {
         self.server = server
+        self.onSetNewDefaultServer = onSetNewDefaultServer
     }
     
     @Environment(AuthViewModel.self) private var authViewModel
     
     @State private var showDeleteConfirmation = false
     @State private var showErrorDeleteServerAlert = false
+    @State private var showErrorSetDefaultServer = false
     
     var body: some View {
         Button {
@@ -43,8 +47,27 @@ struct ServerListItem: View {
             .foregroundStyle(Color.foreground)
         }
         .contextMenu {
-            Button("Delete server", systemImage: "trash", role: .destructive) {
-                showDeleteConfirmation = true
+            Section {
+                if server.isDefaultServer == true {
+                    Button("Default server", systemImage: "star.fill") {}
+                        .disabled(true)
+                }
+                else {
+                    Button("Set as default server", systemImage: "star") {
+                        let changed = authViewModel.setDefaultServer(server)
+                        if changed == true {
+                            onSetNewDefaultServer(server.name)
+                        }
+                        else {
+                            showErrorSetDefaultServer = true
+                        }
+                    }
+                }
+            }
+            Section {
+                Button("Delete server", systemImage: "trash", role: .destructive) {
+                    showDeleteConfirmation = true
+                }
             }
         }
         .alert("Delete server", isPresented: $showDeleteConfirmation) {
@@ -64,6 +87,13 @@ struct ServerListItem: View {
             }
         } message: {
             Text("An error occurred while deleting the server. This could mean that the database is corrupted. Please try deleting the server again. If the problem persists, uninstall the application and install it again.")
+        }
+        .alert("Error", isPresented: $showErrorSetDefaultServer) {
+            Button("OK", role: .cancel) {
+                showErrorSetDefaultServer = false
+            }
+        } message: {
+            Text("An error occurred while setting the default server. Please try again. If the problem persists, uninstall the application and install it again.")
         }
     }
 }

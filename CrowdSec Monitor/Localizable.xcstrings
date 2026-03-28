@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ is now the default server" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ es ahora el servidor por defecto"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "es" : {
@@ -383,6 +393,16 @@
         }
       }
     },
+    "An error occurred while setting the default server. Please try again. If the problem persists, uninstall the application and install it again." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ocurrido un error al configurar el servidor por defecto. Por favor, prueba de nuevo. Si el error persiste, desinstala la aplicación e instálala de nuevo."
+          }
+        }
+      }
+    },
     "API information" : {
       "localizations" : {
         "es" : {
@@ -469,17 +489,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Estás seguro de que deseas hacer expirar esta decisión ahora? Esta acción no se puede deshacer."
-          }
-        }
-      }
-    },
-    "Are you sure you want to remove the server connection? You will have to create the connection from scratch." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Estás seguro de que quieres eliminar la conexión al servidor? Tendrás que crear la conexión de nuevo."
           }
         }
       }
@@ -940,6 +949,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decisiones: %lld"
+          }
+        }
+      }
+    },
+    "Default server" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor por defecto"
           }
         }
       }
@@ -2120,6 +2139,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Servidores"
+          }
+        }
+      }
+    },
+    "Set as default server" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hacer servidor por defecto"
           }
         }
       }
