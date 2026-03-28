@@ -105,6 +105,10 @@ class AuthViewModel {
     }
     
     func changeCurrentServer(server: CSServer) {
+        if server == currentServer {
+            return
+        }
+        
         currentServer = server
         apiClient = CrowdSecAPIClient(server)
         
