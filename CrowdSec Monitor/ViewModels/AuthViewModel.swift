@@ -93,7 +93,19 @@ class AuthViewModel {
             try viewContext.save()
             servers = servers.filter { $0 != server }
             
-            if server == currentServer {
+            let newServer: CSServer? = {
+                if let defaultServer = servers.first(where: { $0.isDefaultServer == true }) {
+                    return defaultServer
+                }
+                if let first = servers.first {
+                    return first
+                }
+                return nil
+            }()
+            if let newServer = newServer {
+                changeCurrentServer(server: newServer)
+            }
+            else {
                 currentServer = nil
                 apiClient = nil
             }
