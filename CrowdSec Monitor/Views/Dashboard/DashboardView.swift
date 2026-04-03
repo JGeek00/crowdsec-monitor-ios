@@ -2,7 +2,6 @@ import SwiftUI
 
 struct DashboardView: View {
     @Environment(DashboardViewModel.self) private var viewModel
-    @Environment(AuthViewModel.self) private var authViewModel
     @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
