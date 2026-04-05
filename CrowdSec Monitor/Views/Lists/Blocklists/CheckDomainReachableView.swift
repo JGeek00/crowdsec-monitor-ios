@@ -40,7 +40,7 @@ struct CheckDomainReachableView: View {
                 }
                 
                 if let data = viewModel.data {
-                    TracerouteResult(data: data)
+                    QueryResult(data: data)
                         .transition(.opacity)
                 }
                 if viewModel.error == true {
@@ -98,7 +98,7 @@ struct CheckDomainReachableView: View {
     }
 }
 
-fileprivate struct TracerouteResult: View {
+fileprivate struct QueryResult: View {
     let data: BlocklistsCheckDomainResponse
     
     init(data: BlocklistsCheckDomainResponse) {
