@@ -87,7 +87,7 @@ class BlocklistsListViewModel {
         }
     }
     
-    func enableDisableBlocklist(blocklistId: Int, newStatus: Bool) async {
+    func enableDisableBlocklist(blocklistId: String, newStatus: Bool) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
             processingModal = true
@@ -107,7 +107,7 @@ class BlocklistsListViewModel {
         }
     }
     
-    func deleteBlocklist(blocklistId: Int) async {
+    func deleteBlocklist(blocklistId: String) async {
         guard let apiClient = AuthViewModel.shared.apiClient else { return }
         do {
             processingModal = true

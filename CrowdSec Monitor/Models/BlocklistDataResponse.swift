@@ -7,7 +7,7 @@ struct BlocklistDataResponse: Codable {
 
 // MARK: - BlocklistDataResponse_Data
 struct BlocklistDataResponse_Data: Codable {
-    let id: Int
+    let id: String
     let url: String?
     let name: String
     let enabled: Bool?

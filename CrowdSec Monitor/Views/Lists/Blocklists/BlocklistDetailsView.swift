@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct BlocklistDetailsView: View {
-    let blocklistId: Int
+    let blocklistId: String
     
     @State private var viewModel: BlocklistDetailsViewModel
     
-    init(blocklistId: Int) {
+    init(blocklistId: String) {
         self.blocklistId = blocklistId
         _viewModel = State(wrappedValue: BlocklistDetailsViewModel(blocklistId: blocklistId))
     }

@@ -8,7 +8,7 @@ struct BlocklistsListResponse: Codable, Hashable {
 
 // MARK: - BlocklistsListResponse_Item
 struct BlocklistsListResponse_Item: Codable, Hashable {
-    let id: Int
+    let id: String
     let url: String?
     let name: String
     let enabled: Bool?

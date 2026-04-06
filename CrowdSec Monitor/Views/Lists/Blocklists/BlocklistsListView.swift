@@ -8,9 +8,9 @@ struct BlocklistsListView: View {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @Binding var selectedBlocklist: Int?
+    @Binding var selectedBlocklist: String?
     
-    @State private var activeBlocklistId: Int?
+    @State private var activeBlocklistId: String?
     @State private var addBlocklistFormOpen = false
     @State private var blocklistAddedNotification = false
     

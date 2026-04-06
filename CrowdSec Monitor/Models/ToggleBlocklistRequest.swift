@@ -1,5 +1,5 @@
 struct ToggleBlocklistRequestParams: Codable {
-    let blocklistId: Int
+    let blocklistId: String
 }
 
 struct ToggleBlocklistRequestBody: Codable {

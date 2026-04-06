@@ -1,3 +1,3 @@
 struct DeleteBlocklistRequestParams {
-    let blocklistId: Int
+    let blocklistId: String
 }

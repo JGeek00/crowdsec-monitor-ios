@@ -20,7 +20,7 @@ class BlocklistsAPIClient {
         return try await httpClient.get(endpoint: "/api/v1/blocklists", queryParams: queryParams)
     }
     
-    func fetchBlocklistData(blocklistId: Int) async throws -> HttpResponse<BlocklistDataResponse> {
+    func fetchBlocklistData(blocklistId: String) async throws -> HttpResponse<BlocklistDataResponse> {
         let queryParams: [URLQueryItem] = [
             URLQueryItem(name: "include_ips", value: "ip_string"),
         ]
@@ -28,7 +28,7 @@ class BlocklistsAPIClient {
         return try await httpClient.get(endpoint: "/api/v1/blocklists/\(blocklistId)", queryParams: queryParams)
     }
     
-    func fetchBlocklistIps(blocklistId: Int) async throws -> HttpResponse<BlocklistIpsResponse> {
+    func fetchBlocklistIps(blocklistId: String) async throws -> HttpResponse<BlocklistIpsResponse> {
         let queryParams: [URLQueryItem] = [
             URLQueryItem(name: "unpaged", value: "true"),
             URLQueryItem(name: "ip_string", value: "true"),

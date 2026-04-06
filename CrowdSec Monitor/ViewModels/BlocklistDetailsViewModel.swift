@@ -3,9 +3,9 @@ import SwiftUI
 @MainActor
 @Observable
 class BlocklistDetailsViewModel {
-    var blocklistId: Int
+    var blocklistId: String
     
-    init(blocklistId: Int) {
+    init(blocklistId: String) {
         self.blocklistId = blocklistId
         
         Task {
@@ -32,14 +32,15 @@ class BlocklistDetailsViewModel {
             withAnimation {
                 status = .success(response.body)
             }
-        } catch {
+        } catch let error {
+            print(error.localizedDescription)
             withAnimation {
                 status = .failure(error)
             }
         }
     }
     
-    func updateBlocklistId(_ newId: Int) {
+    func updateBlocklistId(_ newId: String) {
         self.blocklistId = newId
         self.ipsRound = 1
         Task {

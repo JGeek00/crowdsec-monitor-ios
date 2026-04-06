@@ -13,7 +13,7 @@ struct ListsView: View {
     
     @State private var selectedListType: Enums.ListType = .blocklist
     @State private var selectedAllowlist: String? = nil
-    @State private var selectedBlocklist: Int? = nil
+    @State private var selectedBlocklist: String? = nil
     @State private var selectedList: SelectedList? = nil
     @State private var showIPsCheckerSheet = false
     @State private var showCheckDomainReachableSheet = false
@@ -75,7 +75,7 @@ struct ListsView: View {
                     AllowlistDetailsView(allowlistName: selectedList.id)
                         .id(selectedList.id)
                 case .blocklist:
-                    BlocklistDetailsView(blocklistId: Int(selectedList.id)!)
+                    BlocklistDetailsView(blocklistId: selectedList.id)
                         .id(selectedList.id)
                 }
             }
