@@ -38,8 +38,21 @@ struct DashboardView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Status") {
+                    Button {
                         statusSheetPresented = true
+                    } label: {
+                        HStack(spacing: 8) {
+                            switch serverStatusViewModel.state {
+                            case .loading:
+                                ProgressView()
+                            case .success(let data):
+                                statusSymbol(data)
+                            case .failure:
+                                Image(systemName: "exclamationmark.circle")
+                                    .foregroundStyle(Color.red)
+                            }
+                            Text("Status")
+                        }
                     }
                 }
             }
@@ -48,7 +61,9 @@ struct DashboardView: View {
             }
         }
         .sheet(isPresented: $statusSheetPresented) {
-            ServiceStatusView()
+            ServiceStatusView {
+                statusSheetPresented = false
+            }
         }
     }
     
@@ -196,6 +211,25 @@ struct DashboardView: View {
                     }
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    func statusSymbol(_ status: APIStatusResponse) -> some View {
+        if status.csLapi.lapiConnected == false {
+            Image(systemName: "exclamationmark.circle")
+                .foregroundStyle(Color.red)
+        }
+        if status.csBouncer.available == false {
+            Image(systemName: "exclamationmark.triangle")
+                .foregroundStyle(Color.yellow)
+        }
+        if !status.processes.filter({ $0.successful == false }).isEmpty {
+            Image(systemName: "exclamationmark.triangle")
+                .foregroundStyle(Color.yellow)
+        }
+        if !status.processes.filter({ $0.successful == nil }).isEmpty {
+            ProgressView()
         }
     }
 }

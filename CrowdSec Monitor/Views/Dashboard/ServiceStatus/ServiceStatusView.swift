@@ -1,6 +1,11 @@
 import SwiftUI
 
 struct ServiceStatusView: View {
+    let onClose: () -> Void
+    
+    init(onClose: @escaping () -> Void) {
+        self.onClose = onClose
+    }
     
     @Environment(ServerStatusViewModel.self) private var viewModel
 
@@ -24,6 +29,11 @@ struct ServiceStatusView: View {
             }
             .navigationTitle("Service status")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    CloseButton(onClose: onClose)
+                }
+            }
         }
     }
 }
@@ -69,33 +79,30 @@ fileprivate struct Content: View {
             }
             if !filteredFailed.isEmpty {
                 Section("Failed tasks") {
-                    ForEach(filteredFailed, id: \.self) { item in
-                        let index = status.processes.firstIndex(of: item)!
-                        if item.blocklistImport != nil || item.blocklistEnable != nil {
-                            ProcessBlocklistStatus(process: status.processes[index])
-                        }
-                    }
+                    Content(filteredFailed)
                 }
             }
             if !filteredRunning.isEmpty {
                 Section("Running tasks") {
-                    ForEach(filteredRunning, id: \.self) { item in
-                        let index = status.processes.firstIndex(of: item)!
-                        if item.blocklistImport != nil || item.blocklistEnable != nil {
-                            ProcessBlocklistStatus(process: status.processes[index])
-                        }
-                    }
+                    Content(filteredRunning)
                 }
             }
             if !filteredSuccessful.isEmpty {
                 Section("Successful tasks") {
-                    ForEach(filteredSuccessful, id: \.self) { item in
-                        let index = status.processes.firstIndex(of: item)!
-                        if item.blocklistImport != nil || item.blocklistEnable != nil {
-                            ProcessBlocklistStatus(process: status.processes[index])
-                        }
-                    }
+                    Content(filteredSuccessful)
                 }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func Content(_ items: [APIStatusResponse_Process]) -> some View {
+        ForEach(items, id: \.self) { item in
+            if item.blocklistImport != nil || item.blocklistEnable != nil {
+                ProcessBlocklistImportEnableStatus(process: item)
+            }
+            if item.blocklistDelete != nil || item.blocklistDisable != nil {
+                ProcessBlocklistDeleteDisableStatus(process: item)
             }
         }
     }

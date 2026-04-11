@@ -59,6 +59,22 @@
         }
       }
     },
+    "%lld IP addresses processed of a total of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld IP addresses processed of a total of %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld direcciones IP procesadas de un total de %2$lld"
+          }
+        }
+      }
+    },
     "%lld IPs addresses" : {
       "localizations" : {
         "en" : {
@@ -548,6 +564,12 @@
           }
         }
       }
+    },
+    "Blocklist delete" : {
+
+    },
+    "Blocklist disable" : {
+
     },
     "Blocklist enable" : {
 
@@ -1280,7 +1302,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminado a las %@"
+            "value" : "Terminado: %@"
           }
         }
       }
@@ -2051,6 +2073,32 @@
         }
       }
     },
+    "Processed %lld of %lld IPs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Processed %1$lld of %2$lld IPs"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesadas %1$lld de %2$lld IPs"
+          }
+        }
+      }
+    },
+    "Processed all %lld IP addresses" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesadas las %lld direcciones IP"
+          }
+        }
+      }
+    },
     "Purchase completed successfully" : {
       "localizations" : {
         "es" : {
@@ -2316,7 +2364,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iniciado at %@"
+            "value" : "Iniciado: %@"
           }
         }
       }
