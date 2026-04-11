@@ -5,6 +5,7 @@ struct ContentView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     
     @AppStorage(StorageKeys.theme, store: UserDefaults.shared) private var theme: Enums.Theme = .system
+    @Environment(\.scenePhase) private var scenePhase
     
     func getColorScheme(theme: Enums.Theme) -> ColorScheme? {
         switch theme {
@@ -59,7 +60,7 @@ struct ContentView: View {
                             } label: {
                                 Label("Settings", systemImage: "gear")
                             }
-                            .badge(ServerStatusViewModel.shared.status.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
+                            .badge(ServerStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
                         }
                     }
                     else {
@@ -99,7 +100,7 @@ struct ContentView: View {
                                     Label("Settings", systemImage: "gear")
                                 }
                                 .tag(Enums.TabViewTabs.settings)
-                                .badge(ServerStatusViewModel.shared.status.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
+                                .badge(ServerStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
                         }
                     }
                 }
@@ -143,6 +144,17 @@ struct ContentView: View {
                 .fontDesign(.rounded)
                 .preferredColorScheme(getColorScheme(theme: theme))
         })
+        .onChange(of: scenePhase) { _, newPhase in
+            guard authViewModel.hasServerConfigured else { return }
+            switch newPhase {
+            case .background:
+                ServerStatusViewModel.shared.closeWebSocket()
+            case .active:
+                ServerStatusViewModel.shared.openWebSocket()
+            default:
+                break
+            }
+        }
         .onAppear {
             requestAppReview()
             showOnboardingIfNeeded()

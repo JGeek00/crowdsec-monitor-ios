@@ -43,6 +43,22 @@
         }
       }
     },
+    "%lld IP addresses imported of a total of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld IP addresses imported of a total of %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld direcciones IP importadas de un total de  %lld"
+          }
+        }
+      }
+    },
     "%lld IPs addresses" : {
       "localizations" : {
         "en" : {
@@ -343,6 +359,16 @@
         }
       }
     },
+    "An error occured when fetching the service status" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error al obtener la información del estado del servicio"
+          }
+        }
+      }
+    },
     "An error occured when trying to delete the alert. Please try again." : {
       "localizations" : {
         "es" : {
@@ -523,6 +549,12 @@
         }
       }
     },
+    "Blocklist enable" : {
+
+    },
+    "Blocklist import" : {
+
+    },
     "Blocklist refresh failed" : {
       "localizations" : {
         "es" : {
@@ -559,6 +591,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Listas: %@"
+          }
+        }
+      }
+    },
+    "Bouncer available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bouncer disponible"
           }
         }
       }
@@ -829,26 +871,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Creado: %@"
-          }
-        }
-      }
-    },
-    "CrowdSec LAPI is offline" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAPI de CrowdSec está sin conexión"
-          }
-        }
-      }
-    },
-    "CrowdSec LAPI is online" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAPI de CrowdSec está en línea"
           }
         }
       }
@@ -1213,6 +1235,26 @@
         }
       }
     },
+    "Failed tasks" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tareas fallidas"
+          }
+        }
+      }
+    },
+    "Fetch" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtener"
+          }
+        }
+      }
+    },
     "Fill all required fields" : {
       "localizations" : {
         "es" : {
@@ -1229,6 +1271,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtros"
+          }
+        }
+      }
+    },
+    "Finished at %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminado a las %@"
           }
         }
       }
@@ -1319,6 +1371,32 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Icono"
+          }
+        }
+      }
+    },
+    "Import" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar"
+          }
+        }
+      }
+    },
+    "Imported %lld of %lld IPs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Imported %1$lld of %2$lld IPs"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importadas %1$lld de %2$lld IPs"
           }
         }
       }
@@ -1529,6 +1607,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El valor de IP/Dominio no es válido"
+          }
+        }
+      }
+    },
+    "LAPI available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAPI disponible"
           }
         }
       }
@@ -1893,6 +1981,16 @@
         }
       }
     },
+    "Parse" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parsear"
+          }
+        }
+      }
+    },
     "Password" : {
       "localizations" : {
         "es" : {
@@ -2009,6 +2107,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Resetear"
+          }
+        }
+      }
+    },
+    "Running tasks" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tareas en curso"
           }
         }
       }
@@ -2143,6 +2251,16 @@
         }
       }
     },
+    "Service status" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado del servicio"
+          }
+        }
+      }
+    },
     "Set as default server" : {
       "localizations" : {
         "es" : {
@@ -2193,6 +2311,36 @@
         }
       }
     },
+    "Started at %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciado at %@"
+          }
+        }
+      }
+    },
+    "Status" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado"
+          }
+        }
+      }
+    },
+    "Successful tasks" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tareas finalizadas satisfactoriamente"
+          }
+        }
+      }
+    },
     "System defined" : {
       "localizations" : {
         "es" : {
@@ -2219,26 +2367,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El backend intentará resolver el dominio contra el servidor DNS. Si el dominio se resuelve correctamente, el backend comprobará si las direcciones IP se encuentran en alguna lista de bloqueo. El resultado mostrará las direcciones IP resueltas y si se encuentran en alguna lista de bloqueo instalada."
-          }
-        }
-      }
-    },
-    "The CrowdSec LAPI is offline or the API is having trouble connecting to it. Some data may not be up to date or available." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAPI de CrowdSec está fuera de conexión o la API está teniendo problemas para conectarse a ella. Alguna información puede no estar actualizada o no estar disponible."
-          }
-        }
-      }
-    },
-    "The CrowdSec LAPI is online and the API is pulling data from it correctly." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "LAPI de CrowdSec está en línea y la API está obteniendo datos correctamente."
           }
         }
       }

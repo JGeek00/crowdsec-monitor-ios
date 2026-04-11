@@ -127,7 +127,7 @@ class ConnectionFormViewModel {
                 bearerToken: bearerTokenValue
             )
             
-            let healthResponse: HttpResponse<ApiStatusResponse> = try await testClient.get(endpoint: "/api/v1/status")
+            let healthResponse: HttpResponse<APIStatusResponse> = try await testClient.get(endpoint: "/api/v1/status")
             
             guard healthResponse.successful == true else {
                 connectionErrorAlert = true

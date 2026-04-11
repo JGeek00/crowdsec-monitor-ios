@@ -6,8 +6,7 @@ struct DashboardView: View {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @State private var lapiOnlineAlertPresented: Bool = false
-    @State private var lapiOfflineAlertPresented: Bool = false
+    @State private var statusSheetPresented = false
     
     var body: some View {
         NavigationStack {
@@ -39,36 +38,8 @@ struct DashboardView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    switch serverStatusViewModel.status {
-                    case .loading:
-                        ProgressView()
-                    case .success(let data):
-                        if data.csLapi.lapiConnected == true {
-                            Button {
-                                lapiOnlineAlertPresented = true
-                            } label: {
-                                Label("CrowdSec LAPI is online", systemImage: "checkmark.circle")
-                            }
-                            .buttonStyle(.plain)
-                            .foregroundStyle(Color.green)
-                        }
-                        else {
-                            Button {
-                                lapiOfflineAlertPresented = true
-                            } label: {
-                                Label("CrowdSec LAPI is online", systemImage: "exclamationmark.circle")
-                            }
-                            .buttonStyle(.plain)
-                            .foregroundStyle(Color.red)
-                        }
-                    case .failure:
-                        Button {
-                            lapiOfflineAlertPresented = true
-                        } label: {
-                            Label("CrowdSec LAPI is online", systemImage: "exlamationmark.circle")
-                        }
-                        .buttonStyle(.plain)
-                        .foregroundStyle(Color.red)
+                    Button("Status") {
+                        statusSheetPresented = true
                     }
                 }
             }
@@ -76,19 +47,8 @@ struct DashboardView: View {
                 await viewModel.fetchDashboardData()
             }
         }
-        .alert("CrowdSec LAPI is online", isPresented: $lapiOnlineAlertPresented) {
-            Button("OK", role: .cancel) {
-                lapiOnlineAlertPresented = false
-            }
-        } message: {
-            Text("The CrowdSec LAPI is online and the API is pulling data from it correctly.")
-        }
-        .alert("CrowdSec LAPI is offline", isPresented: $lapiOfflineAlertPresented) {
-            Button("OK", role: .cancel) {
-                lapiOfflineAlertPresented = false
-            }
-        } message: {
-            Text("The CrowdSec LAPI is offline or the API is having trouble connecting to it. Some data may not be up to date or available.")
+        .sheet(isPresented: $statusSheetPresented) {
+            ServiceStatusView()
         }
     }
     

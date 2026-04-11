@@ -37,7 +37,7 @@ struct SettingsView: View {
                     NavigationLink {
                         ServerSettingsView()
                     } label: {
-                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings", badge: serverStatusViewModel.status.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : nil)
+                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings", badge: serverStatusViewModel.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : nil)
                     }
                 }
                 

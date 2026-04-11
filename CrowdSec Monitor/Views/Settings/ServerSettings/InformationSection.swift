@@ -15,7 +15,7 @@ struct ServerInformationSection: View {
                     Text("LAPI status")
                     Spacer()
                     Group {
-                        switch serverStatusViewModel.status {
+                        switch serverStatusViewModel.state {
                         case .loading:
                             ProgressView()
                         case .success(let data):
@@ -34,7 +34,7 @@ struct ServerInformationSection: View {
                     Text("API version")
                     Spacer()
                     Group {
-                        switch serverStatusViewModel.status {
+                        switch serverStatusViewModel.state {
                         case .loading:
                             ProgressView()
                         case .success(let data):
@@ -44,7 +44,7 @@ struct ServerInformationSection: View {
                         }
                     }
                 }
-                if let newVersion = serverStatusViewModel.status.data?.csMonitorAPI.newVersionAvailable {
+                if let newVersion = serverStatusViewModel.state.data?.csMonitorAPI.newVersionAvailable {
                     Button {
                         showApiPackageBrowser = true
                     } label: {
