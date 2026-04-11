@@ -1061,6 +1061,16 @@
         }
       }
     },
+    "Deleting blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminando lista de bloqueo"
+          }
+        }
+      }
+    },
     "Disable blocklist" : {
       "localizations" : {
         "es" : {
@@ -1097,6 +1107,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desactivar animación del temporizador"
+          }
+        }
+      }
+    },
+    "Disabling blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desactivando lista de bloqueo"
           }
         }
       }
@@ -1187,6 +1207,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activada"
+          }
+        }
+      }
+    },
+    "Enabling blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activando lista de bloqueo"
           }
         }
       }
@@ -1463,6 +1493,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importadas %1$lld de %2$lld IPs"
+          }
+        }
+      }
+    },
+    "Importing blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importando lista de bloqueo"
           }
         }
       }

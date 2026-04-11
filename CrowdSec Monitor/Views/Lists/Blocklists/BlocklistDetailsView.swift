@@ -11,6 +11,7 @@ struct BlocklistDetailsView: View {
     }
     
     @Environment(BlocklistsListViewModel.self) private var blocklistsViewModel
+    @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
     
     @State private var browserOpen = false
     
@@ -36,6 +37,9 @@ struct BlocklistDetailsView: View {
     
     @ViewBuilder
     func content(_ data: BlocklistDataResponse_Data) -> some View {
+        let blocklistProcess = getBlocklistProcess(data: serverStatusViewModel.state.data, blocklistId: blocklistId)
+        let blocklistBeingProcessed = blocklistProcess?.successful == nil
+        
         let newMin = Config.ipsAmountBatch*viewModel.ipsRound
         let endIndex = newMin > data.blocklistIPS.count ? data.blocklistIPS.count : newMin
         let slicedIps = Array(data.blocklistIPS[0..<endIndex])
@@ -98,7 +102,7 @@ struct BlocklistDetailsView: View {
                             .foregroundStyle(Color.gray)
                     }
                 }
-                if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601() {
+                if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistBeingProcessed == false {
                     let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
                     let isBigDifference = diff >= 5 * 60
                     HStack {
@@ -114,6 +118,13 @@ struct BlocklistDetailsView: View {
                             Text(lastRefreshAttempt.formatted(date: .abbreviated, time: .shortened))
                                 .foregroundStyle(Color.red)
                         }
+                    }
+                }
+                if let blocklistProcess = blocklistProcess, blocklistBeingProcessed == true {
+                    HStack {
+                        Text(getProcessType(blocklistProcess))
+                        Spacer()
+                        ProgressView()
                     }
                 }
             }
