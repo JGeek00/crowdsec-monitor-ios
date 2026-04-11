@@ -81,7 +81,7 @@ struct StatusProcessStepper: View {
     @ViewBuilder
     func StepDivider() -> some View {
         RoundedRectangle(cornerRadius: 20)
-            .frame(maxWidth: .infinity, minHeight: 4, maxHeight: 4)
+            .frame(maxWidth: .infinity, minHeight: 2, maxHeight: 2)
             .foregroundStyle(Color.gray)
             .padding(.horizontal, 4)
     }
