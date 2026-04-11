@@ -21,11 +21,11 @@ struct ProcessBlocklistDeleteDisableStatus: View {
         if let status = status {
             VStack(alignment: .leading, spacing: 24) {
                 if process.blocklistDelete != nil {
-                    Text("Blocklist delete")
+                    Text("Delete blocklist \(status.blocklistName)")
                         .fontWeight(.semibold)
                 }
                 else if process.blocklistDisable != nil {
-                    Text("Blocklist disable")
+                    Text("Disable blocklist \(status.blocklistName)")
                         .fontWeight(.semibold)
                 }
                 if process.successful == nil {
@@ -66,18 +66,18 @@ struct ProcessBlocklistDeleteDisableStatus: View {
 
 #Preview("Processing") {
     List {
-        ProcessBlocklistDeleteDisableStatus(process: APIStatusResponse_Process(id: "1", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: nil, error: nil, blocklistImport: nil, blocklistEnable: nil, blocklistDisable: APIStatusResponse_ProcessBlocklistIps(blocklistIps: 1000, ipsToDelete: 1500, processedIps: 800), blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistDeleteDisableStatus(process: APIStatusResponse_Process(id: "1", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: nil, error: nil, blocklistImport: nil, blocklistEnable: nil, blocklistDisable: APIStatusResponse_ProcessBlocklistIps(blocklistId: 1, blocklistName: "Blocklist 1", blocklistIps: 1000, ipsToDelete: 1500, processedIps: 800), blocklistDelete: nil, blocklistRefresh: nil))
     }
 }
 
 #Preview("Error") {
     List {
-        ProcessBlocklistDeleteDisableStatus(process: APIStatusResponse_Process(id: "1", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: false, error: nil, blocklistImport: nil, blocklistEnable: nil, blocklistDisable: APIStatusResponse_ProcessBlocklistIps(blocklistIps: 1000, ipsToDelete: 1500, processedIps: 800), blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistDeleteDisableStatus(process: APIStatusResponse_Process(id: "1", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: false, error: nil, blocklistImport: nil, blocklistEnable: nil, blocklistDisable: APIStatusResponse_ProcessBlocklistIps(blocklistId: 1, blocklistName: "Blocklist 1", blocklistIps: 1000, ipsToDelete: 1500, processedIps: 800), blocklistDelete: nil, blocklistRefresh: nil))
     }
 }
 
 #Preview("Success") {
     List {
-        ProcessBlocklistDeleteDisableStatus(process: APIStatusResponse_Process(id: "1", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: true, error: nil, blocklistImport: nil, blocklistEnable: nil, blocklistDisable: APIStatusResponse_ProcessBlocklistIps(blocklistIps: 1000, ipsToDelete: 1500, processedIps: 1500), blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistDeleteDisableStatus(process: APIStatusResponse_Process(id: "1", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: true, error: nil, blocklistImport: nil, blocklistEnable: nil, blocklistDisable: APIStatusResponse_ProcessBlocklistIps(blocklistId: 1, blocklistName: "Blocklist 1", blocklistIps: 1000, ipsToDelete: 1500, processedIps: 1500), blocklistDelete: nil, blocklistRefresh: nil))
     }
 }

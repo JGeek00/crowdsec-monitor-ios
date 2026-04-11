@@ -49,7 +49,7 @@ fileprivate struct Content: View {
         let filteredFailed = status.processes.filter({ $0.successful == false })
         let filteredRunning = status.processes.filter({ $0.successful == nil })
         let filteredSuccessful = status.processes.filter({ $0.successful == true })
-        
+
         List {
             Section {
                 HStack {
@@ -103,6 +103,9 @@ fileprivate struct Content: View {
             }
             if item.blocklistDelete != nil || item.blocklistDisable != nil {
                 ProcessBlocklistDeleteDisableStatus(process: item)
+            }
+            if item.blocklistRefresh != nil {
+                ProcessBlocklistRefreshStatus(process: item)
             }
         }
     }

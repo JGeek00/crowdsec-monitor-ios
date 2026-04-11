@@ -43,6 +43,22 @@
         }
       }
     },
+    "%lld blocklists processed of a total of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld blocklists processed of a total of %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld listas de bloqueo procesadas de un total de %2$lld"
+          }
+        }
+      }
+    },
     "%lld IP addresses imported of a total of %lld" : {
       "localizations" : {
         "en" : {
@@ -565,18 +581,6 @@
         }
       }
     },
-    "Blocklist delete" : {
-
-    },
-    "Blocklist disable" : {
-
-    },
-    "Blocklist enable" : {
-
-    },
-    "Blocklist import" : {
-
-    },
     "Blocklist refresh failed" : {
       "localizations" : {
         "es" : {
@@ -1037,6 +1041,16 @@
         }
       }
     },
+    "Delete blocklist %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar lista de bloqueo %@"
+          }
+        }
+      }
+    },
     "Delete server" : {
       "localizations" : {
         "es" : {
@@ -1053,6 +1067,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desactivar lista"
+          }
+        }
+      }
+    },
+    "Disable blocklist %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desactivar lista de bloqueo %@"
           }
         }
       }
@@ -1143,6 +1167,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activar lista"
+          }
+        }
+      }
+    },
+    "Enable blocklist %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar lista de bloqueo %@"
           }
         }
       }
@@ -1403,6 +1437,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importar"
+          }
+        }
+      }
+    },
+    "Import blocklist %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar lista de bloqueo %@"
           }
         }
       }
@@ -2073,6 +2117,22 @@
         }
       }
     },
+    "Processed %lld of %lld blocklists" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Processed %1$lld of %2$lld blocklists"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesadas %1$lld de %2$lld listas de bloqueo"
+          }
+        }
+      }
+    },
     "Processed %lld of %lld IPs" : {
       "localizations" : {
         "en" : {
@@ -2085,6 +2145,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Procesadas %1$lld de %2$lld IPs"
+          }
+        }
+      }
+    },
+    "Processed all %lld blocklists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesadas las %lld listas de bloqueo"
           }
         }
       }
@@ -2135,6 +2205,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Motivo requerido"
+          }
+        }
+      }
+    },
+    "Refresh blocklists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescar listas de bloqueo"
           }
         }
       }
