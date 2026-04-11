@@ -12,7 +12,7 @@ struct ServerInformationSection: View {
         if authViewModel.hasServerConfigured == true {
             Section("Information") {
                 HStack {
-                    Text("LAPI status")
+                    Text("LAPI available")
                     Spacer()
                     Group {
                         switch serverStatusViewModel.state {
@@ -20,6 +20,25 @@ struct ServerInformationSection: View {
                             ProgressView()
                         case .success(let data):
                             if data.csLapi.lapiConnected == true {
+                                online()
+                            }
+                            else {
+                                offline()
+                            }
+                        case .failure:
+                           offline()
+                        }
+                    }
+                }
+                HStack {
+                    Text("Bouncer available")
+                    Spacer()
+                    Group {
+                        switch serverStatusViewModel.state {
+                        case .loading:
+                            ProgressView()
+                        case .success(let data):
+                            if data.csBouncer.available == true {
                                 online()
                             }
                             else {

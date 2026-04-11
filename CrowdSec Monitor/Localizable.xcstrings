@@ -1687,16 +1687,6 @@
         }
       }
     },
-    "LAPI status" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Estado de LAPI"
-          }
-        }
-      }
-    },
     "Last refresh" : {
       "localizations" : {
         "es" : {
