@@ -1,14 +1,15 @@
 import Foundation
 
-func getBlocklistProcess(data: APIStatusResponse?, blocklistId: String) -> APIStatusResponse_Process? {
+func getBlocklistActiveProcess(data: APIStatusResponse?, blocklistId: String) -> APIStatusResponse_Process? {
     guard let data = data else { return nil }
-    return data.processes.first {
+    let process = data.processes.first {
         if let b = $0.blocklistEnable  { return String(b.blocklistId) == blocklistId }
         if let b = $0.blocklistImport  { return String(b.blocklistId) == blocklistId }
         if let b = $0.blocklistDisable { return String(b.blocklistId) == blocklistId }
         if let b = $0.blocklistDelete  { return String(b.blocklistId) == blocklistId }
         return false
     }
+    return process?.successful == nil ? process : nil
 }
 
 func getProcessType(_ process: APIStatusResponse_Process) -> String {

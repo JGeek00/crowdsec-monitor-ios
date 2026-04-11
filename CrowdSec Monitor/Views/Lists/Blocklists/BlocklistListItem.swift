@@ -13,8 +13,7 @@ struct BlocklistListItem: View {
     @State private var showDeleteConfirmation = false
     
     var body: some View {
-        let blocklistProcess = getBlocklistProcess(data: serverStatusViewModel.state.data, blocklistId: blocklist.id)
-        let blocklistBeingProcessed = blocklistProcess?.successful == nil
+        let blocklistProcess = getBlocklistActiveProcess(data: serverStatusViewModel.state.data, blocklistId: blocklist.id)
         
         HStack {
             VStack(alignment: .leading, spacing: 6) {
@@ -33,7 +32,7 @@ struct BlocklistListItem: View {
                     }
                 }
                 .font(.system(size: 14))
-                if let lastRefreshAttempt = blocklist.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = blocklist.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistBeingProcessed == false {
+                if let lastRefreshAttempt = blocklist.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = blocklist.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistProcess != nil {
                     let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
                     let isBigDifference = diff >= 60 * 60   // 1 hour
                     if isBigDifference == true {
@@ -45,7 +44,7 @@ struct BlocklistListItem: View {
                         .font(.system(size: 14))
                     }
                 }
-                if blocklistBeingProcessed == true, let blocklistProcess = blocklistProcess {
+                if let blocklistProcess = blocklistProcess {
                     HStack(spacing: 6) {
                         ProgressView()
                             .controlSize(.mini)
@@ -82,14 +81,14 @@ struct BlocklistListItem: View {
                                 await viewModel.enableDisableBlocklist(blocklistId: blocklist.id, newStatus: !enabled)
                             }
                         }
-                        .disabled(blocklistBeingProcessed)
+                        .disabled(blocklistProcess != nil)
                     }
                 }
                 Section {
                     Button(String(localized: "Delete blocklist"), systemImage: "trash", role: .destructive) {
                         showDeleteConfirmation = true
                     }
-                    .disabled(blocklistBeingProcessed)
+                    .disabled(blocklistProcess != nil)
                 }
             }
         }

@@ -37,8 +37,7 @@ struct BlocklistDetailsView: View {
     
     @ViewBuilder
     func content(_ data: BlocklistDataResponse_Data) -> some View {
-        let blocklistProcess = getBlocklistProcess(data: serverStatusViewModel.state.data, blocklistId: blocklistId)
-        let blocklistBeingProcessed = blocklistProcess?.successful == nil
+        let blocklistProcess = getBlocklistActiveProcess(data: serverStatusViewModel.state.data, blocklistId: blocklistId)
         
         let newMin = Config.ipsAmountBatch*viewModel.ipsRound
         let endIndex = newMin > data.blocklistIPS.count ? data.blocklistIPS.count : newMin
@@ -102,7 +101,7 @@ struct BlocklistDetailsView: View {
                             .foregroundStyle(Color.gray)
                     }
                 }
-                if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistBeingProcessed == false {
+                if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistProcess != nil {
                     let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
                     let isBigDifference = diff >= 5 * 60
                     HStack {
@@ -120,9 +119,9 @@ struct BlocklistDetailsView: View {
                         }
                     }
                 }
-                if let blocklistProcess = blocklistProcess, blocklistBeingProcessed == true {
+                if let blocklistProcess = blocklistProcess {
                     HStack {
-                        Text(getProcessType(blocklistProcess))
+                        Text(verbatim: "\(getProcessType(blocklistProcess))...")
                         Spacer()
                         ProgressView()
                     }
