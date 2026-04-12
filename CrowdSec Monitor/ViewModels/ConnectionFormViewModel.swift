@@ -127,9 +127,9 @@ class ConnectionFormViewModel {
                 bearerToken: bearerTokenValue
             )
             
-            let healthResponse: HttpResponse<EmptyResponse> = try await testClient.get(endpoint: "/api/v1/check-credentials")
+            let connectionTestResponse: HttpResponse<CheckCredentialsResponse> = try await testClient.get(endpoint: "/api/v1/check-credentials")
             
-            guard healthResponse.successful == true else {
+            guard connectionTestResponse.successful == true else {
                 connectionErrorAlert = true
                 connectionErrorMessage = String(localized: "Connection was not successful")
                 connecting = false
@@ -155,15 +155,11 @@ class ConnectionFormViewModel {
         } catch let error as HttpClientError {
             connectionErrorAlert = true
             switch error {
-            case .unauthorized:
+            case .unauthorized, .invalidResponse, .decodingError:
                 connectionErrorMessage = String(localized: "Invalid credentials. Please verify your username, password, or token.")
             case .httpError(let statusCode):
                 connectionErrorMessage = String(localized: "Server error: code \(statusCode)")
-            case .invalidResponse:
-                connectionErrorMessage = String(localized: "Invalid server response")
-            case .decodingError:
-                connectionErrorMessage = String(localized: "Error interpreting server response")
-            case .networkError(let networkError):
+             case .networkError(let networkError):
                 connectionErrorMessage = String(localized: "Network error: \(networkError.localizedDescription)")
             case .httpErrorWithMessage(statusCode: let statusCode, message: _):
                 connectionErrorMessage = String(localized: "Server error: code \(statusCode)")

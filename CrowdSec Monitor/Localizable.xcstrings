@@ -1251,16 +1251,6 @@
         }
       }
     },
-    "Error interpreting server response" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error al interpretar la respuesta del servidor"
-          }
-        }
-      }
-    },
     "Event details" : {
       "localizations" : {
         "es" : {
@@ -1563,16 +1553,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dirección IP no válida"
-          }
-        }
-      }
-    },
-    "Invalid server response" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Respuesta del servidor inválida"
           }
         }
       }

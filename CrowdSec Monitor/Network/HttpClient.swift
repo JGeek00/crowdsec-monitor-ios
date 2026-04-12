@@ -115,6 +115,12 @@ class HttpClient: NSObject {
         return try await request(method: "GET", endpoint: endpoint, queryParams: queryParams)
     }
     
+    func get(endpoint: String, queryParams: [URLQueryItem]? = nil) async throws -> (successful: Bool, statusCode: Int) {
+        var request = try buildRequest(method: "GET", endpoint: endpoint, body: nil as String?, queryParams: queryParams)
+        let (_, statusCode) = try await performRequest(&request)
+        return (successful: (200...299).contains(statusCode), statusCode: statusCode)
+    }
+    
     func post<T: Encodable, R: Decodable>(endpoint: String, body: T) async throws -> HttpResponse<R> {
         return try await request(method: "POST", endpoint: endpoint, body: body, queryParams: nil)
     }
