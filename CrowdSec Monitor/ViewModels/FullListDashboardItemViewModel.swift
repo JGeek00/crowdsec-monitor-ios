@@ -63,7 +63,7 @@ class FullListDashboardItemViewModel {
     }
     
     func fetchData() async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             switch self.dashboardItem {
             case .country:

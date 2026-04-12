@@ -5,8 +5,8 @@ struct ServerSettingsView: View {
     
     init() {}
     
-    @Environment(AuthViewModel.self) private var authViewModel
-    @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
+    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
+    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
     
     @State private var showCreateServerSheet = false
     @State private var newDefaultServer: String? = nil
@@ -14,7 +14,7 @@ struct ServerSettingsView: View {
     var body: some View {
         List {
             Section("Servers") {
-                ForEach(authViewModel.servers, id: \.id) { server in
+                ForEach(serversManagerViewModel.servers, id: \.id) { server in
                     ServerListItem(server: server) { name in
                         newDefaultServer = name
                     }

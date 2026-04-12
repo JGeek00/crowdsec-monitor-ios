@@ -127,7 +127,7 @@ class ConnectionFormViewModel {
                 bearerToken: bearerTokenValue
             )
             
-            let healthResponse: HttpResponse<APIStatusResponse> = try await testClient.get(endpoint: "/api/v1/status")
+            let healthResponse: HttpResponse<EmptyResponse> = try await testClient.get(endpoint: "/api/v1/check-credentials")
             
             guard healthResponse.successful == true else {
                 connectionErrorAlert = true
@@ -136,7 +136,7 @@ class ConnectionFormViewModel {
                 return false
             }
             
-            try await AuthViewModel.shared.createServer(
+            try await ServersManagerViewModel.shared.createServer(
                 name: name,
                 connectionMethod: connectionMethod,
                 ipDomain: ipDomain,

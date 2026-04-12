@@ -5,7 +5,7 @@ fileprivate let defaultRequest = AlertsRequest(filters: AlertsRequestFilters(cou
 
 @MainActor
 @Observable
-class AlertsListViewModel {
+class AlertsListViewModel: Resettable {
     public static let shared = AlertsListViewModel()
         
     var requestParams: AlertsRequest
@@ -14,6 +14,7 @@ class AlertsListViewModel {
     init() {
         self.requestParams = defaultRequest
         self.filters = defaultRequest.filters
+        ActiveServerViewModel.shared.register(self)
     }
     
     var state: Enums.LoadingState<AlertsListResponse> = .loading
@@ -29,7 +30,7 @@ class AlertsListViewModel {
     }
     
     private func fetchAlerts(showLoading: Bool = false, params: AlertsRequest? = nil) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
 
         if showLoading == true {
             withAnimation {
@@ -43,6 +44,7 @@ class AlertsListViewModel {
                 state = .success(result.body)
             }
         } catch {
+            guard !(error is CancellationError) else { return }
             withAnimation {
                 state = .failure(error)
             }
@@ -67,13 +69,13 @@ class AlertsListViewModel {
         req.pagination = defaultRequest.pagination
         req.filters = filters
         requestParams = req
-        Task {
-            await fetchAlerts(showLoading: true, params: req)
+        ActiveServerViewModel.shared.task {
+            await self.fetchAlerts(showLoading: true, params: req)
         }
     }
 
     func fetchMore() async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         if let data = state.data {
             if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
                 return
@@ -93,6 +95,7 @@ class AlertsListViewModel {
                 let newResponse = AlertsListResponse(filtering: result.body.filtering, items: newItems, pagination: result.body.pagination)
                 state = .success(newResponse)
             } catch {
+            guard !(error is CancellationError) else { return }
                 state = .failure(error)
             }
         }
@@ -105,8 +108,8 @@ class AlertsListViewModel {
     func resetFilters() {
         self.filters = defaultRequest.filters
         self.requestParams.filters = defaultRequest.filters
-        Task {
-            await fetchAlerts(showLoading: true, params: defaultRequest)
+        ActiveServerViewModel.shared.task {
+            await self.fetchAlerts(showLoading: true, params: defaultRequest)
         }
     }
     
@@ -115,7 +118,7 @@ class AlertsListViewModel {
     }
     
     func deleteAlert(alertId: Int) async -> Bool {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return false }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return false }
         do {
             deletingAlertProcess = true
             _ = try await apiClient.alerts.deleteAlert(alertId: alertId)

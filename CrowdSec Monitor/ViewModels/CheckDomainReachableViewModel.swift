@@ -21,7 +21,7 @@ class CheckDomainReachableViewModel {
         }
         
         Task {
-            guard let apiClient = AuthViewModel.shared.apiClient else { return }
+            guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
             withAnimation {
                 self.loading = true
             }

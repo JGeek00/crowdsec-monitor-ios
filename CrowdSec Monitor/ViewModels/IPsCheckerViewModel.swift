@@ -46,7 +46,7 @@ class IPsCheckerViewModel {
     
     func validateIps() {
         Task {
-            guard let apiClient = AuthViewModel.shared.apiClient else { return }
+            guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
             switch selectedListType {
             case .allowlist:
                 do {

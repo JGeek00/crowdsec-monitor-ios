@@ -11,7 +11,7 @@ struct BlocklistDetailsView: View {
     }
     
     @Environment(BlocklistsListViewModel.self) private var blocklistsViewModel
-    @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
+    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
     
     @State private var browserOpen = false
     
@@ -37,7 +37,7 @@ struct BlocklistDetailsView: View {
     
     @ViewBuilder
     func content(_ data: BlocklistDataResponse_Data) -> some View {
-        let blocklistProcess = getBlocklistActiveProcess(data: serverStatusViewModel.state.data, blocklistId: blocklistId)
+        let blocklistProcess = getBlocklistActiveProcess(data: serviceStatusViewModel.state.data, blocklistId: blocklistId)
         
         let newMin = Config.ipsAmountBatch*viewModel.ipsRound
         let endIndex = newMin > data.blocklistIPS.count ? data.blocklistIPS.count : newMin

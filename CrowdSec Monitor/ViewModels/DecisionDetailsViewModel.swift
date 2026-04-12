@@ -17,7 +17,7 @@ class DecisionDetailsViewModel {
     var processingExpireDecision = false
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {

@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(AuthViewModel.self) private var authViewModel
+    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
+    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     
     @AppStorage(StorageKeys.theme, store: UserDefaults.shared) private var theme: Enums.Theme = .system
@@ -22,7 +23,7 @@ struct ContentView: View {
         @Bindable var bindableOnboarding = onboardingViewModel
         
         Group {
-            if authViewModel.hasServerConfigured == true {
+            if activeServerViewModel.hasServerConfigured == true {
                 Group {
                     if #available(iOS 26.0, *) {
                         TabView {
@@ -60,7 +61,7 @@ struct ContentView: View {
                             } label: {
                                 Label("Settings", systemImage: "gear")
                             }
-                            .badge(ServerStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
+                            .badge(ServiceStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
                         }
                     }
                     else {
@@ -100,11 +101,11 @@ struct ContentView: View {
                                     Label("Settings", systemImage: "gear")
                                 }
                                 .tag(Enums.TabViewTabs.settings)
-                                .badge(ServerStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
+                                .badge(ServiceStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
                         }
                     }
                 }
-                .environment(ServerStatusViewModel.shared)
+                .environment(ServiceStatusViewModel.shared)
             }
             else {
                 if #available(iOS 26.0, *) {
@@ -145,12 +146,12 @@ struct ContentView: View {
                 .preferredColorScheme(getColorScheme(theme: theme))
         })
         .onChange(of: scenePhase) { _, newPhase in
-            guard authViewModel.hasServerConfigured else { return }
+            guard activeServerViewModel.hasServerConfigured else { return }
             switch newPhase {
             case .background:
-                ServerStatusViewModel.shared.closeWebSocket()
+                ServiceStatusViewModel.shared.closeWebSocket()
             case .active:
-                ServerStatusViewModel.shared.openWebSocket()
+                ServiceStatusViewModel.shared.openWebSocket()
             default:
                 break
             }

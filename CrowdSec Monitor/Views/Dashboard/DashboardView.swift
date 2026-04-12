@@ -2,7 +2,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @Environment(DashboardViewModel.self) private var viewModel
-    @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
+    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -42,7 +42,7 @@ struct DashboardView: View {
                         statusSheetPresented = true
                     } label: {
                         HStack(spacing: 8) {
-                            switch serverStatusViewModel.state {
+                            switch serviceStatusViewModel.state {
                             case .loading:
                                 ProgressView()
                             case .success(let data):

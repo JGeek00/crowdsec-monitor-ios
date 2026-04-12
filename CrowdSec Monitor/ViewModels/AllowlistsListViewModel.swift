@@ -2,10 +2,12 @@ import SwiftUI
 
 @MainActor
 @Observable
-class AllowlistsListViewModel {
+class AllowlistsListViewModel: Resettable {
     static let shared = AllowlistsListViewModel()
     
-    init() {}
+    init() {
+        ActiveServerViewModel.shared.register(self)
+    }
     
     var state: Enums.LoadingState<AllowlistsListResponse> = .loading
     
@@ -14,7 +16,7 @@ class AllowlistsListViewModel {
     }
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {
@@ -27,6 +29,7 @@ class AllowlistsListViewModel {
                 state = .success(response.body)
             }
         } catch {
+            guard !(error is CancellationError) else { return }
             withAnimation {
                 state = .failure(error)
             }

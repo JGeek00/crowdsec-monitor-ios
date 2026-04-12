@@ -3,11 +3,15 @@ import SwiftUI
 
 @MainActor
 @Observable
-class DashboardViewModel {
+class DashboardViewModel: Resettable {
     public static let shared = DashboardViewModel()
     
     var state: Enums.LoadingState<StatisticsResponse> = .loading
     
+    private init() {
+        ActiveServerViewModel.shared.register(self)
+    }
+
     private func generateViewData(_ value: [FullItemDashboardItemData]) -> [FullItemDashboardItemDataForView] {
         let totalAmount = value.reduce(0) { $0 + $1.value }
         return value.map { item in
@@ -29,7 +33,7 @@ class DashboardViewModel {
     }
     
     func fetchDashboardData() async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         let amountItems = UserDefaults.shared.object(forKey: StorageKeys.topItemsDashboard) as! Int? ?? Defaults.topItemsDashboard
         do {
             let result = try await apiClient.statistics.fetchStatistics(amount: amountItems)
@@ -37,6 +41,7 @@ class DashboardViewModel {
                 state = .success(result.body)
             }
         } catch {
+            guard !(error is CancellationError) else { return }
             withAnimation {
                 state = .failure(error)
             }

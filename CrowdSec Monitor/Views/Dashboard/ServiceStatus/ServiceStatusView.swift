@@ -7,7 +7,7 @@ struct ServiceStatusView: View {
         self.onClose = onClose
     }
     
-    @Environment(ServerStatusViewModel.self) private var viewModel
+    @Environment(ServiceStatusViewModel.self) private var viewModel
 
     var body: some View {
         NavigationStack {

@@ -7,7 +7,7 @@ struct AddBlocklistFormView: View {
         self.onClose = onClose
     }
     
-    @Environment(AuthViewModel.self) private var authViewModel
+    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     
     @State private var name: String = ""
     @State private var url: String = ""
@@ -28,7 +28,7 @@ struct AddBlocklistFormView: View {
             return
         }
         
-        guard let apiClient = authViewModel.apiClient else { return }
+        guard let apiClient = activeServerViewModel.apiClient else { return }
         
         isSaving = true
         

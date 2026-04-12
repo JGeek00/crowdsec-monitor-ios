@@ -20,7 +20,7 @@ struct EmptyResponse: Decodable {
 
 class HttpClient: NSObject {
     private let baseURL: URL
-    private var session: URLSession
+    private(set) var session: URLSession
     private var authHeader: [String: String]?
     
     init(server: CSServer) {

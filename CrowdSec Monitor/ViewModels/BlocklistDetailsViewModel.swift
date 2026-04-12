@@ -20,7 +20,7 @@ class BlocklistDetailsViewModel {
     var searchText = ""
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             if showLoading {
                 withAnimation {

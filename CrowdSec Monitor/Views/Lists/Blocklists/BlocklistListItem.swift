@@ -8,12 +8,12 @@ struct BlocklistListItem: View {
     }
     
     @Environment(BlocklistsListViewModel.self) private var viewModel
-    @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
+    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
     
     @State private var showDeleteConfirmation = false
     
     var body: some View {
-        let blocklistProcess = getBlocklistActiveProcess(data: serverStatusViewModel.state.data, blocklistId: blocklist.id)
+        let blocklistProcess = getBlocklistActiveProcess(data: serviceStatusViewModel.state.data, blocklistId: blocklist.id)
         
         HStack {
             VStack(alignment: .leading, spacing: 6) {

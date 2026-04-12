@@ -2,13 +2,14 @@ import SwiftUI
 
 @MainActor
 @Observable
-class BlocklistsListViewModel {
+class BlocklistsListViewModel: Resettable {
     static let shared = BlocklistsListViewModel()
     
     var requestParams: BlocklistsRequest
     
     init() {
         self.requestParams = BlocklistsRequest(offset: 0, limit: Config.blocklistsAmountBatch)
+        ActiveServerViewModel.shared.register(self)
     }
 
     var state: Enums.LoadingState<BlocklistsListResponse> = .loading
@@ -32,7 +33,7 @@ class BlocklistsListViewModel {
     }
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {
@@ -45,6 +46,7 @@ class BlocklistsListViewModel {
                 state = .success(response.body)
             }
         } catch {
+            guard !(error is CancellationError) else { return }
             withAnimation {
                 state = .failure(error)
             }
@@ -62,7 +64,7 @@ class BlocklistsListViewModel {
     }
     
     func fetchMore() async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         if let data = state.data {
             if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
                 return
@@ -82,13 +84,14 @@ class BlocklistsListViewModel {
                 let newResponse = BlocklistsListResponse(items: newItems, pagination: result.body.pagination)
                 state = .success(newResponse)
             } catch {
+                guard !(error is CancellationError) else { return }
                 state = .failure(error)
             }
         }
     }
     
     func enableDisableBlocklist(blocklistId: String, newStatus: Bool) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             processingModal = true
             let params = ToggleBlocklistRequestParams(blocklistId: blocklistId)
@@ -108,7 +111,7 @@ class BlocklistsListViewModel {
     }
     
     func deleteBlocklist(blocklistId: String) async {
-        guard let apiClient = AuthViewModel.shared.apiClient else { return }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
         do {
             processingModal = true
             let params = DeleteBlocklistRequestParams(blocklistId: blocklistId)

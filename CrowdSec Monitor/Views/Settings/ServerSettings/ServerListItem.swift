@@ -10,7 +10,8 @@ struct ServerListItem: View {
         self.onSetNewDefaultServer = onSetNewDefaultServer
     }
     
-    @Environment(AuthViewModel.self) private var authViewModel
+    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
+    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     
     @State private var showDeleteConfirmation = false
     @State private var showErrorDeleteServerAlert = false
@@ -18,7 +19,7 @@ struct ServerListItem: View {
     
     var body: some View {
         Button {
-            authViewModel.changeCurrentServer(server: server)
+            serversManagerViewModel.changeCurrentServer(server: server)
         } label: {
             HStack {
                 Image(systemName: "server.rack")
@@ -37,7 +38,7 @@ struct ServerListItem: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }
-                if server == authViewModel.currentServer {
+                if server == activeServerViewModel.currentServer {
                     Spacer()
                     Image(systemName: "checkmark")
                         .foregroundStyle(Color.blue)
@@ -54,7 +55,7 @@ struct ServerListItem: View {
                 }
                 else {
                     Button("Set as default server", systemImage: "star") {
-                        let changed = authViewModel.setDefaultServer(server)
+                        let changed = serversManagerViewModel.setDefaultServer(server)
                         if changed == true {
                             onSetNewDefaultServer(server.name)
                         }
@@ -73,7 +74,7 @@ struct ServerListItem: View {
         .alert("Delete server", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
-                let deleted = authViewModel.deleteServer(server: server)
+                let deleted = serversManagerViewModel.deleteServer(server: server)
                 if deleted == false {
                     showErrorDeleteServerAlert = true
                 }

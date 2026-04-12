@@ -63,7 +63,7 @@ class CreateDecisionFormViewModel {
             return false
         }
         
-        guard let apiClient = AuthViewModel.shared.apiClient else { return false }
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return false }
         
         do {
             creatingDecision = true

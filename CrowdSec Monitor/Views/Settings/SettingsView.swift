@@ -6,7 +6,7 @@ struct SettingsView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
-    @Environment(ServerStatusViewModel.self) private var serverStatusViewModel
+    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
     
     @State private var showBuildNumber = false
     @State private var crowdsecWebOpen = false
@@ -37,7 +37,7 @@ struct SettingsView: View {
                     NavigationLink {
                         ServerSettingsView()
                     } label: {
-                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings", badge: serverStatusViewModel.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : nil)
+                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings", badge: serviceStatusViewModel.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : nil)
                     }
                 }
                 
