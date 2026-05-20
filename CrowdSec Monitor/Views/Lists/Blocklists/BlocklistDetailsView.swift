@@ -102,15 +102,13 @@ struct BlocklistDetailsView: View {
                     }
                 }
                 if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistProcess != nil {
-                    let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
-                    let isBigDifference = diff >= 5 * 60
                     HStack {
-                        Text(isBigDifference ? "Last successful refresh" : "Last refresh")
+                        Text(data.lastRefreshFailed == true ? "Last successful refresh" : "Last refresh")
                         Spacer()
                         Text(lastSuccessfulRefresh.formatted(date: .abbreviated, time: .shortened))
                             .foregroundStyle(Color.gray)
                     }
-                    if isBigDifference {
+                    if data.lastRefreshFailed == true {
                         HStack {
                             Text("Last refresh attempt")
                             Spacer()

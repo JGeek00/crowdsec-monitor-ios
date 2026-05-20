@@ -32,17 +32,13 @@ struct BlocklistListItem: View {
                     }
                 }
                 .font(.system(size: 14))
-                if let lastRefreshAttempt = blocklist.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = blocklist.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistProcess != nil {
-                    let diff = abs(lastRefreshAttempt.timeIntervalSince(lastSuccessfulRefresh))
-                    let isBigDifference = diff >= 60 * 60   // 1 hour
-                    if isBigDifference == true {
-                        HStack(spacing: 6) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                            Text("Blocklist refresh failed")
-                        }
-                        .foregroundStyle(Color.red)
-                        .font(.system(size: 14))
+                if blocklist.lastRefreshFailed == true {
+                    HStack(spacing: 6) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                        Text("Blocklist refresh failed")
                     }
+                    .foregroundStyle(Color.red)
+                    .font(.system(size: 14))
                 }
                 if let blocklistProcess = blocklistProcess {
                     HStack(spacing: 6) {

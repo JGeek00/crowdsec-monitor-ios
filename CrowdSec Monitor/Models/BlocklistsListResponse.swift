@@ -13,6 +13,7 @@ struct BlocklistsListResponse_Item: Codable, Hashable {
     let name: String
     let enabled: Bool?
     let addedDate, lastRefreshAttempt, lastSuccessfulRefresh: String?
+    let lastRefreshFailed: Bool?
     let countIPS: Int
     let type: BlocklistsListResponse_Item_Type
 
@@ -21,6 +22,7 @@ struct BlocklistsListResponse_Item: Codable, Hashable {
         case addedDate = "added_date"
         case lastRefreshAttempt = "last_refresh_attempt"
         case lastSuccessfulRefresh = "last_successful_refresh"
+        case lastRefreshFailed = "last_refresh_failed"
         case countIPS = "count_ips"
         case type
     }
