@@ -3,6 +3,8 @@ import SwiftUI
 struct DashboardView: View {
     @Environment(DashboardViewModel.self) private var viewModel
     @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
+    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
+    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -55,9 +57,40 @@ struct DashboardView: View {
                         }
                     }
                 }
+                if serversManagerViewModel.servers.count > 1 {
+                    if #available(iOS 26.0, *) {
+                        ToolbarSpacer(placement: .topBarTrailing)
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Menu("Switch server", systemImage: "server.rack") {
+                            ForEach(serversManagerViewModel.servers, id: \.self) { server in
+                                Button {
+                                    serversManagerViewModel.changeCurrentServer(server: server)
+                                } label: {
+                                    HStack {
+                                        VStack(spacing: 4) {
+                                            Text(server.name)
+                                            Text(buildUrl(server: server))
+                                        }
+                                        Spacer()
+                                        if activeServerViewModel.currentServer == server {
+                                            Image(systemName: "checkmark")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .task {
                 await viewModel.fetchDashboardData()
+            }
+            .onChange(of: activeServerViewModel.currentServer, initial: false) {
+                // Trigger when server changes
+                Task {
+                    await viewModel.fetchDashboardData()
+                }
             }
         }
         .sheet(isPresented: $statusSheetPresented) {

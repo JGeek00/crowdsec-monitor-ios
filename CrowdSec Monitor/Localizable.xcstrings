@@ -2479,6 +2479,16 @@
         }
       }
     },
+    "Switch server" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar servidor"
+          }
+        }
+      }
+    },
     "System defined" : {
       "localizations" : {
         "es" : {
