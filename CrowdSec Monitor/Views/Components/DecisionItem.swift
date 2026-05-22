@@ -30,11 +30,14 @@ struct DecisionItem: View {
             }
         }
         
-        let scenarioSplit = scenario.split(separator: "/")
-        
+        let scenarioName: String = {
+            let split = scenario.split(separator: "/")
+            return split.count >= 2 ? String(split[1]) : scenario
+        }()
+
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(verbatim: String(scenarioSplit[1]))
+                Text(verbatim: scenarioName)
                     .font(.system(size: 14))
                     .lineLimit(1)
                     .truncationMode(.tail)

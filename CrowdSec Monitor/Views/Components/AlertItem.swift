@@ -12,14 +12,21 @@ struct AlertItem: View {
     }
         
     var body: some View {
-        let scenarioSplit = scenario.split(separator: "/")
+        let scenarioParts: (namespace: String, name: String) = {
+            let split = scenario.split(separator: "/")
+            if split.count >= 2 {
+                return (String(split[0]), String(split[1]))
+            } else {
+                return (scenario, "")
+            }
+        }()
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(scenarioSplit[0])
+                Text(scenarioParts.namespace)
                     .foregroundStyle(Color.gray)
                     .font(.system(size: 12))
                     .fontWeight(.semibold)
-                Text(scenarioSplit[1])
+                Text(scenarioParts.name)
                     .font(.system(size: 16))
                     .fontWeight(.medium)
                 if let countryCode = countryCode {
