@@ -82,7 +82,7 @@ struct DecisionDetailsView: View {
             }
         }
         
-        let scenarioSplit = data.scenario.split(separator: "/")
+        let scenarioParts = parseScenario(data.scenario)
         
         List {
             Section("General information") {
@@ -96,10 +96,10 @@ struct DecisionDetailsView: View {
                 } label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(scenarioSplit[0])
+                            Text(scenarioParts.namespace)
                                 .font(.system(size: 14))
                                 .foregroundStyle(Color.gray)
-                            Text(scenarioSplit[1])
+                            Text(scenarioParts.name)
                                 .fontWeight(.medium)
                         }
                         Spacer()

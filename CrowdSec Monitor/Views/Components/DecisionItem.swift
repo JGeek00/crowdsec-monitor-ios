@@ -30,10 +30,8 @@ struct DecisionItem: View {
             }
         }
         
-        let scenarioName: String = {
-            let split = scenario.split(separator: "/")
-            return split.count >= 2 ? String(split[1]) : scenario
-        }()
+        let scenarioParts = parseScenario(scenario)
+        let scenarioName: String = scenarioParts.name.isEmpty ? scenarioParts.namespace : scenarioParts.name
 
         HStack {
             VStack(alignment: .leading, spacing: 4) {

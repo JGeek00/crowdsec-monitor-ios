@@ -12,14 +12,7 @@ struct AlertItem: View {
     }
         
     var body: some View {
-        let scenarioParts: (namespace: String, name: String) = {
-            let split = scenario.split(separator: "/")
-            if split.count >= 2 {
-                return (String(split[0]), String(split[1]))
-            } else {
-                return (scenario, "")
-            }
-        }()
+        let scenarioParts = parseScenario(scenario)
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(scenarioParts.namespace)

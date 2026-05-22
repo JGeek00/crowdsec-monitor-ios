@@ -73,16 +73,16 @@ struct AlertDetailsView: View {
             }
             
             Section("Scenario") {
-                let scenarioSplit = data.scenario.split(separator: "/")
+                let scenarioParts = parseScenario(data.scenario)
                 Button {
                     showSafariScenario = true
                 } label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(scenarioSplit[0])
+                            Text(scenarioParts.namespace)
                                 .font(.system(size: 14))
                                 .foregroundStyle(Color.gray)
-                            Text(scenarioSplit[1])
+                            Text(scenarioParts.name)
                                 .fontWeight(.medium)
                         }
                         Spacer()

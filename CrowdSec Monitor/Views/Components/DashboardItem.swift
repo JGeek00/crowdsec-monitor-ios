@@ -45,14 +45,7 @@ struct DashboardItem: View {
                 percentageText(percentage)
             }
         case .scenary:
-            let scenarioParts: (namespace: String, name: String) = {
-                let split = label.split(separator: "/")
-                if split.count >= 2 {
-                    return (String(split[0]), String(split[1]))
-                } else {
-                    return (label, "")
-                }
-            }()
+            let scenarioParts = parseScenario(label)
             HStack {
                 colorCircle(color)
                 if horizontalSizeClass == .compact {
