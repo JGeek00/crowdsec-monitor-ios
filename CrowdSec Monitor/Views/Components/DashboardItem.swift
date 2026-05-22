@@ -45,19 +45,26 @@ struct DashboardItem: View {
                 percentageText(percentage)
             }
         case .scenary:
-            let splitted = label.split(separator: "/")
+            let scenarioParts: (namespace: String, name: String) = {
+                let split = label.split(separator: "/")
+                if split.count >= 2 {
+                    return (String(split[0]), String(split[1]))
+                } else {
+                    return (label, "")
+                }
+            }()
             HStack {
                 colorCircle(color)
                 if horizontalSizeClass == .compact {
                     VStack(alignment: .leading) {
-                        Text(verbatim: String(splitted[0]))
+                        Text(verbatim: scenarioParts.namespace)
                             .font(.system(size: 14))
                             .foregroundStyle(Color.gray)
-                        Text(verbatim: String(splitted[1]))
+                        Text(verbatim: scenarioParts.name)
                     }
                 } else {
                     HStack(alignment: .center) {
-                        Text(verbatim: String(splitted[0]))
+                        Text(verbatim: scenarioParts.namespace)
                             .lineLimit(1)
                             .truncationMode(.tail)
                             .font(.system(size: 14))
@@ -68,7 +75,7 @@ struct DashboardItem: View {
                             .background(Rectangle().fill(Color.gray).cornerRadius(20))
                         Spacer()
                             .frame(width: 12)
-                        Text(verbatim: String(splitted[1]))
+                        Text(verbatim: scenarioParts.name)
                             .lineLimit(1)
                             .truncationMode(.tail)
                     }
@@ -128,6 +135,9 @@ struct DashboardItem: View {
 }
 #Preview {
     DashboardItem(itemType: .scenary, label: "crowdsec/bad-user-agent", amount: 12, percentage: 43.1)
+}
+#Preview {
+    DashboardItem(itemType: .scenary, label: "bad-user-agent", amount: 12, percentage: 43.1)
 }
 #Preview {
     DashboardItem(itemType: .target, label: "app.mydomain.com", amount: 8, percentage: 22.6)
