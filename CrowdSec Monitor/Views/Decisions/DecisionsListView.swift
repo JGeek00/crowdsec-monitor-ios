@@ -84,7 +84,7 @@ struct DecisionsListView: View {
                 }
             }
             else {
-                List(data.items, id: \.self, selection: $selectedDecisionId) { decision in
+                List(data.items, id: \.id, selection: $selectedDecisionId) { decision in
                     NavigationLink(value: decision.id) {
                         DecisionListItem(decision)
                     }

@@ -31,7 +31,7 @@ struct StyledListContainer<Data, RowContent, FooterContent>: View where Data: Ra
                 Spacer()
             }
             VStack(spacing: 0) {
-                ForEach(Array(data.enumerated()), id: \.element) { index, item in
+                ForEach(Array(data.enumerated()), id: \.offset) { index, item in
                     rowContent(item)
                         .listItemStyling()
                     
@@ -81,7 +81,7 @@ struct StyledListContainerWithNavLink<Data, RowContent>: View where Data: Random
                 }
             }
             VStack(spacing: 0) {
-                ForEach(Array(data.enumerated()), id: \.element) { index, item in
+                ForEach(Array(data.enumerated()), id: \.offset) { index, item in
                     rowContent(item)
                         .listItemStyling()
                     

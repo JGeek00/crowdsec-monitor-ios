@@ -16,7 +16,7 @@ struct FullListDashboardPieChart: View {
             let radius = size / 2
             
             ZStack {
-                ForEach(Array(data.enumerated()), id: \.element) { index, item in
+                ForEach(Array(data.enumerated()), id: \.offset) { index, item in
                     PieSlice(
                         startAngle: startAngle(for: index),
                         endAngle: endAngle(for: index),
