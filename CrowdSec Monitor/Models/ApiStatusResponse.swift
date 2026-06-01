@@ -57,6 +57,7 @@ enum APIStatusResponse_ProcessBlocklistFieldStatus: String, Codable, Hashable {
 enum APIStatusResponse_ProcessBlocklistStep: String, Codable, Hashable {
     case fetch = "fetch"
     case parse = "parse"
+    case delete = "delete"
     case `import` = "import"
 }
 
@@ -75,7 +76,7 @@ struct APIStatusResponse_ProcessBlocklistIps: Codable, Hashable {
     let processedIps: Int
 }
 
-// MARK: - ProcessBlocklist
+// MARK: - APIStatusResponse_ProcessBlocklist
 struct APIStatusResponse_ProcessBlocklist: Codable, Hashable {
     let blocklistId: Int
     let blocklistName: String
@@ -88,8 +89,28 @@ struct APIStatusResponse_ProcessBlocklist: Codable, Hashable {
 
 // MARK: - APIStatusResponse_ProcessBlocklistRefresh
 struct APIStatusResponse_ProcessBlocklistRefresh: Codable, Hashable {
-    let totalBlocklists: Int
-    let processedBlocklists: Int
-    let successful: Int
-    let failed: Int
+    let totalBlocklists, currentBlocklist: Int
+    let blocklists: [APIStatusResponse_ProcessBlocklistRefresh_Blocklist]
+    let totalIPS: Int
+
+    enum CodingKeys: String, CodingKey {
+        case totalBlocklists, currentBlocklist, blocklists
+        case totalIPS = "totalIps"
+    }
 }
+
+// MARK: - APIStatusResponse_ProcessBlocklistRefresh_Blocklist
+struct APIStatusResponse_ProcessBlocklistRefresh_Blocklist: Codable, Hashable {
+    let number: Int
+    let name: String
+    let steps: APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps
+}
+
+// MARK: - APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps
+struct APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps: Codable, Hashable {
+    let fetch: APIStatusResponse_ProcessBlocklistFieldStatus
+    let parse: APIStatusResponse_ProcessBlocklistFieldStatus
+    let delete: APIStatusResponse_ProcessBlocklistFieldStatus
+    let `import`: APIStatusResponse_ProcessBlocklistFieldStatus
+}
+

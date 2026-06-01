@@ -131,6 +131,22 @@
         }
       }
     },
+    "%lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld de %2$lld"
+          }
+        }
+      }
+    },
     "%lld selected" : {
       "localizations" : {
         "en" : {
@@ -907,6 +923,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sitio web de CrowdSec"
+          }
+        }
+      }
+    },
+    "Current" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual"
           }
         }
       }
@@ -2127,22 +2153,6 @@
         }
       }
     },
-    "Processed %lld of %lld blocklists" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Processed %1$lld of %2$lld blocklists"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Procesadas %1$lld de %2$lld listas de bloqueo"
-          }
-        }
-      }
-    },
     "Processed %lld of %lld IPs" : {
       "localizations" : {
         "en" : {
@@ -2735,6 +2745,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Top objetivos"
+          }
+        }
+      }
+    },
+    "Total" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
           }
         }
       }
