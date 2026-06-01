@@ -101,20 +101,20 @@ struct BlocklistDetailsView: View {
                             .foregroundStyle(Color.gray)
                     }
                 }
-                if let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601(), let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601(), blocklistProcess != nil {
+                if let lastSuccessfulRefresh = data.lastRefreshAttempt?.toDateFromISO8601() {
                     HStack {
                         Text(data.lastRefreshFailed == true ? "Last successful refresh" : "Last refresh")
                         Spacer()
                         Text(lastSuccessfulRefresh.formatted(date: .abbreviated, time: .shortened))
                             .foregroundStyle(Color.gray)
                     }
-                    if data.lastRefreshFailed == true {
-                        HStack {
-                            Text("Last refresh attempt")
-                            Spacer()
-                            Text(lastRefreshAttempt.formatted(date: .abbreviated, time: .shortened))
-                                .foregroundStyle(Color.red)
-                        }
+                }
+                if data.lastRefreshFailed == true, let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601() {
+                    HStack {
+                        Text("Last refresh attempt")
+                        Spacer()
+                        Text(lastRefreshAttempt.formatted(date: .abbreviated, time: .shortened))
+                            .foregroundStyle(Color.red)
                     }
                 }
                 if let blocklistProcess = blocklistProcess {
