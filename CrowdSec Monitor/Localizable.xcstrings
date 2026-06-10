@@ -1743,12 +1743,12 @@
         }
       }
     },
-    "Last refresh attempt" : {
+    "Last refresh attempt failed" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Último intento de refresco"
+            "value" : "Último intento de refresco fallido"
           }
         }
       }

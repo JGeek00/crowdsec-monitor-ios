@@ -101,7 +101,7 @@ struct BlocklistDetailsView: View {
                             .foregroundStyle(Color.gray)
                     }
                 }
-                if let lastSuccessfulRefresh = data.lastRefreshAttempt?.toDateFromISO8601() {
+                if let lastSuccessfulRefresh = data.lastSuccessfulRefresh?.toDateFromISO8601() {
                     HStack {
                         Text(data.lastRefreshFailed == true ? "Last successful refresh" : "Last refresh")
                         Spacer()
@@ -111,7 +111,7 @@ struct BlocklistDetailsView: View {
                 }
                 if data.lastRefreshFailed == true, let lastRefreshAttempt = data.lastRefreshAttempt?.toDateFromISO8601() {
                     HStack {
-                        Text("Last refresh attempt")
+                        Text("Last refresh attempt failed")
                         Spacer()
                         Text(lastRefreshAttempt.formatted(date: .abbreviated, time: .shortened))
                             .foregroundStyle(Color.red)
