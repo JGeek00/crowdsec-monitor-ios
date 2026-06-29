@@ -6,10 +6,8 @@ struct AllowlistsListView: View {
     @Environment(AllowlistsListViewModel.self) private var viewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    
-    @State private var activeAllowlistName: String?
-    
-    @Binding var selectedAllowlist: String?
+        
+    @Binding var selectedList: SelectedList?
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -30,17 +28,6 @@ struct AllowlistsListView: View {
             }
         }
         .transition(.opacity)
-        .onChange(of: selectedAllowlist, initial: true) { oldValue, newValue in
-            if oldValue != nil && newValue == nil {
-                // To prevent disposing details view before back transition ends
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    activeAllowlistName = nil
-                }
-            }
-            else {
-                activeAllowlistName = newValue
-            }
-        }
         .task {
             await viewModel.fetchData()
         }
@@ -54,9 +41,9 @@ struct AllowlistsListView: View {
                 ContentUnavailableView("No allowlists to display", systemImage: "list.bullet", description: Text("There are no allowlists on CrowdSec"))
             }
             else {
-                List(data.data, id: \.name, selection: $selectedAllowlist) { allowlist in
+                List(data.data, id: \.name, selection: $selectedList) { allowlist in
                     AllowlistListItem(allowlist)
-                        .tag(allowlist.name)
+                        .tag(SelectedList(type: .allowlist, id: allowlist.name))
                 }
                 .animation(.default, value: data.data)
             }

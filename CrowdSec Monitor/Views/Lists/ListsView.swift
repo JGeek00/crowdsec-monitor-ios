@@ -1,6 +1,6 @@
 import SwiftUI
 
-fileprivate struct SelectedList {
+struct SelectedList: Hashable, Identifiable {
     let type: Enums.ListType
     let id: String
 }
@@ -12,8 +12,6 @@ struct ListsView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     @State private var selectedListType: Enums.ListType = .blocklist
-    @State private var selectedAllowlist: String? = nil
-    @State private var selectedBlocklist: String? = nil
     @State private var selectedList: SelectedList? = nil
     @State private var showIPsCheckerSheet = false
     @State private var showCheckDomainReachableSheet = false
@@ -23,10 +21,10 @@ struct ListsView: View {
             Group {
                 switch selectedListType {
                 case .allowlist:
-                    AllowlistsListView(selectedAllowlist: $selectedAllowlist)
+                    AllowlistsListView(selectedList: $selectedList)
                         .transition(.opacity)
                 case .blocklist:
-                    BlocklistsListView(selectedBlocklist: $selectedBlocklist)
+                    BlocklistsListView(selectedList: $selectedList)
                         .transition(.opacity)
                 }
             }
@@ -87,18 +85,6 @@ struct ListsView: View {
                         description: Text("Choose a list to see the list of IPs")
                     )
                 }
-            }
-        }
-        .onChange(of: selectedAllowlist, initial: true) { _, value in
-            if let value = value {
-                selectedList = SelectedList(type: .allowlist, id: value)
-                selectedBlocklist = nil
-            }
-        }
-        .onChange(of: selectedBlocklist, initial: true) { _, value in
-            if let value = value {
-                selectedList = SelectedList(type: .blocklist, id: String(value))
-                selectedAllowlist = nil
             }
         }
         .sheet(isPresented: $showIPsCheckerSheet) {

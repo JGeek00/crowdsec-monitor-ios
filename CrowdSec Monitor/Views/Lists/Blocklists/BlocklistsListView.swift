@@ -7,9 +7,8 @@ struct BlocklistsListView: View {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @Binding var selectedBlocklist: String?
+    @Binding var selectedList: SelectedList?
     
-    @State private var activeBlocklistId: String?
     @State private var addBlocklistFormOpen = false
     @State private var blocklistAddedNotification = false
     
@@ -37,17 +36,6 @@ struct BlocklistsListView: View {
                 Button("Add blocklist", systemImage: "plus") {
                     addBlocklistFormOpen = true
                 }
-            }
-        }
-        .onChange(of: selectedBlocklist, initial: true) { oldValue, newValue in
-            if oldValue != nil && newValue == nil {
-                // To prevent disposing details view before back transition ends
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    activeBlocklistId = nil
-                }
-            }
-            else {
-                activeBlocklistId = newValue
             }
         }
         .task {
@@ -98,9 +86,9 @@ struct BlocklistsListView: View {
                 ContentUnavailableView("No blocklists to display", systemImage: "list.bullet", description: Text("There are no blocklists on CrowdSec"))
             }
             else {
-                List(data.items, id: \.id, selection: $selectedBlocklist) { blocklist in
+                List(data.items, id: \.id, selection: $selectedList) { blocklist in
                     BlocklistListItem(blocklist)
-                        .tag(blocklist.id)
+                        .tag(SelectedList(type: .blocklist, id: blocklist.id))
                         .onAppear {
                             if blocklist == data.items.last {
                                 Task {
