@@ -121,5 +121,10 @@ struct ListsView: View {
         }
         .pickerStyle(.segmented)
         .padding(.horizontal, 16)
+        .condition { view in
+            if horizontalSizeClass == .regular {
+                view.padding(.bottom, 12)
+            } else { view }
+        }
     }
 }
