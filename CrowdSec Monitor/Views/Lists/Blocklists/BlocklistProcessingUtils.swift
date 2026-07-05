@@ -7,6 +7,8 @@ func getBlocklistActiveProcess(data: APIStatusResponse?, blocklistId: String) ->
         if let b = $0.blocklistImport  { return String(b.blocklistId) == blocklistId }
         if let b = $0.blocklistDisable { return String(b.blocklistId) == blocklistId }
         if let b = $0.blocklistDelete  { return String(b.blocklistId) == blocklistId }
+        if let b = $0.blocklistSingleRefresh { return String(b.blocklistId) == blocklistId }
+        if let b = $0.blocklistRefresh { return b.blocklists.contains { String($0.number) == blocklistId } }
         return false
     }
     return process?.successful == nil ? process : nil
@@ -24,6 +26,12 @@ func getProcessType(_ process: APIStatusResponse_Process) -> String {
     }
     else if process.blocklistDisable != nil {
         return String(localized: "Disabling blocklist")
+    }
+    else if process.blocklistSingleRefresh != nil {
+        return String(localized: "Refreshing blocklist")
+    }
+    else if process.blocklistRefresh != nil {
+        return String(localized: "Refreshing all blocklists")
     }
     else {
         return ""

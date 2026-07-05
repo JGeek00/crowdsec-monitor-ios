@@ -72,6 +72,7 @@ struct BlocklistListItem: View {
                     Button("Refresh", systemImage: "arrow.clockwise") {
                         showRefreshBlocklistConfirmation = true
                     }
+                    .disabled(blocklistProcess != nil)
                 }
                 Section {
                     if let enabled = blocklist.enabled {

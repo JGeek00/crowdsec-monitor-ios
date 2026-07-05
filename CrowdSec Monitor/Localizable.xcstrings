@@ -2319,6 +2319,26 @@
         }
       }
     },
+    "Refreshing all blocklists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescando todas las listas de bloqueo"
+          }
+        }
+      }
+    },
+    "Refreshing blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescando lista de bloqueo"
+          }
+        }
+      }
+    },
     "Remaining time" : {
       "localizations" : {
         "es" : {
