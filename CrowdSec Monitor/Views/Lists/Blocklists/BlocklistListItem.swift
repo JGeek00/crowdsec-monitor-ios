@@ -11,6 +11,7 @@ struct BlocklistListItem: View {
     @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
     
     @State private var showDeleteConfirmation = false
+    @State private var showRefreshBlocklistConfirmation = false
     
     var body: some View {
         let blocklistProcess = getBlocklistActiveProcess(data: serviceStatusViewModel.state.data, blocklistId: blocklist.id)
@@ -67,8 +68,13 @@ struct BlocklistListItem: View {
         }
         .contextMenu {
             if blocklist.type == .api {
-                if let enabled = blocklist.enabled {
-                    Section {
+                Section {
+                    Button("Refresh", systemImage: "arrow.clockwise") {
+                        showRefreshBlocklistConfirmation = true
+                    }
+                }
+                Section {
+                    if let enabled = blocklist.enabled {
                         Button(
                             blocklist.enabled == true ? String(localized: "Disable blocklist") : String(localized: "Enable blocklist"),
                             systemImage: blocklist.enabled == true ? "xmark" : "checkmark"
@@ -79,8 +85,6 @@ struct BlocklistListItem: View {
                         }
                         .disabled(blocklistProcess != nil)
                     }
-                }
-                Section {
                     Button(String(localized: "Delete blocklist"), systemImage: "trash", role: .destructive) {
                         showDeleteConfirmation = true
                     }
@@ -99,6 +103,28 @@ struct BlocklistListItem: View {
             }
         } message: {
             Text("Are you sure you want to delete this blocklist? This action cannot be undone.")
+        }
+        .alert("Refresh blocklist", isPresented: $showRefreshBlocklistConfirmation) {
+            Button(role: .cancel) {
+                showRefreshBlocklistConfirmation = false
+            } label: {
+                Text("Cancel")
+            }
+            if #available(iOS 26.0, *) {
+                Button(role: .confirm) {
+                    viewModel.refreshBlocklists(blocklistId: blocklist.id)
+                } label: {
+                    Text("Refresh list")
+                }
+            } else {
+                Button {
+                    viewModel.refreshBlocklists(blocklistId: blocklist.id)
+                } label: {
+                    Text("Refresh list")
+                }
+            }
+        } message: {
+            Text("Refreshing a blocklist is a computing expensive task that can take up to a few minutes. Don't refresh too often. Do you want to continue?")
         }
     }
 }

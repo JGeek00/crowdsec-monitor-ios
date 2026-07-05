@@ -76,6 +76,13 @@ struct BlocklistsListView: View {
                 Spacer()
             }
         }
+        .alert("Error refreshing blocklist", isPresented: $viewModel.errorRefreshBlocklist) {
+            Button("OK") {
+                viewModel.errorRefreshBlocklist = false
+            }
+        } message: {
+            Text("An error occured while triggering the blocklist refresh process. Try again later.")
+        }
     }
     
     @ViewBuilder

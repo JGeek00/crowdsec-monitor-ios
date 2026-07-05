@@ -427,6 +427,16 @@
         }
       }
     },
+    "An error occured while triggering the blocklist refresh process. Try again later." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ocurrido un error al lanzar el proceso para refrescar la lista de bloqueo. Prueba de nuevo más tarde."
+          }
+        }
+      }
+    },
     "An error occurred while checking the domain. Please try again." : {
       "localizations" : {
         "es" : {
@@ -1273,6 +1283,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error al expirar la decisión"
+          }
+        }
+      }
+    },
+    "Error refreshing blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error al refrescar lista de bloqueo"
           }
         }
       }
@@ -2229,12 +2249,62 @@
         }
       }
     },
+    "Refresh" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescar"
+          }
+        }
+      }
+    },
+    "Refresh blocklist" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescar lista de bloqueo"
+          }
+        }
+      }
+    },
     "Refresh blocklists" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Refrescar listas de bloqueo"
+          }
+        }
+      }
+    },
+    "Refresh list" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescar lista"
+          }
+        }
+      }
+    },
+    "Refresh lists" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescar listas"
+          }
+        }
+      }
+    },
+    "Refreshing a blocklist is a computing expensive task that can take up to a few minutes. Don't refresh too often. Do you want to continue?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refrescar una lista de bloqueo es una tarea pesada a nivel de computo que necesita hasta varios minutos para completarse. No refresques las listas muy frecuentemente. ¿Deseas continuar?"
           }
         }
       }

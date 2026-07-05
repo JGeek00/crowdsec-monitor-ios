@@ -19,6 +19,7 @@ class BlocklistsListViewModel: Resettable {
     var errorDisableBlocklist = false
     var errorEnableBlocklist = false
     var errorDeleteBlocklist = false
+    var errorRefreshBlocklist = false
     var blocklistDeletedSuccessfully = false
     
     func reset() {
@@ -122,6 +123,25 @@ class BlocklistsListViewModel: Resettable {
         } catch {
             processingModal = false
             errorDeleteBlocklist = true
+        }
+    }
+    
+    func refreshBlocklists(blocklistId: String? = nil) {
+        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        Task {
+            do {
+                processingModal = true
+                if let blocklistId = blocklistId {
+                    _ = try await apiClient.blocklists.refreshBlocklist(blocklistId: blocklistId)
+                }
+                else {
+                    _ = try await apiClient.blocklists.refreshAllBlocklists()
+                }
+                processingModal = false
+            } catch {
+                processingModal = false
+                errorRefreshBlocklist = true
+            }
         }
     }
 }

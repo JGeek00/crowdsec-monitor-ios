@@ -15,6 +15,7 @@ struct ListsView: View {
     @State private var selectedList: SelectedList? = nil
     @State private var showIPsCheckerSheet = false
     @State private var showCheckDomainReachableSheet = false
+    @State private var showRefreshBlocklistConfirmation = false
     
     var body: some View {
         NavigationSplitView {
@@ -46,11 +47,18 @@ struct ListsView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Button(String(localized: "IP addresses checker")) {
-                            showIPsCheckerSheet = true
+                        Section {
+                            Button(String(localized: "IP addresses checker")) {
+                                showIPsCheckerSheet = true
+                            }
+                            Button(String(localized: "Domain reachable checker")) {
+                                showCheckDomainReachableSheet = true
+                            }
                         }
-                        Button(String(localized: "Domain reachable checker")) {
-                            showCheckDomainReachableSheet = true
+                        Section {
+                            Button("Refresh lists") {
+                                showRefreshBlocklistConfirmation = true
+                            }
                         }
                     } label: {
                         Label("Options", systemImage: "ellipsis")
@@ -100,6 +108,28 @@ struct ListsView: View {
             }
             .environment(CheckDomainReachableViewModel())
             .interactiveDismissDisabled()
+        }
+        .alert("Refresh blocklists", isPresented: $showRefreshBlocklistConfirmation) {
+            Button(role: .cancel) {
+                showRefreshBlocklistConfirmation = false
+            } label: {
+                Text("Cancel")
+            }
+            if #available(iOS 26.0, *) {
+                Button(role: .confirm) {
+                    blocklistsViewModel.refreshBlocklists()
+                } label: {
+                    Text("Refresh lists")
+                }
+            } else {
+                Button {
+                    blocklistsViewModel.refreshBlocklists()
+                } label: {
+                    Text("Refresh lists")
+                }
+            }
+        } message: {
+            Text("Refreshing a blocklist is a computing expensive task that can take up to a few minutes. Don't refresh too often. Do you want to continue?")
         }
     }
     
