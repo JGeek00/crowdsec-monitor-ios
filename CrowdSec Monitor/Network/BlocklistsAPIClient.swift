@@ -56,4 +56,12 @@ class BlocklistsAPIClient {
     func checkDomain(_ body: BlocklistsCheckDomainRequest) async throws -> HttpResponse<BlocklistsCheckDomainResponse> {
         return try await httpClient.post(endpoint: "/api/v1/blocklists/check-domain", body: body)
     }
+    
+    func refreshAllBlocklists() async throws -> HttpResponse<RefreshBlocklistsResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/lists/refresh")
+    }
+    
+    func refreshBlocklist(blocklistId: String) async throws -> HttpResponse<RefreshBlocklistsResponse> {
+        return try await httpClient.post(endpoint: "/api/v1/lists/blocklists/\(blocklistId)/refresh")
+    }
 }

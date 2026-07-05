@@ -125,6 +125,10 @@ class HttpClient: NSObject {
         return try await request(method: "POST", endpoint: endpoint, body: body, queryParams: nil)
     }
     
+    func post<R: Decodable>(endpoint: String) async throws -> HttpResponse<R> {
+        return try await request(method: "POST", endpoint: endpoint, body: nil as String?, queryParams: nil)
+    }
+    
     func put<T: Encodable, R: Decodable>(endpoint: String, body: T) async throws -> HttpResponse<R> {
         return try await request(method: "PUT", endpoint: endpoint, body: body, queryParams: nil)
     }
