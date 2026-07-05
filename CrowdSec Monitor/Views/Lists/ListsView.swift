@@ -61,7 +61,7 @@ struct ListsView: View {
                             }
                         }
                     } label: {
-                        Label("Options", systemImage: "ellipsis")
+                        Label("Options", systemImage: "ellipsis.circle")
                     }
                 }
             }
@@ -75,14 +75,16 @@ struct ListsView: View {
                 else { view }
             }
         } detail: {
-            if let selectedList = selectedList {
-                switch selectedList.type {
+            if let item = selectedList {
+                switch item.type {
                 case .allowlist:
-                    AllowlistDetailsView(allowlistName: selectedList.id)
-                        .id(selectedList.id)
+                    AllowlistDetailsView(allowlistName: item.id)
+                        .id(item.id)
                 case .blocklist:
-                    BlocklistDetailsView(blocklistId: selectedList.id)
-                        .id(selectedList.id)
+                    BlocklistDetailsView(blocklistId: item.id) {
+                        selectedList = nil
+                    }
+                    .id(item.id)
                 }
             }
             else {
