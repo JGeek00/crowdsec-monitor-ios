@@ -2209,6 +2209,16 @@
         }
       }
     },
+    "Progress not available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progreso no disponible"
+          }
+        }
+      }
+    },
     "Purchase completed successfully" : {
       "localizations" : {
         "es" : {

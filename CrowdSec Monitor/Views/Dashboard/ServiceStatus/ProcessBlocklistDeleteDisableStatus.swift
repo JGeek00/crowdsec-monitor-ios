@@ -29,14 +29,20 @@ struct ProcessBlocklistDeleteDisableStatus: View {
                         .fontWeight(.semibold)
                 }
                 if process.successful == nil {
-                    VStack {
-                        HStack {
-                            Text("Processed \(status.processedIps) of \(status.ipsToDelete) IPs")
-                            Spacer()
-                            Text(verbatim: "\(Int(Double(status.processedIps) / Double(status.ipsToDelete) * 100))%")
+                    if status.processedIps <= status.ipsToDelete {
+                        VStack {
+                            HStack {
+                                Text("Processed \(status.processedIps) of \(status.ipsToDelete) IPs")
+                                Spacer()
+                                Text(verbatim: "\(Int(Double(status.processedIps) / Double(status.ipsToDelete) * 100))%")
+                            }
+                            .font(.system(size: 14))
+                            ProgressView(value: Double(status.processedIps) / Double(status.ipsToDelete))
                         }
-                        .font(.system(size: 14))
-                        ProgressView(value: Double(status.processedIps) / Double(status.ipsToDelete))
+                    }
+                    else {
+                        Text("Progress not available")
+                            .font(.system(size: 14))
                     }
                 }
                 if process.successful == false {
