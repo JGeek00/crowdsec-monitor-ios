@@ -43,6 +43,7 @@ struct APIStatusResponse_Process: Codable, Hashable {
     let blocklistDisable: APIStatusResponse_ProcessBlocklistIps?
     let blocklistDelete: APIStatusResponse_ProcessBlocklistIps?
     let blocklistRefresh: APIStatusResponse_ProcessBlocklistRefresh?
+    let blocklistSingleRefresh: APIStatusResponse_ProcessBlocklistSingleRefresh?
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistFieldStatus
@@ -83,6 +84,18 @@ struct APIStatusResponse_ProcessBlocklist: Codable, Hashable {
     let step: APIStatusResponse_ProcessBlocklistStep
     let fetched: APIStatusResponse_ProcessBlocklistFieldStatus
     let parsed: APIStatusResponse_ProcessBlocklistFieldStatus
+    let imported: APIStatusResponse_ProcessBlocklistFieldStatus
+    let processIps: APIStatusResponse_ProcessBlocklistProgress
+}
+
+// MARK: - APIStatusResponse_ProcessBlocklistSingleRefresh
+struct APIStatusResponse_ProcessBlocklistSingleRefresh: Codable, Hashable {
+    let blocklistId: Int
+    let blocklistName: String
+    let step: APIStatusResponse_ProcessBlocklistStep
+    let fetched: APIStatusResponse_ProcessBlocklistFieldStatus
+    let parsed: APIStatusResponse_ProcessBlocklistFieldStatus
+    let deleted: APIStatusResponse_ProcessBlocklistFieldStatus
     let imported: APIStatusResponse_ProcessBlocklistFieldStatus
     let processIps: APIStatusResponse_ProcessBlocklistProgress
 }

@@ -107,6 +107,9 @@ fileprivate struct Content: View {
             if item.blocklistRefresh != nil {
                 ProcessBlocklistRefreshStatus(process: item)
             }
+            if item.blocklistSingleRefresh != nil {
+                ProcessBlocklistSingleRefreshStatus(process: item)
+            }
         }
     }
 }

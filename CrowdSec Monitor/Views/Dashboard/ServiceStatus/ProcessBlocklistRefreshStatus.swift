@@ -162,7 +162,8 @@ struct ProcessBlocklistRefreshStatus: View {
                         )
                     ],
                     totalIPS: 10000
-                )
+                ),
+                blocklistSingleRefresh: nil
             )
         )
     }

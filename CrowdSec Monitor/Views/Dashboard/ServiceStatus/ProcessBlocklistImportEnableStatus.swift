@@ -63,36 +63,36 @@ struct ProcessBlocklistImportEnableStatus: View {
 
 #Preview("Fetch running") {
     List {
-        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: nil, successful: nil, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .fetch, fetched: .running, parsed: .pending, imported: .pending, processIps: .init(totalIps: 1000, processedIps: 0)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: nil, successful: nil, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .fetch, fetched: .running, parsed: .pending, imported: .pending, processIps: .init(totalIps: 1000, processedIps: 0)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil, blocklistSingleRefresh: nil))
     }
 }
 
 #Preview("Parse running") {
     List {
-        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: nil, successful: nil, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .parse, fetched: .successful, parsed: .running, imported: .pending, processIps: .init(totalIps: 1000, processedIps: 0)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: nil, successful: nil, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .parse, fetched: .successful, parsed: .running, imported: .pending, processIps: .init(totalIps: 1000, processedIps: 0)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil, blocklistSingleRefresh: nil))
     }
 }
 
 #Preview("Parse failed") {
     List {
-        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: false, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .parse, fetched: .successful, parsed: .failed, imported: .pending, processIps: .init(totalIps: 1000, processedIps: 0)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:07.000Z", successful: false, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .parse, fetched: .successful, parsed: .failed, imported: .pending, processIps: .init(totalIps: 1000, processedIps: 0)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil, blocklistSingleRefresh: nil))
     }
 }
 
 #Preview("Import running") {
     List {
-        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: nil, successful: nil, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .import, fetched: .successful, parsed: .successful, imported: .running, processIps: .init(totalIps: 1000, processedIps: 200)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: nil, successful: nil, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .import, fetched: .successful, parsed: .successful, imported: .running, processIps: .init(totalIps: 1000, processedIps: 200)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil, blocklistSingleRefresh: nil))
     }
 }
 
 #Preview("Import success") {
     List {
-        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:10.000Z", successful: true, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .import, fetched: .successful, parsed: .successful, imported: .successful, processIps: .init(totalIps: 1000, processedIps: 1000)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:10.000Z", successful: true, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .import, fetched: .successful, parsed: .successful, imported: .successful, processIps: .init(totalIps: 1000, processedIps: 1000)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil, blocklistSingleRefresh: nil))
     }
 }
 
 #Preview("Import failed") {
     List {
-        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:10.000Z", successful: false, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .import, fetched: .successful, parsed: .successful, imported: .failed, processIps: .init(totalIps: 1000, processedIps: 700)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil))
+        ProcessBlocklistImportEnableStatus(process: APIStatusResponse_Process(id: "", beginDatetime: "2026-04-11T16:20:00.000Z", endDatetime: "2026-04-11T16:20:10.000Z", successful: false, error: nil, blocklistImport: nil, blocklistEnable: APIStatusResponse_ProcessBlocklist(blocklistId: 1, blocklistName: "Blocklist 1", step: .import, fetched: .successful, parsed: .successful, imported: .failed, processIps: .init(totalIps: 1000, processedIps: 700)), blocklistDisable: nil, blocklistDelete: nil, blocklistRefresh: nil, blocklistSingleRefresh: nil))
     }
 }

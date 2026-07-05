@@ -2269,6 +2269,16 @@
         }
       }
     },
+    "Refresh blocklist %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh lista %@"
+          }
+        }
+      }
+    },
     "Refresh blocklists" : {
       "localizations" : {
         "es" : {
