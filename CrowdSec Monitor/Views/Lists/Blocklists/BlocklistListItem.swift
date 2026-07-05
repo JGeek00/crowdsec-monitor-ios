@@ -68,11 +68,13 @@ struct BlocklistListItem: View {
         }
         .contextMenu {
             if blocklist.type == .api {
-                Section {
-                    Button("Refresh", systemImage: "arrow.clockwise") {
-                        showRefreshBlocklistConfirmation = true
+                if blocklist.enabled == true {
+                    Section {
+                        Button("Refresh", systemImage: "arrow.clockwise") {
+                            showRefreshBlocklistConfirmation = true
+                        }
+                        .disabled(blocklistProcess != nil)
                     }
-                    .disabled(blocklistProcess != nil)
                 }
                 Section {
                     if let enabled = blocklist.enabled {
