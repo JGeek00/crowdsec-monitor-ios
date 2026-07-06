@@ -1,5 +1,6 @@
 import SwiftUI
 import CustomAlert
+import SystemNotification
 
 struct BlocklistDetailsView: View {
     let blocklistId: String
@@ -18,6 +19,7 @@ struct BlocklistDetailsView: View {
     @State private var browserOpen = false
     @State private var showDeleteConfirmation = false
     @State private var showRefreshConfirmation = false
+    @State private var copiedNotification = false
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -117,6 +119,9 @@ struct BlocklistDetailsView: View {
                 Spacer()
             }
         }
+        .systemNotification(isActive: $copiedNotification) {
+            SystemNotification(icon: "checkmark", title: "Copied", subtitle: "URL copied to clipboard")
+        }
         .onChange(of: blocklistId) { _, newValue in
             viewModel.updateBlocklistId(newValue)
         }
@@ -149,6 +154,14 @@ struct BlocklistDetailsView: View {
                     }
                     .foregroundStyle(Color.foreground)
                     .safariView(isPresented: $browserOpen, urlString: url)
+                    .contextMenu {
+                        Button {
+                            UIPasteboard.general.string = url
+                            copiedNotification = true
+                        } label: {
+                            Label("Copy URL", systemImage: "doc.on.doc")
+                        }
+                    }
                 }
                 HStack {
                     Text("Amount of blocked IPs")

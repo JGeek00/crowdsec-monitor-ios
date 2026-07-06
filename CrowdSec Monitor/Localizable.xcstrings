@@ -857,6 +857,16 @@
         }
       }
     },
+    "Copy URL" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar URL"
+          }
+        }
+      }
+    },
     "Could not connect to server: %@" : {
       "localizations" : {
         "es" : {
