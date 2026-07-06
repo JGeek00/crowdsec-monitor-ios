@@ -2,7 +2,6 @@ import SwiftUI
 import CustomAlert
 
 struct DecisionsListView: View {
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
     @Environment(DecisionsListViewModel.self) private var viewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass

@@ -2,7 +2,6 @@ import SwiftUI
 import CustomAlert
 
 struct AllowlistsListView: View {
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
     @Environment(AllowlistsListViewModel.self) private var viewModel
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
