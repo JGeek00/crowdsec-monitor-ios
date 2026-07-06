@@ -607,6 +607,16 @@
         }
       }
     },
+    "Blocklist details" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalle de lista de bloqueo"
+          }
+        }
+      }
+    },
     "Blocklist refresh failed" : {
       "localizations" : {
         "es" : {

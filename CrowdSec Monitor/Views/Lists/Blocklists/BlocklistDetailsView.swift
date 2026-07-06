@@ -1,4 +1,5 @@
 import SwiftUI
+import CustomAlert
 
 struct BlocklistDetailsView: View {
     let blocklistId: String
@@ -12,57 +13,54 @@ struct BlocklistDetailsView: View {
         _viewModel = State(wrappedValue: BlocklistDetailsViewModel(blocklistId: blocklistId))
     }
 
-    @Environment(BlocklistsListViewModel.self) private var blocklistsViewModel
     @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
 
     @State private var browserOpen = false
     @State private var showDeleteConfirmation = false
     @State private var showRefreshConfirmation = false
 
-    private var blocklistInfo: BlocklistsListResponse_Item? {
-        blocklistsViewModel.state.data?.items.first { $0.id == blocklistId }
-    }
-
     private var activeProcess: APIStatusResponse_Process? {
         getBlocklistActiveProcess(data: serviceStatusViewModel.state.data, blocklistId: blocklistId)
     }
-    
+
     var body: some View {
-        let blocklist = blocklistsViewModel.state.data?.items.first { $0.id == blocklistId }
+        @Bindable var viewModel = viewModel
         Group {
             switch viewModel.status {
             case .loading:
                 ProgressView("Loading...")
-            case .success(let data):
-                content(data.data)
+            case .success(let response):
+                content(response.data)
+                    .navigationTitle(response.data.name)
             case .failure:
                 ContentUnavailableView("Cannot get blocklist information", systemImage: "exclamationmark.circle", description: Text("An error occured when fetching the blocklist data"))
+                    .navigationTitle("Blocklist details")
             }
         }
         .transition(.opacity)
-        .navigationTitle(blocklist?.name ?? "Blocklist details")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    if blocklistInfo?.type == .api, blocklistInfo?.enabled == true {
-                        Section {
-                            Button("Refresh", systemImage: "arrow.clockwise") {
-                                showRefreshConfirmation = true
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                if case .success(let response) = viewModel.status,
+                   response.data.type == .api {
+                    Menu {
+                        if response.data.enabled == true {
+                            Section {
+                                Button(String(localized: "Refresh list"), systemImage: "arrow.clockwise") {
+                                    showRefreshConfirmation = true
+                                }
+                                .disabled(activeProcess != nil)
                             }
-                            .disabled(activeProcess != nil)
                         }
-                    }
 
-                    if blocklistInfo?.type == .api {
                         Section {
-                            if let enabled = blocklistInfo?.enabled {
+                            if let enabled = response.data.enabled {
                                 Button(
                                     enabled ? String(localized: "Disable blocklist") : String(localized: "Enable blocklist"),
                                     systemImage: enabled ? "xmark" : "checkmark"
                                 ) {
                                     Task {
-                                        await blocklistsViewModel.enableDisableBlocklist(blocklistId: blocklistId, newStatus: !enabled)
+                                        await viewModel.enableDisableBlocklist(newStatus: !enabled)
                                     }
                                 }
                                 .disabled(activeProcess != nil)
@@ -73,9 +71,9 @@ struct BlocklistDetailsView: View {
                             }
                             .disabled(activeProcess != nil)
                         }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
                     }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
                 }
             }
         }
@@ -83,8 +81,8 @@ struct BlocklistDetailsView: View {
             Button(String(localized: "Cancel"), role: .cancel) {}
             Button(String(localized: "Delete"), role: .destructive) {
                 Task {
-                    await blocklistsViewModel.deleteBlocklist(blocklistId: blocklistId)
-                    if blocklistsViewModel.blocklistDeletedSuccessfully {
+                    await viewModel.deleteBlocklist()
+                    if viewModel.blocklistDeletedSuccessfully {
                         onDismiss?()
                     }
                 }
@@ -95,12 +93,33 @@ struct BlocklistDetailsView: View {
         .alert(String(localized: "Refresh blocklist"), isPresented: $showRefreshConfirmation) {
             Button(role: .cancel) { showRefreshConfirmation = false } label: { Text("Cancel") }
             if #available(iOS 26.0, *) {
-                Button(role: .confirm) { blocklistsViewModel.refreshBlocklists(blocklistId: blocklistId) } label: { Text("Refresh list") }
+                Button(role: .confirm) { viewModel.refreshBlocklist() } label: { Text("Refresh list") }
             } else {
-                Button { blocklistsViewModel.refreshBlocklists(blocklistId: blocklistId) } label: { Text("Refresh list") }
+                Button { viewModel.refreshBlocklist() } label: { Text("Refresh list") }
             }
         } message: {
             Text("Refreshing a blocklist is a computing expensive task that can take up to a few minutes. Don't refresh too often. Do you want to continue?")
+        }
+        .alert(String(localized: "Enabling blocklist"), isPresented: $viewModel.errorEnableBlocklist) {
+            Button(String(localized: "OK")) { viewModel.errorEnableBlocklist = false }
+        }
+        .alert(String(localized: "Disabling blocklist"), isPresented: $viewModel.errorDisableBlocklist) {
+            Button(String(localized: "OK")) { viewModel.errorDisableBlocklist = false }
+        }
+        .alert(String(localized: "Deleting blocklist"), isPresented: $viewModel.errorDeleteBlocklist) {
+            Button(String(localized: "OK")) { viewModel.errorDeleteBlocklist = false }
+        }
+        .alert(String(localized: "Error refreshing blocklist"), isPresented: $viewModel.errorRefreshBlocklist) {
+            Button(String(localized: "OK")) { viewModel.errorRefreshBlocklist = false }
+        }
+        .customAlert(isPresented: $viewModel.processingModal) {
+            HStack {
+                Spacer()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.foreground)
+                Spacer()
+            }
         }
         .onChange(of: blocklistId) { _, newValue in
             viewModel.updateBlocklistId(newValue)
