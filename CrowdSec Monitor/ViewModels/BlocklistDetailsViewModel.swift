@@ -4,9 +4,18 @@ import SwiftUI
 @Observable
 class BlocklistDetailsViewModel {
     var blocklistId: String
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+
+    @ObservationIgnored private let serviceStatusRepository: ServiceStatusRepository
     
-    init(blocklistId: String) {
+    init(
+        blocklistId: String,
+        activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository,
+        serviceStatusRepository: ServiceStatusRepository = RepositoriesContainer.shared.serviceStatusRepository
+    ) {
         self.blocklistId = blocklistId
+        self.activeServerRepository = activeServerRepository
+        self.serviceStatusRepository = serviceStatusRepository
         
         Task {
             await fetchData()
@@ -19,6 +28,10 @@ class BlocklistDetailsViewModel {
     var searchPresented = false
     var searchText = ""
     
+    var activeProcess: APIStatusResponse_Process? {
+        getBlocklistActiveProcess(data: serviceStatusRepository.state.data, blocklistId: blocklistId)
+    }
+    
     // MARK: - Mutation UI state
     
     var processingModal = false
@@ -29,7 +42,7 @@ class BlocklistDetailsViewModel {
     var blocklistDeletedSuccessfully = false
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             if showLoading {
                 withAnimation {
@@ -42,7 +55,6 @@ class BlocklistDetailsViewModel {
                 status = .success(response.body)
             }
         } catch let error {
-            print(error.localizedDescription)
             withAnimation {
                 status = .failure(error)
             }
@@ -64,7 +76,7 @@ class BlocklistDetailsViewModel {
     // MARK: - Mutations
     
     func enableDisableBlocklist(newStatus: Bool) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             processingModal = true
             let params = ToggleBlocklistRequestParams(blocklistId: blocklistId)
@@ -83,7 +95,7 @@ class BlocklistDetailsViewModel {
     }
     
     func deleteBlocklist() async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             processingModal = true
             let params = DeleteBlocklistRequestParams(blocklistId: blocklistId)
@@ -97,7 +109,7 @@ class BlocklistDetailsViewModel {
     }
     
     func refreshBlocklist() {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         Task {
             do {
                 processingModal = true

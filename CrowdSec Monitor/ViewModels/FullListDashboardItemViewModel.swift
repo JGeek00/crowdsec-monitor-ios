@@ -18,8 +18,14 @@ struct FullItemDashboardItemDataForView: Hashable {
 class FullListDashboardItemViewModel {
     let dashboardItem: Enums.DashboardItemType
     
-    init(dashboardItem: Enums.DashboardItemType) {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    
+    init(
+        dashboardItem: Enums.DashboardItemType,
+        activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository
+    ) {
         self.dashboardItem = dashboardItem
+        self.activeServerRepository = activeServerRepository
     }
     
     var state: Enums.LoadingState<[FullItemDashboardItemDataForView]> = .loading
@@ -63,7 +69,7 @@ class FullListDashboardItemViewModel {
     }
     
     func fetchData() async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             switch self.dashboardItem {
             case .country:

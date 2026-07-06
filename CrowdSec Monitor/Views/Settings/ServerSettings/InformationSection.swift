@@ -1,21 +1,20 @@
 import SwiftUI
 
 struct ServerInformationSection: View {
-    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
-    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     
     init() {}
     
     @State private var showApiPackageBrowser = false
+    @State private var viewModel = InformationSectionViewModel()
 
     var body: some View {
-        if activeServerViewModel.hasServerConfigured == true {
+        if viewModel.hasServerConfigured == true {
             Section("Information") {
                 HStack {
                     Text("LAPI available")
                     Spacer()
                     Group {
-                        switch serviceStatusViewModel.state {
+                        switch viewModel.state {
                         case .loading:
                             ProgressView()
                         case .success(let data):
@@ -34,7 +33,7 @@ struct ServerInformationSection: View {
                     Text("Bouncer available")
                     Spacer()
                     Group {
-                        switch serviceStatusViewModel.state {
+                        switch viewModel.state {
                         case .loading:
                             ProgressView()
                         case .success(let data):
@@ -53,7 +52,7 @@ struct ServerInformationSection: View {
                     Text("API version")
                     Spacer()
                     Group {
-                        switch serviceStatusViewModel.state {
+                        switch viewModel.state {
                         case .loading:
                             ProgressView()
                         case .success(let data):
@@ -63,7 +62,7 @@ struct ServerInformationSection: View {
                         }
                     }
                 }
-                if let newVersion = serviceStatusViewModel.state.data?.csMonitorAPI.newVersionAvailable {
+                if let newVersion = viewModel.state.data?.csMonitorAPI.newVersionAvailable {
                     Button {
                         showApiPackageBrowser = true
                     } label: {

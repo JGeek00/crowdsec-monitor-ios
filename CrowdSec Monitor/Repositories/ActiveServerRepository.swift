@@ -1,26 +1,13 @@
 import Foundation
 import SwiftUI
 
-@MainActor
 @Observable
-class ActiveServerViewModel {
-    static let shared = ActiveServerViewModel()
-
+class ActiveServerRepository {
     var currentServer: CSServer?
     var apiClient: CrowdSecAPIClient?
 
     var hasServerConfigured: Bool {
         currentServer != nil && apiClient != nil
-    }
-
-    // MARK: - Resettable registry
-
-    @ObservationIgnored private var resettableViewModels: [WeakResettable] = []
-
-    /// Register a ViewModel to be reset automatically on every server switch.
-    func register(_ vm: any Resettable) {
-        guard !resettableViewModels.contains(where: { $0.value === vm }) else { return }
-        resettableViewModels.append(WeakResettable(vm))
     }
 
     // MARK: - Server-scoped tasks
@@ -57,7 +44,7 @@ class ActiveServerViewModel {
         cancelAllServerTasks()
         currentServer = server
         apiClient = CrowdSecAPIClient(server)
-        resetAllViewModels()
+        NotificationCenter.default.post(name: .serverDidChange, object: nil)
     }
 
     /// Remove the active server (e.g. the last server was deleted).
@@ -66,15 +53,7 @@ class ActiveServerViewModel {
         cancelAllServerTasks()
         currentServer = nil
         apiClient = nil
-        resetAllViewModels()
-    }
-
-    // MARK: - Error handling
-
-    /// Called when a 401 is received. Delegates deletion to ServersManagerViewModel.
-    func handleUnauthorized() {
-        guard let server = currentServer else { return }
-        ServersManagerViewModel.shared.deleteServer(server: server)
+        NotificationCenter.default.post(name: .serverDidChange, object: nil)
     }
 
     // MARK: - Private helpers
@@ -84,17 +63,5 @@ class ActiveServerViewModel {
         serverTasks.removeAll()
     }
 
-    private func resetAllViewModels() {
-        resettableViewModels.removeAll { $0.value == nil }
-        resettableViewModels.forEach { $0.value?.reset() }
-    }
-
-    private init() {}
-}
-
-// MARK: - Weak wrapper for Resettable
-
-private struct WeakResettable {
-    weak var value: (any Resettable)?
-    init(_ value: any Resettable) { self.value = value }
+    init() {}
 }

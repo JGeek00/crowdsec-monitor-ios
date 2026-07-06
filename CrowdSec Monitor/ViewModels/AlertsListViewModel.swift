@@ -5,16 +5,20 @@ fileprivate let defaultRequest = AlertsRequest(filters: AlertsRequestFilters(cou
 
 @MainActor
 @Observable
-class AlertsListViewModel: Resettable {
-    public static let shared = AlertsListViewModel()
-        
+class AlertsListViewModel {
+
     var requestParams: AlertsRequest
     var filters: AlertsRequestFilters
-    
-    init() {
+
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
         self.requestParams = defaultRequest
         self.filters = defaultRequest.filters
-        ActiveServerViewModel.shared.register(self)
+        self.activeServerRepository = activeServerRepository
+        NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
+            self?.reset()
+        }
     }
     
     var state: Enums.LoadingState<AlertsListResponse> = .loading
@@ -30,7 +34,7 @@ class AlertsListViewModel: Resettable {
     }
     
     private func fetchAlerts(showLoading: Bool = false, params: AlertsRequest? = nil) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
 
         if showLoading == true {
             withAnimation {
@@ -69,13 +73,13 @@ class AlertsListViewModel: Resettable {
         req.pagination = defaultRequest.pagination
         req.filters = filters
         requestParams = req
-        ActiveServerViewModel.shared.task {
+        activeServerRepository.task {
             await self.fetchAlerts(showLoading: true, params: req)
         }
     }
 
     func fetchMore() async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         if let data = state.data {
             if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
                 return
@@ -108,7 +112,7 @@ class AlertsListViewModel: Resettable {
     func resetFilters() {
         self.filters = defaultRequest.filters
         self.requestParams.filters = defaultRequest.filters
-        ActiveServerViewModel.shared.task {
+        activeServerRepository.task {
             await self.fetchAlerts(showLoading: true, params: defaultRequest)
         }
     }
@@ -118,7 +122,7 @@ class AlertsListViewModel: Resettable {
     }
     
     func deleteAlert(alertId: Int) async -> Bool {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return false }
+        guard let apiClient = activeServerRepository.apiClient else { return false }
         do {
             deletingAlertProcess = true
             _ = try await apiClient.alerts.deleteAlert(alertId: alertId)
@@ -127,9 +131,8 @@ class AlertsListViewModel: Resettable {
             }
            
             // Refresh alerts and decisions
-            async let alertsRefresh: Void = refreshAlerts()
-            async let decisionsRefresh: Void = DecisionsListViewModel.shared.refreshDecisions()
-            _ = await (alertsRefresh, decisionsRefresh)
+            await refreshAlerts()
+            NotificationCenter.default.post(name: .decisionsShouldRefresh, object: nil)
             
             deletingAlertProcess = false
             return true

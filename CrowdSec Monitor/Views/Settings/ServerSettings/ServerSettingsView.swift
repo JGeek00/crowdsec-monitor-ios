@@ -5,16 +5,14 @@ struct ServerSettingsView: View {
     
     init() {}
     
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
-    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
-    
     @State private var showCreateServerSheet = false
     @State private var newDefaultServer: String? = nil
+    @State private var viewModel = ServerSettingsViewModel()
     
     var body: some View {
         List {
             Section("Servers") {
-                ForEach(serversManagerViewModel.servers, id: \.id) { server in
+                ForEach(viewModel.servers, id: \.id) { server in
                     ServerListItem(server: server) { name in
                         newDefaultServer = name
                     }

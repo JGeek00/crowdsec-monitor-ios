@@ -1,12 +1,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
-    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
+    @State private var viewModel = ContentViewModel()
     
     @AppStorage(StorageKeys.theme, store: UserDefaults.shared) private var theme: Enums.Theme = .system
     @Environment(\.scenePhase) private var scenePhase
+    
+    var hasServerConfigured: Bool {
+        viewModel.hasServerConfigured
+    }
+    
+    var hasNewVersion: Bool {
+        viewModel.hasNewVersion
+    }
     
     func getColorScheme(theme: Enums.Theme) -> ColorScheme? {
         switch theme {
@@ -23,35 +30,30 @@ struct ContentView: View {
         @Bindable var bindableOnboarding = onboardingViewModel
         
         Group {
-            if activeServerViewModel.hasServerConfigured == true {
+            if hasServerConfigured {
                 Group {
                     if #available(iOS 26.0, *) {
                         TabView {
                             Tab {
                                 DashboardView()
-                                    .environment(DashboardViewModel.shared)
                             } label: {
                                 Label("Dashboard", systemImage: "house.fill")
                             }
                             
                             Tab {
                                 AlertsListView()
-                                    .environment(AlertsListViewModel.shared)
                             } label: {
                                 Label("Alerts", systemImage: "exclamationmark.triangle")
                             }
                             
                             Tab {
                                 DecisionsListView()
-                                    .environment(DecisionsListViewModel.shared)
                             } label: {
                                 Label("Decisions", systemImage: "hammer")
                             }
                             
                             Tab {
                                 ListsView()
-                                    .environment(AllowlistsListViewModel.shared)
-                                    .environment(BlocklistsListViewModel.shared)
                             } label: {
                                 Label("Lists", systemImage: "shield")
                             }
@@ -61,36 +63,31 @@ struct ContentView: View {
                             } label: {
                                 Label("Settings", systemImage: "gear")
                             }
-                            .badge(ServiceStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
+                            .badge(hasNewVersion ? 1 : 0)
                         }
                     }
                     else {
                         TabView {
                             DashboardView()
-                                .environment(DashboardViewModel.shared)
                                 .tabItem {
                                     Label("Dashboard", systemImage: "house.fill")
                                 }
                                 .tag(Enums.TabViewTabs.dashboard)
                             
                             AlertsListView()
-                                .environment(AlertsListViewModel.shared)
                                 .tabItem {
                                     Label("Alerts", systemImage: "exclamationmark.triangle")
                                 }
                                 .tag(Enums.TabViewTabs.alerts)
                             
                             DecisionsListView()
-                                .environment(DecisionsListViewModel.shared)
                                 .tabItem {
                                     Label("Decisions", systemImage: "hammer")
                                 }
                                 .tag(Enums.TabViewTabs.decisions)
                             
-                          
+                  
                             ListsView()
-                                .environment(AllowlistsListViewModel.shared)
-                                .environment(BlocklistsListViewModel.shared)
                                 .tabItem {
                                     Label("Lists", systemImage: "shield")
                                 }
@@ -101,11 +98,10 @@ struct ContentView: View {
                                     Label("Settings", systemImage: "gear")
                                 }
                                 .tag(Enums.TabViewTabs.settings)
-                                .badge(ServiceStatusViewModel.shared.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : 0)
+                                .badge(hasNewVersion ? 1 : 0)
                         }
                     }
                 }
-                .environment(ServiceStatusViewModel.shared)
             }
             else {
                 if #available(iOS 26.0, *) {
@@ -146,12 +142,12 @@ struct ContentView: View {
                 .preferredColorScheme(getColorScheme(theme: theme))
         })
         .onChange(of: scenePhase) { _, newPhase in
-            guard activeServerViewModel.hasServerConfigured else { return }
+            guard hasServerConfigured else { return }
             switch newPhase {
             case .background:
-                ServiceStatusViewModel.shared.closeWebSocket()
+                viewModel.closeWebSocket()
             case .active:
-                ServiceStatusViewModel.shared.openWebSocket()
+                viewModel.openWebSocket()
             default:
                 break
             }

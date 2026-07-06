@@ -3,13 +3,37 @@ import SwiftUI
 
 @MainActor
 @Observable
-class DashboardViewModel: Resettable {
-    public static let shared = DashboardViewModel()
+class DashboardViewModel {
+
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    @ObservationIgnored private let serversManagerRepository: ServersManagerRepository
+    @ObservationIgnored private let serviceStatusRepository: ServiceStatusRepository
     
     var state: Enums.LoadingState<StatisticsResponse> = .loading
     
-    private init() {
-        ActiveServerViewModel.shared.register(self)
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository, serversManagerRepository: ServersManagerRepository = RepositoriesContainer.shared.serversManagerRepository, serviceStatusRepository: ServiceStatusRepository = RepositoriesContainer.shared.serviceStatusRepository) {
+        self.activeServerRepository = activeServerRepository
+        self.serversManagerRepository = serversManagerRepository
+        self.serviceStatusRepository = serviceStatusRepository
+        NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
+            self?.reset()
+        }
+    }
+    
+    var currentServer: CSServer? {
+        activeServerRepository.currentServer
+    }
+    
+    var servers: [CSServer] {
+        serversManagerRepository.servers
+    }
+    
+    var serviceStatusState: Enums.LoadingState<APIStatusResponse> {
+        serviceStatusRepository.state
+    }
+    
+    func changeCurrentServer(server: CSServer) {
+        serversManagerRepository.changeCurrentServer(server: server)
     }
 
     private func generateViewData(_ value: [FullItemDashboardItemData]) -> [FullItemDashboardItemDataForView] {
@@ -33,7 +57,7 @@ class DashboardViewModel: Resettable {
     }
     
     func fetchDashboardData() async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         let amountItems = UserDefaults.shared.object(forKey: StorageKeys.topItemsDashboard) as! Int? ?? Defaults.topItemsDashboard
         do {
             let result = try await apiClient.statistics.fetchStatistics(amount: amountItems)

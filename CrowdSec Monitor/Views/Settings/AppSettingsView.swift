@@ -6,9 +6,8 @@ struct AppSettingsView: View {
     @SharedAppStorage(StorageKeys.hideDefaultDuplicatedDecisions) private var hideDefaultDuplicatedDecisions: Bool = Defaults.hideDefaultDuplicatedDecisions
     @SharedAppStorage(StorageKeys.disableDecisionTimerAnimation) private var disableDecisionTimerAnimation: Bool = Defaults.disableDecisionTimerAnimation
     
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
     @Environment(AppIconManager.self) private var appIconManager
-            
+             
     var body: some View {
         List {
             Section("Dashboard") {

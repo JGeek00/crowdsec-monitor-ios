@@ -3,15 +3,14 @@ import SystemNotification
 
 struct ServerListItem: View {
     let server: CSServer
+    let viewModel: ServerListItemViewModel
     let onSetNewDefaultServer: ((String) -> Void)
     
-    init(server: CSServer, onSetNewDefaultServer: @escaping ((String) -> Void)) {
+    init(server: CSServer, viewModel: ServerListItemViewModel = ServerListItemViewModel(), onSetNewDefaultServer: @escaping ((String) -> Void)) {
         self.server = server
+        self.viewModel = viewModel
         self.onSetNewDefaultServer = onSetNewDefaultServer
     }
-    
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
-    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
     
     @State private var showDeleteConfirmation = false
     @State private var showErrorDeleteServerAlert = false
@@ -19,7 +18,7 @@ struct ServerListItem: View {
     
     var body: some View {
         Button {
-            serversManagerViewModel.changeCurrentServer(server: server)
+            viewModel.changeCurrentServer(server: server)
         } label: {
             HStack {
                 Image(systemName: "server.rack")
@@ -38,7 +37,7 @@ struct ServerListItem: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }
-                if server == activeServerViewModel.currentServer {
+                if server == viewModel.currentServer {
                     Spacer()
                     Image(systemName: "checkmark")
                         .foregroundStyle(Color.blue)
@@ -55,7 +54,7 @@ struct ServerListItem: View {
                 }
                 else {
                     Button("Set as default server", systemImage: "star") {
-                        let changed = serversManagerViewModel.setDefaultServer(server)
+                        let changed = viewModel.setDefaultServer(server)
                         if changed == true {
                             onSetNewDefaultServer(server.name)
                         }
@@ -74,7 +73,7 @@ struct ServerListItem: View {
         .alert("Delete server", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
-                let deleted = serversManagerViewModel.deleteServer(server: server)
+                let deleted = viewModel.deleteServer(server: server)
                 if deleted == false {
                     showErrorDeleteServerAlert = true
                 }

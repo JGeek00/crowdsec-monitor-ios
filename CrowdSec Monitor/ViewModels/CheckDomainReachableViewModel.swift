@@ -4,7 +4,11 @@ import Network
 @MainActor
 @Observable
 class CheckDomainReachableViewModel {
-    init() {}
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
+        self.activeServerRepository = activeServerRepository
+    }
     
     var domain: String = ""
     var invalidDomainAlert = false
@@ -21,7 +25,7 @@ class CheckDomainReachableViewModel {
         }
         
         Task {
-            guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+            guard let apiClient = activeServerRepository.apiClient else { return }
             withAnimation {
                 self.loading = true
             }

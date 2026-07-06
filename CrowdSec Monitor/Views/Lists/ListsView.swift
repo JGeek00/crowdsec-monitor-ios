@@ -6,8 +6,8 @@ struct SelectedList: Hashable, Identifiable {
 }
 
 struct ListsView: View {
-    @Environment(AllowlistsListViewModel.self) private var allowlistsViewModel
-    @Environment(BlocklistsListViewModel.self) private var blocklistsViewModel
+    @State private var allowlistsListViewModel = AllowlistsListViewModel()
+    @State private var blocklistsListViewModel = BlocklistsListViewModel()
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -119,13 +119,13 @@ struct ListsView: View {
             }
             if #available(iOS 26.0, *) {
                 Button(role: .confirm) {
-                    blocklistsViewModel.refreshBlocklists()
+                    blocklistsListViewModel.refreshBlocklists()
                 } label: {
                     Text("Refresh lists")
                 }
             } else {
                 Button {
-                    blocklistsViewModel.refreshBlocklists()
+                    blocklistsListViewModel.refreshBlocklists()
                 } label: {
                     Text("Refresh lists")
                 }
@@ -133,6 +133,8 @@ struct ListsView: View {
         } message: {
             Text("Refreshing a blocklist is a computing expensive task that can take up to a few minutes. Don't refresh too often. Do you want to continue?")
         }
+        .environment(allowlistsListViewModel)
+        .environment(blocklistsListViewModel)
     }
     
     @ViewBuilder

@@ -5,21 +5,32 @@ fileprivate var defaultRequest = DecisionsRequest(filters: DecisionsRequestFilte
 
 @MainActor
 @Observable
-class DecisionsListViewModel: Resettable {
-    public static let shared = DecisionsListViewModel()
-        
+class DecisionsListViewModel {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+
     var requestParams: DecisionsRequest
     var filters: DecisionsRequestFilters
-    
-    private var isFetching = false
-    
-    init() {
+
+    @ObservationIgnored private var isFetching = false
+
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
         let defaultOnlyActive = UserDefaults.shared.object(forKey: StorageKeys.showDefaultActiveDecisions) as! Bool? ?? Defaults.showDefaultActiveDecisions
         defaultRequest.filters.onlyActive = defaultOnlyActive
-        
+
         self.requestParams = defaultRequest
         self.filters = defaultRequest.filters
-        ActiveServerViewModel.shared.register(self)
+        self.activeServerRepository = activeServerRepository
+        NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
+            self?.reset()
+        }
+        NotificationCenter.default.addObserver(forName: .decisionsShouldRefresh, object: nil, queue: .main) { [weak self] _ in
+            Task { await self?.refreshDecisions() }
+        }
+        NotificationCenter.default.addObserver(forName: .decisionShouldExpire, object: nil, queue: .main) { [weak self] notification in
+            if let decisionId = notification.object as? Int {
+                Task { await self?.expireDecision(decisionId: decisionId) }
+            }
+        }
     }
     
     var state: Enums.LoadingState<DecisionsListResponse> = .loading
@@ -34,7 +45,7 @@ class DecisionsListViewModel: Resettable {
     }
     
     private func fetchDecisions(showLoading: Bool = false, params: DecisionsRequest? = nil) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
 
         if showLoading == true {
             withAnimation {
@@ -73,13 +84,13 @@ class DecisionsListViewModel: Resettable {
         req.pagination = defaultRequest.pagination
         req.filters = filters
         requestParams = req
-        ActiveServerViewModel.shared.task {
+        activeServerRepository.task {
             await self.fetchDecisions(showLoading: true, params: req)
         }
     }
 
     func fetchMore() async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         if let data = state.data {
             if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
                 return
@@ -108,7 +119,7 @@ class DecisionsListViewModel: Resettable {
     func resetFilters() {
         self.filters = defaultRequest.filters
         self.requestParams.filters = defaultRequest.filters
-        ActiveServerViewModel.shared.task {
+        activeServerRepository.task {
             await self.fetchDecisions(showLoading: true, params: defaultRequest)
         }
     }
@@ -118,7 +129,7 @@ class DecisionsListViewModel: Resettable {
     }
     
     func expireDecision(decisionId: Int) async -> Bool {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return false }
+        guard let apiClient = activeServerRepository.apiClient else { return false }
         do {
             processingExpireDecision = true
             _ = try await apiClient.decisions.deleteDecision(decisionId: decisionId)

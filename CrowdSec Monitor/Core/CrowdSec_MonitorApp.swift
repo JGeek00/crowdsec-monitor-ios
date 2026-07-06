@@ -9,10 +9,7 @@ struct CrowdSec_MonitorApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(ServersManagerViewModel.shared)
-                .environment(ActiveServerViewModel.shared)
-                .environment(OnboardingViewModel.shared)
-                .environment(ServiceStatusViewModel.shared)
+                .environment(OnboardingViewModel())
                 .environment(AppIconManager.shared)
                 .environment(TipsViewModel())
         }

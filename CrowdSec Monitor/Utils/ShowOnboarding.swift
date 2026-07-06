@@ -2,9 +2,9 @@ import Foundation
 
 func showOnboardingIfNeeded() {
     let onboardingCompleted = UserDefaults.shared.bool(forKey: StorageKeys.onboardingCompleted)
-    let hasServers = ServersManagerViewModel.shared.servers.isEmpty == false
+    let hasServers = RepositoriesContainer.shared.serversManagerRepository.servers.isEmpty == false
     if !onboardingCompleted && !hasServers {
-        OnboardingViewModel.shared.openOnboarding()
+        NotificationCenter.default.post(name: .shouldShowOnboarding, object: nil)
     }
     else if !onboardingCompleted && hasServers {
         UserDefaults.shared.set(true, forKey: StorageKeys.onboardingCompleted)

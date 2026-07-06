@@ -1,15 +1,25 @@
+import Foundation
 import SwiftUI
 
 @MainActor
 @Observable
-class BlocklistsListViewModel: Resettable {
-    static let shared = BlocklistsListViewModel()
-    
+class BlocklistsListViewModel {
+
     var requestParams: BlocklistsRequest
     
-    init() {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    @ObservationIgnored private let serviceStatusRepository: ServiceStatusRepository
+
+    init(
+        activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository,
+        serviceStatusRepository: ServiceStatusRepository = RepositoriesContainer.shared.serviceStatusRepository
+    ) {
         self.requestParams = BlocklistsRequest(offset: 0, limit: Config.blocklistsAmountBatch)
-        ActiveServerViewModel.shared.register(self)
+        self.activeServerRepository = activeServerRepository
+        self.serviceStatusRepository = serviceStatusRepository
+        NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
+            self?.reset()
+        }
     }
 
     var state: Enums.LoadingState<BlocklistsListResponse> = .loading
@@ -34,7 +44,7 @@ class BlocklistsListViewModel: Resettable {
     }
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {
@@ -65,7 +75,7 @@ class BlocklistsListViewModel: Resettable {
     }
     
     func fetchMore() async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         if let data = state.data {
             if (data.pagination.page * Config.alertsAmoutBatch) >= data.pagination.total {
                 return
@@ -85,14 +95,14 @@ class BlocklistsListViewModel: Resettable {
                 let newResponse = BlocklistsListResponse(items: newItems, pagination: result.body.pagination)
                 state = .success(newResponse)
             } catch {
-                guard !(error is CancellationError) else { return }
+            guard !(error is CancellationError) else { return }
                 state = .failure(error)
             }
         }
     }
     
     func enableDisableBlocklist(blocklistId: String, newStatus: Bool) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             processingModal = true
             let params = ToggleBlocklistRequestParams(blocklistId: blocklistId)
@@ -112,7 +122,7 @@ class BlocklistsListViewModel: Resettable {
     }
     
     func deleteBlocklist(blocklistId: String) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             processingModal = true
             let params = DeleteBlocklistRequestParams(blocklistId: blocklistId)
@@ -127,7 +137,7 @@ class BlocklistsListViewModel: Resettable {
     }
     
     func refreshBlocklists(blocklistId: String? = nil) {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         Task {
             do {
                 processingModal = true
@@ -143,5 +153,10 @@ class BlocklistsListViewModel: Resettable {
                 errorRefreshBlocklist = true
             }
         }
+    }
+    
+    /// Returns the active process for a given blocklist, or nil if none.
+    func activeProcess(for blocklistId: String) -> APIStatusResponse_Process? {
+        getBlocklistActiveProcess(data: serviceStatusRepository.state.data, blocklistId: blocklistId)
     }
 }

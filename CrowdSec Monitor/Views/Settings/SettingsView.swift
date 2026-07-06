@@ -6,12 +6,15 @@ struct SettingsView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
-    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
-    
     @State private var showBuildNumber = false
     @State private var crowdsecWebOpen = false
     @State private var myOtherAppsOpen = false
     @State private var appDetailsOpen = false
+    @State private var viewModel = SettingsViewModel()
+    
+    private var hasNewVersion: Bool {
+        viewModel.hasNewVersion
+    }
     
     var body: some View {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
@@ -37,7 +40,7 @@ struct SettingsView: View {
                     NavigationLink {
                         ServerSettingsView()
                     } label: {
-                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings", badge: serviceStatusViewModel.state.data?.csMonitorAPI.newVersionAvailable != nil ? 1 : nil)
+                        ListRowWithIconEntry(systemIcon: "server.rack", iconColor: .orange, label: "Server settings", badge: hasNewVersion ? 1 : nil)
                     }
                 }
                 

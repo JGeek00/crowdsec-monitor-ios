@@ -1,12 +1,9 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @Environment(DashboardViewModel.self) private var viewModel
-    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
-    @Environment(ServersManagerViewModel.self) private var serversManagerViewModel
-    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
-    
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
+    @State private var viewModel = DashboardViewModel()
     
     @State private var statusSheetPresented = false
     
@@ -44,7 +41,7 @@ struct DashboardView: View {
                         statusSheetPresented = true
                     } label: {
                         HStack(spacing: 8) {
-                            switch serviceStatusViewModel.state {
+                            switch viewModel.serviceStatusState {
                             case .loading:
                                 ProgressView()
                             case .success(let data):
@@ -57,15 +54,15 @@ struct DashboardView: View {
                         }
                     }
                 }
-                if serversManagerViewModel.servers.count > 1 {
+                if viewModel.servers.count > 1 {
                     if #available(iOS 26.0, *) {
                         ToolbarSpacer(placement: .topBarTrailing)
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Menu("Switch server", systemImage: "server.rack") {
-                            ForEach(serversManagerViewModel.servers, id: \.self) { server in
+                            ForEach(viewModel.servers, id: \.self) { server in
                                 Button {
-                                    serversManagerViewModel.changeCurrentServer(server: server)
+                                    viewModel.changeCurrentServer(server: server)
                                 } label: {
                                     HStack {
                                         VStack(spacing: 4) {
@@ -73,7 +70,7 @@ struct DashboardView: View {
                                             Text(buildUrl(server: server))
                                         }
                                         Spacer()
-                                        if activeServerViewModel.currentServer == server {
+                                        if viewModel.currentServer == server {
                                             Image(systemName: "checkmark")
                                         }
                                     }
@@ -86,7 +83,7 @@ struct DashboardView: View {
             .task {
                 await viewModel.fetchDashboardData()
             }
-            .onChange(of: activeServerViewModel.currentServer, initial: false) {
+            .onChange(of: viewModel.currentServer, initial: false) {
                 // Trigger when server changes
                 Task {
                     await viewModel.fetchDashboardData()
@@ -98,6 +95,7 @@ struct DashboardView: View {
                 statusSheetPresented = false
             }
         }
+        .environment(viewModel)
     }
     
     @ViewBuilder
@@ -266,4 +264,3 @@ struct DashboardView: View {
         }
     }
 }
-

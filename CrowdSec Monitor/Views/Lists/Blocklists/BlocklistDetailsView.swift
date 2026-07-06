@@ -7,21 +7,17 @@ struct BlocklistDetailsView: View {
 
     @State private var viewModel: BlocklistDetailsViewModel
 
+    @Environment(\.dismiss) private var dismiss
+
     init(blocklistId: String, onDismiss: (() -> Void)? = nil) {
         self.blocklistId = blocklistId
         self.onDismiss = onDismiss
         _viewModel = State(wrappedValue: BlocklistDetailsViewModel(blocklistId: blocklistId))
     }
 
-    @Environment(ServiceStatusViewModel.self) private var serviceStatusViewModel
-
     @State private var browserOpen = false
     @State private var showDeleteConfirmation = false
     @State private var showRefreshConfirmation = false
-
-    private var activeProcess: APIStatusResponse_Process? {
-        getBlocklistActiveProcess(data: serviceStatusViewModel.state.data, blocklistId: blocklistId)
-    }
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -49,7 +45,7 @@ struct BlocklistDetailsView: View {
                                 Button(String(localized: "Refresh list"), systemImage: "arrow.clockwise") {
                                     showRefreshConfirmation = true
                                 }
-                                .disabled(activeProcess != nil)
+                                .disabled(viewModel.activeProcess != nil)
                             }
                         }
 
@@ -63,13 +59,13 @@ struct BlocklistDetailsView: View {
                                         await viewModel.enableDisableBlocklist(newStatus: !enabled)
                                     }
                                 }
-                                .disabled(activeProcess != nil)
+                                .disabled(viewModel.activeProcess != nil)
                             }
 
                             Button(String(localized: "Delete blocklist"), systemImage: "trash", role: .destructive) {
                                 showDeleteConfirmation = true
                             }
-                            .disabled(activeProcess != nil)
+                            .disabled(viewModel.activeProcess != nil)
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -128,8 +124,6 @@ struct BlocklistDetailsView: View {
     
     @ViewBuilder
     func content(_ data: BlocklistDataResponse_Data) -> some View {
-        let blocklistProcess = getBlocklistActiveProcess(data: serviceStatusViewModel.state.data, blocklistId: blocklistId)
-        
         let newMin = Config.ipsAmountBatch*viewModel.ipsRound
         let endIndex = newMin > data.blocklistIPS.count ? data.blocklistIPS.count : newMin
         let slicedIps = Array(data.blocklistIPS[0..<endIndex])
@@ -208,7 +202,7 @@ struct BlocklistDetailsView: View {
                             .foregroundStyle(Color.red)
                     }
                 }
-                if let blocklistProcess = blocklistProcess {
+                if let blocklistProcess = viewModel.activeProcess {
                     HStack {
                         Text(verbatim: "\(getProcessType(blocklistProcess))...")
                         Spacer()

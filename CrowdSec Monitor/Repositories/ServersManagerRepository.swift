@@ -2,22 +2,14 @@ import Foundation
 internal import CoreData
 import SwiftUI
 
-@MainActor
 @Observable
-class ServersManagerViewModel {
-    static let shared = ServersManagerViewModel()
-
+class ServersManagerRepository {
     var servers: [CSServer] = []
     var isLoading: Bool = true
     var errorMessage: String?
 
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
     @ObservationIgnored private let viewContext: NSManagedObjectContext
-
-    private init() {
-        self.viewContext = PersistenceController.shared.container.viewContext
-        loadServers()
-        activateInitialServer()
-    }
 
     func loadServers() {
         do {
@@ -54,7 +46,7 @@ class ServersManagerViewModel {
         try viewContext.save()
         servers.append(server)
 
-        ActiveServerViewModel.shared.activate(server)
+        activeServerRepository.activate(server)
     }
 
     @discardableResult
@@ -65,9 +57,9 @@ class ServersManagerViewModel {
             servers = servers.filter { $0 != server }
 
             if let next = servers.first(where: { $0.isDefaultServer == true }) ?? servers.first {
-                ActiveServerViewModel.shared.activate(next)
+                activeServerRepository.activate(next)
             } else {
-                ActiveServerViewModel.shared.deactivate()
+                activeServerRepository.deactivate()
             }
 
             return true
@@ -77,8 +69,8 @@ class ServersManagerViewModel {
     }
 
     func changeCurrentServer(server: CSServer) {
-        guard server != ActiveServerViewModel.shared.currentServer else { return }
-        ActiveServerViewModel.shared.activate(server)
+        guard server != activeServerRepository.currentServer else { return }
+        activeServerRepository.activate(server)
     }
 
     @discardableResult
@@ -95,16 +87,22 @@ class ServersManagerViewModel {
     }
 
     func logout() {
-        if let server = ActiveServerViewModel.shared.currentServer {
+        if let server = activeServerRepository.currentServer {
             deleteServer(server: server)
         }
     }
 
-    private func activateInitialServer() {
+    func activateInitialServer() {
         isLoading = true
         defer { isLoading = false }
         if let server = servers.first(where: { $0.isDefaultServer == true }) ?? servers.first {
-            ActiveServerViewModel.shared.activate(server)
+            activeServerRepository.activate(server)
         }
+    }
+
+    init(activeServerRepository: ActiveServerRepository) {
+        self.activeServerRepository = activeServerRepository
+        self.viewContext = PersistenceController.shared.container.viewContext
+        loadServers()
     }
 }

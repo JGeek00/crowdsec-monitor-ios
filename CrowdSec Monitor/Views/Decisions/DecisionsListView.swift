@@ -2,7 +2,7 @@ import SwiftUI
 import CustomAlert
 
 struct DecisionsListView: View {
-    @Environment(DecisionsListViewModel.self) private var viewModel
+    @State private var viewModel = DecisionsListViewModel()
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -69,6 +69,7 @@ struct DecisionsListView: View {
                 Spacer()
             }
         }
+        .environment(viewModel)
     }
     
     @ViewBuilder

@@ -5,8 +5,14 @@ import SwiftUI
 class DecisionDetailsViewModel {
     var decisionId: Int
     
-    init(decisionId: Int) {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    
+    init(
+        decisionId: Int,
+        activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository
+    ) {
         self.decisionId = decisionId
+        self.activeServerRepository = activeServerRepository
         
         Task {
             await fetchData()
@@ -17,7 +23,7 @@ class DecisionDetailsViewModel {
     var processingExpireDecision = false
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {
@@ -46,10 +52,10 @@ class DecisionDetailsViewModel {
     func expireDecision() {
         Task {
             processingExpireDecision = true
-            let result = await DecisionsListViewModel.shared.expireDecision(decisionId: decisionId)
+            NotificationCenter.default.post(name: .decisionShouldExpire, object: decisionId)
+            try? await Task.sleep(nanoseconds: 500_000_000)
             await fetchData()
             processingExpireDecision = false
-            return result
         }
     }
 }

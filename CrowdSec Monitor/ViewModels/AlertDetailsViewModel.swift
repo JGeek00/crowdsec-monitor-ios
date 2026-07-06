@@ -5,8 +5,14 @@ import SwiftUI
 class AlertDetailsViewModel {
     var alertId: Int
     
-    init(alertId: Int) {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    
+    init(
+        alertId: Int,
+        activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository
+    ) {
         self.alertId = alertId
+        self.activeServerRepository = activeServerRepository
         
         Task {
             await fetchData()
@@ -16,7 +22,7 @@ class AlertDetailsViewModel {
     var state: Enums.LoadingState<AlertDetailsResponse> = .loading
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {

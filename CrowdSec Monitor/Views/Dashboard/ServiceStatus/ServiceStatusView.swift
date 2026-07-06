@@ -3,11 +3,7 @@ import SwiftUI
 struct ServiceStatusView: View {
     let onClose: () -> Void
     
-    init(onClose: @escaping () -> Void) {
-        self.onClose = onClose
-    }
-    
-    @Environment(ServiceStatusViewModel.self) private var viewModel
+    @State private var viewModel = ServiceStatusViewModel()
 
     var body: some View {
         NavigationStack {

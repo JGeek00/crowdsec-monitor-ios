@@ -1,12 +1,16 @@
+import Foundation
 import SwiftUI
 
 @MainActor
 @Observable
-class AllowlistsListViewModel: Resettable {
-    static let shared = AllowlistsListViewModel()
-    
-    init() {
-        ActiveServerViewModel.shared.register(self)
+class AllowlistsListViewModel {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
+        self.activeServerRepository = activeServerRepository
+        NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
+            self?.reset()
+        }
     }
     
     var state: Enums.LoadingState<AllowlistsListResponse> = .loading
@@ -16,7 +20,7 @@ class AllowlistsListViewModel: Resettable {
     }
     
     func fetchData(showLoading: Bool = false) async {
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+        guard let apiClient = activeServerRepository.apiClient else { return }
         do {
             if showLoading == true {
                 withAnimation {

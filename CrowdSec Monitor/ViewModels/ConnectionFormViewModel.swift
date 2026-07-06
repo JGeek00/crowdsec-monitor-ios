@@ -5,6 +5,12 @@ import Network
 @MainActor
 @Observable
 class ConnectionFormViewModel {
+    @ObservationIgnored private let serversManagerRepository: ServersManagerRepository
+    
+    init(serversManagerRepository: ServersManagerRepository = RepositoriesContainer.shared.serversManagerRepository) {
+        self.serversManagerRepository = serversManagerRepository
+    }
+    
     var name: String = ""
     var connectionMethod: Enums.ConnectionMethod = .http
     var ipDomain: String = ""
@@ -22,8 +28,6 @@ class ConnectionFormViewModel {
     
     var connectionErrorAlert: Bool = false
     var connectionErrorMessage: String = ""
-    
-    init() {}
     
     var isFormValid: Bool {
         guard !name.isEmpty else { return false }
@@ -136,7 +140,7 @@ class ConnectionFormViewModel {
                 return false
             }
             
-            try await ServersManagerViewModel.shared.createServer(
+            try await serversManagerRepository.createServer(
                 name: name,
                 connectionMethod: connectionMethod,
                 ipDomain: ipDomain,

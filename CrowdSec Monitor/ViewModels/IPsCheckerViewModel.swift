@@ -23,7 +23,11 @@ struct IPField: Equatable {
 @MainActor
 @Observable
 class IPsCheckerViewModel {
-    init() {}
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
+        self.activeServerRepository = activeServerRepository
+    }
     
     var ipsToCheck: [IPField] = []
     var selectedListType: Enums.ListType = .blocklist
@@ -46,7 +50,7 @@ class IPsCheckerViewModel {
     
     func validateIps() {
         Task {
-            guard let apiClient = ActiveServerViewModel.shared.apiClient else { return }
+            guard let apiClient = activeServerRepository.apiClient else { return }
             switch selectedListType {
             case .allowlist:
                 do {

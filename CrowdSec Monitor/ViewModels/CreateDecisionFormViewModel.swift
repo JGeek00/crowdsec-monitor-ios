@@ -4,6 +4,12 @@ import Network
 @MainActor
 @Observable
 class CreateDecisionFormViewModel {
+    @ObservationIgnored private let activeServerRepository: ActiveServerRepository
+    
+    init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
+        self.activeServerRepository = activeServerRepository
+    }
+    
     var ipAddress: String = ""
     var durationDays: Int = 0
     var durationHours: Int = 4
@@ -63,7 +69,7 @@ class CreateDecisionFormViewModel {
             return false
         }
         
-        guard let apiClient = ActiveServerViewModel.shared.apiClient else { return false }
+        guard let apiClient = activeServerRepository.apiClient else { return false }
         
         do {
             creatingDecision = true
@@ -71,9 +77,8 @@ class CreateDecisionFormViewModel {
             let body = CreateDecisionRequest(ip: ipAddress, duration: durationString, type: type, reason: reason)
             _ = try await apiClient.decisions.createDecision(body: body)
             
-            async let alertsRefresh: Void = AlertsListViewModel.shared.refreshAlerts()
-            async let decisionsRefresh: Void = DecisionsListViewModel.shared.refreshDecisions()
-            _ = await (alertsRefresh, decisionsRefresh)
+            NotificationCenter.default.post(name: .alertsShouldRefresh, object: nil)
+            NotificationCenter.default.post(name: .decisionsShouldRefresh, object: nil)
             
             creatingDecision = false
             

@@ -1,59 +1,25 @@
 import SwiftUI
 
 struct AddBlocklistFormView: View {
-    var onClose: (_ blocklistAdded: Bool) -> Void
+    let onClose: (_ blocklistAdded: Bool) -> Void
+    
+    @State private var viewModel: AddBlocklistFormViewModel
     
     init(onClose: @escaping (_ blocklistAdded: Bool) -> Void) {
         self.onClose = onClose
-    }
-    
-    @Environment(ActiveServerViewModel.self) private var activeServerViewModel
-    
-    @State private var name: String = ""
-    @State private var url: String = ""
-    
-    @State private var isSaving: Bool = false
-    @State private var requiredFieldsError: Bool = false
-    @State private var invalidUrlError: Bool = false
-    @State private var error: Bool = false
-    
-    func createBlocklist() {
-        if url.isEmpty || name.isEmpty {
-            requiredFieldsError = true
-            return
-        }
-        
-        if NSPredicate(format: "SELF MATCHES %@", RegExps.url).evaluate(with: url) == false {
-            invalidUrlError = true
-            return
-        }
-        
-        guard let apiClient = activeServerViewModel.apiClient else { return }
-        
-        isSaving = true
-        
-        Task {
-            do {
-                let body = AddBlocklistRequestBody(name: name, url: url)
-                _ = try await apiClient.blocklists.addBlocklist(body: body)
-                self.isSaving = false
-                onClose(true)
-            } catch {
-                self.error = true
-                self.isSaving = false
-            }
-        }
+        _viewModel = State(wrappedValue: AddBlocklistFormViewModel())
     }
     
     var body: some View {
+        @Bindable var vm = viewModel
         NavigationStack {
             List {
-                TextField("Name", text: $name)
-                TextField("URL", text: $url)
+                TextField("Name", text: $vm.name)
+                TextField("URL", text: $vm.url)
                     .keyboardType(.URL)
                     .autocorrectionDisabled()
             }
-            .disabled(isSaving)
+            .disabled(vm.isSaving)
             .navigationTitle("Add blocklist")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -64,16 +30,21 @@ struct AddBlocklistFormView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        createBlocklist()
+                        Task {
+                            await vm.createBlocklist(name: vm.name, url: vm.url)
+                            if !vm.isSaving && !vm.error {
+                                onClose(true)
+                            }
+                        }
                     } label: {
-                        if isSaving {
+                        if vm.isSaving {
                             ProgressView()
                         }
                         else {
                             Label("Save", systemImage: "checkmark")
                         }
                     }
-                    .disabled(isSaving)
+                    .disabled(vm.isSaving)
                     .condition { view in
                         if #available(iOS 26.0, *) {
                             view.buttonStyle(.glassProminent)
@@ -82,23 +53,23 @@ struct AddBlocklistFormView: View {
                     }
                 }
             }
-            .alert("Fill all required fields", isPresented: $requiredFieldsError) {
+            .alert("Fill all required fields", isPresented: $vm.requiredFieldsError) {
                 Button("OK", role: .cancel) {
-                    requiredFieldsError = false
+                    vm.requiredFieldsError = false
                 }
             } message: {
                 Text("You must fill all the required fields to add the blocklist")
             }
-            .alert("URL value not valid", isPresented: $invalidUrlError) {
+            .alert("URL value not valid", isPresented: $vm.invalidUrlError) {
                 Button("OK", role: .cancel) {
-                    invalidUrlError = false
+                    vm.invalidUrlError = false
                 }
             } message: {
                 Text("The value inputted on the URL field is not valid, please input a valid URL")
             }
-            .alert("Error", isPresented: $error) {
+            .alert("Error", isPresented: $vm.error) {
                 Button("OK", role: .cancel) {
-                    invalidUrlError = false
+                    vm.error = false
                 }
             } message: {
                 Text("An error occured when adding the blocklist, please try again")
