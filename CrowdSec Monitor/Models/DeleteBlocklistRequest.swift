@@ -1,3 +1,3 @@
-nonisolated struct DeleteBlocklistRequestParams: Sendable {
+struct DeleteBlocklistRequestParams: Sendable {
     let blocklistId: String
 }

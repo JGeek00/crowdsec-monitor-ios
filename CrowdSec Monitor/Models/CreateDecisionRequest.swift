@@ -1,4 +1,4 @@
-nonisolated struct CreateDecisionRequest: Codable {
+struct CreateDecisionRequest: Codable {
     let ip: String
     let duration: String
     let type: Enums.DecisionType

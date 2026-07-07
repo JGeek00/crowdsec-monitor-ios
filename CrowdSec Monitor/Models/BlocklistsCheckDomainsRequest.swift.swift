@@ -1,3 +1,3 @@
-nonisolated struct BlocklistsCheckDomainRequest: Codable {
+struct BlocklistsCheckDomainRequest: Codable {
     let domain: String
 }

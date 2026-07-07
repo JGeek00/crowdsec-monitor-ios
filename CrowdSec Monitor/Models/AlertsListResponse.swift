@@ -1,19 +1,19 @@
 import Foundation
 
 // MARK: - AlertsListResponse
-nonisolated struct AlertsListResponse: Codable, Hashable, Sendable {
+struct AlertsListResponse: Codable, Hashable, Sendable {
     let filtering: AlertsListResponse_Filtering
     let items: [AlertsListResponse_Alert]
     let pagination: AlertsListResponse_Pagination
 }
 
 // MARK: - Filtering
-nonisolated struct AlertsListResponse_Filtering: Codable, Hashable, Sendable {
+struct AlertsListResponse_Filtering: Codable, Hashable, Sendable {
     let countries, scenarios, ipOwners, targets: [String]
 }
 
 // MARK: - AlertsListResponse_Alert
-nonisolated struct AlertsListResponse_Alert: Codable, Hashable, Sendable {
+struct AlertsListResponse_Alert: Codable, Hashable, Sendable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
@@ -42,25 +42,25 @@ nonisolated struct AlertsListResponse_Alert: Codable, Hashable, Sendable {
 }
 
 // MARK: - AlertsListResponse_ItemMeta
-nonisolated struct AlertsListResponse_ItemMeta: Codable, Hashable, Sendable {
+struct AlertsListResponse_ItemMeta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - AlertsListResponse_Event
-nonisolated struct AlertsListResponse_Event: Codable, Hashable, Sendable {
+struct AlertsListResponse_Event: Codable, Hashable, Sendable {
     let meta: [AlertsListResponse_Event_EventMeta]
     let timestamp: String
 }
 
 // MARK: - AlertsListResponse_Event_EventMeta
-nonisolated struct AlertsListResponse_Event_EventMeta: Codable, Hashable, Sendable {
+struct AlertsListResponse_Event_EventMeta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - AlertsListResponse_Alert_Source
-nonisolated struct AlertsListResponse_Alert_Source: Codable, Hashable, Sendable {
+struct AlertsListResponse_Alert_Source: Codable, Hashable, Sendable {
     let asName: String?
     let asNumber, cn, ip: String?
     let latitude, longitude: Double?
@@ -76,7 +76,7 @@ nonisolated struct AlertsListResponse_Alert_Source: Codable, Hashable, Sendable 
 }
 
 // MARK: - AlertsListResponse_Pagination
-nonisolated struct AlertsListResponse_Pagination: Codable, Hashable, Sendable {
+struct AlertsListResponse_Pagination: Codable, Hashable, Sendable {
     let page, amount, total: Int
 }
 

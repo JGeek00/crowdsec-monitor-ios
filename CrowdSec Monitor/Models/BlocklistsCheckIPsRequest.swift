@@ -1,3 +1,3 @@
-nonisolated struct BlocklistsCheckIPsRequest: Hashable, Codable, Sendable {
+struct BlocklistsCheckIPsRequest: Hashable, Codable, Sendable {
     let ips: [String]
 }

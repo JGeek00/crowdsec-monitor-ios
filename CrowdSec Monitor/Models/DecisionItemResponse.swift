@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - DecisionItemResponse
-nonisolated struct DecisionItemResponse: Codable, Hashable, Sendable {
+ struct DecisionItemResponse: Codable, Hashable, Sendable {
     let id, alertId: Int
     let origin, type, scope, value: String
     let expiration, scenario: String
@@ -20,7 +20,7 @@ nonisolated struct DecisionItemResponse: Codable, Hashable, Sendable {
 }
 
 // MARK: - DecisionItemResponse_Alert
-nonisolated struct DecisionItemResponse_Alert: Codable, Hashable, Sendable {
+ struct DecisionItemResponse_Alert: Codable, Hashable, Sendable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
@@ -49,19 +49,19 @@ nonisolated struct DecisionItemResponse_Alert: Codable, Hashable, Sendable {
 }
 
 // MARK: - DecisionItemResponse_Alert_Event
-nonisolated struct DecisionItemResponse_Alert_Event: Codable, Hashable, Sendable {
+ struct DecisionItemResponse_Alert_Event: Codable, Hashable, Sendable {
     let meta: [DecisionItemResponse_Alert_Meta]
     let timestamp: String
 }
 
 // MARK: - DecisionItemResponse_Alert_Meta
-nonisolated struct DecisionItemResponse_Alert_Meta: Codable, Hashable, Sendable {
+ struct DecisionItemResponse_Alert_Meta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - DecisionItemResponse_Source
-nonisolated struct DecisionItemResponse_Source: Codable, Hashable, Sendable {
+ struct DecisionItemResponse_Source: Codable, Hashable, Sendable {
     let asName, asNumber, cn, ip: String?
     let latitude, longitude: Double?
     let range: String?

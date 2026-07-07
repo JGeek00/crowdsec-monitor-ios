@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - HTTP Response Structure
 
-nonisolated struct HttpResponse<T: Decodable>: Decodable {
+struct HttpResponse<T: Decodable>: Decodable, Sendable {
     let successful: Bool
     let statusCode: Int
     let body: T
@@ -10,7 +10,7 @@ nonisolated struct HttpResponse<T: Decodable>: Decodable {
 
 // MARK: - Empty Response (for DELETE, etc.)
 
-nonisolated struct EmptyResponse: Decodable {
+struct EmptyResponse: Decodable, Sendable {
     init() {}
     
     init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ nonisolated struct EmptyResponse: Decodable {
     }
 }
 
-nonisolated class HttpClient: NSObject {
+class HttpClient: NSObject {
     private let baseURL: URL
     private(set) var session: URLSession
     private var authHeader: [String: String]?
@@ -209,7 +209,7 @@ nonisolated class HttpClient: NSObject {
         
         guard (200...299).contains(statusCode) else {
             // Try to extract an error message from the response body
-            if let errorBody = try? JSONDecoder().decode(ApiErrorResponse.self, from: data), let message = errorBody.resolvedMessage {
+            if let errorBody = try? JSONDecoder.api.decode(ApiErrorResponse.self, from: data), let message = errorBody.resolvedMessage {
                 throw HttpClientError.httpErrorWithMessage(statusCode: statusCode, message: message)
             }
             throw HttpClientError.httpError(statusCode: statusCode)
@@ -219,34 +219,8 @@ nonisolated class HttpClient: NSObject {
     }
     
     private func decode<T: Decodable>(_ data: Data) throws -> T {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let dateString = try container.decode(String.self)
-            
-            // Try ISO8601 with milliseconds format: "2026-02-14T20:29:54.000Z"
-            let iso8601Formatter = ISO8601DateFormatter()
-            iso8601Formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            if let date = iso8601Formatter.date(from: dateString) {
-                return date
-            }
-            
-            // Try custom timestamp format: "2026-02-14 21:29:50 +0100 +0100"
-            let customFormatter = DateFormatter()
-            customFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z Z"
-            customFormatter.locale = Locale(identifier: "en_US_POSIX")
-            if let date = customFormatter.date(from: dateString) {
-                return date
-            }
-            
-            throw DecodingError.dataCorruptedError(
-                in: container,
-                debugDescription: "Cannot decode date string: \(dateString)"
-            )
-        }
-        
         do {
-            return try decoder.decode(T.self, from: data)
+            return try JSONDecoder.api.decode(T.self, from: data)
         } catch {
             throw HttpClientError.decodingError(error)
         }

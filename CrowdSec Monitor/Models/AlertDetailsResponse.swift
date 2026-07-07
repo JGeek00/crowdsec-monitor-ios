@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - AlertDetailsResponse
-nonisolated struct AlertDetailsResponse: Codable, Hashable, Sendable {
+struct AlertDetailsResponse: Codable, Hashable, Sendable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
@@ -32,13 +32,13 @@ nonisolated struct AlertDetailsResponse: Codable, Hashable, Sendable {
 }
 
 // MARK: - AlertDetailsResponse_Meta
-nonisolated struct AlertDetailsResponse_Meta: Codable, Hashable, Sendable {
+struct AlertDetailsResponse_Meta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - AlertDetailsResponse_Decision
-nonisolated struct AlertDetailsResponse_Decision: Codable, Hashable, Sendable {
+struct AlertDetailsResponse_Decision: Codable, Hashable, Sendable {
     let id, alertID: Int
     let origin, type, scope, value: String
     let expiration: Date
@@ -56,7 +56,7 @@ nonisolated struct AlertDetailsResponse_Decision: Codable, Hashable, Sendable {
 }
 
 // MARK: - AlertDetailsResponse_Source
-nonisolated struct AlertDetailsResponse_Source: Codable, Hashable, Sendable {
+struct AlertDetailsResponse_Source: Codable, Hashable, Sendable {
     let asName, asNumber, cn, ip: String?
     let latitude, longitude: Double?
     let range: String?
@@ -70,13 +70,13 @@ nonisolated struct AlertDetailsResponse_Source: Codable, Hashable, Sendable {
 }
 
 // MARK: - AlertDetailsResponse_Event
-nonisolated struct AlertDetailsResponse_Event: Codable, Hashable, Sendable {
+struct AlertDetailsResponse_Event: Codable, Hashable, Sendable {
     let meta: [AlertDetailsResponse_Event_Meta]
     let timestamp: Date
 }
 
 // MARK: - AlertDetailsResponse_Event_Meta
-nonisolated struct AlertDetailsResponse_Event_Meta: Codable, Hashable, Sendable {
+struct AlertDetailsResponse_Event_Meta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }

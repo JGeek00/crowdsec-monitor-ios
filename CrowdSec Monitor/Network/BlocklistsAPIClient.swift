@@ -1,6 +1,6 @@
 import Foundation
 
-nonisolated class BlocklistsAPIClient {
+class BlocklistsAPIClient {
     private let httpClient: HttpClient
 
     init(_ httpClient: HttpClient) {

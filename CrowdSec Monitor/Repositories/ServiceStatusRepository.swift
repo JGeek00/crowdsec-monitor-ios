@@ -16,7 +16,9 @@ class ServiceStatusRepository {
         do {
             let response = try await apiClient.checkApiStatus()
             state = .success(response.body)
-            openWebSocket(apiClient: apiClient)
+            if let ws = activeServerRepository.webSocketClient {
+                openWebSocket(webSocketClient: ws)
+            }
         } catch {
             guard !(error is CancellationError) else { return }
             state = .failure(error)
@@ -24,17 +26,18 @@ class ServiceStatusRepository {
     }
 
     func openWebSocket() {
-        guard let apiClient = activeServerRepository.apiClient else { return }
-        openWebSocket(apiClient: apiClient)
+        guard let webSocketClient = activeServerRepository.webSocketClient else { return }
+        openWebSocket(webSocketClient: webSocketClient)
     }
 
-    private func openWebSocket(apiClient: CrowdSecAPIClient) {
+    private func openWebSocket(webSocketClient: WebSocketClient) {
         guard webSocketTask == nil || webSocketTask?.isCancelled == true else { return }
 
         webSocketTask = Task { [weak self] in
             do {
-                for try await status in apiClient.streamApiStatus() {
-                    self?.state = .success(status)
+                for try await data in webSocketClient.stream(endpoint: "/api/v1/status") {
+                    let decoded = try JSONDecoder.api.decode(APIStatusResponse.self, from: data)
+                    self?.state = .success(decoded)
                 }
             } catch {
                 guard !(error is CancellationError) else { return }
@@ -61,7 +64,9 @@ class ServiceStatusRepository {
             do {
                 let response = try await apiClient.checkApiStatus()
                 self.state = .success(response.body)
-                self.openWebSocket(apiClient: apiClient)
+                if let ws = activeServerRepository.webSocketClient {
+                    self.openWebSocket(webSocketClient: ws)
+                }
             } catch {
                 guard !(error is CancellationError) else { return }
                 self.state = .failure(error)

@@ -1,19 +1,19 @@
 import Foundation
 
 // MARK: - DecisionsListResponse
-nonisolated struct DecisionsListResponse: Codable, Hashable, Sendable, Equatable {
+ struct DecisionsListResponse: Codable, Hashable, Sendable, Equatable {
     let filtering: DecisionsListResponse_Filtering
     let items: [DecisionsListResponse_Item]
     let pagination: DecisionsListResponse_Pagination
 }
 
 // MARK: - Filtering
-nonisolated struct DecisionsListResponse_Filtering: Codable, Hashable, Sendable, Equatable {
+ struct DecisionsListResponse_Filtering: Codable, Hashable, Sendable, Equatable {
     let countries, ipOwners: [String]
 }
 
 // MARK: - DecisionItem
-nonisolated struct DecisionsListResponse_Item: Codable, Hashable, Sendable, Equatable {
+ struct DecisionsListResponse_Item: Codable, Hashable, Sendable, Equatable {
     let id, alertId: Int
     let origin: String
     let type: String
@@ -32,7 +32,7 @@ nonisolated struct DecisionsListResponse_Item: Codable, Hashable, Sendable, Equa
 }
 
 // MARK: - DecisionsListResponse_Item_Source
-nonisolated struct DecisionsListResponse_Item_Source: Codable, Hashable, Sendable, Equatable {
+ struct DecisionsListResponse_Item_Source: Codable, Hashable, Sendable, Equatable {
     let asName: String?
     let asNumber, cn, ip: String?
     let latitude, longitude: Double?
@@ -48,6 +48,6 @@ nonisolated struct DecisionsListResponse_Item_Source: Codable, Hashable, Sendabl
 }
 
 // MARK: - Pagination
-nonisolated struct DecisionsListResponse_Pagination: Codable, Hashable, Sendable, Equatable {
+ struct DecisionsListResponse_Pagination: Codable, Hashable, Sendable, Equatable {
     let page, amount, total: Int
 }

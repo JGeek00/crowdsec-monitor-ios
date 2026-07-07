@@ -1,6 +1,6 @@
 import Foundation
 
-nonisolated class StatisticsAPIClient {
+class StatisticsAPIClient {
     private let httpClient: HttpClient
     
     let countries: CountriesStatisticsAPIClient

@@ -1,4 +1,4 @@
-nonisolated class AllowlistsAPIClient {
+class AllowlistsAPIClient {
     private let httpClient: HttpClient
 
     init(_ httpClient: HttpClient) {

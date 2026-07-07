@@ -1,13 +1,13 @@
 import Foundation
 
 // MARK: - BlocklistsListResponse
-nonisolated struct BlocklistsListResponse: Codable, Hashable, Sendable {
+ struct BlocklistsListResponse: Codable, Hashable, Sendable {
     let items: [BlocklistsListResponse_Item]
     let pagination: BlocklistsListResponse_Pagination
 }
 
 // MARK: - BlocklistsListResponse_Item
-nonisolated struct BlocklistsListResponse_Item: Codable, Hashable, Sendable {
+ struct BlocklistsListResponse_Item: Codable, Hashable, Sendable {
     let id: String
     let url: String?
     let name: String
@@ -29,12 +29,12 @@ nonisolated struct BlocklistsListResponse_Item: Codable, Hashable, Sendable {
 }
 
 // MARK: - BlocklistsListResponse_Item_Type
-nonisolated enum BlocklistsListResponse_Item_Type: String, Codable, Hashable, Sendable {
+ enum BlocklistsListResponse_Item_Type: String, Codable, Hashable, Sendable {
     case api = "api"
     case crowdsec = "cs"
 }
 
 // MARK: - Pagination
-nonisolated struct BlocklistsListResponse_Pagination: Codable, Hashable, Sendable {
+ struct BlocklistsListResponse_Pagination: Codable, Hashable, Sendable {
     let page, amount, total: Int
 }

@@ -1,12 +1,12 @@
 import Foundation
 
 // MARK: - BlocklistDataResponse
-nonisolated struct BlocklistDataResponse: Codable {
+ struct BlocklistDataResponse: Codable {
     let data: BlocklistDataResponse_Data
 }
 
 // MARK: - BlocklistDataResponse_Data
-nonisolated struct BlocklistDataResponse_Data: Codable {
+ struct BlocklistDataResponse_Data: Codable {
     let id: String
     let url: String?
     let name: String
@@ -30,7 +30,7 @@ nonisolated struct BlocklistDataResponse_Data: Codable {
 }
 
 // MARK: - BlocklistDataResponse_Data_Type
-nonisolated enum BlocklistDataResponse_Data_Type: String, Codable {
+ enum BlocklistDataResponse_Data_Type: String, Codable {
     case api = "api"
     case crowdsec = "cs"
 }

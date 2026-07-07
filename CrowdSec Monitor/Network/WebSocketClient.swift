@@ -164,9 +164,9 @@ nonisolated class WebSocketClient: NSObject, @unchecked Sendable {
     }
 
     /// Opens a WebSocket connection to `endpoint` and returns an `AsyncThrowingStream`
-    /// that emits decoded `T` values as they arrive. The stream ends when the connection
+    /// that emits raw `Data` as it arrives. The stream ends when the connection
     /// closes or an unrecoverable error occurs.
-    func stream<T: Decodable & Sendable>(endpoint: String, as type: T.Type = T.self) -> AsyncThrowingStream<T, Error> {
+    func stream(endpoint: String) -> AsyncThrowingStream<Data, Error> {
         AsyncThrowingStream { continuation in
             guard state == .disconnected else {
                 continuation.finish(throwing: WebSocketClientError.alreadyConnected)
@@ -209,27 +209,23 @@ nonisolated class WebSocketClient: NSObject, @unchecked Sendable {
                     }
                     switch result {
                     case .success(let message):
-                        do {
-                            let data: Data
-                            switch message {
-                            case .string(let text):
-                                guard let encoded = text.data(using: .utf8) else {
-                                    throw WebSocketClientError.decodingError
-                                }
-                                data = encoded
-                            case .data(let bytes):
-                                data = bytes
-                            @unknown default:
-                                receive()
+                        let data: Data
+                        switch message {
+                        case .string(let text):
+                            guard let encoded = text.data(using: .utf8) else {
+                                continuation.finish(throwing: WebSocketClientError.decodingError)
+                                self.state = .disconnected
                                 return
                             }
-                            let decoded = try JSONDecoder().decode(T.self, from: data)
-                            continuation.yield(decoded)
+                            data = encoded
+                        case .data(let bytes):
+                            data = bytes
+                        @unknown default:
                             receive()
-                        } catch {
-                            continuation.finish(throwing: error)
-                            self.state = .disconnected
+                            return
                         }
+                        continuation.yield(data)
+                        receive()
                     case .failure(let error):
                         let nsError = error as NSError
                         if nsError.code == NSURLErrorCancelled {

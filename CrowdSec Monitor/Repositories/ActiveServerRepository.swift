@@ -5,6 +5,7 @@ import SwiftUI
 class ActiveServerRepository {
     var currentServer: CSServer?
     var apiClient: CrowdSecAPIClient?
+    var webSocketClient: WebSocketClient?
 
     var hasServerConfigured: Bool {
         currentServer != nil && apiClient != nil
@@ -41,18 +42,22 @@ class ActiveServerRepository {
     /// Switch to a new server, tearing down the previous connection first.
     func activate(_ server: CSServer) {
         apiClient?.invalidate()
+        webSocketClient?.disconnect()
         cancelAllServerTasks()
         currentServer = server
         apiClient = CrowdSecAPIClient(server)
+        webSocketClient = WebSocketClient(server: server)
         NotificationCenter.default.post(name: .serverDidChange, object: nil)
     }
 
     /// Remove the active server (e.g. the last server was deleted).
     func deactivate() {
         apiClient?.invalidate()
+        webSocketClient?.disconnect()
         cancelAllServerTasks()
         currentServer = nil
         apiClient = nil
+        webSocketClient = nil
         NotificationCenter.default.post(name: .serverDidChange, object: nil)
     }
 

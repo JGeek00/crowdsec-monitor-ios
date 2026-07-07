@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - APIStatusResponse
-nonisolated struct APIStatusResponse: Codable, Hashable, Sendable {
+ struct APIStatusResponse: Codable, Hashable, Sendable {
     let csLapi: APIStatusResponse_CSLapi
     let csBouncer: APIStatusResponse_CSBouncer
     let csMonitorAPI: APIStatusResponse_CSMonitorAPI
@@ -15,24 +15,24 @@ nonisolated struct APIStatusResponse: Codable, Hashable, Sendable {
 }
 
 // MARK: - APIStatusResponse_CSBouncer
-nonisolated struct APIStatusResponse_CSBouncer: Codable, Hashable, Sendable {
+ struct APIStatusResponse_CSBouncer: Codable, Hashable, Sendable {
     let available: Bool
 }
 
 // MARK: - APIStatusResponse_CSLapi
-nonisolated struct APIStatusResponse_CSLapi: Codable, Hashable, Sendable {
+ struct APIStatusResponse_CSLapi: Codable, Hashable, Sendable {
     let lapiConnected: Bool
     let lastSuccessfulSync, timestamp: String
 }
 
 // MARK: - APIStatusResponse_CSMonitorAPI
-nonisolated struct APIStatusResponse_CSMonitorAPI: Codable, Hashable, Sendable {
+ struct APIStatusResponse_CSMonitorAPI: Codable, Hashable, Sendable {
     let version: String
     let newVersionAvailable: String?
 }
 
 // MARK: - Process
-nonisolated struct APIStatusResponse_Process: Codable, Hashable, Sendable {
+ struct APIStatusResponse_Process: Codable, Hashable, Sendable {
     let id: String
     let beginDatetime: String
     let endDatetime: String?
@@ -47,7 +47,7 @@ nonisolated struct APIStatusResponse_Process: Codable, Hashable, Sendable {
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistFieldStatus
-nonisolated enum APIStatusResponse_ProcessBlocklistFieldStatus: String, Codable, Hashable, Sendable {
+ enum APIStatusResponse_ProcessBlocklistFieldStatus: String, Codable, Hashable, Sendable {
     case pending = "pending"
     case running = "running"
     case successful = "successful"
@@ -55,7 +55,7 @@ nonisolated enum APIStatusResponse_ProcessBlocklistFieldStatus: String, Codable,
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistStep
-nonisolated enum APIStatusResponse_ProcessBlocklistStep: String, Codable, Hashable, Sendable {
+ enum APIStatusResponse_ProcessBlocklistStep: String, Codable, Hashable, Sendable {
     case fetch = "fetch"
     case parse = "parse"
     case delete = "delete"
@@ -63,13 +63,13 @@ nonisolated enum APIStatusResponse_ProcessBlocklistStep: String, Codable, Hashab
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistProgress
-nonisolated struct APIStatusResponse_ProcessBlocklistProgress: Codable, Hashable, Sendable {
+ struct APIStatusResponse_ProcessBlocklistProgress: Codable, Hashable, Sendable {
     let totalIps: Int
     let processedIps: Int
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistIps
-nonisolated struct APIStatusResponse_ProcessBlocklistIps: Codable, Hashable, Sendable {
+ struct APIStatusResponse_ProcessBlocklistIps: Codable, Hashable, Sendable {
     let blocklistId: Int
     let blocklistName: String
     let blocklistIps: Int
@@ -78,7 +78,7 @@ nonisolated struct APIStatusResponse_ProcessBlocklistIps: Codable, Hashable, Sen
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklist
-nonisolated struct APIStatusResponse_ProcessBlocklist: Codable, Hashable, Sendable {
+ struct APIStatusResponse_ProcessBlocklist: Codable, Hashable, Sendable {
     let blocklistId: Int
     let blocklistName: String
     let step: APIStatusResponse_ProcessBlocklistStep
@@ -89,7 +89,7 @@ nonisolated struct APIStatusResponse_ProcessBlocklist: Codable, Hashable, Sendab
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistSingleRefresh
-nonisolated struct APIStatusResponse_ProcessBlocklistSingleRefresh: Codable, Hashable, Sendable {
+struct APIStatusResponse_ProcessBlocklistSingleRefresh: Codable, Hashable, Sendable {
     let blocklistId: Int
     let blocklistName: String
     let step: APIStatusResponse_ProcessBlocklistStep
@@ -101,7 +101,7 @@ nonisolated struct APIStatusResponse_ProcessBlocklistSingleRefresh: Codable, Has
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistRefresh
-nonisolated struct APIStatusResponse_ProcessBlocklistRefresh: Codable, Hashable, Sendable {
+struct APIStatusResponse_ProcessBlocklistRefresh: Codable, Hashable, Sendable {
     let totalBlocklists, currentBlocklist: Int
     let blocklists: [APIStatusResponse_ProcessBlocklistRefresh_Blocklist]
     let totalIPS: Int
@@ -113,14 +113,14 @@ nonisolated struct APIStatusResponse_ProcessBlocklistRefresh: Codable, Hashable,
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistRefresh_Blocklist
-nonisolated struct APIStatusResponse_ProcessBlocklistRefresh_Blocklist: Codable, Hashable, Sendable {
+struct APIStatusResponse_ProcessBlocklistRefresh_Blocklist: Codable, Hashable, Sendable {
     let number: Int
     let name: String
     let steps: APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps
 }
 
 // MARK: - APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps
-nonisolated struct APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps: Codable, Hashable, Sendable {
+struct APIStatusResponse_ProcessBlocklistRefresh_Blocklist_Steps: Codable, Hashable, Sendable {
     let fetch: APIStatusResponse_ProcessBlocklistFieldStatus
     let parse: APIStatusResponse_ProcessBlocklistFieldStatus
     let delete: APIStatusResponse_ProcessBlocklistFieldStatus
