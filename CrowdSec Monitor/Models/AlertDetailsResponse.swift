@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - AlertDetailsResponse
-struct AlertDetailsResponse: Codable, Hashable {
+nonisolated struct AlertDetailsResponse: Codable, Hashable, Sendable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
@@ -16,7 +16,7 @@ struct AlertDetailsResponse: Codable, Hashable {
     let crowdsecCreatedAt, startAt, stopAt: Date
     let decisions: [AlertDetailsResponse_Decision]
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case id, uuid, scenario
         case scenarioVersion = "scenario_version"
         case scenarioHash = "scenario_hash"
@@ -32,13 +32,13 @@ struct AlertDetailsResponse: Codable, Hashable {
 }
 
 // MARK: - AlertDetailsResponse_Meta
-struct AlertDetailsResponse_Meta: Codable, Hashable {
+nonisolated struct AlertDetailsResponse_Meta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - AlertDetailsResponse_Decision
-struct AlertDetailsResponse_Decision: Codable, Hashable {
+nonisolated struct AlertDetailsResponse_Decision: Codable, Hashable, Sendable {
     let id, alertID: Int
     let origin, type, scope, value: String
     let expiration: Date
@@ -47,7 +47,7 @@ struct AlertDetailsResponse_Decision: Codable, Hashable {
     let source: AlertDetailsResponse_Source
     let crowdsecCreatedAt: Date
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case id
         case alertID = "alert_id"
         case origin, type, scope, value, expiration, scenario, simulated, source
@@ -56,13 +56,13 @@ struct AlertDetailsResponse_Decision: Codable, Hashable {
 }
 
 // MARK: - AlertDetailsResponse_Source
-struct AlertDetailsResponse_Source: Codable, Hashable {
+nonisolated struct AlertDetailsResponse_Source: Codable, Hashable, Sendable {
     let asName, asNumber, cn, ip: String?
     let latitude, longitude: Double?
     let range: String?
     let scope, value: String
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case asName = "as_name"
         case asNumber = "as_number"
         case cn, ip, latitude, longitude, range, scope, value
@@ -70,13 +70,13 @@ struct AlertDetailsResponse_Source: Codable, Hashable {
 }
 
 // MARK: - AlertDetailsResponse_Event
-struct AlertDetailsResponse_Event: Codable, Hashable {
+nonisolated struct AlertDetailsResponse_Event: Codable, Hashable, Sendable {
     let meta: [AlertDetailsResponse_Event_Meta]
     let timestamp: Date
 }
 
 // MARK: - AlertDetailsResponse_Event_Meta
-struct AlertDetailsResponse_Event_Meta: Codable, Hashable {
+nonisolated struct AlertDetailsResponse_Event_Meta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }

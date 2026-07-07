@@ -1,6 +1,6 @@
 import Foundation
 
-class CrowdSecAPIClient {
+nonisolated class CrowdSecAPIClient {
     private let httpClient: HttpClient
     private let websocketClient: WebSocketClient
     

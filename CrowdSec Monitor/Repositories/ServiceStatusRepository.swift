@@ -5,8 +5,8 @@ import SwiftUI
 class ServiceStatusRepository {
     var state: Enums.LoadingState<APIStatusResponse> = .loading
 
-    @ObservationIgnored private var streamTask: Task<Void, Never>?
-    @ObservationIgnored private var serverChangeObserver: NSObjectProtocol?
+    @ObservationIgnored nonisolated(unsafe) private var webSocketTask: Task<Void, Never>?
+    @ObservationIgnored nonisolated(unsafe) private var serverChangeObserver: NSObjectProtocol?
 
     @ObservationIgnored private let activeServerRepository: ActiveServerRepository
 
@@ -29,34 +29,34 @@ class ServiceStatusRepository {
     }
 
     private func openWebSocket(apiClient: CrowdSecAPIClient) {
-        guard streamTask == nil || streamTask?.isCancelled == true else { return }
+        guard webSocketTask == nil || webSocketTask?.isCancelled == true else { return }
 
-        streamTask = Task { [weak self] in
-            guard let self = self else { return }
+        webSocketTask = Task { [weak self] in
             do {
                 for try await status in apiClient.streamApiStatus() {
-                    self.state = .success(status)
+                    self?.state = .success(status)
                 }
             } catch {
                 guard !(error is CancellationError) else { return }
-                self.state = .failure(error)
+                self?.state = .failure(error)
             }
         }
     }
 
-    func closeWebSocket() {
-        streamTask?.cancel()
-        streamTask = nil
+    nonisolated func closeWebSocket() {
+        webSocketTask?.cancel()
+        webSocketTask = nil
     }
 
-    private func resetOnServerChange() {
+    /// Closes the old WebSocket, fetches fresh status via HTTP, and opens a new WebSocket on success.
+    func reconnect() {
         closeWebSocket()
         guard let apiClient = activeServerRepository.apiClient else {
             state = .loading
             return
         }
         state = .loading
-        streamTask = Task { [weak self] in
+        Task { [weak self] in
             guard let self = self else { return }
             do {
                 let response = try await apiClient.checkApiStatus()
@@ -67,6 +67,10 @@ class ServiceStatusRepository {
                 self.state = .failure(error)
             }
         }
+    }
+
+    private func resetOnServerChange() {
+        reconnect()
     }
 
     init(activeServerRepository: ActiveServerRepository) {

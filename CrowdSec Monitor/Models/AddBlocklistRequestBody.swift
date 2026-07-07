@@ -1,4 +1,4 @@
-struct AddBlocklistRequestBody: Codable {
+nonisolated struct AddBlocklistRequestBody: Codable {
     let name: String
     let url: String
 }

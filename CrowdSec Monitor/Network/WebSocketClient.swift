@@ -2,14 +2,14 @@ import Foundation
 
 // MARK: - WebSocket Message
 
-enum WebSocketMessage {
+nonisolated enum WebSocketMessage {
     case text(String)
     case data(Data)
 }
 
 // MARK: - WebSocket Client State
 
-enum WebSocketState {
+nonisolated enum WebSocketState {
     case disconnected
     case connecting
     case connected
@@ -17,7 +17,7 @@ enum WebSocketState {
 
 // MARK: - WebSocket Client
 
-class WebSocketClient: NSObject {
+nonisolated class WebSocketClient: NSObject {
     private let baseURL: URL
     private var session: URLSession
     private var authHeader: [String: String]?
@@ -46,7 +46,7 @@ class WebSocketClient: NSObject {
 
         super.init()
 
-        self.session = Self.createSession(withDelegate: self)
+        self.session = Self.createSession()
         self.configureAuth(
             authMethod: server.authMethod,
             basicUser: server.basicUser,
@@ -93,7 +93,7 @@ class WebSocketClient: NSObject {
 
         super.init()
 
-        self.session = Self.createSession(withDelegate: self)
+        self.session = Self.createSession()
         self.configureAuth(
             authMethod: authMethod,
             basicUser: basicUser,
@@ -104,14 +104,14 @@ class WebSocketClient: NSObject {
 
     // MARK: - Configuration
 
-    private static func createSession(withDelegate delegate: URLSessionDelegate) -> URLSession {
+    private static func createSession() -> URLSession {
         let config = URLSessionConfiguration.default
         // No timeouts — WebSocket connections are long-lived by design.
         // timeoutIntervalForRequest (default 60s) and timeoutIntervalForResource
         // would kill the connection during idle periods.
         config.timeoutIntervalForRequest = .infinity
         config.timeoutIntervalForResource = .infinity
-        return URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
+        return URLSession(configuration: config, delegate: SessionDelegate(), delegateQueue: nil)
     }
 
     private func configureAuth(
@@ -166,7 +166,7 @@ class WebSocketClient: NSObject {
     /// Opens a WebSocket connection to `endpoint` and returns an `AsyncThrowingStream`
     /// that emits decoded `T` values as they arrive. The stream ends when the connection
     /// closes or an unrecoverable error occurs.
-    func stream<T: Decodable>(endpoint: String, as type: T.Type = T.self) -> AsyncThrowingStream<T, Error> {
+    func stream<T: Decodable & Sendable>(endpoint: String, as type: T.Type = T.self) -> AsyncThrowingStream<T, Error> {
         AsyncThrowingStream { continuation in
             guard state == .disconnected else {
                 continuation.finish(throwing: WebSocketClientError.alreadyConnected)
@@ -339,28 +339,9 @@ class WebSocketClient: NSObject {
     }
 }
 
-// MARK: - URLSessionDelegate (SSL pinning bypass, same as HttpClient)
-
-extension WebSocketClient: URLSessionDelegate {
-    func urlSession(
-        _ session: URLSession,
-        didReceive challenge: URLAuthenticationChallenge,
-        completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
-    ) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if let serverTrust = challenge.protectionSpace.serverTrust {
-                let credential = URLCredential(trust: serverTrust)
-                completionHandler(.useCredential, credential)
-                return
-            }
-        }
-        completionHandler(.performDefaultHandling, nil)
-    }
-}
-
 // MARK: - Errors
 
-enum WebSocketClientError: LocalizedError {
+nonisolated enum WebSocketClientError: LocalizedError {
     case notConnected
     case alreadyConnected
     case encodingError

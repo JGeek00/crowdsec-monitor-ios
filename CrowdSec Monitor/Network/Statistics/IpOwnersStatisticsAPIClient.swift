@@ -1,6 +1,6 @@
 import Foundation
 
-class IpOwnersStatisticsAPIClient {
+nonisolated class IpOwnersStatisticsAPIClient {
     private let httpClient: HttpClient
     
     init(_ httpClient: HttpClient) {

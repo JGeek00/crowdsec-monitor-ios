@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - HTTP Response Structure
 
-struct HttpResponse<T: Decodable>: Decodable {
+nonisolated struct HttpResponse<T: Decodable>: Decodable {
     let successful: Bool
     let statusCode: Int
     let body: T
@@ -10,7 +10,7 @@ struct HttpResponse<T: Decodable>: Decodable {
 
 // MARK: - Empty Response (for DELETE, etc.)
 
-struct EmptyResponse: Decodable {
+nonisolated struct EmptyResponse: Decodable {
     init() {}
     
     init(from decoder: Decoder) throws {
@@ -18,7 +18,7 @@ struct EmptyResponse: Decodable {
     }
 }
 
-class HttpClient: NSObject {
+nonisolated class HttpClient: NSObject {
     private let baseURL: URL
     private(set) var session: URLSession
     private var authHeader: [String: String]?
@@ -35,7 +35,7 @@ class HttpClient: NSObject {
         
         super.init()
         
-        self.session = Self.createSession(withDelegate: self)
+        self.session = Self.createSession()
         self.configureAuth(authMethod: server.authMethod, basicUser: server.basicUser, basicPassword: server.basicPassword, bearerToken: server.bearerToken)
     }
     
@@ -72,17 +72,17 @@ class HttpClient: NSObject {
         
         super.init()
         
-        self.session = Self.createSession(withDelegate: self)
+        self.session = Self.createSession()
         self.configureAuth(authMethod: authMethod, basicUser: basicUser, basicPassword: basicPassword, bearerToken: bearerToken)
     }
     
     // MARK: - Configuration
     
-    private static func createSession(withDelegate delegate: URLSessionDelegate) -> URLSession {
+    private static func createSession() -> URLSession {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30
         config.timeoutIntervalForResource = 60
-        return URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
+        return URLSession(configuration: config, delegate: SessionDelegate(), delegateQueue: nil)
     }
     
     private func configureAuth(authMethod: String?, basicUser: String?, basicPassword: String?, bearerToken: String?) {
@@ -253,30 +253,9 @@ class HttpClient: NSObject {
     }
 }
 
-// MARK: - URLSessionDelegate
-
-extension HttpClient: URLSessionDelegate {
-    func urlSession(
-        _ session: URLSession,
-        didReceive challenge: URLAuthenticationChallenge,
-        completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
-    ) {
-        // Bypass SSL certificate validation
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if let serverTrust = challenge.protectionSpace.serverTrust {
-                let credential = URLCredential(trust: serverTrust)
-                completionHandler(.useCredential, credential)
-                return
-            }
-        }
-        
-        completionHandler(.performDefaultHandling, nil)
-    }
-}
-
 // MARK: - Errores
 
-enum HttpClientError: LocalizedError {
+nonisolated enum HttpClientError: LocalizedError {
     case invalidResponse
     case unauthorized
     case httpError(statusCode: Int)

@@ -7,7 +7,7 @@ class BlocklistDetailsViewModel {
     @ObservationIgnored private let activeServerRepository: ActiveServerRepository
 
     @ObservationIgnored private let serviceStatusRepository: ServiceStatusRepository
-    
+
     init(
         blocklistId: String,
         activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository,
@@ -16,18 +16,18 @@ class BlocklistDetailsViewModel {
         self.blocklistId = blocklistId
         self.activeServerRepository = activeServerRepository
         self.serviceStatusRepository = serviceStatusRepository
-        
+
         Task {
             await fetchData()
         }
     }
-    
+
     var status: Enums.LoadingState<BlocklistDataResponse> = .loading
     var ipsRound = 1
-    
+
     var searchPresented = false
     var searchText = ""
-    
+
     var activeProcess: APIStatusResponse_Process? {
         getBlocklistActiveProcess(data: serviceStatusRepository.state.data, blocklistId: blocklistId)
     }

@@ -1,13 +1,13 @@
 import Foundation
 
 // MARK: - BlocklistsListResponse
-struct BlocklistsListResponse: Codable, Hashable {
+nonisolated struct BlocklistsListResponse: Codable, Hashable, Sendable {
     let items: [BlocklistsListResponse_Item]
     let pagination: BlocklistsListResponse_Pagination
 }
 
 // MARK: - BlocklistsListResponse_Item
-struct BlocklistsListResponse_Item: Codable, Hashable {
+nonisolated struct BlocklistsListResponse_Item: Codable, Hashable, Sendable {
     let id: String
     let url: String?
     let name: String
@@ -17,7 +17,7 @@ struct BlocklistsListResponse_Item: Codable, Hashable {
     let countIPS: Int
     let type: BlocklistsListResponse_Item_Type
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case id, url, name, enabled
         case addedDate = "added_date"
         case lastRefreshAttempt = "last_refresh_attempt"
@@ -29,12 +29,12 @@ struct BlocklistsListResponse_Item: Codable, Hashable {
 }
 
 // MARK: - BlocklistsListResponse_Item_Type
-enum BlocklistsListResponse_Item_Type: String, Codable, Hashable {
+nonisolated enum BlocklistsListResponse_Item_Type: String, Codable, Hashable, Sendable {
     case api = "api"
     case crowdsec = "cs"
 }
 
 // MARK: - Pagination
-struct BlocklistsListResponse_Pagination: Codable, Hashable {
+nonisolated struct BlocklistsListResponse_Pagination: Codable, Hashable, Sendable {
     let page, amount, total: Int
 }

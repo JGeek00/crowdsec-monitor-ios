@@ -7,10 +7,10 @@ class DashboardViewModel {
 
     @ObservationIgnored private let activeServerRepository: ActiveServerRepository
     @ObservationIgnored private let serversManagerRepository: ServersManagerRepository
-    @ObservationIgnored private let serviceStatusRepository: ServiceStatusRepository
-    
+    private let serviceStatusRepository: ServiceStatusRepository
+
     var state: Enums.LoadingState<StatisticsResponse> = .loading
-    
+
     init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository, serversManagerRepository: ServersManagerRepository = RepositoriesContainer.shared.serversManagerRepository, serviceStatusRepository: ServiceStatusRepository = RepositoriesContainer.shared.serviceStatusRepository) {
         self.activeServerRepository = activeServerRepository
         self.serversManagerRepository = serversManagerRepository

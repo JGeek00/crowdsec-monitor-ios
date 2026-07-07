@@ -1,5 +1,5 @@
 import Foundation
 
-struct RefreshBlocklistsResponse: Decodable {
+nonisolated struct RefreshBlocklistsResponse: Decodable {
     let message: String
 }

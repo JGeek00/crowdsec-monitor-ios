@@ -1,6 +1,6 @@
 import Foundation
 
-class DecisionsAPIClient {
+nonisolated class DecisionsAPIClient {
     private let httpClient: HttpClient
     
     init(_ httpClient: HttpClient) {

@@ -1,7 +1,7 @@
-struct ToggleBlocklistRequestParams: Codable {
+nonisolated struct ToggleBlocklistRequestParams: Codable {
     let blocklistId: String
 }
 
-struct ToggleBlocklistRequestBody: Codable {
+nonisolated struct ToggleBlocklistRequestBody: Codable {
     let enabled: Bool
 }

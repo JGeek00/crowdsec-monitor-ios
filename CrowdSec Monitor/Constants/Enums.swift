@@ -1,6 +1,6 @@
 import Foundation
 
-class Enums {
+nonisolated class Enums {
     enum ConnectionMethod: String {
         case http
         case https

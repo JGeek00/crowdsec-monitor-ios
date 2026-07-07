@@ -1,6 +1,6 @@
 import Foundation
 
-class TargetsStatisticsAPIClient {
+nonisolated class TargetsStatisticsAPIClient {
     private let httpClient: HttpClient
     
     init(_ httpClient: HttpClient) {

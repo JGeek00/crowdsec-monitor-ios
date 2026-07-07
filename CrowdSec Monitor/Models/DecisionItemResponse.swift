@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - DecisionItemResponse
-struct DecisionItemResponse: Codable, Hashable {
+nonisolated struct DecisionItemResponse: Codable, Hashable, Sendable {
     let id, alertId: Int
     let origin, type, scope, value: String
     let expiration, scenario: String
@@ -10,7 +10,7 @@ struct DecisionItemResponse: Codable, Hashable {
     let crowdsecCreatedAt: String
     let alert: DecisionItemResponse_Alert
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case id
         case alertId = "alert_id"
         case origin, type, scope, value, expiration, scenario, simulated, source
@@ -20,7 +20,7 @@ struct DecisionItemResponse: Codable, Hashable {
 }
 
 // MARK: - DecisionItemResponse_Alert
-struct DecisionItemResponse_Alert: Codable, Hashable {
+nonisolated struct DecisionItemResponse_Alert: Codable, Hashable, Sendable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
@@ -34,7 +34,7 @@ struct DecisionItemResponse_Alert: Codable, Hashable {
     let events: [DecisionItemResponse_Alert_Event]
     let crowdsecCreatedAt, startAt, stopAt: String
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case id, uuid, scenario
         case scenarioVersion = "scenario_version"
         case scenarioHash = "scenario_hash"
@@ -49,25 +49,25 @@ struct DecisionItemResponse_Alert: Codable, Hashable {
 }
 
 // MARK: - DecisionItemResponse_Alert_Event
-struct DecisionItemResponse_Alert_Event: Codable, Hashable {
+nonisolated struct DecisionItemResponse_Alert_Event: Codable, Hashable, Sendable {
     let meta: [DecisionItemResponse_Alert_Meta]
     let timestamp: String
 }
 
 // MARK: - DecisionItemResponse_Alert_Meta
-struct DecisionItemResponse_Alert_Meta: Codable, Hashable {
+nonisolated struct DecisionItemResponse_Alert_Meta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - DecisionItemResponse_Source
-struct DecisionItemResponse_Source: Codable, Hashable {
+nonisolated struct DecisionItemResponse_Source: Codable, Hashable, Sendable {
     let asName, asNumber, cn, ip: String?
     let latitude, longitude: Double?
     let range: String?
     let scope, value: String
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case asName = "as_name"
         case asNumber = "as_number"
         case cn, ip, latitude, longitude, range, scope, value

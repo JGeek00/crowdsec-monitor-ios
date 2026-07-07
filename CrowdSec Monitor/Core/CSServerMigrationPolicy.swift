@@ -3,7 +3,7 @@ internal import CoreData
 /// Custom migration policy for CSServer entity.
 /// Assigns `name = "Server \(index)"` to existing rows when migrating
 /// from the original model (without `name`) to version 2 (with `name`).
-class CSServerMigrationPolicy: NSEntityMigrationPolicy {
+nonisolated class CSServerMigrationPolicy: NSEntityMigrationPolicy {
 
     override func createDestinationInstances(
         forSource sourceInstance: NSManagedObject,

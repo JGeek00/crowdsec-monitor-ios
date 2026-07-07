@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Generic API Error Response (e.g. 422 { "error": "..." } or { "message": "..." })
 
-struct ApiErrorResponse: Decodable {
+nonisolated struct ApiErrorResponse: Decodable {
     let error: String?
     let message: String?
     

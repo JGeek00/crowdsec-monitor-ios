@@ -1,6 +1,6 @@
 import Foundation
 
-class AlertsAPIClient {
+nonisolated class AlertsAPIClient {
     private let httpClient: HttpClient
     
     init(_ httpClient: HttpClient) {

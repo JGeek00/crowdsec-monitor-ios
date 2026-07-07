@@ -1,19 +1,19 @@
 import Foundation
 
 // MARK: - AlertsListResponse
-struct AlertsListResponse: Codable, Hashable {
+nonisolated struct AlertsListResponse: Codable, Hashable, Sendable {
     let filtering: AlertsListResponse_Filtering
     let items: [AlertsListResponse_Alert]
     let pagination: AlertsListResponse_Pagination
 }
 
 // MARK: - Filtering
-struct AlertsListResponse_Filtering: Codable, Hashable {
+nonisolated struct AlertsListResponse_Filtering: Codable, Hashable, Sendable {
     let countries, scenarios, ipOwners, targets: [String]
 }
 
 // MARK: - AlertsListResponse_Alert
-struct AlertsListResponse_Alert: Codable, Hashable {
+nonisolated struct AlertsListResponse_Alert: Codable, Hashable, Sendable {
     let id: Int
     let uuid, scenario, scenarioVersion, scenarioHash: String
     let message: String
@@ -27,7 +27,7 @@ struct AlertsListResponse_Alert: Codable, Hashable {
     let events: [AlertsListResponse_Event]
     let crowdsecCreatedAt, startAt, stopAt: String
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case id, uuid, scenario
         case scenarioVersion = "scenario_version"
         case scenarioHash = "scenario_hash"
@@ -42,25 +42,25 @@ struct AlertsListResponse_Alert: Codable, Hashable {
 }
 
 // MARK: - AlertsListResponse_ItemMeta
-struct AlertsListResponse_ItemMeta: Codable, Hashable {
+nonisolated struct AlertsListResponse_ItemMeta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - AlertsListResponse_Event
-struct AlertsListResponse_Event: Codable, Hashable {
+nonisolated struct AlertsListResponse_Event: Codable, Hashable, Sendable {
     let meta: [AlertsListResponse_Event_EventMeta]
     let timestamp: String
 }
 
 // MARK: - AlertsListResponse_Event_EventMeta
-struct AlertsListResponse_Event_EventMeta: Codable, Hashable {
+nonisolated struct AlertsListResponse_Event_EventMeta: Codable, Hashable, Sendable {
     let key: String
     let value: [String]
 }
 
 // MARK: - AlertsListResponse_Alert_Source
-struct AlertsListResponse_Alert_Source: Codable, Hashable {
+nonisolated struct AlertsListResponse_Alert_Source: Codable, Hashable, Sendable {
     let asName: String?
     let asNumber, cn, ip: String?
     let latitude, longitude: Double?
@@ -68,7 +68,7 @@ struct AlertsListResponse_Alert_Source: Codable, Hashable {
     let scope: String
     let value: String
 
-    enum CodingKeys: String, CodingKey {
+nonisolated     enum CodingKeys: String, CodingKey {
         case asName = "as_name"
         case asNumber = "as_number"
         case cn, ip, latitude, longitude, range, scope, value
@@ -76,7 +76,7 @@ struct AlertsListResponse_Alert_Source: Codable, Hashable {
 }
 
 // MARK: - AlertsListResponse_Pagination
-struct AlertsListResponse_Pagination: Codable, Hashable {
+nonisolated struct AlertsListResponse_Pagination: Codable, Hashable, Sendable {
     let page, amount, total: Int
 }
 

@@ -6,7 +6,7 @@ import SwiftUI
 class BlocklistsListViewModel {
 
     var requestParams: BlocklistsRequest
-    
+
     @ObservationIgnored private let activeServerRepository: ActiveServerRepository
     @ObservationIgnored private let serviceStatusRepository: ServiceStatusRepository
 
