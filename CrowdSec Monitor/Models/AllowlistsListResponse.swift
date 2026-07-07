@@ -12,7 +12,7 @@ nonisolated struct AllowlistsListResponse_Allowlist: Codable, Hashable, Sendable
     let items: [AllowlistsListResponse_Allowlist_Item]
     let name, updatedAt: String
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case createdAt = "created_at"
         case description, items, name
         case updatedAt = "updated_at"
@@ -25,7 +25,7 @@ nonisolated struct AllowlistsListResponse_Allowlist_Item: Codable, Hashable, Sen
     let expiration: String?
     let value: String
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case createdAt = "created_at"
         case expiration, value
     }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct ScenarioParts {
+nonisolated struct ScenarioParts: Sendable {
     let namespace: String
     let name: String
 }

@@ -17,7 +17,7 @@ nonisolated struct BlocklistsListResponse_Item: Codable, Hashable, Sendable {
     let countIPS: Int
     let type: BlocklistsListResponse_Item_Type
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id, url, name, enabled
         case addedDate = "added_date"
         case lastRefreshAttempt = "last_refresh_attempt"

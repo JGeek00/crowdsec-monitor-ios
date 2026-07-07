@@ -18,7 +18,9 @@ class BlocklistsListViewModel {
         self.activeServerRepository = activeServerRepository
         self.serviceStatusRepository = serviceStatusRepository
         NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
-            self?.reset()
+            Task { @MainActor [weak self] in
+                self?.reset()
+            }
         }
     }
 

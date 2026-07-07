@@ -16,7 +16,9 @@ class OnboardingViewModel {
         self.showOnboarding = showOnboarding
         self.selectedTab = selectedTab
         NotificationCenter.default.addObserver(forName: .shouldShowOnboarding, object: nil, queue: .main) { [weak self] _ in
-            self?.openOnboarding()
+            Task { @MainActor [weak self] in
+                self?.openOnboarding()
+            }
         }
     }
     

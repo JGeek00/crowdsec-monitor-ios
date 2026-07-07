@@ -5,8 +5,8 @@ import SwiftUI
 class ServiceStatusRepository {
     var state: Enums.LoadingState<APIStatusResponse> = .loading
 
-    @ObservationIgnored nonisolated(unsafe) private var webSocketTask: Task<Void, Never>?
-    @ObservationIgnored nonisolated(unsafe) private var serverChangeObserver: NSObjectProtocol?
+    @ObservationIgnored private var webSocketTask: Task<Void, Never>?
+    @ObservationIgnored private var serverChangeObserver: NSObjectProtocol?
 
     @ObservationIgnored private let activeServerRepository: ActiveServerRepository
 
@@ -43,7 +43,7 @@ class ServiceStatusRepository {
         }
     }
 
-    nonisolated func closeWebSocket() {
+    func closeWebSocket() {
         webSocketTask?.cancel()
         webSocketTask = nil
     }
@@ -78,13 +78,16 @@ class ServiceStatusRepository {
         serverChangeObserver = NotificationCenter.default.addObserver(
             forName: .serverDidChange, object: nil, queue: .main
         ) { [weak self] _ in
-            self?.resetOnServerChange()
+            Task { @MainActor [weak self] in
+                self?.resetOnServerChange()
+            }
         }
         Task { [weak self] in
             await self?.fetchStatus()
         }
     }
 
+    @MainActor
     deinit {
         closeWebSocket()
         if let observer = serverChangeObserver {

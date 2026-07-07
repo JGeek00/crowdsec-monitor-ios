@@ -17,7 +17,7 @@ nonisolated struct BlocklistDataResponse_Data: Codable {
     let type: BlocklistDataResponse_Data_Type
     let blocklistIPS: [String]
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id, url, name, enabled
         case addedDate = "added_date"
         case lastRefreshAttempt = "last_refresh_attempt"

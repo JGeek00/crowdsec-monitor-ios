@@ -16,7 +16,7 @@ nonisolated struct AlertDetailsResponse: Codable, Hashable, Sendable {
     let crowdsecCreatedAt, startAt, stopAt: Date
     let decisions: [AlertDetailsResponse_Decision]
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id, uuid, scenario
         case scenarioVersion = "scenario_version"
         case scenarioHash = "scenario_hash"
@@ -47,7 +47,7 @@ nonisolated struct AlertDetailsResponse_Decision: Codable, Hashable, Sendable {
     let source: AlertDetailsResponse_Source
     let crowdsecCreatedAt: Date
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case alertID = "alert_id"
         case origin, type, scope, value, expiration, scenario, simulated, source
@@ -62,7 +62,7 @@ nonisolated struct AlertDetailsResponse_Source: Codable, Hashable, Sendable {
     let range: String?
     let scope, value: String
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case asName = "as_name"
         case asNumber = "as_number"
         case cn, ip, latitude, longitude, range, scope, value

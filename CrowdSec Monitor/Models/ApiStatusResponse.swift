@@ -1,13 +1,13 @@
 import Foundation
 
 // MARK: - APIStatusResponse
-nonisolated struct APIStatusResponse: Codable, Hashable, Sendable, Sendable {
+nonisolated struct APIStatusResponse: Codable, Hashable, Sendable {
     let csLapi: APIStatusResponse_CSLapi
     let csBouncer: APIStatusResponse_CSBouncer
     let csMonitorAPI: APIStatusResponse_CSMonitorAPI
     let processes: [APIStatusResponse_Process]
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case csLapi, csBouncer
         case csMonitorAPI = "csMonitorApi"
         case processes
@@ -106,7 +106,7 @@ nonisolated struct APIStatusResponse_ProcessBlocklistRefresh: Codable, Hashable,
     let blocklists: [APIStatusResponse_ProcessBlocklistRefresh_Blocklist]
     let totalIPS: Int
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case totalBlocklists, currentBlocklist, blocklists
         case totalIPS = "totalIps"
     }

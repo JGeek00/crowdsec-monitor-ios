@@ -23,7 +23,7 @@ nonisolated struct DecisionsListResponse_Item: Codable, Hashable, Sendable, Equa
     let source: DecisionsListResponse_Item_Source
     let crowdsecCreatedAt: String
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case alertId = "alert_id"
         case origin, type, scope, value, expiration, scenario, simulated, source
@@ -40,7 +40,7 @@ nonisolated struct DecisionsListResponse_Item_Source: Codable, Hashable, Sendabl
     let scope: String
     let value: String
 
-nonisolated     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case asName = "as_name"
         case asNumber = "as_number"
         case cn, ip, latitude, longitude, range, scope, value

@@ -17,8 +17,6 @@ class RepositoriesContainer {
 
     static func reset() {
         Self.shared = RepositoriesContainer()
-        Task { @MainActor in
-            NotificationCenter.default.post(name: .repositoriesDidReset, object: nil)
-        }
+        NotificationCenter.default.post(name: .repositoriesDidReset, object: nil)
     }
 }

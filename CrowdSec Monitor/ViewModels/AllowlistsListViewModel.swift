@@ -9,7 +9,9 @@ class AllowlistsListViewModel {
     init(activeServerRepository: ActiveServerRepository = RepositoriesContainer.shared.activeServerRepository) {
         self.activeServerRepository = activeServerRepository
         NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
-            self?.reset()
+            Task { @MainActor [weak self] in
+                self?.reset()
+            }
         }
     }
     

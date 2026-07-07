@@ -1,16 +1,16 @@
-struct AlertsRequest {
+nonisolated struct AlertsRequest: Sendable {
     var filters: AlertsRequestFilters
     var pagination: AlertsRequestPagination
 }
 
-struct AlertsRequestFilters {
+nonisolated struct AlertsRequestFilters: Sendable {
     var countries: [String]
     var scenarios: [String]
     var ipOwners: [String]
     var targets: [String]
 }
 
-struct AlertsRequestPagination {
+nonisolated struct AlertsRequestPagination: Sendable {
     var offset: Int
     var limit: Int
 }

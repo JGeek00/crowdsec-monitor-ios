@@ -17,7 +17,9 @@ class AlertsListViewModel {
         self.filters = defaultRequest.filters
         self.activeServerRepository = activeServerRepository
         NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
-            self?.reset()
+            Task { @MainActor [weak self] in
+                self?.reset()
+            }
         }
     }
     

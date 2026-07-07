@@ -21,14 +21,20 @@ class DecisionsListViewModel {
         self.filters = defaultRequest.filters
         self.activeServerRepository = activeServerRepository
         NotificationCenter.default.addObserver(forName: .serverDidChange, object: nil, queue: .main) { [weak self] _ in
-            self?.reset()
+            Task { @MainActor [weak self] in
+                self?.reset()
+            }
         }
         NotificationCenter.default.addObserver(forName: .decisionsShouldRefresh, object: nil, queue: .main) { [weak self] _ in
-            Task { await self?.refreshDecisions() }
+            Task { @MainActor [weak self] in
+                await self?.refreshDecisions()
+            }
         }
         NotificationCenter.default.addObserver(forName: .decisionShouldExpire, object: nil, queue: .main) { [weak self] notification in
             if let decisionId = notification.object as? Int {
-                Task { await self?.expireDecision(decisionId: decisionId) }
+                Task { @MainActor [weak self] in
+                    await self?.expireDecision(decisionId: decisionId)
+                }
             }
         }
     }

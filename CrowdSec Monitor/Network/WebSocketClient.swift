@@ -17,7 +17,7 @@ nonisolated enum WebSocketState {
 
 // MARK: - WebSocket Client
 
-nonisolated class WebSocketClient: NSObject {
+nonisolated class WebSocketClient: NSObject, @unchecked Sendable {
     private let baseURL: URL
     private var session: URLSession
     private var authHeader: [String: String]?
@@ -201,7 +201,7 @@ nonisolated class WebSocketClient: NSObject {
                 task.cancel(with: .normalClosure, reason: nil)
             }
 
-            func receive() {
+            @Sendable func receive() {
                 task.receive { [weak self] result in
                     guard let self else {
                         continuation.finish()
