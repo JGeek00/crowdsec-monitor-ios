@@ -21,6 +21,46 @@
         }
       }
     },
+    "%lld active decisions" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld active decision"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld active decisions"
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld decisión activa"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld decisiones activas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld blocked IP addresses" : {
       "localizations" : {
         "es" : {
@@ -783,6 +823,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige una alerta de la lista para ver sus detalles"
+          }
+        }
+      }
+    },
+    "Choose an IP from the list to view its decisions" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una IP de la lista para ver sus decisiones"
           }
         }
       }
@@ -2123,6 +2173,16 @@
         }
       }
     },
+    "Owner" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propietario"
+          }
+        }
+      }
+    },
     "Parse" : {
       "localizations" : {
         "es" : {
@@ -2255,6 +2315,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compra fallida o cancelada"
+          }
+        }
+      }
+    },
+    "Range" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rango"
           }
         }
       }
@@ -2469,6 +2539,16 @@
         }
       }
     },
+    "Select an IP" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige una IP"
+          }
+        }
+      }
+    },
     "Selected list type" : {
       "localizations" : {
         "es" : {
@@ -2569,12 +2649,44 @@
         }
       }
     },
+    "Show by default decisions grouped by IP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show by default decisions grouped by IP"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar por defecto decisiones agrupadas por IP"
+          }
+        }
+      }
+    },
     "Show by default only active decisions" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar por defecto solo decisiones activas"
+          }
+        }
+      }
+    },
+    "Show decisions grouped by IP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show decisions grouped by IP"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar decisiones agrupadas por IP"
           }
         }
       }

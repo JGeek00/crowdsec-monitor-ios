@@ -23,6 +23,12 @@ struct DecisionsFilters: View {
                 //    get: { viewModel.filters.hideActiveDuplicated ?? false },
                 //    set: { viewModel.filters.hideActiveDuplicated = $0 }
                 // ))
+                Section {
+                    Toggle("Show decisions grouped by IP", isOn: Binding(
+                        get: { viewModel.filters.groupByIP ?? false },
+                        set: { viewModel.filters.groupByIP = $0 }
+                    ))
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

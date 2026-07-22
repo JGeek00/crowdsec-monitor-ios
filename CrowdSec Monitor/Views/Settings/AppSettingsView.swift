@@ -5,6 +5,7 @@ struct AppSettingsView: View {
     @SharedAppStorage(StorageKeys.showDefaultActiveDecisions) private var showDefaultActiveDecisions: Bool = Defaults.showDefaultActiveDecisions
     @SharedAppStorage(StorageKeys.hideDefaultDuplicatedDecisions) private var hideDefaultDuplicatedDecisions: Bool = Defaults.hideDefaultDuplicatedDecisions
     @SharedAppStorage(StorageKeys.disableDecisionTimerAnimation) private var disableDecisionTimerAnimation: Bool = Defaults.disableDecisionTimerAnimation
+    @SharedAppStorage(StorageKeys.showDefaultDecisionsGroupedByIP) private var showDefaultDecisionsGroupedByIP: Bool = Defaults.showDefaultDecisionsGroupedByIP
     
     @Environment(AppIconManager.self) private var appIconManager
              
@@ -24,6 +25,7 @@ struct AppSettingsView: View {
             Section("Decisions") {
                 Toggle("Show by default only active decisions", isOn: $showDefaultActiveDecisions)
                 // Toggle("Hide by default active duplicated decisions", isOn: $hideDefaultDuplicatedDecisions)
+                Toggle("Show by default decisions grouped by IP", isOn: $showDefaultDecisionsGroupedByIP)
                 Toggle("Disable timer animation", isOn: $disableDecisionTimerAnimation)
             }
             

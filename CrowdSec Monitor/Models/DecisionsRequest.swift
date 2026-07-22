@@ -5,6 +5,7 @@ struct DecisionsRequest: Sendable {
 
 struct DecisionsRequestFilters: Sendable {
     var onlyActive: Bool?
+    var groupByIP: Bool?
 }
 
 struct DecisionsRequestPagination: Sendable {

@@ -10,11 +10,10 @@ struct DecisionsByIPResponse: Codable, Hashable, Sendable {
 // MARK: - DecisionsByIPResponse_Group
 struct DecisionsByIPResponse_Group: Codable, Hashable, Sendable {
     let ip: String
-    let country: String
-    let owner: String
-    let asNumber: String
-    let latitude: Double
-    let longitude: Double
+    let country: String?
+    let owner: String?
+    let asNumber: String?
+    let latitude, longitude: Double?
     let range: String
     let activeDecisions: Int
     let totalDecisions: Int

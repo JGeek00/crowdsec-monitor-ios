@@ -8,6 +8,8 @@ struct DecisionsListView: View {
     
     @State private var selectedDecisionId: Int?
     @State private var activeDecisionId: Int?
+    @State private var selectedIP: String?
+    @State private var activeIP: String?
     @State private var showFiltersSheet = false
     @State private var showCreateDecisionSheet = false
     
@@ -15,27 +17,54 @@ struct DecisionsListView: View {
         @Bindable var viewModel = viewModel
         NavigationSplitView {
             Group {
-                switch viewModel.state {
-                case .loading:
-                    ProgressView("Loading...")
-                case .success(let data):
-                    content(data)
-                case .failure:
-                    ContentUnavailableView(
-                        "Error",
-                        systemImage: "exclamationmark.circle",
-                        description: Text("An error occured when fetching the data")
-                    )
+                if viewModel.isGroupedByIP {
+                    switch viewModel.stateByIP {
+                    case .loading:
+                        ProgressView("Loading...")
+                    case .success(let data):
+                        contentByIP(data)
+                    case .failure:
+                        ContentUnavailableView(
+                            "Error",
+                            systemImage: "exclamationmark.circle",
+                            description: Text("An error occured when fetching the data")
+                        )
+                    }
+                } else {
+                    switch viewModel.state {
+                    case .loading:
+                        ProgressView("Loading...")
+                    case .success(let data):
+                        content(data)
+                    case .failure:
+                        ContentUnavailableView(
+                            "Error",
+                            systemImage: "exclamationmark.circle",
+                            description: Text("An error occured when fetching the data")
+                        )
+                    }
                 }
             }
             .transition(.opacity)
             .navigationTitle("Decisions")
         } detail: {
             NavigationStack {
-                if let decisionId = activeDecisionId {
+                if viewModel.isGroupedByIP {
+                    if let ip = activeIP {
+                        DecisionIPGroupDetailView(
+                            ip: ip,
+                            onlyActive: viewModel.requestParams.filters.onlyActive ?? Defaults.showDefaultActiveDecisions
+                        )
+                    } else if horizontalSizeClass == .regular {
+                        ContentUnavailableView(
+                            "Select an IP",
+                            systemImage: "list.bullet",
+                            description: Text("Choose an IP from the list to view its decisions")
+                        )
+                    }
+                } else if let decisionId = activeDecisionId {
                     DecisionDetailsView(decisionId: decisionId)
                 } else {
-                    // Prevent content unavailable from being shown momentarily when an alert is selected
                     if horizontalSizeClass == .regular {
                         ContentUnavailableView(
                             "Select a decision",
@@ -51,13 +80,22 @@ struct DecisionsListView: View {
         }
         .onChange(of: selectedDecisionId, initial: true) { oldValue, newValue in
             if oldValue != nil && newValue == nil {
-                // To prevent disposing details view before back transition ends
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     activeDecisionId = nil
                 }
             }
             else {
                 activeDecisionId = newValue
+            }
+        }
+        .onChange(of: selectedIP, initial: true) { oldValue, newValue in
+            if oldValue != nil && newValue == nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    activeIP = nil
+                }
+            }
+            else {
+                activeIP = newValue
             }
         }
         .customAlert(isPresented: $viewModel.processingExpireDecision) {
@@ -97,6 +135,63 @@ struct DecisionsListView: View {
                     }
                 }
                 .animation(.default, value: data.items)
+            }
+        }
+        .refreshable {
+            await viewModel.refreshDecisions()
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showFiltersSheet = true
+                } label: {
+                    Label("Filters", systemImage: "line.3.horizontal.decrease.circle")
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showCreateDecisionSheet = true
+                } label: {
+                    Label("Create decision", systemImage: "plus")
+                }
+            }
+        }
+        .sheet(isPresented: $showCreateDecisionSheet, content: {
+            CreateDecisionFormView {
+                showCreateDecisionSheet = false
+            }
+            .interactiveDismissDisabled()
+        })
+        .sheet(isPresented: $showFiltersSheet) {
+            DecisionsFilters {
+                showFiltersSheet = false
+            }
+        }
+        .onChange(of: showFiltersSheet) { _, newValue in
+            if newValue == true {
+                viewModel.resetFiltersPanelToAppliedOnes()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func contentByIP(_ data: DecisionsByIPResponse) -> some View {
+        Group {
+            if data.groups.isEmpty {
+                ContentUnavailableView("No decisions to display", systemImage: "list.bullet", description: Text("Change the filtering criteria to see more decisions"))
+            }
+            else {
+                List(data.groups, id: \.ip, selection: $selectedIP) { group in
+                    DecisionIPGroupItem(group: group)
+                        .onAppear {
+                            if group == data.groups.last {
+                                Task {
+                                    await viewModel.fetchMore()
+                                }
+                            }
+                        }
+                }
+                .animation(.default, value: data.groups)
             }
         }
         .refreshable {
