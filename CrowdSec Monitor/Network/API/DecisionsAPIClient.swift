@@ -36,4 +36,27 @@ class DecisionsAPIClient {
     func deleteDecision(decisionId: Int) async throws -> HttpResponse<EmptyResponse> {
         return try await httpClient.delete(endpoint: "/api/v1/decisions/\(decisionId)")
     }
+
+    func fetchDecisionsByIP(requestParams: DecisionsRequest) async throws -> HttpResponse<DecisionsByIPResponse> {
+        var queryParams: [URLQueryItem] = []
+
+        if let onlyActive = requestParams.filters.onlyActive {
+            queryParams.append(URLQueryItem(name: "only_active", value: String(onlyActive)))
+        }
+
+        queryParams.append(URLQueryItem(name: "offset", value: String(requestParams.pagination.offset)))
+        queryParams.append(URLQueryItem(name: "limit", value: String(requestParams.pagination.limit)))
+
+        return try await httpClient.get(endpoint: "/api/v1/decisions/by-ip", queryParams: queryParams.isEmpty ? nil : queryParams)
+    }
+
+    func fetchDecisionsByIPDetail(ip: String, onlyActive: Bool? = nil) async throws -> HttpResponse<DecisionsByIPDetailResponse> {
+        var queryParams: [URLQueryItem] = []
+
+        if let onlyActive {
+            queryParams.append(URLQueryItem(name: "only_active", value: String(onlyActive)))
+        }
+
+        return try await httpClient.get(endpoint: "/api/v1/decisions/by-ip/\(ip)", queryParams: queryParams.isEmpty ? nil : queryParams)
+    }
 }
