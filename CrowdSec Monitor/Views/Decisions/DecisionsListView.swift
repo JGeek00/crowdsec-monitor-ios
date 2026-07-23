@@ -53,7 +53,7 @@ struct DecisionsListView: View {
                     if let ip = activeIP {
                         DecisionIPGroupDetailView(
                             ip: ip,
-                            onlyActive: viewModel.requestParams.filters.onlyActive ?? Defaults.showDefaultActiveDecisions
+                            onlyActive: viewModel.requestParams.filters.onlyActive ?? false
                         )
                     } else if horizontalSizeClass == .regular {
                         ContentUnavailableView(

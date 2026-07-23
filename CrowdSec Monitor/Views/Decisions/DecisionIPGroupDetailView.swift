@@ -1,4 +1,5 @@
 import SwiftUI
+import CustomAlert
 
 struct DecisionIPGroupDetailView: View {
     let ip: String
@@ -36,6 +37,8 @@ struct DecisionIPGroupDetailView: View {
 
     @ViewBuilder
     func content(_ data: DecisionsByIPDetailResponse) -> some View {
+        @Bindable var viewModel = viewModel
+
         List {
             Section("Origin") {
                 normalRow(title: String(localized: "IP address"), value: data.ip)
@@ -80,21 +83,21 @@ struct DecisionIPGroupDetailView: View {
             if data.decisions.isEmpty == false {
                 Section {
                     ForEach(data.decisions, id: \.id) { decision in
-                        DecisionItem(
-                            decisionId: decision.id,
-                            scenario: decision.scenario,
-                            ipAddress: decision.value,
-                            expirationDate: decision.expiration.toDateFromISO8601(),
-                            countryCode: data.country,
-                            decisionType: decision.type
+                        DecisionIPGroupDetailDecisionRow(
+                            decision: decision,
+                            onExpire: viewModel.expireDecision
                         )
                     }
                 } header: {
                     HStack {
                         Text("Decisions")
-                        Spacer()
-                        Text("\(data.activeDecisions) active decisions")
-                            .font(.system(size: 12))
+                        if data.activeDecisions > 0 {
+                            Spacer()
+                            Text("\(data.activeDecisions) active decisions")
+                                .font(.system(size: 12))
+                                .foregroundStyle(.green)
+                                .fontWeight(.medium)
+                        }
                     }
                 }
             }
@@ -112,6 +115,15 @@ struct DecisionIPGroupDetailView: View {
         .refreshable {
             await viewModel.fetchData()
         }
+        .customAlert(isPresented: $viewModel.processingExpireDecision) {
+            HStack {
+                Spacer()
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.foreground)
+                Spacer()
+            }
+        }
     }
 
     @ViewBuilder
@@ -122,6 +134,58 @@ struct DecisionIPGroupDetailView: View {
             Text(verbatim: value)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.trailing)
+        }
+    }
+}
+
+
+fileprivate struct DecisionIPGroupDetailDecisionRow: View {
+    let decision: DecisionsByIPDetailResponse_Decision
+    let onExpire: (Int) async -> Bool
+
+    @State private var errorDeleteDecision = false
+    @State private var expireDecisionConfirmationAlert = false
+
+    var body: some View {
+        NavigationLink {
+            AlertDetailsView(alertId: decision.alertId, allowNavigateDecision: false)
+        } label: {
+            DecisionItemNoIP(
+                decisionId: decision.id,
+                scenario: decision.scenario,
+                expirationDate: decision.expiration.toDateFromISO8601(),
+                createdAt: decision.crowdsecCreatedAt.toDateFromISO8601(),
+                decisionType: decision.type
+            )
+        }
+        .contextMenu {
+            if let date = decision.expiration.toDateFromISO8601(), date > Date() {
+                Button(String(localized: "Expire decision"), systemImage: "clock.badge.checkmark", role: .destructive) {
+                    expireDecisionConfirmationAlert = true
+                }
+            }
+        }
+        .alert("Expire decision", isPresented: $expireDecisionConfirmationAlert) {
+            Button(String(localized: "Cancel"), role: .cancel) {
+                expireDecisionConfirmationAlert = false
+            }
+            Button(String(localized: "Expire"), role: .destructive) {
+                Task {
+                    let result = await onExpire(decision.id)
+                    if !result {
+                        errorDeleteDecision = true
+                    }
+                }
+            }
+        } message: {
+            Text("Are you sure you want to make this decision to expire now? This action cannot be undone.")
+        }
+        .alert("Error expiring decision", isPresented: $errorDeleteDecision) {
+            Button("OK") {
+                errorDeleteDecision = false
+            }
+        } message: {
+            Text("An error occurred while making the decision expired. Please try again.")
         }
     }
 }

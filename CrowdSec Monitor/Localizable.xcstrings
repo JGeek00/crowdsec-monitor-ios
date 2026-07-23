@@ -21,6 +21,28 @@
         }
       }
     },
+    "%lld active" : {
+      "localizations" : {
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld activa"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld activas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld active decisions" : {
       "localizations" : {
         "en" : {
@@ -95,6 +117,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld listas de bloqueo procesadas de un total de %2$lld"
+          }
+        }
+      }
+    },
+    "%lld decisions" : {
+      "localizations" : {
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld decisión"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld decisiones"
+                }
+              }
+            }
           }
         }
       }
@@ -2029,6 +2073,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siguiente"
+          }
+        }
+      }
+    },
+    "No active" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No activas"
           }
         }
       }

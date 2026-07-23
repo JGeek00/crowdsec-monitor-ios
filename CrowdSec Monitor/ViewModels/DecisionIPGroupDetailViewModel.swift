@@ -23,6 +23,23 @@ class DecisionIPGroupDetailViewModel {
     }
 
     var state: Enums.LoadingState<DecisionsByIPDetailResponse> = .loading
+    var processingExpireDecision = false
+
+    func expireDecision(decisionId: Int) async -> Bool {
+        guard let apiClient = activeServerRepository.apiClient else { return false }
+        do {
+            processingExpireDecision = true
+            _ = try await apiClient.decisions.deleteDecision(decisionId: decisionId)
+            NotificationCenter.default.post(name: .decisionShouldExpire, object: decisionId)
+            try? await Task.sleep(nanoseconds: 500_000_000)
+            await fetchData()
+            processingExpireDecision = false
+            return true
+        } catch {
+            processingExpireDecision = false
+            return false
+        }
+    }
 
     func fetchData(showLoading: Bool = false) async {
         guard let apiClient = activeServerRepository.apiClient else {

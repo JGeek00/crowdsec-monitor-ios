@@ -10,6 +10,15 @@ extension DateFormatter {
         return formatter
     }
     
+    /// Returns a DateFormatter configured for "dd MMM. yyyy HH:mm:ss" format
+    nonisolated static var ddMMMyyyyHHmmss: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM. yyyy HH:mm:ss"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }
+
     /// Returns a DateFormatter configured for ISO 8601 format with fractional seconds
     nonisolated static var iso8601WithFractionalSeconds: DateFormatter {
         let formatter = DateFormatter()

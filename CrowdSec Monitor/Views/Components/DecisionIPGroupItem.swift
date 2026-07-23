@@ -22,14 +22,17 @@ struct DecisionIPGroupItem: View {
                 }
             }
             Spacer()
-            Group {
-                if group.activeDecisions > 0 {
-                    Text("\(group.activeDecisions) active decisions")
-                        .foregroundStyle(.green)
-                }
-                else {
-                    Text("No active decisions")
-                        .foregroundStyle(.gray)
+            VStack(alignment: .trailing, spacing: 6) {
+                Text("\(group.totalDecisions) decisions")
+                Group {
+                    if group.activeDecisions > 0 {
+                        Text("\(group.activeDecisions) active")
+                            .foregroundStyle(.green)
+                    }
+                    else {
+                        Text("No active")
+                            .foregroundStyle(.gray)
+                    }
                 }
             }
             .fontWeight(.semibold)

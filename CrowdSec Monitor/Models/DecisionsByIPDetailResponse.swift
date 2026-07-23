@@ -25,7 +25,7 @@ struct DecisionsByIPDetailResponse: Codable, Hashable, Sendable {
 // MARK: - DecisionsByIPDetailResponse_Decision
 struct DecisionsByIPDetailResponse_Decision: Codable, Hashable, Sendable {
     let id: Int
-    let alertId: Int?
+    let alertId: Int
     let origin: String
     let type: String
     let scope: String

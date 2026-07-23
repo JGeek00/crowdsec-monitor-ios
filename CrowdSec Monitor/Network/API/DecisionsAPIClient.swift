@@ -10,8 +10,10 @@ class DecisionsAPIClient {
     func fetchDecisions(requestParams: DecisionsRequest) async throws -> HttpResponse<DecisionsListResponse> {
         var queryParams: [URLQueryItem] = []
         
-        if let onlyActive = requestParams.filters.onlyActive {
-            queryParams.append(URLQueryItem(name: "only_active", value: String(onlyActive)))
+        // ponytail: only send only_active=true; omit when false — the CrowdSec API treats
+        // any presence of the param as "filter by active", so only_active=false still filters.
+        if requestParams.filters.onlyActive == true {
+            queryParams.append(URLQueryItem(name: "only_active", value: "true"))
         }
         
         // if let hideActiveDuplicated = requestParams.filters.hideActiveDuplicated {
@@ -40,8 +42,8 @@ class DecisionsAPIClient {
     func fetchDecisionsByIP(requestParams: DecisionsRequest) async throws -> HttpResponse<DecisionsByIPResponse> {
         var queryParams: [URLQueryItem] = []
 
-        if let onlyActive = requestParams.filters.onlyActive {
-            queryParams.append(URLQueryItem(name: "only_active", value: String(onlyActive)))
+        if requestParams.filters.onlyActive == true {
+            queryParams.append(URLQueryItem(name: "only_active", value: "true"))
         }
 
         queryParams.append(URLQueryItem(name: "offset", value: String(requestParams.pagination.offset)))
@@ -53,8 +55,8 @@ class DecisionsAPIClient {
     func fetchDecisionsByIPDetail(ip: String, onlyActive: Bool? = nil) async throws -> HttpResponse<DecisionsByIPDetailResponse> {
         var queryParams: [URLQueryItem] = []
 
-        if let onlyActive {
-            queryParams.append(URLQueryItem(name: "only_active", value: String(onlyActive)))
+        if onlyActive == true {
+            queryParams.append(URLQueryItem(name: "only_active", value: "true"))
         }
 
         return try await httpClient.get(endpoint: "/api/v1/decisions/by-ip/\(ip)", queryParams: queryParams.isEmpty ? nil : queryParams)
