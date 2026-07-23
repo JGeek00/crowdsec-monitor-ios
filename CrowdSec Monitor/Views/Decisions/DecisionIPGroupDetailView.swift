@@ -33,6 +33,9 @@ struct DecisionIPGroupDetailView: View {
         .transition(.opacity)
         .navigationTitle(viewModel.state.data?.ip ?? ip)
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: ip) { _, newValue in
+            viewModel.updateIP(ip: ip)
+        }
     }
 
     @ViewBuilder

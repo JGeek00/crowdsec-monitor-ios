@@ -182,14 +182,16 @@ struct DecisionsListView: View {
             }
             else {
                 List(data.groups, id: \.ip, selection: $selectedIP) { group in
-                    DecisionIPGroupItem(group: group)
-                        .onAppear {
-                            if group == data.groups.last {
-                                Task {
-                                    await viewModel.fetchMore()
-                                }
+                    NavigationLink(value: group.ip) {
+                        DecisionIPGroupItem(group: group)
+                    }
+                    .onAppear {
+                        if group == data.groups.last {
+                            Task {
+                                await viewModel.fetchMore()
                             }
                         }
+                    }
                 }
                 .animation(.default, value: data.groups)
             }
