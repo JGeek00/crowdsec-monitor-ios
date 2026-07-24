@@ -14,7 +14,7 @@ struct DecisionsByIPResponse_Group: Codable, Hashable, Sendable {
     let owner: String?
     let asNumber: String?
     let latitude, longitude: Double?
-    let range: String
+    let range: String?
     let activeDecisions: Int
     let totalDecisions: Int
 
