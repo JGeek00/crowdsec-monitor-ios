@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "3028E0D2-1A80-41B5-A6E3-38BCAF16B1B0",
+      "name" : "Default",
+      "options" : {
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CrowdSec Monitor.xcodeproj",
+        "identifier" : "FA0000502F40B181002CC07C",
+        "name" : "CrowdSec MonitorTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CrowdSec Monitor.xcodeproj",
+        "identifier" : "FA0000512F40B181002CC07C",
+        "name" : "CrowdSec MonitorUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

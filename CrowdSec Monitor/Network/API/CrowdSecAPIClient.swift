@@ -17,6 +17,16 @@ class CrowdSecAPIClient {
         self.allowlists = AllowlistsAPIClient(self.httpClient)
         self.blocklists = BlocklistsAPIClient(self.httpClient)
     }
+
+    /// Internal init for test injection — allows passing a mock HttpClient.
+    init(httpClient: HttpClient) {
+        self.httpClient = httpClient
+        self.statistics = StatisticsAPIClient(httpClient)
+        self.alerts = AlertsAPIClient(httpClient)
+        self.decisions = DecisionsAPIClient(httpClient)
+        self.allowlists = AllowlistsAPIClient(httpClient)
+        self.blocklists = BlocklistsAPIClient(httpClient)
+    }
     
     func checkCredentials() async throws -> HttpResponse<EmptyResponse> {
         return try await httpClient.get(endpoint: "/api/v1/check-credentials")

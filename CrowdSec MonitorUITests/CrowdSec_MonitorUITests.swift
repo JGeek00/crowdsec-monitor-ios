@@ -3,7 +3,7 @@ import XCTest
 /// UI smoke tests verifying the app launches and displays core screens.
 /// ponytail: minimal smoke tests — no server configured, so we test launch and navigation only.
 final class CrowdSec_MonitorUITests: XCTestCase {
-    override func setUpWithError() throws {
+    nonisolated override func setUpWithError() throws {
         continueAfterFailure = false
     }
 
