@@ -72,7 +72,7 @@ struct AddBlocklistFormView: View {
                     vm.error = false
                 }
             } message: {
-                Text("An error occured when adding the blocklist, please try again")
+                Text("An error occurred when adding the blocklist, please try again")
             }
         }
     }

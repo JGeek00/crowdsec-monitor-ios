@@ -19,7 +19,7 @@ struct ServiceStatusView: View {
                     ContentUnavailableView(
                         "Error",
                         systemImage: "exclamationmark.circle",
-                        description: Text("An error occured when fetching the service status")
+                        description: Text("An error occurred when fetching the service status")
                     )
                 }
             }

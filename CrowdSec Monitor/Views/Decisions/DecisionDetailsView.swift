@@ -30,7 +30,7 @@ struct DecisionDetailsView: View {
                 ContentUnavailableView(
                     "Error",
                     systemImage: "exclamationmark.circle",
-                    description: Text("An error occured when fetching the data")
+                    description: Text("An error occurred when fetching the data")
                 )
             }
         }
@@ -40,12 +40,12 @@ struct DecisionDetailsView: View {
         .onChange(of: decisionId) { _, newValue in
             viewModel.updateDecisionId(decisionId: decisionId)
         }
-        .alert("Error delete alert", isPresented: $errorDeleteAlert) {
+        .alert("Error deleting alert", isPresented: $errorDeleteAlert) {
             Button("OK", role: .cancel) {
                 errorDeleteAlert = false
             }
         } message: {
-            Text("An error occured when trying to delete the alert. Please try again.")
+            Text("An error occurred when trying to delete the alert. Please try again.")
         }
         .alert("Expire decision", isPresented: $confirmationExpirePresented) {
             Button(String(localized: "Cancel"), role: .cancel) {
