@@ -5078,6 +5078,36 @@
           }
         }
       }
+    },
+    "Language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprache"
+          }
+        }
+      }
+    },
+    "Open language settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spracheinstellungen öffnen"
+          }
+        }
+      }
+    },
+    "iOS keeps the language of each app in its own system settings." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS verwaltet die Sprache jeder App in den Systemeinstellungen."
+          }
+        }
+      }
     }
   },
   "version" : "1.1"
