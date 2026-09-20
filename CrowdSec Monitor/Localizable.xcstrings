@@ -233,50 +233,6 @@
         }
       }
     },
-    "%lld IP addresses imported of a total of %lld" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld von %2$lld IP-Adressen importiert"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld IP addresses imported of a total of %2$lld"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld direcciones IP importadas de un total de  %lld"
-          }
-        }
-      }
-    },
-    "%lld IP addresses processed of a total of %lld" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld von %2$lld IP-Adressen verarbeitet"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld IP addresses processed of a total of %2$lld"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld direcciones IP procesadas de un total de %2$lld"
-          }
-        }
-      }
-    },
     "%lld IP addresses" : {
       "localizations" : {
         "de" : {
@@ -331,6 +287,50 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "%lld IP addresses imported of a total of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld IP-Adressen importiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld IP addresses imported of a total of %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld direcciones IP importadas de un total de  %lld"
+          }
+        }
+      }
+    },
+    "%lld IP addresses processed of a total of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld IP-Adressen verarbeitet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld IP addresses processed of a total of %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld direcciones IP procesadas de un total de %2$lld"
           }
         }
       }
@@ -799,22 +799,6 @@
         }
       }
     },
-    "An error occurred while triggering the blocklist refresh process. Try again later." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Aktualisierung der Sperrliste konnte nicht gestartet werden. Versuche es später erneut."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ha ocurrido un error al lanzar el proceso para refrescar la lista de bloqueo. Prueba de nuevo más tarde."
-          }
-        }
-      }
-    },
     "An error occurred while checking the domain. Please try again." : {
       "localizations" : {
         "de" : {
@@ -891,6 +875,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ha ocurrido un error al configurar el servidor por defecto. Por favor, prueba de nuevo. Si el error persiste, desinstala la aplicación e instálala de nuevo."
+          }
+        }
+      }
+    },
+    "An error occurred while triggering the blocklist refresh process. Try again later." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Aktualisierung der Sperrliste konnte nicht gestartet werden. Versuche es später erneut."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ocurrido un error al lanzar el proceso para refrescar la lista de bloqueo. Prueba de nuevo más tarde."
           }
         }
       }
@@ -2741,6 +2741,22 @@
         }
       }
     },
+    "iOS keeps the language of each app in its own system settings." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS verwaltet die Sprache jeder App in den Systemeinstellungen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS configura el idioma de cada app desde los ajustes del sistema."
+          }
+        }
+      }
+    },
     "IP address" : {
       "localizations" : {
         "de" : {
@@ -2945,6 +2961,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El valor de IP/Dominio no es válido"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprache"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idioma"
           }
         }
       }
@@ -3505,6 +3537,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En línea"
+          }
+        }
+      }
+    },
+    "Open language settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spracheinstellungen öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir configuración de idioma"
           }
         }
       }
@@ -5075,36 +5123,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Debes rellenar todos los campos requeridos para agregar la lista de bloqueo"
-          }
-        }
-      }
-    },
-    "Language" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprache"
-          }
-        }
-      }
-    },
-    "Open language settings" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spracheinstellungen öffnen"
-          }
-        }
-      }
-    },
-    "iOS keeps the language of each app in its own system settings." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iOS verwaltet die Sprache jeder App in den Systemeinstellungen."
           }
         }
       }
