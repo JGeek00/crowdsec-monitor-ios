@@ -104,7 +104,7 @@ struct StatusProcessStepper: View {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 4)
-        .font(.system(size: 14))
+        .font(.subheadline)
         .fontWeight(.semibold)
         .foregroundStyle(Color.white)
         .background(

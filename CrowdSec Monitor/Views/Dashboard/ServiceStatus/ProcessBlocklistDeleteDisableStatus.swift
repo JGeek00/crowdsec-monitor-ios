@@ -36,22 +36,22 @@ struct ProcessBlocklistDeleteDisableStatus: View {
                                 Spacer()
                                 Text(verbatim: "\(Int(Double(status.processedIps) / Double(status.ipsToDelete) * 100))%")
                             }
-                            .font(.system(size: 14))
+                            .font(.subheadline)
                             ProgressView(value: Double(status.processedIps) / Double(status.ipsToDelete))
                         }
                     }
                     else {
                         Text("Progress not available")
-                            .font(.system(size: 14))
+                            .font(.subheadline)
                     }
                 }
                 if process.successful == false {
                     Text("\(status.processedIps) IP addresses processed of a total of \(status.ipsToDelete)")
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
                 if process.successful == true {
                     Text("Processed all \(status.processedIps) IP addresses")
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
                 HStack {
                     if let startDate = process.beginDatetime.toDateFromISO8601() {
@@ -63,7 +63,7 @@ struct ProcessBlocklistDeleteDisableStatus: View {
                     }
                 }
                 .fontWeight(.medium)
-                .font(.system(size: 14))
+                .font(.subheadline)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

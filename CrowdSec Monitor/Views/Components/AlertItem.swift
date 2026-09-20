@@ -17,14 +17,14 @@ struct AlertItem: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(scenarioParts.namespace)
                     .foregroundStyle(Color.gray)
-                    .font(.system(size: 12))
+                    .font(.caption)
                     .fontWeight(.semibold)
                 Text(scenarioParts.name)
-                    .font(.system(size: 16))
+                    .font(.callout)
                     .fontWeight(.medium)
                 if let countryCode = countryCode {
                     CountryFlag(countryCode: countryCode)
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         .foregroundStyle(Color.gray)
                         .fontWeight(.semibold)
                 }
@@ -34,11 +34,11 @@ struct AlertItem: View {
             if let creationDate = creationDate {
                 VStack(alignment: .trailing, spacing: 4) {
                     Text(creationDate.toRelativeDayString())
-                        .font(.system(size: 12))
+                        .font(.caption)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.gray)
                     Text(creationDate.toTimeString())
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         .fontWeight(.semibold)
                 }
             }

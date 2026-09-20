@@ -97,7 +97,7 @@ struct DecisionDetailsView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(scenarioParts.namespace)
-                                .font(.system(size: 14))
+                                .font(.subheadline)
                                 .foregroundStyle(Color.gray)
                             Text(scenarioParts.name)
                                 .fontWeight(.medium)
@@ -113,7 +113,7 @@ struct DecisionDetailsView: View {
                     Text("Remaining time")
                     Spacer()
                     DecisionTimer(expirationDate: data.expiration.toDateFromISO8601())
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
             }
             

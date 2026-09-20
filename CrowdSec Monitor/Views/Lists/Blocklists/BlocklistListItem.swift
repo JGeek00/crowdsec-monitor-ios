@@ -31,21 +31,21 @@ struct BlocklistListItem: View {
                             .foregroundStyle(Color.orange)
                     }
                 }
-                .font(.system(size: 14))
+                .font(.subheadline)
                 if blocklist.lastRefreshFailed == true {
                     HStack(spacing: 6) {
                         Image(systemName: "exclamationmark.triangle.fill")
                         Text("Blocklist refresh failed")
                     }
                     .foregroundStyle(Color.red)
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                 }
                 if let blocklistProcess = blocklistProcess {
                     HStack(spacing: 6) {
                         ProgressView()
                             .controlSize(.mini)
                         Text(verbatim: getProcessType(blocklistProcess))
-                            .font(.system(size: 14))
+                            .font(.subheadline)
                     }
                 }
             }
@@ -62,7 +62,7 @@ struct BlocklistListItem: View {
                     }
                 }
                 .fontWeight(.semibold)
-                .font(.system(size: 20))
+                .font(.title3)
             }
         }
         .contextMenu {

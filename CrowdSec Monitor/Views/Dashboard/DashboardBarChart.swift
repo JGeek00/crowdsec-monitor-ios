@@ -37,7 +37,7 @@ struct DashboardBarChart: View {
             HStack {
                 Text("Activity history last \(lasty7Days.count) days")
                     .fontWeight(.semibold)
-                    .font(.system(size: 16))
+                    .font(.callout)
             }
             Chart {
                 ForEach(lasty7Days) { item in
@@ -135,7 +135,7 @@ struct DashboardBarChart: View {
                     .foregroundStyle(Color.blue)
                     .frame(width: 12, height: 12)
                 Text("Decisions")
-                    .font(.system(size: 12))
+                    .font(.caption)
                     .foregroundStyle(Color.gray)
                     .fontWeight(.semibold)
             }

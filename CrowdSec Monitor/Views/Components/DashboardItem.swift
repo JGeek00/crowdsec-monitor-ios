@@ -51,7 +51,7 @@ struct DashboardItem: View {
                 if horizontalSizeClass == .compact {
                     VStack(alignment: .leading) {
                         Text(verbatim: scenarioParts.namespace)
-                            .font(.system(size: 14))
+                            .font(.subheadline)
                             .foregroundStyle(Color.gray)
                         Text(verbatim: scenarioParts.name)
                     }
@@ -60,7 +60,7 @@ struct DashboardItem: View {
                         Text(verbatim: scenarioParts.namespace)
                             .lineLimit(1)
                             .truncationMode(.tail)
-                            .font(.system(size: 14))
+                            .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.white)
                             .padding(.horizontal, 8)
@@ -115,7 +115,7 @@ struct DashboardItem: View {
             .frame(width: 4)
         Text(verbatim: "(\(Int(percentage*100.rounded()))%)")
             .foregroundStyle(.secondary)
-            .font(.system(size: 14))
+            .font(.subheadline)
             .fontDesign(.monospaced)
     }
 }

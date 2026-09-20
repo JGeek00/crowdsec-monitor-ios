@@ -22,17 +22,17 @@ struct ServerListItem: View {
         } label: {
             HStack {
                 Image(systemName: "server.rack")
-                    .font(.system(size: 20))
+                    .font(.title3)
                 Spacer()
                     .frame(width: 16)
                 VStack(alignment: .leading, spacing: 6) {
                     Text(server.name)
-                        .font(.system(size: 16))
+                        .font(.callout)
                         .fontWeight(.medium)
                         .lineLimit(1)
                         .truncationMode(.tail)
                     Text(buildUrl(server: server))
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         .foregroundStyle(.gray)
                         .lineLimit(1)
                         .truncationMode(.middle)

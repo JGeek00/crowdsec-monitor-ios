@@ -188,7 +188,7 @@ struct BlocklistDetailsView: View {
                         Image(systemName: value ? "checkmark.circle.fill" : "x.circle.fill")
                             .foregroundStyle(value ? .green : .red)
                             .fontWeight(.semibold)
-                            .font(.system(size: 18))
+                            .font(.title3)
                     }
                 }
                 if let added = data.addedDate?.toDateFromISO8601() {

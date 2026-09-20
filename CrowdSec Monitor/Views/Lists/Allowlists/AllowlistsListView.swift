@@ -68,7 +68,7 @@ fileprivate struct AllowlistListItem: View {
             if !allowlist.description.isEmpty {
                 Text(allowlist.description)
                     .fontWeight(.medium)
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             

@@ -18,13 +18,13 @@ struct Welcome: View {
                 Spacer()
                     .frame(height: 24)
                 Text("Welcome to CrowdSec Monitor")
-                    .font(.system(size: verticalSizeClass == .regular ? 40 : 36))
+                    .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.bottom, 12)
                     .multilineTextAlignment(.center)
                 Text("An application to control your CrowdSec instance")
                     .fontWeight(.medium)
-                    .font(.system(size: verticalSizeClass == .regular ? 30 : 26))
+                    .font(.title)
                     .foregroundStyle(Color.gray)
                     .multilineTextAlignment(.center)
             }
@@ -40,7 +40,7 @@ struct Welcome: View {
                     } label: {
                         Text("Get started")
                             .fontWeight(.medium)
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
                     }
@@ -55,7 +55,7 @@ struct Welcome: View {
                     } label: {
                         Text("Get started")
                             .fontWeight(.medium)
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
                     }

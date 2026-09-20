@@ -46,7 +46,7 @@ struct AlertDetailsView: View {
                     Image(systemName: "info")
                         .foregroundStyle(Color.white)
                         .fontWeight(.bold)
-                        .font(.system(size: 28))
+                        .font(.title)
                         .frame(width: 50, height: 50)
                         .condition { view in
                             if #available(iOS 26.0, *) {
@@ -62,12 +62,12 @@ struct AlertDetailsView: View {
                     Spacer()
                         .frame(height: 12)
                     Text("Message")
-                        .font(.system(size: 20))
+                        .font(.title3)
                         .fontWeight(.semibold)
                     Spacer()
                         .frame(height: 4)
                     Text(verbatim: data.message)
-                        .font(.system(size: 16))
+                        .font(.callout)
                         .foregroundStyle(Color.gray)
                 }
             }
@@ -80,7 +80,7 @@ struct AlertDetailsView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(scenarioParts.namespace)
-                                .font(.system(size: 14))
+                                .font(.subheadline)
                                 .foregroundStyle(Color.gray)
                             Text(scenarioParts.name)
                                 .fontWeight(.medium)

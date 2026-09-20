@@ -42,7 +42,7 @@ struct OnboardingForm: View {
                             else {
                                 Text("Connect")
                                     .fontWeight(.semibold)
-                                    .font(.system(size: 18))
+                                    .font(.title3)
                             }
                             Spacer()
                         }

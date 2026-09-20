@@ -85,7 +85,7 @@ struct CheckDomainReachableView: View {
                                 .controlSize(.extraLarge)
                             Text("Checking domain...\nThis may take up to one minute.")
                                 .multilineTextAlignment(.center)
-                                .font(.system(size: 18))
+                                .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
                         }
@@ -122,7 +122,7 @@ fileprivate struct QueryResult: View {
                                 .foregroundStyle(Color.red)
                         }
                     }
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                     .fontWeight(.medium)
                 }
             }

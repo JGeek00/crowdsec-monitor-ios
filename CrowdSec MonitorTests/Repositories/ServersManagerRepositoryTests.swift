@@ -17,11 +17,7 @@ final class ServersManagerRepositoryTests: XCTestCase {
     private func makeRepo() -> ServersManagerRepository {
         // ponytail: ServersManagerRepository uses PersistenceController.shared.viewContext
         // in production. For tests we need to inject the in-memory context.
-        // Rather than refactoring the production init, we use a minimal subclass
-        // that overrides the context.
-        InjectServersManagerRepository.activeRepo = activeRepo
-        InjectServersManagerRepository.context = context
-        return InjectServersManagerRepository(activeServerRepository: activeRepo)
+        return InjectServersManagerRepository(activeServerRepository: activeRepo, context: context)
     }
 
     func testLoadServersInitiallyEmpty() {
@@ -158,78 +154,3 @@ final class ServersManagerRepositoryTests: XCTestCase {
     }
 }
 
-/// Injects an in-memory context into ServersManagerRepository via a minimal override.
-/// ponytail: instead of refactoring the production init() to accept a context,
-/// we override the private viewContext initialization.
-private final class InjectServersManagerRepository: ServersManagerRepository {
-    nonisolated(unsafe) static var activeRepo: ActiveServerRepository!
-    nonisolated(unsafe) static var context: NSManagedObjectContext!
-
-    override func loadServers() {
-        do {
-            let fetchRequest: NSFetchRequest<CSServer> = CSServer.fetchRequest()
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "domain", ascending: true)]
-            servers = try InjectServersManagerRepository.context.fetch(fetchRequest)
-        } catch {
-            servers = []
-        }
-    }
-
-    override func createServer(
-        name: String,
-        connectionMethod: Enums.ConnectionMethod,
-        ipDomain: String,
-        port: Int32?,
-        path: String?,
-        authMethod: Enums.AuthMethod,
-        basicUser: String?,
-        basicPassword: String?,
-        bearerToken: String?
-    ) async throws {
-        let server = CSServer(context: InjectServersManagerRepository.context)
-        server.id = UUID()
-        server.name = name
-        server.http = connectionMethod.rawValue
-        server.domain = ipDomain
-        server.port = port ?? 0
-        server.path = path
-        server.authMethod = authMethod.rawValue
-        server.basicUser = basicUser
-        server.basicPassword = basicPassword
-        server.bearerToken = bearerToken
-
-        try InjectServersManagerRepository.context.save()
-        servers.append(server)
-        InjectServersManagerRepository.activeRepo.activate(server)
-    }
-
-    override func deleteServer(server: CSServer) -> Bool {
-        do {
-            let obj = try InjectServersManagerRepository.context.existingObject(with: server.objectID)
-            InjectServersManagerRepository.context.delete(obj)
-            try InjectServersManagerRepository.context.save()
-            servers = servers.filter { $0 != server }
-
-            if let next = servers.first(where: { $0.isDefaultServer == true }) ?? servers.first {
-                InjectServersManagerRepository.activeRepo.activate(next)
-            } else {
-                InjectServersManagerRepository.activeRepo.deactivate()
-            }
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    override func setDefaultServer(_ server: CSServer) -> Bool {
-        servers.first(where: { $0.isDefaultServer == true })?.isDefaultServer = nil
-        server.isDefaultServer = true
-        do {
-            try InjectServersManagerRepository.context.save()
-            loadServers()
-            return true
-        } catch {
-            return false
-        }
-    }
-}

@@ -24,19 +24,19 @@ struct ProcessBlocklistSingleRefreshStatus: View {
                             Spacer()
                             Text(verbatim: "\(Int(Double(status.processIps.processedIps) / Double(status.processIps.totalIps) * 100))%")
                         }
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         ProgressView(value: Double(status.processIps.processedIps) / Double(status.processIps.totalIps))
                     }
                 }
 
                 if status.step == .import && process.successful == false {
                     Text("\(status.processIps.processedIps) IP addresses imported of a total of \(status.processIps.totalIps)")
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
 
                 if process.successful == true {
                     Text("Processed all \(status.processIps.totalIps) IP addresses")
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
 
                 HStack {
@@ -49,7 +49,7 @@ struct ProcessBlocklistSingleRefreshStatus: View {
                     }
                 }
                 .fontWeight(.medium)
-                .font(.system(size: 14))
+                .font(.subheadline)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         )

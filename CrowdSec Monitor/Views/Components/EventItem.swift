@@ -49,7 +49,7 @@ struct EventItem: View {
                         Spacer()
                         Text(value)
                             .fontWeight(.semibold)
-                            .font(.system(size: 16))
+                            .font(.callout)
                     }
                     Spacer()
                         .frame(height: 24)
@@ -61,7 +61,7 @@ struct EventItem: View {
                         HStack(spacing: 12) {
                             Text(httpVerbValue)
                                 .fontWeight(.semibold)
-                                .font(.system(size: 14))
+                                .font(.subheadline)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
                                 .foregroundStyle(Color.white)
@@ -69,11 +69,11 @@ struct EventItem: View {
                                 .clipShape(Capsule())
                             Text(httpPathValue)
                                 .fontWeight(.medium)
-                                .font(.system(size: 16))
+                                .font(.callout)
                             Spacer()
                             Text(httpStatusValue)
                                 .fontWeight(.semibold)
-                                .font(.system(size: 14))
+                                .font(.subheadline)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
                                 .foregroundStyle(Color.white)
@@ -84,7 +84,7 @@ struct EventItem: View {
                             Image(systemName: "globe")
                             Text(verbatim: isValidUserAgent(httpUserAgent.value[0]))
                         }
-                            .font(.system(size: 12))
+                            .font(.caption)
                             .fontWeight(.medium)
                             .foregroundStyle(Color.gray)
                             .fontDesign(.monospaced)
@@ -92,9 +92,9 @@ struct EventItem: View {
                             HStack(spacing: 8) {
                                 Image(systemName: "doc.text")
                                     .foregroundStyle(Color.gray)
-                                    .font(.system(size: 12))
+                                    .font(.caption)
                                 Text(verbatim: value)
-                                    .font(.system(size: 11))
+                                    .font(.caption2)
                                     .fontWeight(.medium)
                                     .foregroundStyle(Color.gray)
                                     .fontDesign(.monospaced)
@@ -110,7 +110,7 @@ struct EventItem: View {
                         HStack(spacing: 12) {
                             Text(serviceValue.uppercased())
                                 .fontWeight(.semibold)
-                                .font(.system(size: 14))
+                                .font(.subheadline)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
                                 .foregroundStyle(Color.white)
@@ -118,16 +118,16 @@ struct EventItem: View {
                                 .clipShape(Capsule())
                             Text(logTypeValue)
                                 .fontWeight(.medium)
-                                .font(.system(size: 16))
+                                .font(.callout)
                             Spacer()
                         }
                         if let datasourcePath = datasourcePath, let value = datasourcePath.value.first {
                             HStack(spacing: 8) {
                                 Image(systemName: "doc.text")
                                     .foregroundStyle(Color.gray)
-                                    .font(.system(size: 12))
+                                    .font(.caption)
                                 Text(verbatim: value)
-                                    .font(.system(size: 11))
+                                    .font(.caption2)
                                     .fontWeight(.medium)
                                     .foregroundStyle(Color.gray)
                                     .fontDesign(.monospaced)
@@ -143,7 +143,7 @@ struct EventItem: View {
                         HStack(spacing: 12) {
                             Text(serviceValue.uppercased())
                                 .fontWeight(.semibold)
-                                .font(.system(size: 14))
+                                .font(.subheadline)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
                                 .foregroundStyle(Color.white)
@@ -151,16 +151,16 @@ struct EventItem: View {
                                 .clipShape(Capsule())
                             Text(logTypeValue)
                                 .fontWeight(.medium)
-                                .font(.system(size: 16))
+                                .font(.callout)
                             Spacer()
                         }
                         if let datasourcePath = datasourcePath, let value = datasourcePath.value.first {
                             HStack(spacing: 8) {
                                 Image(systemName: "doc.text")
                                     .foregroundStyle(Color.gray)
-                                    .font(.system(size: 12))
+                                    .font(.caption)
                                 Text(verbatim: value)
-                                    .font(.system(size: 11))
+                                    .font(.caption2)
                                     .fontWeight(.medium)
                                     .foregroundStyle(Color.gray)
                                     .fontDesign(.monospaced)
@@ -177,7 +177,7 @@ struct EventItem: View {
                             if let service = service, let serviceValue = service.value.first {
                                 Text(serviceValue.uppercased())
                                     .fontWeight(.semibold)
-                                    .font(.system(size: 14))
+                                    .font(.subheadline)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
                                     .foregroundStyle(Color.white)
@@ -186,16 +186,16 @@ struct EventItem: View {
                             }
                             Text(logTypeValue)
                                 .fontWeight(.medium)
-                                .font(.system(size: 16))
+                                .font(.callout)
                             Spacer()
                         }
                         if let asnOrg = asnOrg, let value = asnOrg.value.first {
                             HStack(spacing: 8) {
                                 Image(systemName: "info.circle")
                                     .foregroundStyle(Color.gray)
-                                    .font(.system(size: 12))
+                                    .font(.caption)
                                 Text(verbatim: value)
-                                    .font(.system(size: 12))
+                                    .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.gray)
                             }

@@ -36,19 +36,19 @@ struct DecisionItem: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(verbatim: scenarioName)
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                     .lineLimit(1)
                     .truncationMode(.tail)
                 
                 Text(verbatim: ipAddress)
-                    .font(.system(size: 16))
+                    .font(.callout)
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .truncationMode(.middle)
                 
                 if let country = countryCode {
                     CountryFlag(countryCode: country)
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundStyle(.gray)
                 }
@@ -59,9 +59,9 @@ struct DecisionItem: View {
             
             VStack(alignment: .trailing, spacing: 6) {
                 decType()
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                 DecisionTimer(expirationDate: expirationDate)
-                    .font(.system(size: 12))
+                    .font(.caption)
             }
         }
     }

@@ -2,16 +2,19 @@ import SwiftUI
 
 struct ApiInformation: View {
     @Environment(OnboardingViewModel.self) private var viewModel
+
+    /// Hero symbol size: 60 pt default, scales with the system text size setting
+    @ScaledMetric(relativeTo: .largeTitle) private var heroSymbolSize: CGFloat = 60
     
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
                 Image(systemName: "server.rack")
-                    .font(.system(size: 60))
+                    .font(.system(size: heroSymbolSize))
                 Spacer()
                     .frame(height: 24)
                 Text("API information")
-                    .font(.system(size: 30))
+                    .font(.title)
                     .fontWeight(.semibold)
                     .padding(.bottom, 12)
             }

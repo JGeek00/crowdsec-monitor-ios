@@ -28,7 +28,7 @@ struct ProcessBlocklistRefreshStatus: View {
                             Spacer()
                             Text(verbatim: currentBlocklist.name)
                         }
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         StatusProcessStepper(fetch: currentBlocklist.steps.fetch, parse: currentBlocklist.steps.parse, delete: currentBlocklist.steps.delete, imp: currentBlocklist.steps.import, joinedMode: true)
                         Spacer()
                             .frame(height: 24)
@@ -37,19 +37,19 @@ struct ProcessBlocklistRefreshStatus: View {
                             Spacer()
                             Text("\(status.currentBlocklist) of \(status.totalBlocklists)")
                         }
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         ProgressView(value: Double(status.currentBlocklist) / Double(status.totalBlocklists))
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                     }
                 }
                 if process.successful == false {
                     let successfulAmount = status.blocklists.filter({ $0.steps.fetch == .successful && $0.steps.parse == .successful && $0.steps.delete == .successful && $0.steps.import == .successful }).count
                     Text("\(successfulAmount) blocklists processed of a total of \(status.totalBlocklists)")
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
                 if process.successful == true {
                     Text("Processed all \(status.totalBlocklists) blocklists")
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                 }
                 HStack {
                     if let startDate = process.beginDatetime.toDateFromISO8601() {
@@ -61,7 +61,7 @@ struct ProcessBlocklistRefreshStatus: View {
                     }
                 }
                 .fontWeight(.medium)
-                .font(.system(size: 14))
+                .font(.subheadline)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

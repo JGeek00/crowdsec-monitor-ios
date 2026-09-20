@@ -31,7 +31,7 @@ struct ListRowWithIconEntry: View {
                 Image(systemName: systemIcon!)
                     .foregroundStyle(Color.white)
                     .frame(width: 28, height: 28)
-                    .font(.system(size: 18))
+                    .font(.title3)
                     .background(iconColor)
                     .cornerRadius(6)
             }
@@ -43,7 +43,7 @@ struct ListRowWithIconEntry: View {
                 }
                 .foregroundStyle(Color.black)
                 .frame(width: 28, height: 28)
-                .font(.system(size: 18))
+                .font(.title3)
                 .background(iconColor)
                 .cornerRadius(6)
             }
@@ -53,7 +53,7 @@ struct ListRowWithIconEntry: View {
                 Spacer()
                 Text(verbatim: "\(badge)")
                     .foregroundStyle(.white)
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                     .fontWeight(.medium)
                     .padding(.horizontal, 4)
                     .condition(transform: { view in

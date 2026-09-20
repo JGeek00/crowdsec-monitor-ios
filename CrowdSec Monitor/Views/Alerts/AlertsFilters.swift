@@ -102,7 +102,7 @@ struct AlertsFilters: View {
                 Spacer()
                     .frame(height: 4)
                 Text("\(selected) selected")
-                    .font(.system(size: 12))
+                    .font(.caption)
                     .foregroundStyle(Color.secondary)
                     .fontWeight(.medium)
             }

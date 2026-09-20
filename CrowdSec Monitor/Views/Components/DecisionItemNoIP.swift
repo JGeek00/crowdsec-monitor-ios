@@ -34,14 +34,14 @@ struct DecisionItemNoIP: View {
         HStack {
             VStack(alignment: .leading, spacing: 6) {
                 Text(verbatim: scenarioName)
-                    .font(.system(size: 16))
+                    .font(.callout)
                     .fontWeight(.medium)
                     .lineLimit(1)
                     .truncationMode(.tail)
                 
                 if let createdAt {
                     Text(DateFormatter.ddMMMyyyyHHmmss.string(from: createdAt))
-                        .font(.system(size: 12))
+                        .font(.caption)
                         .fontWeight(.medium)
                 }
             }
@@ -51,9 +51,9 @@ struct DecisionItemNoIP: View {
             
             VStack(alignment: .trailing, spacing: 6) {
                 decType()
-                    .font(.system(size: 14))
+                    .font(.subheadline)
                 DecisionTimer(expirationDate: expirationDate)
-                    .font(.system(size: 12))
+                    .font(.caption)
             }
         }
     }

@@ -40,21 +40,21 @@ struct DashboardSummaryItem: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: icon)
-                    .font(.system(size: 16))
+                    .font(.callout)
                     .frame(width: 36, height: 36)
                     .foregroundStyle(Color.white)
                     .background(color)
                     .clipShape(Circle())
                 Spacer()
                 Text(verbatim: "\(value)")
-                    .font(.system(size: 22))
+                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundStyle(Color.foreground)
             }
             Text(title)
                 .fontWeight(.bold)
                 .foregroundStyle(Color.gray)
-                .font(.system(size: 14))
+                .font(.subheadline)
                 .lineLimit(1)
                 .truncationMode(.tail)
         }

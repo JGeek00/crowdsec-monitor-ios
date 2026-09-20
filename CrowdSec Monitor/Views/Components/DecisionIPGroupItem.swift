@@ -16,7 +16,7 @@ struct DecisionIPGroupItem: View {
                     .frame(height: 8)
                 if let country = group.country {
                     CountryFlag(countryCode: country)
-                        .font(.system(size: 14))
+                        .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundStyle(.gray)
                 }
@@ -36,7 +36,7 @@ struct DecisionIPGroupItem: View {
                 }
             }
             .fontWeight(.semibold)
-            .font(.system(size: 14))
+            .font(.subheadline)
             .padding(.leading, 4)
         }
     }

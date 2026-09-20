@@ -97,7 +97,7 @@ struct DecisionIPGroupDetailView: View {
                         if data.activeDecisions > 0 {
                             Spacer()
                             Text("\(data.activeDecisions) active decisions")
-                                .font(.system(size: 12))
+                                .font(.caption)
                                 .foregroundStyle(.green)
                                 .fontWeight(.medium)
                         }

@@ -86,7 +86,7 @@ struct AppSettingsView: View {
                         if isSelected {
                             Image(systemName: "checkmark.circle.fill")
                                 .fontWeight(.semibold)
-                                .font(.system(size: 16))
+                                .font(.callout)
                                 .foregroundStyle(.blue)
                                 .background(.white)
                                 .clipShape(Circle())

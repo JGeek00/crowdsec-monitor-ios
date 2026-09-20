@@ -10,18 +10,21 @@ struct ConnectionForm: View {
     }
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    /// Hero symbol size: 60 pt default, scales with the system text size setting
+    @ScaledMetric(relativeTo: .largeTitle) private var heroSymbolSize: CGFloat = 60
     
     var body: some View {
         Form {
             if showHeader {
                 Section(header: VStack(alignment: .leading) {
                     Image(systemName: "list.bullet")
-                        .font(.system(size: 60))
+                        .font(.system(size: heroSymbolSize))
                     Spacer()
                         .frame(height: 24)
                     Text("Setup the server connection")
                         .fontWeight(.semibold)
-                        .font(.system(size: 30))
+                        .font(.title)
                 }
                 .padding(.vertical, 24)) {
                     EmptyView()
