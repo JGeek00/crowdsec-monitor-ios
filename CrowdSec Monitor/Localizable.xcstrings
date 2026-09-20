@@ -3,6 +3,12 @@
   "strings" : {
     "%@ is now the default server" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ist jetzt der Standardserver"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13,6 +19,12 @@
     },
     "%lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23,6 +35,24 @@
     },
     "%lld active" : {
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktiv"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktiv"
+                }
+              }
+            }
+          }
+        },
         "es" : {
           "variations" : {
             "plural" : {
@@ -45,6 +75,24 @@
     },
     "%lld active decisions" : {
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktive Sperre"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktive Sperren"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -85,6 +133,24 @@
     },
     "%lld blocked IP addresses" : {
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld gesperrte IP-Adresse"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld gesperrte IP-Adressen"
+                }
+              }
+            }
+          }
+        },
         "es" : {
           "variations" : {
             "plural" : {
@@ -107,6 +173,12 @@
     },
     "%lld blocklists processed of a total of %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld Sperrlisten verarbeitet"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -123,6 +195,24 @@
     },
     "%lld decisions" : {
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Sperre"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Sperren"
+                }
+              }
+            }
+          }
+        },
         "es" : {
           "variations" : {
             "plural" : {
@@ -145,6 +235,12 @@
     },
     "%lld IP addresses imported of a total of %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld IP-Adressen importiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -161,6 +257,12 @@
     },
     "%lld IP addresses processed of a total of %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld IP-Adressen verarbeitet"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -177,6 +279,24 @@
     },
     "%lld IP addresses" : {
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld IP-Adresse"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld IP-Adressen"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -217,6 +337,12 @@
     },
     "%lld of %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -233,6 +359,24 @@
     },
     "%lld selected" : {
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ausgewählt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ausgewählt"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -273,6 +417,12 @@
     },
     "About the app" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über die App"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -283,6 +433,12 @@
     },
     "Access token" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zugriffstoken"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +449,12 @@
     },
     "Active decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive Sperren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -303,6 +465,12 @@
     },
     "Activity history last %lld days" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlauf der letzten %lld Tage"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -313,6 +481,12 @@
     },
     "Add" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -323,6 +497,12 @@
     },
     "Add blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste hinzufügen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -333,6 +513,12 @@
     },
     "Added" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzugefügt am"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -343,6 +529,12 @@
     },
     "Alert" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnung"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +545,12 @@
     },
     "Alert #%@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnung %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -363,6 +561,12 @@
     },
     "Alerts" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnungen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -373,6 +577,12 @@
     },
     "Alerts last 24 hours" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnungen der letzten 24 Stunden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +593,12 @@
     },
     "Alerts: %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnungen: %lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -393,6 +609,12 @@
     },
     "Allowlist not found" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausnahmeliste nicht gefunden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -403,6 +625,12 @@
     },
     "Allowlist: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausnahmeliste: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -413,6 +641,12 @@
     },
     "Allowlists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausnahmelisten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -423,6 +657,12 @@
     },
     "Amount" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzahl"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -433,6 +673,12 @@
     },
     "Amount of blocked IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzahl gesperrter IPs"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -443,6 +689,12 @@
     },
     "Amount of items to display in dashboard lists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einträge in den Dashboard-Listen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -453,6 +705,12 @@
     },
     "An application to control your CrowdSec instance" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine App zur Steuerung deiner CrowdSec-Instanz"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -463,6 +721,12 @@
     },
     "An error occurred when adding the blocklist, please try again" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Sperrliste konnte nicht hinzugefügt werden. Versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -473,6 +737,12 @@
     },
     "An error occurred when fetching the blocklist data" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Daten der Sperrliste konnten nicht geladen werden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +753,12 @@
     },
     "An error occurred when fetching the data" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Daten konnten nicht geladen werden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -493,6 +769,12 @@
     },
     "An error occurred when fetching the service status" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Dienststatus konnte nicht geladen werden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -503,6 +785,12 @@
     },
     "An error occurred when trying to delete the alert. Please try again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Warnung konnte nicht gelöscht werden. Versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,6 +801,12 @@
     },
     "An error occurred while triggering the blocklist refresh process. Try again later." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Aktualisierung der Sperrliste konnte nicht gestartet werden. Versuche es später erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,6 +817,12 @@
     },
     "An error occurred while checking the domain. Please try again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Domain konnte nicht geprüft werden. Versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,6 +833,12 @@
     },
     "An error occurred while creating the decision. Please try again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Sperre konnte nicht angelegt werden. Versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -543,6 +849,12 @@
     },
     "An error occurred while deleting the server. This could mean that the database is corrupted. Please try deleting the server again. If the problem persists, uninstall the application and install it again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server konnte nicht gelöscht werden. Möglicherweise ist die Datenbank beschädigt. Versuche es erneut. Bleibt das Problem, deinstalliere die App und installiere sie neu."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -553,6 +865,12 @@
     },
     "An error occurred while making the decision expired. Please try again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Sperre konnte nicht aufgehoben werden. Versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -563,6 +881,12 @@
     },
     "An error occurred while setting the default server. Please try again. If the problem persists, uninstall the application and install it again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Standardserver konnte nicht festgelegt werden. Versuche es erneut. Bleibt das Problem, deinstalliere die App und installiere sie neu."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -573,6 +897,12 @@
     },
     "API information" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinweise zur API"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -583,6 +913,12 @@
     },
     "API version" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API-Version"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -593,6 +929,12 @@
     },
     "App version" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Version"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -603,6 +945,12 @@
     },
     "Application settings" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Einstellungen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -613,6 +961,12 @@
     },
     "Apply" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übernehmen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -623,6 +977,12 @@
     },
     "Are you sure you want to delete this alert? This action cannot be undone." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du diese Warnung wirklich löschen? Das lässt sich nicht rückgängig machen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -633,6 +993,12 @@
     },
     "Are you sure you want to delete this blocklist? This action cannot be undone." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du diese Sperrliste wirklich löschen? Das lässt sich nicht rückgängig machen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -643,6 +1009,12 @@
     },
     "Are you sure you want to delete this server? This action cannot be undone." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du diesen Server wirklich löschen? Das lässt sich nicht rückgängig machen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,6 +1025,12 @@
     },
     "Are you sure you want to make this decision to expire now? This action cannot be undone." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du diese Sperre jetzt aufheben? Das lässt sich nicht rückgängig machen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -663,6 +1041,12 @@
     },
     "Authentication" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authentifizierung"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -673,6 +1057,12 @@
     },
     "Back" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -683,6 +1073,12 @@
     },
     "Blocked IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesperrte IPs"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +1089,12 @@
     },
     "Blocklist details" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -703,6 +1105,12 @@
     },
     "Blocklist refresh failed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualisierung der Sperrliste fehlgeschlagen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -713,6 +1121,12 @@
     },
     "Blocklist with no IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste ohne IPs"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -723,6 +1137,12 @@
     },
     "Blocklists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrlisten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -733,6 +1153,12 @@
     },
     "Blocklists: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrlisten: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -743,6 +1169,12 @@
     },
     "Bouncer available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bouncer erreichbar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -753,6 +1185,12 @@
     },
     "Cancel" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -763,6 +1201,12 @@
     },
     "Cannot get blocklist information" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste nicht abrufbar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -773,6 +1217,12 @@
     },
     "Capacity" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapazität"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -783,6 +1233,12 @@
     },
     "Change the filtering criteria to see more alerts" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ändere die Filter, um mehr Warnungen zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -793,6 +1249,12 @@
     },
     "Change the filtering criteria to see more decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ändere die Filter, um mehr Sperren zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -803,6 +1265,12 @@
     },
     "Change the inputted search term" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ändere den Suchbegriff"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -813,6 +1281,12 @@
     },
     "Check domain" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain prüfen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -823,6 +1297,12 @@
     },
     "Check IP addresses" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adressen prüfen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -833,6 +1313,12 @@
     },
     "Checking domain...\nThis may take up to one minute." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain wird geprüft…\nDas kann bis zu einer Minute dauern."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -843,6 +1329,12 @@
     },
     "Choose a decision from the list to view its details" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine Sperre aus der Liste, um die Details zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -853,6 +1345,12 @@
     },
     "Choose a list to see the list of IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine Liste, um die enthaltenen IPs zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -863,6 +1361,12 @@
     },
     "Choose an alert from the list to view its details" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine Warnung aus der Liste, um die Details zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -873,6 +1377,12 @@
     },
     "Choose an IP from the list to view its decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine IP aus der Liste, um ihre Sperren zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -883,6 +1393,12 @@
     },
     "Close" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -893,6 +1409,12 @@
     },
     "Close validator?" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prüfung schließen?"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -903,6 +1425,12 @@
     },
     "Configuration" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfiguration"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -913,6 +1441,12 @@
     },
     "Connect" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbinden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -923,6 +1457,12 @@
     },
     "Connection error" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindungsfehler"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -933,6 +1473,12 @@
     },
     "Connection method" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindungsart"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -943,6 +1489,12 @@
     },
     "Connection was not successful" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Verbindung ist fehlgeschlagen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -953,6 +1505,12 @@
     },
     "Copy URL" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL kopieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -963,6 +1521,12 @@
     },
     "Could not connect to server: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindung zum Server fehlgeschlagen: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -973,6 +1537,12 @@
     },
     "Countries" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Länder"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -983,6 +1553,12 @@
     },
     "Country" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Land"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -993,6 +1569,12 @@
     },
     "Create a decision" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperre anlegen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1003,6 +1585,12 @@
     },
     "Create decision" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperre anlegen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1013,6 +1601,12 @@
     },
     "Create server" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server anlegen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1023,6 +1617,12 @@
     },
     "Created on 🇪🇸 by JGeek00" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellt in  🇪🇸 von JGeek00"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1033,6 +1633,12 @@
     },
     "Created: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellt: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1043,6 +1649,12 @@
     },
     "CrowdSec website" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CrowdSec-Webseite"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1053,6 +1665,12 @@
     },
     "Current" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuell"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1063,6 +1681,12 @@
     },
     "Currently there are no options available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurzeit sind keine Optionen verfügbar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1073,6 +1697,12 @@
     },
     "Dark" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1083,6 +1713,12 @@
     },
     "Dashboard" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dashboard"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1093,6 +1729,12 @@
     },
     "Date" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1103,6 +1745,12 @@
     },
     "days" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tage"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1113,6 +1761,12 @@
     },
     "Decision #%@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperre %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1123,6 +1777,12 @@
     },
     "Decision type" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrtyp"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1133,6 +1793,12 @@
     },
     "Decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1143,6 +1809,12 @@
     },
     "Decisions: %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperren: %lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1153,6 +1825,12 @@
     },
     "Default server" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardserver"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1163,6 +1841,12 @@
     },
     "Delete" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1173,6 +1857,12 @@
     },
     "Delete alert" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnung löschen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1183,6 +1873,12 @@
     },
     "Delete blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste löschen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1193,6 +1889,12 @@
     },
     "Delete blocklist %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste %@ löschen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1203,6 +1905,12 @@
     },
     "Delete server" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server löschen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1213,6 +1921,12 @@
     },
     "Deleting blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste wird gelöscht"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,6 +1937,12 @@
     },
     "Disable blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste deaktivieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1233,6 +1953,12 @@
     },
     "Disable blocklist %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste %@ deaktivieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1243,6 +1969,12 @@
     },
     "Disable show only active decisions on filters to see all decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schalte im Filter \"Nur aktive\" aus, um alle Sperren zu sehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1253,6 +1985,12 @@
     },
     "Disable timer animation" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Countdown-Animation abschalten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1263,6 +2001,12 @@
     },
     "Disabling blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste wird deaktiviert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1273,6 +2017,12 @@
     },
     "Discard changes" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Änderungen verwerfen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1283,6 +2033,12 @@
     },
     "Domain" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1293,6 +2049,12 @@
     },
     "Domain does not exist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain existiert nicht"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1303,6 +2065,12 @@
     },
     "Domain reachable checker" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain prüfen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1313,6 +2081,12 @@
     },
     "Duration" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dauer"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1323,6 +2097,12 @@
     },
     "Duration must be greater than 0" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Dauer muss größer als 0 sein"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1333,6 +2113,12 @@
     },
     "Enable blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste aktivieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1343,6 +2129,12 @@
     },
     "Enable blocklist %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste %@ aktivieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1353,6 +2145,12 @@
     },
     "Enabled" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiviert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1363,6 +2161,12 @@
     },
     "Enabling blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste wird aktiviert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1373,6 +2177,12 @@
     },
     "Error" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehler"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1383,6 +2193,12 @@
     },
     "Error deleting alert" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warnung nicht gelöscht"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1393,6 +2209,12 @@
     },
     "Error expiring decision" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperre nicht aufgehoben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1403,6 +2225,12 @@
     },
     "Error refreshing blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste nicht aktualisiert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1413,6 +2241,12 @@
     },
     "Event details" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ereignisdetails"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1423,6 +2257,12 @@
     },
     "Events" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ereignisse"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1433,6 +2273,12 @@
     },
     "Expiration: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ablauf: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1443,6 +2289,12 @@
     },
     "Expire" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufheben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1453,6 +2305,12 @@
     },
     "Expire decision" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperre aufheben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1463,6 +2321,12 @@
     },
     "Expired" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abgelaufen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1473,6 +2337,12 @@
     },
     "Failed tasks" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlgeschlagene Aufgaben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1483,6 +2353,12 @@
     },
     "Fetch" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrufen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1493,6 +2369,12 @@
     },
     "Fill all required fields" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pflichtfelder ausfüllen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1503,6 +2385,12 @@
     },
     "Filters" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1513,6 +2401,12 @@
     },
     "Finished at %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beendet um %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1523,6 +2417,12 @@
     },
     "General information" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allgemeines"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1533,6 +2433,12 @@
     },
     "Get started" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los geht's"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1543,6 +2449,12 @@
     },
     "Give a tip to the developer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dem Entwickler ein Trinkgeld geben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1553,6 +2465,12 @@
     },
     "Hi! I'm the developer of CrowdSec Monitor.\nCrowdSec Monitor is free and I want it to remain free, but by offering this application on the App Store I run into some costs, such as Apple's developer license. I would appreciate a lot every donation to help me paying this costs.\nThank you." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hallo! Ich bin der Entwickler von CrowdSec Monitor.\nCrowdSec Monitor ist kostenlos und soll es auch bleiben. Die App im App Store anzubieten kostet mich aber Geld, etwa Apples Entwicklerlizenz. Über jede Spende, die mir dabei hilft, freue ich mich sehr.\nDanke."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1563,6 +2481,12 @@
     },
     "Home" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1573,6 +2497,12 @@
     },
     "hours" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Std."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1583,6 +2513,12 @@
     },
     "HTTP" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1593,6 +2529,12 @@
     },
     "HTTPS" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTPS"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1603,6 +2545,12 @@
     },
     "Icon" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Symbol"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1613,6 +2561,12 @@
     },
     "Import" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1623,6 +2577,12 @@
     },
     "Import blocklist %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste %@ importieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1633,6 +2593,12 @@
     },
     "Imported %lld of %lld IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld IPs importiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -1649,6 +2615,12 @@
     },
     "Importing blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste wird importiert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1659,6 +2631,12 @@
     },
     "Information" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informationen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1669,6 +2647,12 @@
     },
     "Input an IP address" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adresse eingeben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1679,6 +2663,12 @@
     },
     "Input search text" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchbegriff eingeben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1689,6 +2679,12 @@
     },
     "Invalid credentials. Please verify your username, password, or token." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Zugangsdaten stimmen nicht. Prüfe Benutzername, Passwort oder Token."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1699,6 +2695,12 @@
     },
     "Invalid domain" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültige Domain"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1709,6 +2711,12 @@
     },
     "Invalid IP address" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültige IP-Adresse"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1719,6 +2727,12 @@
     },
     "Invalid values" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültige Werte"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1729,6 +2743,12 @@
     },
     "IP address" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adresse"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1739,6 +2759,12 @@
     },
     "IP Address is invalid" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adresse ist ungültig"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1749,6 +2775,12 @@
     },
     "IP Address is required" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adresse ist erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1759,6 +2791,12 @@
     },
     "IP address or domain" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adresse oder Domain"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1769,6 +2807,12 @@
     },
     "IP addresses" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adressen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1779,6 +2823,12 @@
     },
     "IP addresses checker" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adressen prüfen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1789,6 +2839,12 @@
     },
     "IP addresses in allowlists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adressen in Ausnahmelisten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1799,6 +2855,12 @@
     },
     "IP addresses in blocklists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Adressen in Sperrlisten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1809,6 +2871,12 @@
     },
     "IP addresses to validate" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu prüfende IP-Adressen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1819,6 +2887,12 @@
     },
     "IP owner" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Eigentümer"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1829,6 +2903,12 @@
     },
     "IP owners" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP-Eigentümer"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1839,6 +2919,12 @@
     },
     "IP/Domain field is required" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Feld IP oder Domain ist erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1849,6 +2935,12 @@
     },
     "IP/Domain value is not valid" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Wert für IP oder Domain ist ungültig"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1859,6 +2951,12 @@
     },
     "LAPI available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LAPI erreichbar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1869,6 +2967,12 @@
     },
     "Last refresh" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte Aktualisierung"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1879,6 +2983,12 @@
     },
     "Last refresh attempt failed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzter Versuch fehlgeschlagen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1889,6 +2999,12 @@
     },
     "Last successful refresh" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte erfolgreiche Aktualisierung"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1899,6 +3015,12 @@
     },
     "Leakspeed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leakspeed"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1909,6 +3031,12 @@
     },
     "Light" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1919,6 +3047,12 @@
     },
     "List type" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listentyp"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1929,6 +3063,12 @@
     },
     "Lists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1939,6 +3079,12 @@
     },
     "Loading..." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird geladen…"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1949,6 +3095,12 @@
     },
     "Location" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standort"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1959,6 +3111,12 @@
     },
     "Managed by" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwaltet von"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1969,6 +3127,12 @@
     },
     "Managed by CrowdSec" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwaltet von CrowdSec"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1979,6 +3143,12 @@
     },
     "Managed by Monitor API" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwaltet von der Monitor-API"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1989,6 +3159,12 @@
     },
     "Message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldung"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1999,6 +3175,12 @@
     },
     "Method" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Methode"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2009,6 +3191,12 @@
     },
     "More information about the app" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr über diese App"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2019,6 +3207,12 @@
     },
     "My other apps" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meine anderen Apps"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2029,6 +3223,12 @@
     },
     "Name" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2039,6 +3239,12 @@
     },
     "Name field is required" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Feld Name ist erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2049,6 +3255,12 @@
     },
     "Network error: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Netzwerkfehler: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2059,6 +3271,12 @@
     },
     "New version available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Version verfügbar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2069,6 +3287,12 @@
     },
     "Next" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2079,6 +3303,12 @@
     },
     "No active" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine aktiven"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2089,6 +3319,12 @@
     },
     "No active decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine aktiven Sperren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2099,6 +3335,12 @@
     },
     "No alerts to display" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Warnungen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2109,6 +3351,12 @@
     },
     "No allowlists to display" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Ausnahmelisten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2119,6 +3367,12 @@
     },
     "No blocklists to display" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Sperrlisten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2129,6 +3383,12 @@
     },
     "No decisions to display" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Sperren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2139,6 +3399,12 @@
     },
     "No results for '%@'" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Treffer für \"%@\""
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2149,6 +3415,12 @@
     },
     "No servers added" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Server eingerichtet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2159,6 +3431,12 @@
     },
     "None" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2169,6 +3447,12 @@
     },
     "Not blocked" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht gesperrt"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2179,6 +3463,12 @@
     },
     "Offline" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2189,6 +3479,12 @@
     },
     "OK" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2199,6 +3495,12 @@
     },
     "Online" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Online"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2209,6 +3511,12 @@
     },
     "Options" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optionen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2219,6 +3527,12 @@
     },
     "Origin" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herkunft"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2229,6 +3543,12 @@
     },
     "Owner" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigentümer"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2239,6 +3559,12 @@
     },
     "Parse" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswerten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2249,6 +3575,12 @@
     },
     "Password" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwort"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2259,6 +3591,12 @@
     },
     "Password is required for basic authentication" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Basic-Authentifizierung ist ein Passwort erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2269,6 +3607,12 @@
     },
     "Path" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfad"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2279,6 +3623,12 @@
     },
     "Port" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2289,6 +3639,12 @@
     },
     "Port must be a valid number" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Port muss eine gültige Zahl sein"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2299,6 +3655,12 @@
     },
     "Port must be between 1 and 65535" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Port muss zwischen 1 und 65535 liegen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2309,6 +3671,12 @@
     },
     "Processed %lld of %lld IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld IPs verarbeitet"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -2325,6 +3693,12 @@
     },
     "Processed all %lld blocklists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle %lld Sperrlisten verarbeitet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2335,6 +3709,12 @@
     },
     "Processed all %lld IP addresses" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle %lld IP-Adressen verarbeitet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2345,6 +3725,12 @@
     },
     "Progress not available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Fortschritt verfügbar"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2355,6 +3741,12 @@
     },
     "Purchase completed successfully" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kauf abgeschlossen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2365,6 +3757,12 @@
     },
     "Purchase failed or cancelled" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kauf fehlgeschlagen oder abgebrochen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2375,6 +3773,12 @@
     },
     "Range" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2385,6 +3789,12 @@
     },
     "Reason" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grund"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2395,6 +3805,12 @@
     },
     "Reason is required" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Grund ist erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2405,6 +3821,12 @@
     },
     "Refresh" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualisieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2415,6 +3837,12 @@
     },
     "Refresh blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste aktualisieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2425,6 +3853,12 @@
     },
     "Refresh blocklist %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste %@ aktualisieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2435,6 +3869,12 @@
     },
     "Refresh blocklists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrlisten aktualisieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2445,6 +3885,12 @@
     },
     "Refresh list" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liste aktualisieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2455,6 +3901,12 @@
     },
     "Refresh lists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listen aktualisieren"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2465,6 +3917,12 @@
     },
     "Refreshing a blocklist is a computing expensive task that can take up to a few minutes. Don't refresh too often. Do you want to continue?" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Sperrliste zu aktualisieren ist rechenaufwendig und kann einige Minuten dauern. Mach das nicht zu oft. Möchtest du fortfahren?"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2475,6 +3933,12 @@
     },
     "Refreshing all blocklists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Sperrlisten werden aktualisiert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2485,6 +3949,12 @@
     },
     "Refreshing blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperrliste wird aktualisiert"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2495,6 +3965,12 @@
     },
     "Remaining time" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restlaufzeit"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2505,6 +3981,12 @@
     },
     "Reset" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurücksetzen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2515,6 +3997,12 @@
     },
     "Running tasks" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laufende Aufgaben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2525,6 +4013,12 @@
     },
     "Save" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2535,6 +4029,12 @@
     },
     "Scenario" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szenario"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2545,6 +4045,12 @@
     },
     "Scenarios" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szenarien"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2555,6 +4061,12 @@
     },
     "Search IPs" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IPs suchen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2565,6 +4077,12 @@
     },
     "Select a decision" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine Sperre"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2575,6 +4093,12 @@
     },
     "Select a list" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine Liste"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2585,6 +4109,12 @@
     },
     "Select an alert" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine Warnung"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2595,6 +4125,12 @@
     },
     "Select an IP" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine IP"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2605,6 +4141,12 @@
     },
     "Selected list type" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählter Listentyp"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2615,6 +4157,12 @@
     },
     "Server error: code %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serverfehler: Code %lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2625,6 +4173,12 @@
     },
     "Server information" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serverdaten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2635,6 +4189,12 @@
     },
     "Server route" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serveradresse"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2645,6 +4205,12 @@
     },
     "Server settings" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servereinstellungen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2655,6 +4221,12 @@
     },
     "Servers" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2665,6 +4237,12 @@
     },
     "Service status" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dienststatus"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2675,6 +4253,12 @@
     },
     "Set as default server" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als Standardserver festlegen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2685,6 +4269,12 @@
     },
     "Settings" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2695,6 +4285,12 @@
     },
     "Setup the server connection" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serververbindung einrichten"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2705,6 +4301,12 @@
     },
     "Show by default decisions grouped by IP" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperren standardmäßig nach IP gruppieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2721,6 +4323,12 @@
     },
     "Show by default only active decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardmäßig nur aktive Sperren zeigen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2731,6 +4339,12 @@
     },
     "Show decisions grouped by IP" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sperren nach IP gruppieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2747,6 +4361,12 @@
     },
     "Show only active decisions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur aktive Sperren zeigen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2757,6 +4377,12 @@
     },
     "Started at %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestartet um %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2767,6 +4393,12 @@
     },
     "Status" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2777,6 +4409,12 @@
     },
     "Successful tasks" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfolgreiche Aufgaben"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2787,6 +4425,12 @@
     },
     "Switch server" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server wechseln"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2797,6 +4441,12 @@
     },
     "System defined" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Systemvorgabe"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2807,6 +4457,12 @@
     },
     "Targets" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziele"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2817,6 +4473,12 @@
     },
     "The backend will try to resolve the domain against a DNS server. If the domain is resolved correctly, the backend will check if the resolved IP addresses are listed in any blocklist. The result will show the resolved IP addresses and the blocklists they are listed in, if any." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die API löst die Domain über einen DNS-Server auf. Gelingt das, prüft sie, ob die ermittelten IP-Adressen in einer Sperrliste stehen. Das Ergebnis zeigt die IP-Adressen und die Sperrlisten, in denen sie stehen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2827,6 +4489,12 @@
     },
     "The domain you entered could not be resolved. Please check the domain and try again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die eingegebene Domain konnte nicht aufgelöst werden. Prüfe sie und versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2837,6 +4505,12 @@
     },
     "The domain you entered is not valid. Please check the format and try again." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die eingegebene Domain ist ungültig. Prüfe die Schreibweise und versuche es erneut."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2847,6 +4521,12 @@
     },
     "The purchase could not be completed. An error occurred on the process or it has been cancelled by the user." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kauf konnte nicht abgeschlossen werden. Es ist ein Fehler aufgetreten oder du hast ihn abgebrochen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2857,6 +4537,12 @@
     },
     "The purchase has been completed. Thank you for contributing with the development and maintenance of this application." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kauf ist abgeschlossen. Danke, dass du die Entwicklung und Pflege dieser App unterstützt."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2867,6 +4553,12 @@
     },
     "The value inputted on the URL field is not valid, please input a valid URL" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Wert im Feld URL ist keine gültige URL. Gib eine gültige URL ein."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2877,6 +4569,12 @@
     },
     "The value introduced doesn't correspond to a valid IPv4 or IPv6 address." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der eingegebene Wert ist keine gültige IPv4- oder IPv6-Adresse."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2887,6 +4585,12 @@
     },
     "Theme" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erscheinungsbild"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2897,6 +4601,12 @@
     },
     "There are no allowlists on CrowdSec" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In CrowdSec ist keine Ausnahmeliste vorhanden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2907,6 +4617,12 @@
     },
     "There are no blocklists on CrowdSec" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In CrowdSec ist keine Sperrliste vorhanden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2917,6 +4633,12 @@
     },
     "This application requires an intermediate API to function. This API is responsible for obtaining data from CrowdSec, processing it, and delivering it appropriately to this application. \nBefore continuing, ensure that you have correctly deployed it on your machine alongside CrowdSec." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese App braucht eine zwischengeschaltete API. Sie holt die Daten von CrowdSec, bereitet sie auf und liefert sie an die App aus.\nRichte sie ein, bevor du fortfährst - auf derselben Maschine wie CrowdSec."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2927,6 +4649,12 @@
     },
     "This blocklist does not contain any blocked IP address" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Sperrliste enthält keine IP-Adresse"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2937,6 +4665,12 @@
     },
     "This IP is not in any allowlist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese IP steht in keiner Ausnahmeliste"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2947,6 +4681,12 @@
     },
     "This IP is not in any blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese IP steht in keiner Sperrliste"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2957,6 +4697,12 @@
     },
     "Tips" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trinkgeld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2967,6 +4713,12 @@
     },
     "To start monitoring your CrowdSec instance, add a server." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge einen Server hinzu, um deine CrowdSec-Instanz zu überwachen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2977,6 +4729,12 @@
     },
     "today" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2987,6 +4745,12 @@
     },
     "Token" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2997,6 +4761,12 @@
     },
     "Token is required for Bearer authentication" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Bearer-Authentifizierung ist ein Token erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3007,6 +4777,12 @@
     },
     "Top countries" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Länder"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3017,6 +4793,12 @@
     },
     "Top IP owners" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste IP-Eigentümer"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3027,6 +4809,12 @@
     },
     "Top scenarios" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Szenarien"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3037,6 +4825,12 @@
     },
     "Top targets" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Ziele"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3047,6 +4841,12 @@
     },
     "Total" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesamt"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3057,6 +4857,12 @@
     },
     "Type" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3067,6 +4873,12 @@
     },
     "Updated: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualisiert: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3077,6 +4889,12 @@
     },
     "URL" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3087,6 +4905,12 @@
     },
     "URL value not valid" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültige URL"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3097,6 +4921,12 @@
     },
     "User agent not available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein User-Agent vorhanden"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3107,6 +4937,12 @@
     },
     "Username" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benutzername"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3117,6 +4953,12 @@
     },
     "Username and password" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benutzername und Passwort"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3127,6 +4969,12 @@
     },
     "Username is required for basic authentication" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Basic-Authentifizierung ist ein Benutzername erforderlich"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3137,6 +4985,12 @@
     },
     "Version" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3147,6 +5001,12 @@
     },
     "View all" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle anzeigen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3157,6 +5017,12 @@
     },
     "View API repository on GitHub" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API-Repository auf GitHub ansehen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3167,6 +5033,12 @@
     },
     "Welcome to CrowdSec Monitor" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willkommen bei CrowdSec Monitor"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3177,6 +5049,12 @@
     },
     "yesterday" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestern"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3187,6 +5065,12 @@
     },
     "You must fill all the required fields to add the blocklist" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fülle alle Pflichtfelder aus, um die Sperrliste hinzuzufügen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
