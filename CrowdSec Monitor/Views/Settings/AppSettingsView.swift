@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct AppSettingsView: View {
     @SharedAppStorage(StorageKeys.topItemsDashboard) private var amountItemsDashboard: Int = Defaults.topItemsDashboard
@@ -44,6 +45,24 @@ struct AppSettingsView: View {
                     }
                 }
                 .padding(.vertical, 8)
+            }
+
+            Section {
+                Button {
+                    openURL(UIApplication.openSettingsURLString)
+                } label: {
+                    HStack {
+                        Text("Open language settings")
+                        Spacer()
+                        Image(systemName: "arrow.up.forward")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            } header: {
+                Text("Language")
+            } footer: {
+                Text("iOS keeps the language of each app in its own system settings.")
             }
         }
         .navigationTitle("Application settings")
