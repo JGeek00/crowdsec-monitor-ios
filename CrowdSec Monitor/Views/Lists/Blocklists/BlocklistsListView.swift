@@ -25,7 +25,7 @@ struct BlocklistsListView: View {
                 ContentUnavailableView(
                     "Error",
                     systemImage: "exclamationmark.circle",
-                    description: Text("An error occured when fetching the data")
+                    description: Text("An error occurred when fetching the data")
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
@@ -81,7 +81,7 @@ struct BlocklistsListView: View {
                 viewModel.errorRefreshBlocklist = false
             }
         } message: {
-            Text("An error occured while triggering the blocklist refresh process. Try again later.")
+            Text("An error occurred while triggering the blocklist refresh process. Try again later.")
         }
     }
     

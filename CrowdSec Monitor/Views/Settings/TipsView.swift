@@ -36,9 +36,9 @@ struct TipsView: View {
             }
         }
         .alert("Purchase failed or cancelled", isPresented: $tipsViewModel.failedPurchase) {} message: {
-            Text("The purchase could not be completed. An error occured on the process or it has been cancelled by the user.")
+            Text("The purchase could not be completed. An error occurred on the process or it has been cancelled by the user.")
         }.alert("Purchase completed successfully", isPresented: $tipsViewModel.successfulPurchase) {} message: {
-            Text("The purchase has been completed. Thank you for contributing with the development and mantenience of this application.")
+            Text("The purchase has been completed. Thank you for contributing with the development and maintenance of this application.")
         }
         .background(Color.listBackground)
     }

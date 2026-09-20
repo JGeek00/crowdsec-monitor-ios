@@ -31,7 +31,7 @@ struct BlocklistDetailsView: View {
                 content(response.data)
                     .navigationTitle(response.data.name)
             case .failure:
-                ContentUnavailableView("Cannot get blocklist information", systemImage: "exclamationmark.circle", description: Text("An error occured when fetching the blocklist data"))
+                ContentUnavailableView("Cannot get blocklist information", systemImage: "exclamationmark.circle", description: Text("An error occurred when fetching the blocklist data"))
                     .navigationTitle("Blocklist details")
             }
         }

@@ -35,7 +35,7 @@ struct AllowlistsIPsCheckerResultView: View {
                 ContentUnavailableView(
                     "Error",
                     systemImage: "exclamationmark.circle",
-                    description: Text("An error occured when fetching the data")
+                    description: Text("An error occurred when fetching the data")
                 )
             }
         }

@@ -21,7 +21,7 @@ struct AllowlistsListView: View {
                 ContentUnavailableView(
                     "Error",
                     systemImage: "exclamationmark.circle",
-                    description: Text("An error occured when fetching the data")
+                    description: Text("An error occurred when fetching the data")
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
@@ -75,7 +75,7 @@ fileprivate struct AllowlistListItem: View {
             HStack {
                 HStack(spacing: 4) {
                     Image(systemName: "number")
-                    Text("\(allowlist.items.count) IPs addresses")
+                    Text("\(allowlist.items.count) IP addresses")
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
