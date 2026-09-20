@@ -7,13 +7,6 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertEqual(date.toYYYYMMDD(), "2026-02-14")
     }
 
-    func testToShortDateString() {
-        let date = makeDate(year: 2026, month: 2, day: 14)
-        let result = date.toShortDateString()
-        // "Feb 14" in en_US locale
-        XCTAssertTrue(result.contains("Feb") || result.contains("14"))
-    }
-
     func testToRelativeDayStringToday() {
         let today = Date()
         let result = today.toRelativeDayString()

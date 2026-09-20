@@ -10,9 +10,29 @@ struct DashboardBarChart: View {
     
     @State private var selectedDate: String?
     @State private var plotWidth: CGFloat = 0
-    
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    static let axisLabelRotationDegrees: Double = -60
+
+    static func visibleLabelIndices(count: Int, typeSize: DynamicTypeSize) -> [Int] {
+        guard typeSize >= DynamicTypeSize.accessibility4, count > 3 else {
+            return Array(0..<max(count, 0))
+        }
+        return [0, count / 2, count - 1]
+    }
+
+    static func dayLabel(from rawDate: String) -> String {
+        guard let date = rawDate.toDateFromYYYYMMDD() else { return rawDate }
+        return date.formatted(.dateTime.month(.abbreviated).day().locale(.current))
+    }
+
+    private var allDayLabels: [String] {
+        activityHistory.suffix(7).map { Self.dayLabel(from: $0.date) }
+    }
+
     var body: some View {
-        let lasty7Days = activityHistory.suffix(7)
+        let lasty7Days = Array(activityHistory.suffix(7))
         VStack {
             HStack {
                 Text("Activity history last \(lasty7Days.count) days")
@@ -21,15 +41,15 @@ struct DashboardBarChart: View {
             }
             Chart {
                 ForEach(lasty7Days) { item in
-                    let dateString = item.date.toDateFromYYYYMMDD()?.toShortDateString() ?? item.date
-                    
+                    let dateString = Self.dayLabel(from: item.date)
+
                     BarMark(
                         x: .value("Date", dateString),
                         y: .value("Amount", item.amountDecisions)
                     )
                     .foregroundStyle(.blue)
                     .position(by: .value("Type", "Decisions"))
-                    
+
                     if item.amountAlerts > item.amountDecisions {
                         BarMark(
                             x: .value("Date", dateString),
@@ -47,11 +67,15 @@ struct DashboardBarChart: View {
                 }
             }
             .chartXAxis {
-                AxisMarks(values: .automatic) { value in
+                AxisMarks(values: allDayLabels) { value in
                     AxisValueLabel {
-                        if let date = value.as(String.self) {
+                        if let date = value.as(String.self),
+                           let index = allDayLabels.firstIndex(of: date),
+                           Self.visibleLabelIndices(count: allDayLabels.count, typeSize: dynamicTypeSize).contains(index) {
                             Text(date)
                                 .font(.caption)
+                                .padding(.top, 20)
+                                .rotationEffect(.degrees(Self.axisLabelRotationDegrees))
                         }
                     }
                 }
@@ -62,7 +86,7 @@ struct DashboardBarChart: View {
             .chartXSelection(value: $selectedDate)
             .chartLegend(position: .bottom, alignment: .center)
             .animation(.easeOut, value: lasty7Days)
-            .frame(height: 200)
+            .frame(height: 228)
             .padding()
             .chartBackground { chartProxy in
                 GeometryReader { geometry in
@@ -72,7 +96,7 @@ struct DashboardBarChart: View {
                         
                         if let selectedDate,
                            let selectedItem = lasty7Days.first(where: {
-                               ($0.date.toDateFromYYYYMMDD()?.toShortDateString() ?? $0.date) == selectedDate
+                               Self.dayLabel(from: $0.date) == selectedDate
                            }),
                            let xPosition = chartProxy.position(forX: selectedDate) {
                             
@@ -122,11 +146,11 @@ struct DashboardBarChart: View {
 
 #Preview {
     DashboardBarChart( activityHistory: [
-        ActivityHistory(date: "2026-02-09", amountAlerts: 11, amountDecisions: 11),
-        ActivityHistory(date: "2026-02-10", amountAlerts: 12, amountDecisions: 12),
-        ActivityHistory(date: "2026-02-11", amountAlerts: 24, amountDecisions: 24),
-        ActivityHistory(date: "2026-02-12", amountAlerts: 19, amountDecisions: 19),
-        ActivityHistory(date: "2026-02-13", amountAlerts: 18, amountDecisions: 18),
-        ActivityHistory(date: "2026-02-14", amountAlerts: 15, amountDecisions: 15),
+        ActivityHistory(date: "2026-09-09", amountAlerts: 11, amountDecisions: 11),
+        ActivityHistory(date: "2026-09-10", amountAlerts: 12, amountDecisions: 12),
+        ActivityHistory(date: "2026-09-11", amountAlerts: 24, amountDecisions: 24),
+        ActivityHistory(date: "2026-09-12", amountAlerts: 19, amountDecisions: 19),
+        ActivityHistory(date: "2026-09-13", amountAlerts: 18, amountDecisions: 18),
+        ActivityHistory(date: "2026-09-14", amountAlerts: 15, amountDecisions: 15),
     ])
 }

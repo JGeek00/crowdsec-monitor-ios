@@ -5,7 +5,7 @@ import Foundation
 extension JSONDecoder {
     /// A decoder configured with the date‑decoding strategy used by both
     /// HTTP and WebSocket responses from the CrowdSec API.
-    static var api: JSONDecoder {
+    nonisolated static var api: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()

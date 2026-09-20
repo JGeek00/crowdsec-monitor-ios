@@ -7,14 +7,6 @@ extension Date {
         return DateFormatter.yyyyMMdd.string(from: self)
     }
     
-    /// Formats the date as "MMM dd" (e.g., "Feb 09")
-    /// - Returns: Formatted date string
-    nonisolated func toShortDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd"
-        return formatter.string(from: self)
-    }
-    
     /// Returns "hoy" if today, "ayer" if yesterday, or "dd-MM-yyyy" format for other dates
     /// - Returns: Formatted date string based on relative day
     nonisolated func toRelativeDayString() -> String {

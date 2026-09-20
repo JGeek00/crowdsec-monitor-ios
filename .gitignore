@@ -1,1 +1,9 @@
 .codegraph/daemon.pid
+
+# Xcode / Swift
+.DS_Store
+xcuserdata/
+DerivedData/
+.build/
+*.swiftpm/
+*.xcuserstate

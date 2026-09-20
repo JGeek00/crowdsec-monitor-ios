@@ -1,6 +1,7 @@
 @testable import CrowdSec_Monitor
 import XCTest
 
+@MainActor
 final class OpenURLTests: XCTestCase {
     func testOpenURLInvalidReturnsEarly() {
         // Invalid URL — should print and return without crashing
