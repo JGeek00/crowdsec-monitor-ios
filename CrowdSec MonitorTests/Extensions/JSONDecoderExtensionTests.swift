@@ -30,6 +30,32 @@ final class JSONDecoderExtensionTests: XCTestCase {
                        accuracy: 0.001)
     }
 
+    func testDecodesCanonicalTimestampWithForeignOffset() throws {
+        // Canonical format with a preserved upstream offset (+0800): "2026-09-23 20:31:28 +0800 +0800"
+        let json = #"{"date": "2026-09-23 20:31:28 +0800 +0800"}"#.data(using: .utf8)!
+        let decoded = try JSONDecoder.api.decode(TestDateContainer.self, from: json)
+        let customFormatter = DateFormatter()
+        customFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z Z"
+        customFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let expected = try XCTUnwrap(customFormatter.date(from: "2026-09-23 20:31:28 +0800 +0800"))
+        XCTAssertEqual(decoded.date.timeIntervalSinceReferenceDate,
+                       expected.timeIntervalSinceReferenceDate,
+                       accuracy: 0.001)
+    }
+
+    func testDecodesCanonicalTimestampWithNegativeOffset() throws {
+        // Canonical format with a negative offset: "2026-09-23 14:31:28 -0500 -0500"
+        let json = #"{"date": "2026-09-23 14:31:28 -0500 -0500"}"#.data(using: .utf8)!
+        let decoded = try JSONDecoder.api.decode(TestDateContainer.self, from: json)
+        let customFormatter = DateFormatter()
+        customFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z Z"
+        customFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let expected = try XCTUnwrap(customFormatter.date(from: "2026-09-23 14:31:28 -0500 -0500"))
+        XCTAssertEqual(decoded.date.timeIntervalSinceReferenceDate,
+                       expected.timeIntervalSinceReferenceDate,
+                       accuracy: 0.001)
+    }
+
     func testInvalidDateStringThrows() {
         let json = #"{"date": "not-a-date"}"#.data(using: .utf8)!
         XCTAssertThrowsError(try JSONDecoder.api.decode(TestDateContainer.self, from: json)) { error in
