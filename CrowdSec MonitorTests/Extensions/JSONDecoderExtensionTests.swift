@@ -17,6 +17,18 @@ final class JSONDecoderExtensionTests: XCTestCase {
                        accuracy: 0.001)
     }
 
+    func testDecodesRFC3339UTCWithoutFractionalSeconds() throws {
+        // Current API format: RFC 3339 UTC, second precision
+        let json = #"{"date": "2026-09-27T10:40:36Z"}"#.data(using: .utf8)!
+        let decoded = try JSONDecoder.api.decode(TestDateContainer.self, from: json)
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
+        let expected = try XCTUnwrap(formatter.date(from: "2026-09-27T10:40:36Z"))
+        XCTAssertEqual(decoded.date.timeIntervalSinceReferenceDate,
+                       expected.timeIntervalSinceReferenceDate,
+                       accuracy: 0.001)
+    }
+
     func testDecodesCustomTimestamp() throws {
         let json = #"{"date": "2026-02-14 21:29:50 +0100 +0100"}"#.data(using: .utf8)!
         let decoded = try JSONDecoder.api.decode(TestDateContainer.self, from: json)

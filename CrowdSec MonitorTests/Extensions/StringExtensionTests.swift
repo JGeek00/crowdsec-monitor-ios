@@ -20,6 +20,22 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertNotNil(result)
     }
 
+    func testToDateFromISO8601WithoutFractionalSeconds() {
+        // Current API format: RFC 3339 UTC, second precision
+        let result = "2026-09-27T10:40:36Z".toDateFromISO8601()
+        XCTAssertNotNil(result)
+        let expected = ISO8601DateFormatter().date(from: "2026-09-27T10:40:36Z")
+        XCTAssertEqual(result, expected)
+    }
+
+    func testToDateFromISO8601WithNumericOffset() {
+        let result = "2026-07-23T00:00:00+02:00".toDateFromISO8601()
+        XCTAssertNotNil(result)
+        // Same instant as 2026-07-22T22:00:00Z
+        let expected = ISO8601DateFormatter().date(from: "2026-07-22T22:00:00Z")
+        XCTAssertEqual(result, expected)
+    }
+
     func testToDateFromISO8601Invalid() {
         XCTAssertNil("".toDateFromISO8601())
         XCTAssertNil("not-a-date".toDateFromISO8601())
