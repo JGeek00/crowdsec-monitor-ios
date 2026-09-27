@@ -51,7 +51,9 @@ struct AlertsListView: View {
             if oldValue != nil && newValue == nil {
                 // To prevent disposing details view before back transition ends
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    activeAlertId = nil
+                    if viewModel.selectedAlert == nil {
+                        activeAlertId = nil
+                    }
                 }
             }
             else {
