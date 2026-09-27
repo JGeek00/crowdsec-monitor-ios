@@ -120,7 +120,6 @@ struct DecisionDetailsView: View {
                     Spacer()
                     if let createdAt = data.crowdsecCreatedAt.toDateFromISO8601() {
                         Text(createdAt.toRelativeDateTimeString())
-                            .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
                 }
