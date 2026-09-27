@@ -115,6 +115,15 @@ struct DecisionDetailsView: View {
                     DecisionTimer(expirationDate: data.expiration.toDateFromISO8601())
                         .font(.subheadline)
                 }
+                HStack {
+                    Text("Created")
+                    Spacer()
+                    if let createdAt = data.crowdsecCreatedAt.toDateFromISO8601() {
+                        Text(createdAt.toRelativeDateTimeString())
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                }
             }
             
             Section("Origin") {

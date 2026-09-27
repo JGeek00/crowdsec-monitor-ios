@@ -1615,6 +1615,22 @@
         }
       }
     },
+    "Created" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creado"
+          }
+        }
+      }
+    },
     "Created on 🇪🇸 by JGeek00" : {
       "localizations" : {
         "de" : {
