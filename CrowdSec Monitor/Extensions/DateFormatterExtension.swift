@@ -19,6 +19,17 @@ extension DateFormatter {
         return formatter
     }
 
+    /// Returns a DateFormatter configured for RFC 3339 UTC without fractional
+    /// seconds (`2026-09-27T10:40:36Z`) — the format delivered by the CrowdSec
+    /// Monitor API for all timestamp fields.
+    nonisolated static var iso8601: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }
+
     /// Returns a DateFormatter configured for ISO 8601 format with fractional seconds
     nonisolated static var iso8601WithFractionalSeconds: DateFormatter {
         let formatter = DateFormatter()
