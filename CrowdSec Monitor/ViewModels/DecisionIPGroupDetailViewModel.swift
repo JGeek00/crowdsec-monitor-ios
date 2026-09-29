@@ -25,13 +25,6 @@ class DecisionIPGroupDetailViewModel {
     var state: Enums.LoadingState<DecisionsByIPDetailResponse> = .loading
     var processingExpireDecision = false
 
-    func updateIP(ip: String) {
-        self.ip = ip
-        Task {
-            await fetchData(showLoading: true)
-        }
-    }
-
     func expireDecision(decisionId: Int) async -> Bool {
         guard let apiClient = activeServerRepository.apiClient else { return false }
         do {

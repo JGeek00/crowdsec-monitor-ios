@@ -41,10 +41,4 @@ class AlertDetailsViewModel {
         }
     }
     
-    func updateAlertId(alertId: Int) {
-        self.alertId = alertId
-        Task {
-            await fetchData(showLoading: true)
-        }
-    }
 }

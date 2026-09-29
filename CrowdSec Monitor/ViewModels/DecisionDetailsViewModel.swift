@@ -42,13 +42,6 @@ class DecisionDetailsViewModel {
         }
     }
     
-    func updateDecisionId(decisionId: Int) {
-        self.decisionId = decisionId
-        Task {
-            await fetchData(showLoading: true)
-        }
-    }
-    
     func expireDecision() {
         Task {
             processingExpireDecision = true

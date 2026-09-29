@@ -31,7 +31,10 @@ struct AlertsListView: View {
         } detail: {
             NavigationStack {
                 if let alertId = activeAlertId {
+                    // Re-create the view when the id changes so the view model starts
+                    // in .loading instead of showing the previous alert's detail.
                     AlertDetailsView(alertId: alertId)
+                        .id(alertId)
                 } else {
                     // Prevent content unavailable from being shown momentarily when an alert is selected
                     if horizontalSizeClass == .regular {
