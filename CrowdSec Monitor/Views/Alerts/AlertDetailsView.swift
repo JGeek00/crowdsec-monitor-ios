@@ -33,9 +33,6 @@ struct AlertDetailsView: View {
         .transition(.opacity)
         .navigationTitle("Alert #\(String(alertId))")
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: alertId) { _, newValue in
-            viewModel.updateAlertId(alertId: newValue)
-        }
     }
     
     @ViewBuilder

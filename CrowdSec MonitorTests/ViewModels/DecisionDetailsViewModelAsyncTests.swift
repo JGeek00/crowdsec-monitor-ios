@@ -46,13 +46,6 @@ final class DecisionDetailsViewModelAsyncTests: XCTestCase {
         if case .success = sut.state { } else { XCTFail("Expected success") }
     }
 
-    func testUpdateDecisionIdChangesId() {
-        let (_, _, activeRepo) = TestViewModelFactory.makeStack()
-        let sut = DecisionDetailsViewModel(decisionId: 1, activeServerRepository: activeRepo)
-        sut.updateDecisionId(decisionId: 2)
-        XCTAssertEqual(sut.decisionId, 2)
-    }
-
     func testFetchDataNoServerIsNoOp() async {
         let sut = DecisionDetailsViewModel(decisionId: 1, activeServerRepository: MockActiveServerRepository())
         await sut.fetchData()

@@ -57,13 +57,6 @@ final class DecisionIPGroupDetailViewModelAsyncTests: XCTestCase {
         XCTAssertFalse(sut.processingExpireDecision)
     }
 
-    func testUpdateIPChangesIP() {
-        let (_, _, activeRepo) = TestViewModelFactory.makeStack()
-        let sut = DecisionIPGroupDetailViewModel(ip: "1.2.3.4", onlyActive: true, activeServerRepository: activeRepo)
-        sut.updateIP(ip: "5.6.7.8")
-        XCTAssertEqual(sut.ip, "5.6.7.8")
-    }
-
     func testFetchDataNoServerIsNoOp() async {
         let sut = DecisionIPGroupDetailViewModel(ip: "1.2.3.4", onlyActive: true, activeServerRepository: MockActiveServerRepository())
         await sut.fetchData()

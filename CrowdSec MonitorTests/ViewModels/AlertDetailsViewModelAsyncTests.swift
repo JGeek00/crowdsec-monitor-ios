@@ -47,13 +47,6 @@ final class AlertDetailsViewModelAsyncTests: XCTestCase {
         if case .success = sut.state { } else { XCTFail("Expected success") }
     }
 
-    func testUpdateAlertIdChangesId() {
-        let (_, _, activeRepo) = TestViewModelFactory.makeStack()
-        let sut = AlertDetailsViewModel(alertId: 1, activeServerRepository: activeRepo)
-        sut.updateAlertId(alertId: 2)
-        XCTAssertEqual(sut.alertId, 2)
-    }
-
     func testFetchDataNoServerIsNoOp() async {
         let sut = AlertDetailsViewModel(alertId: 1, activeServerRepository: MockActiveServerRepository())
         await sut.fetchData()

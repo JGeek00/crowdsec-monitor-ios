@@ -51,10 +51,13 @@ struct DecisionsListView: View {
             NavigationStack {
                 if viewModel.isGroupedByIP {
                     if let ip = activeIP {
+                        // Re-create the view when the id changes so the view model starts
+                        // in .loading instead of showing the previous IP's detail.
                         DecisionIPGroupDetailView(
                             ip: ip,
                             onlyActive: viewModel.requestParams.filters.onlyActive ?? false
                         )
+                        .id(ip)
                     } else if horizontalSizeClass == .regular {
                         ContentUnavailableView(
                             "Select an IP",
@@ -64,6 +67,7 @@ struct DecisionsListView: View {
                     }
                 } else if let decisionId = activeDecisionId {
                     DecisionDetailsView(decisionId: decisionId)
+                        .id(decisionId)
                 } else {
                     if horizontalSizeClass == .regular {
                         ContentUnavailableView(

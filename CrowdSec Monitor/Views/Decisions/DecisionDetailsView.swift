@@ -37,9 +37,6 @@ struct DecisionDetailsView: View {
         .transition(.opacity)
         .navigationTitle("Decision #\(String(decisionId))")
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: decisionId) { _, newValue in
-            viewModel.updateDecisionId(decisionId: decisionId)
-        }
         .alert("Error deleting alert", isPresented: $errorDeleteAlert) {
             Button("OK", role: .cancel) {
                 errorDeleteAlert = false
