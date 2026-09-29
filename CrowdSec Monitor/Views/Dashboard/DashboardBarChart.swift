@@ -74,8 +74,11 @@ struct DashboardBarChart: View {
                            Self.visibleLabelIndices(count: allDayLabels.count, typeSize: dynamicTypeSize).contains(index) {
                             Text(date)
                                 .font(.caption)
+                                // Rotate before padding: rotating the padded frame offsets the
+                                // label horizontally (~8.7pt right at -60°) because the text
+                                // center sits below the padded frame's rotation center.
+                                .rotationEffect(.degrees(Self.axisLabelRotationDegrees), anchor: .center)
                                 .padding(.top, 20)
-                                .rotationEffect(.degrees(Self.axisLabelRotationDegrees))
                         }
                     }
                 }
