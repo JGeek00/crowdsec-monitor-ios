@@ -28,6 +28,20 @@ final class NotificationChannelsAPIClientTests: XCTestCase {
         ]
     }
 
+    func testFetchProviders() async throws {
+        mockHttp.stubbedResponseData = try JSONSerialization.data(withJSONObject: [
+            "version": 1,
+            "providers": [[
+                "type": "ntfy", "icon": "ntfy", "labelKey": "provider_ntfy",
+                "supportsTest": true,
+                "fields": [["key": "topic", "labelKey": "field_topic", "type": "text", "required": true]],
+            ]],
+        ])
+        let response: HttpResponse<ProvidersListResponse> = try await makeClient().fetchProviders()
+        XCTAssertEqual(mockHttp.capturedEndpoint, "/api/v1/notification-channels/providers")
+        XCTAssertEqual(response.body.providers.first?.fields.first?.key, "topic")
+    }
+
     func testFetchChannels() async throws {
         mockHttp.stubbedResponseData = try JSONSerialization.data(withJSONObject: ["data": [channelJSON]])
         let response: HttpResponse<NotificationChannelsListResponse> = try await makeClient().fetchChannels()
@@ -37,7 +51,7 @@ final class NotificationChannelsAPIClientTests: XCTestCase {
 
     func testCreateChannel() async throws {
         mockHttp.stubbedResponseData = try JSONSerialization.data(withJSONObject: ["data": channelJSON])
-        let body = CreateChannelRequest(name: "c", type: .ntfy, config: NotificationChannelConfig(topic: "t"))
+        let body = CreateChannelRequest(name: "c", type: "ntfy", config: ["topic": .string("t")])
         let _: HttpResponse<NotificationChannelDetailResponse> = try await makeClient().createChannel(body: body)
         XCTAssertEqual(mockHttp.capturedEndpoint, "/api/v1/notification-channels")
     }
@@ -74,7 +88,7 @@ final class NotificationChannelsAPIClientTests: XCTestCase {
     func testTestInlineChannel() async throws {
         mockHttp.stubbedResponseData = Data("{\"data\":{\"channelId\":null,\"ok\":false,\"detail\":\"boom\"}}".utf8)
         let response: HttpResponse<ChannelTestResponse> = try await makeClient().testInlineChannel(
-            body: TestInlineChannelRequest(type: .ntfy, config: NotificationChannelConfig(topic: "t"), message: nil)
+            body: TestInlineChannelRequest(type: "ntfy", config: ["topic": .string("t")], message: nil)
         )
         XCTAssertEqual(mockHttp.capturedEndpoint, "/api/v1/notification-channels/test")
         XCTAssertNil(response.body.data.channelId)
