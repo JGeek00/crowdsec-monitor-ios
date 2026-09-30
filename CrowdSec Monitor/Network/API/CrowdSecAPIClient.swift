@@ -8,7 +8,9 @@ class CrowdSecAPIClient {
     let decisions: DecisionsAPIClient
     let allowlists: AllowlistsAPIClient
     let blocklists: BlocklistsAPIClient
-    
+    let notifications: NotificationsAPIClient
+    let notificationChannels: NotificationChannelsAPIClient
+
     init(_ server: CSServer) {
         self.httpClient = HttpClient(server: server)
         self.statistics = StatisticsAPIClient(self.httpClient)
@@ -16,6 +18,8 @@ class CrowdSecAPIClient {
         self.decisions = DecisionsAPIClient(self.httpClient)
         self.allowlists = AllowlistsAPIClient(self.httpClient)
         self.blocklists = BlocklistsAPIClient(self.httpClient)
+        self.notifications = NotificationsAPIClient(self.httpClient)
+        self.notificationChannels = NotificationChannelsAPIClient(self.httpClient)
     }
 
     /// Internal init for test injection — allows passing a mock HttpClient.
@@ -26,6 +30,8 @@ class CrowdSecAPIClient {
         self.decisions = DecisionsAPIClient(httpClient)
         self.allowlists = AllowlistsAPIClient(httpClient)
         self.blocklists = BlocklistsAPIClient(httpClient)
+        self.notifications = NotificationsAPIClient(httpClient)
+        self.notificationChannels = NotificationChannelsAPIClient(httpClient)
     }
     
     func checkCredentials() async throws -> HttpResponse<EmptyResponse> {
