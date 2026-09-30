@@ -116,7 +116,7 @@ struct ChannelWizardView: View {
     private func canProceed() -> Bool {
         switch viewModel.selectedStep {
         case 1:
-            return viewModel.provider != nil
+            return viewModel.providerType != nil
         case 2:
             return viewModel.providerValid()
         default:

@@ -19,18 +19,10 @@ struct ChannelListItem: View {
 
     @State private var showDeleteConfirmation = false
 
-    @ViewBuilder
     private var channelIcon: some View {
-        switch channel.type {
-        case .email:
-            Image(systemName: "envelope")
-                .font(.title3)
-                .foregroundStyle(Color.accentColor)
-        case .ntfy:
-            Image("ntfy")
-                .resizable()
-                .scaledToFit()
-        }
+        ChannelIcon(channel.type.rawValue)
+            .font(.title3)
+            .foregroundStyle(channel.type == .email ? Color.accentColor : Color.primary)
     }
 
     private var typeLabel: String {

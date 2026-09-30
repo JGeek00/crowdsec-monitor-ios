@@ -66,7 +66,7 @@ struct ChannelsListView: View {
         } else {
             List(items) { channel in
                 NavigationLink {
-                    ChannelDetailsView(channel)
+                    ChannelDetailsView(channel, providers: viewModel.providers)
                 } label: {
                     ChannelListItem(
                         channel,

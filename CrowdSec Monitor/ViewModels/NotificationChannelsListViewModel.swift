@@ -17,6 +17,7 @@ class NotificationChannelsListViewModel {
     }
 
     var state: Enums.LoadingState<[UserNotificationChannel]> = .loading
+    var providers: [NotificationProvider] = []
     var errorDelete = false
     var channelInUse = false
     var didDelete = false
@@ -39,6 +40,12 @@ class NotificationChannelsListViewModel {
             let response = try await apiClient.notificationChannels.fetchChannels()
             withAnimation {
                 state = .success(response.body.data)
+            }
+            do {
+                let providersResponse = try await apiClient.notificationChannels.fetchProviders()
+                providers = providersResponse.body.providers
+            } catch {
+                guard !(error is CancellationError) else { return }
             }
         } catch {
             guard !(error is CancellationError) else { return }

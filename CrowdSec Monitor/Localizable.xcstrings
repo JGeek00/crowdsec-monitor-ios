@@ -591,6 +591,7 @@
       }
     },
     "Access token (instead of username/password)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -721,6 +722,7 @@
       }
     },
     "Addresses" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -1168,6 +1170,7 @@
       }
     },
     "Appearance (optional)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -1310,6 +1313,7 @@
       }
     },
     "Authentication (optional)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -1539,6 +1543,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cambia el término de búsqueda introducido"
+          }
+        }
+      }
+    },
+    "Channel" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canal"
           }
         }
       }
@@ -2229,6 +2243,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Decisiones: %lld"
+          }
+        }
+      }
+    },
+    "Default" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por defecto"
           }
         }
       }
@@ -2941,6 +2966,210 @@
         }
       }
     },
+    "field_from" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remitente"
+          }
+        }
+      }
+    },
+    "field_host" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor"
+          }
+        }
+      }
+    },
+    "field_password" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraseña"
+          }
+        }
+      }
+    },
+    "field_port" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puerto"
+          }
+        }
+      }
+    },
+    "field_priority" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priority"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioridad"
+          }
+        }
+      }
+    },
+    "field_secure" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use implicit TLS"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar TLS implícito"
+          }
+        }
+      }
+    },
+    "field_server" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor"
+          }
+        }
+      }
+    },
+    "field_tags" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiquetas"
+          }
+        }
+      }
+    },
+    "field_to" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destinatarios"
+          }
+        }
+      }
+    },
+    "field_token" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access token"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token de acceso"
+          }
+        }
+      }
+    },
+    "field_topic" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Topic"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        }
+      }
+    },
+    "field_username" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuario"
+          }
+        }
+      }
+    },
     "Fill all required fields" : {
       "localizations" : {
         "de" : {
@@ -3019,7 +3248,19 @@
         }
       }
     },
+    "From" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remitente"
+          }
+        }
+      }
+    },
     "From (required)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -3129,7 +3370,19 @@
         }
       }
     },
+    "Host" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor"
+          }
+        }
+      }
+    },
     "Host (required)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -3900,6 +4153,7 @@
       }
     },
     "Messages are published to https://ntfy.sh/<topic> or your own server. The topic works as a password on public servers: use a hard to guess value with letters, numbers, - and _ (max 64)." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -3910,6 +4164,7 @@
       }
     },
     "Messages are sent through your SMTP server." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4077,6 +4332,16 @@
         }
       }
     },
+    "No" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        }
+      }
+    },
     "No active" : {
       "localizations" : {
         "de" : {
@@ -4177,6 +4442,9 @@
         }
       }
     },
+    "No configuration values" : {
+
+    },
     "No decisions to display" : {
       "localizations" : {
         "de" : {
@@ -4219,6 +4487,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay opciones disponibles, escribe un valor personalizado abajo"
+          }
+        }
+      }
+    },
+    "No providers available" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay proveedores disponibles"
           }
         }
       }
@@ -4565,6 +4843,7 @@
       }
     },
     "Port (default 587)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4607,11 +4886,114 @@
       }
     },
     "Priority" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prioridad"
+          }
+        }
+      }
+    },
+    "priority_default" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por defecto"
+          }
+        }
+      }
+    },
+    "priority_high" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alta"
+          }
+        }
+      }
+    },
+    "priority_low" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baja"
+          }
+        }
+      }
+    },
+    "priority_max" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máxima"
+          }
+        }
+      }
+    },
+    "priority_min" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mínima"
+          }
+        }
+      }
+    },
+    "priority_urgent" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgent"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urgente"
           }
         }
       }
@@ -4682,6 +5064,84 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Progreso no disponible"
+          }
+        }
+      }
+    },
+    "Provider" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proveedor"
+          }
+        }
+      }
+    },
+    "provider_email" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
+    "provider_email_description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messages are sent through your SMTP server."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los mensajes se envían a través de tu servidor SMTP."
+          }
+        }
+      }
+    },
+    "provider_ntfy" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ntfy"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ntfy"
+          }
+        }
+      }
+    },
+    "provider_ntfy_description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messages are published to https://ntfy.sh/<topic> or your own server. The topic works as a password on public servers: use a hard to guess value with letters, numbers, - and _ (max 64)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los mensajes se publican en https://ntfy.sh/<tema> o en tu propio servidor. El tema funciona como contraseña en servidores públicos: usa un valor difícil de adivinar con letras, números, - y _ (máx. 64)."
           }
         }
       }
@@ -5065,6 +5525,91 @@
         }
       }
     },
+    "section_addresses" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Addresses"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direcciones"
+          }
+        }
+      }
+    },
+    "section_appearance" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apariencia"
+          }
+        }
+      }
+    },
+    "section_authentication" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authentication"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autenticación"
+          }
+        }
+      }
+    },
+    "section_server" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor"
+          }
+        }
+      }
+    },
+    "section_topic" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Topic"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        }
+      }
+    },
     "Select a decision" : {
       "localizations" : {
         "de" : {
@@ -5159,6 +5704,7 @@
       }
     },
     "Server" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5169,6 +5715,7 @@
       }
     },
     "Server (optional, default ntfy.sh)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5499,6 +6046,7 @@
       }
     },
     "Tags (comma separated)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5925,6 +6473,17 @@
         }
       }
     },
+    "To" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destinatarios"
+          }
+        }
+      }
+    },
     "To start monitoring your CrowdSec instance, add a server." : {
       "localizations" : {
         "de" : {
@@ -5942,6 +6501,7 @@
       }
     },
     "To, comma separated (required)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -6064,6 +6624,7 @@
       }
     },
     "Topic" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -6074,6 +6635,7 @@
       }
     },
     "Topic (required)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -6184,6 +6746,7 @@
       }
     },
     "Use implicit TLS (port 465)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -6341,6 +6904,16 @@
         }
       }
     },
+    "Yes" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sí"
+          }
+        }
+      }
+    },
     "yesterday" : {
       "localizations" : {
         "de" : {
@@ -6369,86 +6942,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Debes rellenar todos los campos requeridos para agregar la lista de bloqueo"
-          }
-        }
-      }
-    },
-    "Provider" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Proveedor"
-          }
-        }
-      }
-    },
-    "Channel" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Canal"
-          }
-        }
-      }
-    },
-    "Default" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Por defecto"
-          }
-        }
-      }
-    },
-    "Host" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Servidor"
-          }
-        }
-      }
-    },
-    "From" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remitente"
-          }
-        }
-      }
-    },
-    "To" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Destinatarios"
-          }
-        }
-      }
-    },
-    "Yes" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sí"
-          }
-        }
-      }
-    },
-    "No" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No"
           }
         }
       }

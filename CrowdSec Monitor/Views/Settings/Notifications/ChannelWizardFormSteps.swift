@@ -5,80 +5,77 @@ struct ChannelWizardFormStep: View {
 
     var body: some View {
         Form {
-            switch viewModel.provider {
-            case .ntfy:
-                ntfyForm
-            case .email:
-                emailForm
-            case nil:
-                Text("Go back and choose a provider first.")
-                    .foregroundStyle(Color.secondary)
-            }
-        }
-    }
-
-    private var ntfyForm: some View {
-        Group {
-            Section {
-                FormInfoBox(label: String(localized: "Messages are published to https://ntfy.sh/<topic> or your own server. The topic works as a password on public servers: use a hard to guess value with letters, numbers, - and _ (max 64)."))
-            }
-            Section("Topic") {
-                TextField("Topic (required)", text: $viewModel.ntfyTopic)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                TextField("Server (optional, default ntfy.sh)", text: $viewModel.ntfyServer)
-                    .keyboardType(.URL)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-            }
-            Section("Authentication (optional)") {
-                TextField("Username", text: $viewModel.ntfyUsername)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                SecureField("Password", text: $viewModel.ntfyPassword)
-                SecureField("Access token (instead of username/password)", text: $viewModel.ntfyAccessToken)
-            }
-            Section("Appearance (optional)") {
-                Picker("Priority", selection: $viewModel.ntfyPriority) {
-                    ForEach(ChannelFormViewModel.ntfyPriorities, id: \.self) { priority in
-                        Text(verbatim: priority).tag(priority)
+            if viewModel.definition == nil {
+                Section {
+                    FormInfoBox(label: String(localized: "Go back and choose a provider first."))
+                }
+            } else {
+                if let descriptionKey = viewModel.definition?.descriptionKey {
+                    Section {
+                        FormInfoBox(label: String(localized: String.LocalizationValue(descriptionKey)))
                     }
                 }
-                TextField("Tags (comma separated)", text: $viewModel.ntfyTags)
+                ForEach(viewModel.groupedFields(), id: \.section?.key) { group in
+                    if let section = group.section {
+                        Section(LocalizedStringKey(section.labelKey)) {
+                            ForEach(group.fields) { field in
+                                fieldEditor(field)
+                            }
+                        }
+                    } else {
+                        ForEach(group.fields) { field in
+                            fieldEditor(field)
+                        }
+                    }
+                }
+            }
+        }
+        .task {
+            if viewModel.providers.isEmpty {
+                await viewModel.loadProviders()
             }
         }
     }
 
-    private var emailForm: some View {
-        Group {
-            Section {
-                FormInfoBox(label: String(localized: "Messages are sent through your SMTP server."))
+    private func fieldHeader(_ field: ProviderField) -> String {
+        String(localized: String.LocalizationValue(field.labelKey))
+    }
+
+    @ViewBuilder
+    private func fieldEditor(_ field: ProviderField) -> some View {
+        switch field.type {
+        case "password":
+            SecureField(fieldHeader(field), text: viewModel.stringBinding(for: field.key))
+        case "number":
+            TextField(fieldHeader(field), text: viewModel.stringBinding(for: field.key))
+                .keyboardType(.decimalPad)
+        case "boolean":
+            Toggle(fieldHeader(field), isOn: viewModel.boolBinding(for: field.key))
+        case "select":
+            Picker(fieldHeader(field), selection: viewModel.stringBinding(for: field.key)) {
+                let current = viewModel.stringBinding(for: field.key).wrappedValue
+                let opts = field.options ?? []
+                if !current.isEmpty && !opts.contains(where: { $0.value == current }) {
+                    Text(verbatim: current).tag(current)
+                }
+                ForEach(opts, id: \.value) { option in
+                    Text(LocalizedStringKey(option.labelKey)).tag(option.value)
+                }
             }
-            Section("Server") {
-                TextField("Host (required)", text: $viewModel.emailHost)
-                    .keyboardType(.URL)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                TextField("Port (default 587)", text: $viewModel.emailPort)
-                    .keyboardType(.numberPad)
-                Toggle("Use implicit TLS (port 465)", isOn: $viewModel.emailSecure)
-            }
-            Section("Authentication (optional)") {
-                TextField("Username", text: $viewModel.emailUsername)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                SecureField("Password", text: $viewModel.emailPassword)
-            }
-            Section("Addresses") {
-                TextField("From (required)", text: $viewModel.emailFrom)
-                    .keyboardType(.emailAddress)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                TextField("To, comma separated (required)", text: $viewModel.emailTo)
-                    .keyboardType(.emailAddress)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-            }
+        case "email":
+            TextField(fieldHeader(field), text: viewModel.stringBinding(for: field.key))
+                .keyboardType(.emailAddress)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+        case "url":
+            TextField(fieldHeader(field), text: viewModel.stringBinding(for: field.key))
+                .keyboardType(.URL)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+        default:
+            TextField(fieldHeader(field), text: viewModel.stringBinding(for: field.key))
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
         }
     }
 }

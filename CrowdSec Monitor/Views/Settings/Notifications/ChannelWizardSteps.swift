@@ -4,7 +4,14 @@ struct ChannelWizardIntroStep: View {
     var body: some View {
         Form {
             Section {
-                FormInfoBox(label: String(localized: "A notification channel defines how the backend delivers a notification: through ntfy or by email. Configure the provider access once here, then pick one or more channels in each notification."))
+                VStack(alignment: .leading, spacing: 12) {
+                    Image(systemName: "info.square")
+                        .font(.system(size: 40))
+                    Text("A notification channel defines how the backend delivers a notification: through ntfy or by email. Configure the provider access once here, then pick one or more channels in each notification.")
+                        .font(.headline)
+                }
+                .foregroundStyle(Color.secondary)
+                .listRowBackground(Color.listBackground)
             }
         }
     }
@@ -13,43 +20,54 @@ struct ChannelWizardIntroStep: View {
 struct ChannelWizardProviderStep: View {
     @Bindable var viewModel: ChannelFormViewModel
 
+    private var rows: [[NotificationProvider]] {
+        stride(from: 0, to: viewModel.providers.count, by: 2).map { start in
+            Array(viewModel.providers[start..<min(start + 2, viewModel.providers.count)])
+        }
+    }
+
     var body: some View {
         Form {
-            Section {
-                HStack(spacing: 12) {
-                    providerButton(type: .email, title: "Email")
-                    providerButton(type: .ntfy, title: "ntfy")
+            if viewModel.providers.isEmpty {
+                Section {
+                    Text("No providers available")
+                        .foregroundStyle(Color.secondary)
+                }
+            } else {
+                Section("Choose the provider for this channel.") {
+                    ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
+                        HStack(spacing: 12) {
+                            ForEach(row) { provider in
+                                providerButton(provider)
+                            }
+                            if row.count == 1 {
+                                Spacer()
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
+                    }
                 }
                 .listRowBackground(Color.clear)
-            } header: {
-                Text("Choose the provider for this channel.")
+            }
+        }
+        .task {
+            if viewModel.providers.isEmpty {
+                await viewModel.loadProviders()
             }
         }
     }
 
     @ViewBuilder
-    private func providerIcon(type: NotificationChannelType) -> some View {
-        switch type {
-        case .email:
-            Image(systemName: "envelope")
-                .font(.largeTitle)
-        case .ntfy:
-            Image("ntfy")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 44, height: 44)
-        }
-    }
-
-    @ViewBuilder
-    private func providerButton(type: NotificationChannelType, title: String) -> some View {
-        let selected = viewModel.provider == type
+    private func providerButton(_ provider: NotificationProvider) -> some View {
+        let selected = viewModel.providerType == provider.type
         Button {
-            viewModel.provider = type
+            viewModel.selectProvider(provider.type)
         } label: {
             VStack(spacing: 8) {
-                providerIcon(type: type)
-                Text(title)
+                ChannelIcon(provider.icon)
+                    .font(.largeTitle)
+                    .frame(width: 44, height: 44)
+                Text(LocalizedStringKey(provider.labelKey))
                     .font(.headline)
             }
             .frame(maxWidth: .infinity, minHeight: 110)
@@ -58,7 +76,6 @@ struct ChannelWizardProviderStep: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(selected ? Color.accentColor : Color.gray.opacity(0.4), lineWidth: selected ? 2 : 1)
             )
-            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(selected ? .isSelected : [])
