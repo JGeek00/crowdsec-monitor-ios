@@ -22,9 +22,7 @@ struct NotificationWizardMessageStep: View {
     var body: some View {
         Form {
             Section {
-                Text("This is the text sent through the selected channels every time the condition triggers.")
-                    .font(.subheadline)
-                    .foregroundStyle(Color.secondary)
+                FormInfoBox(label: String(localized: "This is the text sent through the selected channels every time the condition triggers."))
             }
             Section("Content") {
                 TextField("Message", text: $viewModel.message, axis: .vertical)
