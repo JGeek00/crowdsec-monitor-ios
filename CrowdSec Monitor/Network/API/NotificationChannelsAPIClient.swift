@@ -11,6 +11,10 @@ class NotificationChannelsAPIClient {
         return try await httpClient.get(endpoint: "/api/v1/notification-channels")
     }
 
+    func fetchProviders() async throws -> HttpResponse<ProvidersListResponse> {
+        return try await httpClient.get(endpoint: "/api/v1/notification-channels/providers")
+    }
+
     func createChannel(body: CreateChannelRequest) async throws -> HttpResponse<NotificationChannelDetailResponse> {
         return try await httpClient.post(endpoint: "/api/v1/notification-channels", body: body)
     }
