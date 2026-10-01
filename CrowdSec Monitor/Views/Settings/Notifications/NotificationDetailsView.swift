@@ -1,4 +1,3 @@
-import CustomAlert
 import SwiftUI
 import SystemNotification
 
@@ -17,10 +16,6 @@ struct NotificationDetailsView: View {
         _currentNotification = State(initialValue: notification)
         _viewModel = State(initialValue: NotificationFormViewModel(editing: notification))
         self.onSaved = onSaved
-    }
-
-    private var savingBinding: Binding<Bool> {
-        Binding(get: { viewModel.isSaving }, set: { _ in })
     }
 
     private var canSave: Bool {
@@ -82,19 +77,32 @@ struct NotificationDetailsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if isEditing {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel", role: .cancel) {
-                        cancelEditing()
-                    }
-                    .disabled(vm.isSaving)
-                }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save") {
-                        Task {
-                            await save()
+                    HStack(spacing: 8) {
+                        Button {
+                            cancelEditing()
+                        } label: {
+                            Image(systemName: "xmark")
                         }
+                        .accessibilityLabel(Text("Cancel"))
+                        .glassButtonIfAvailable()
+                        .disabled(vm.isSaving)
+
+                        Button {
+                            Task {
+                                await save()
+                            }
+                        } label: {
+                            if vm.isSaving {
+                                ProgressView()
+                            } else {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        .accessibilityLabel(Text("Save"))
+                        .glassButtonIfAvailable()
+                        .disabled(!canSave || vm.isSaving)
                     }
-                    .disabled(!canSave || vm.isSaving)
                 }
             } else {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -102,15 +110,6 @@ struct NotificationDetailsView: View {
                         isEditing = true
                     }
                 }
-            }
-        }
-        .customAlert(isPresented: savingBinding) {
-            HStack {
-                Spacer()
-                ProgressView()
-                    .controlSize(.large)
-                    .tint(Color.foreground)
-                Spacer()
             }
         }
         .systemNotification(isActive: $showResultToast) {
