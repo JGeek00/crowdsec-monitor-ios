@@ -3,15 +3,16 @@ import SwiftUI
 struct NotificationListItem: View {
     let notification: UserNotification
 
-    init(_ notification: UserNotification, editingNotification: Binding<UserNotification?>, showWizard: Binding<Bool>) {
+    init(
+        _ notification: UserNotification,
+        selectedNotification: Binding<UserNotification?>
+    ) {
         self.notification = notification
-        _editingNotification = editingNotification
-        _showWizard = showWizard
+        _selectedNotification = selectedNotification
     }
 
     @Environment(NotificationsListViewModel.self) private var viewModel
-    @Binding var editingNotification: UserNotification?
-    @Binding var showWizard: Bool
+    @Binding var selectedNotification: UserNotification?
 
     @State private var showDeleteConfirmation = false
 
@@ -49,6 +50,10 @@ struct NotificationListItem: View {
             .fontWeight(.semibold)
             .font(.title3)
         }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            selectedNotification = notification
+        }
         .contextMenu {
             Section {
                 Button(
@@ -58,10 +63,6 @@ struct NotificationListItem: View {
                     Task {
                         await viewModel.toggle(notification: notification)
                     }
-                }
-                Button(String(localized: "Edit notification"), systemImage: "pencil") {
-                    editingNotification = notification
-                    showWizard = true
                 }
                 Button(String(localized: "Delete notification"), systemImage: "trash", role: .destructive) {
                     showDeleteConfirmation = true

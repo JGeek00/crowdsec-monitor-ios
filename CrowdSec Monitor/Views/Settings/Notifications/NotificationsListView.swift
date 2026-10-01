@@ -5,6 +5,7 @@ struct NotificationsListView: View {
 
     @Binding var editingNotification: UserNotification?
     @Binding var showWizard: Bool
+    @State private var selectedNotification: UserNotification?
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -25,6 +26,13 @@ struct NotificationsListView: View {
             }
         }
         .transition(.opacity)
+        .navigationDestination(item: $selectedNotification) { notification in
+            NotificationDetailsView(notification) { _ in
+                Task {
+                    await viewModel.refresh()
+                }
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add notification", systemImage: "plus") {
@@ -65,11 +73,7 @@ struct NotificationsListView: View {
             )
         } else {
             List(items) { notification in
-                NotificationListItem(
-                    notification,
-                    editingNotification: $editingNotification,
-                    showWizard: $showWizard
-                )
+                NotificationListItem(notification, selectedNotification: $selectedNotification)
             }
             .animation(.default, value: items)
         }
