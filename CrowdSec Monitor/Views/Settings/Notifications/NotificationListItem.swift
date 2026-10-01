@@ -64,6 +64,8 @@ struct NotificationListItem: View {
                         await viewModel.toggle(notification: notification)
                     }
                 }
+            }
+            Section {
                 Button(String(localized: "Delete notification"), systemImage: "trash", role: .destructive) {
                     showDeleteConfirmation = true
                 }
