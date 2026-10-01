@@ -36,16 +36,18 @@ struct NotificationDetailsView: View {
         )
     }
 
-    private var conditionSummary: String {
-        if viewModel.noCondition {
-            return String(localized: "Any alert")
+    private struct RuleSummary {
+        let label: String
+        let values: String
+    }
+
+    private var ruleSummaries: [RuleSummary] {
+        viewModel.rules.map { rule in
+            RuleSummary(
+                label: "\(ConditionEditorSections.fieldLabel(rule.field)) · \(ConditionEditorSections.operatorPhrase(rule.op))",
+                values: ConditionEditorSections.valuesSummary(rule.values)
+            )
         }
-        if viewModel.advancedCondition != nil {
-            return String(localized: "Advanced condition")
-        }
-        return viewModel.rules
-            .map { "\(ConditionEditorSections.fieldLabel($0.field)) · \(ConditionEditorSections.operatorPhrase($0.op))" }
-            .joined(separator: "\n")
     }
 
     private var channelsSummary: String {
@@ -172,12 +174,26 @@ struct NotificationDetailsView: View {
     @ViewBuilder
     private var summarySections: some View {
         Section("Condition") {
-            Text(conditionSummary)
+            if viewModel.noCondition {
+                Text("Any alert")
+            } else if viewModel.advancedCondition != nil {
+                Text("Advanced condition")
+            } else {
+                ForEach(ruleSummaries.indices, id: \.self) { index in
+                    let summary = ruleSummaries[index]
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(summary.label)
+                        Text(verbatim: summary.values)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
         }
-        Section("Frequency") {
+        Section {
             LabeledContent("Frequency", value: frequencySummary ?? String(localized: "Not configured"))
         }
-        Section("Cooldown") {
+        Section {
             LabeledContent(
                 "Cooldown time",
                 value: ConditionEditorSections.cooldownLabel(viewModel.cooldownSeconds)
@@ -186,7 +202,7 @@ struct NotificationDetailsView: View {
         Section("Content") {
             Text(verbatim: viewModel.message)
         }
-        Section("Channels") {
+        Section {
             LabeledContent("Channels", value: channelsSummary)
         }
     }
