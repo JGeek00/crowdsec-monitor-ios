@@ -78,31 +78,31 @@ struct NotificationDetailsView: View {
         .toolbar {
             if isEditing {
                 ToolbarItem(placement: .topBarTrailing) {
-                    HStack(spacing: 8) {
-                        Button {
-                            cancelEditing()
-                        } label: {
-                            Image(systemName: "xmark")
-                        }
-                        .accessibilityLabel(Text("Cancel"))
-                        .glassButtonIfAvailable()
-                        .disabled(vm.isSaving)
-
-                        Button {
-                            Task {
-                                await save()
-                            }
-                        } label: {
-                            if vm.isSaving {
-                                ProgressView()
-                            } else {
-                                Image(systemName: "checkmark")
-                            }
-                        }
-                        .accessibilityLabel(Text("Save"))
-                        .glassButtonIfAvailable()
-                        .disabled(!canSave || vm.isSaving)
+                    Button {
+                        cancelEditing()
+                    } label: {
+                        Label("Cancel", systemImage: "xmark")
                     }
+                    .accessibilityLabel(Text("Cancel"))
+                    .disabled(vm.isSaving)
+                }
+                if #available(iOS 26, *) {
+                    ToolbarSpacer(.fixed, placement: .topBarTrailing)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        Task {
+                            await save()
+                        }
+                    } label: {
+                        if vm.isSaving {
+                            ProgressView()
+                        } else {
+                            Label("Save", systemImage: "checkmark")
+                        }
+                    }
+                    .accessibilityLabel(Text("Save"))
+                    .disabled(!canSave || vm.isSaving)
                 }
             } else {
                 ToolbarItem(placement: .topBarTrailing) {
