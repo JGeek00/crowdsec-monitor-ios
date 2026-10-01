@@ -66,13 +66,13 @@ struct ChannelsListView: View {
         } else {
             List(items) { channel in
                 NavigationLink {
-                    ChannelDetailsView(channel, providers: viewModel.providers)
+                    ChannelDetailsView(channel, providers: viewModel.providers) { _ in
+                        Task {
+                            await viewModel.refresh()
+                        }
+                    }
                 } label: {
-                    ChannelListItem(
-                        channel,
-                        editingChannel: $editingChannel,
-                        showWizard: $showWizard
-                    )
+                    ChannelListItem(channel: channel)
                 }
             }
             .animation(.default, value: items)

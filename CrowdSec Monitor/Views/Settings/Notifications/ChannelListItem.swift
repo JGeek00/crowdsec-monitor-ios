@@ -4,18 +4,6 @@ struct ChannelListItem: View {
     let channel: UserNotificationChannel
 
     @Environment(NotificationChannelsListViewModel.self) private var viewModel
-    @Binding var editingChannel: UserNotificationChannel?
-    @Binding var showWizard: Bool
-
-    init(
-        _ channel: UserNotificationChannel,
-        editingChannel: Binding<UserNotificationChannel?>,
-        showWizard: Binding<Bool>
-    ) {
-        self.channel = channel
-        _editingChannel = editingChannel
-        _showWizard = showWizard
-    }
 
     @State private var showDeleteConfirmation = false
 
@@ -47,10 +35,6 @@ struct ChannelListItem: View {
         }
         .contextMenu {
             Section {
-                Button(String(localized: "Edit channel"), systemImage: "pencil") {
-                    editingChannel = channel
-                    showWizard = true
-                }
                 Button(String(localized: "Delete channel"), systemImage: "trash", role: .destructive) {
                     showDeleteConfirmation = true
                 }

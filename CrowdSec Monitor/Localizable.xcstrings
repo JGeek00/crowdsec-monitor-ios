@@ -1735,6 +1735,22 @@
         }
       }
     },
+    "Channel saved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanal gespeichert"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canal guardado"
+          }
+        }
+      }
+    },
     "Channels" : {
       "localizations" : {
         "es" : {
@@ -5306,6 +5322,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proveedor"
+          }
+        }
+      }
+    },
+    "Provider configuration could not be loaded." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Anbieterkonfiguration konnte nicht geladen werden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo cargar la configuración del proveedor."
           }
         }
       }
