@@ -71,6 +71,7 @@ final class NotificationFormViewModelTests: XCTestCase {
         let (sut, _) = makeSUT()
         XCTAssertEqual(sut.count, 3)
         XCTAssertEqual(sut.windowSecondsText, "10")
+        XCTAssertEqual(sut.cooldownSeconds, Defaults.notificationCooldownSeconds)
         XCTAssertTrue(sut.windowValid)
         XCTAssertFalse(sut.noCondition)
         XCTAssertTrue(sut.rules.isEmpty)
@@ -165,7 +166,7 @@ final class NotificationFormViewModelTests: XCTestCase {
         let notification = UserNotification(
             id: 9, name: "orig", description: "d", enabled: true,
             condition: .or([.leaf(field: "country", op: "equals", value: .single("ES"))]),
-            threshold: NotificationThreshold(count: 4, windowSeconds: 60),
+            threshold: NotificationThreshold(count: 4, windowSeconds: 60, cooldownSeconds: 300),
             message: "m", channelIds: [3], createdAt: nil, updatedAt: nil
         )
         let (sut, _) = makeSUT(editing: notification)
@@ -175,6 +176,16 @@ final class NotificationFormViewModelTests: XCTestCase {
         XCTAssertEqual(sut.rules.first?.field, .country)
         XCTAssertEqual(sut.count, 4)
         XCTAssertEqual(sut.windowSecondsText, "60")
+        XCTAssertEqual(sut.cooldownSeconds, 300)
+
+        let legacy = UserNotification(
+            id: 10, name: "legacy", description: nil, enabled: true,
+            condition: .and([]),
+            threshold: NotificationThreshold(count: 2, windowSeconds: 30),
+            message: "m", channelIds: [3], createdAt: nil, updatedAt: nil
+        )
+        let (sutLegacy, _) = makeSUT(editing: legacy)
+        XCTAssertEqual(sutLegacy.cooldownSeconds, Defaults.notificationCooldownSeconds)
         XCTAssertTrue(sut.windowValid)
         XCTAssertEqual(sut.selectedChannelIds, [3])
         XCTAssertTrue(sut.canProceed(step: 0))
@@ -201,6 +212,27 @@ final class NotificationFormViewModelTests: XCTestCase {
         let body = mockHttp.capturedBody as? CreateNotificationRequest
         XCTAssertEqual(body?.threshold?.count, 3)
         XCTAssertEqual(body?.threshold?.windowSeconds, 10)
+        XCTAssertEqual(body?.threshold?.cooldownSeconds, Defaults.notificationCooldownSeconds)
+    }
+
+    func testSaveSendsPickedCooldown() async {
+        let (sut, mockHttp) = makeSUT()
+        sut.name = "n"
+        sut.rules = [EditableLeaf(field: .scenario, op: .equals, values: ["x"])]
+        sut.cooldownSeconds = 120
+        sut.message = "m"
+        sut.selectedChannelIds = [1]
+        mockHttp.stubbedResponsesByEndpoint["/api/v1/notifications"] = TestViewModelFactory.encode(
+            NotificationDetailResponse(data: UserNotification(
+                id: 1, name: "n", description: nil, enabled: true,
+                condition: .leaf(field: "scenario", op: "equals", value: .single("x")),
+                threshold: nil, message: "m", channelIds: [1], createdAt: nil, updatedAt: nil
+            ))
+        )
+        let saved = await sut.save()
+        XCTAssertNotNil(saved)
+        let body = mockHttp.capturedBody as? CreateNotificationRequest
+        XCTAssertEqual(body?.threshold?.cooldownSeconds, 120)
     }
 
     func testSaveErrorFlag() async {

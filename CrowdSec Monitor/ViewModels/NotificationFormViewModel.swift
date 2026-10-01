@@ -43,6 +43,7 @@ class NotificationFormViewModel {
     var advancedCondition: NotificationConditionNode?
     var count = 3
     var windowSecondsText = "10"
+    var cooldownSeconds = Defaults.notificationCooldownSeconds
     var message = ""
 
     var windowValid: Bool {
@@ -81,6 +82,7 @@ class NotificationFormViewModel {
         if let threshold = notification.threshold {
             count = threshold.count
             windowSecondsText = String(threshold.windowSeconds)
+            cooldownSeconds = threshold.cooldownSeconds ?? Defaults.notificationCooldownSeconds
         }
         message = notification.message
         selectedChannelIds = Set(notification.channelIds)
@@ -180,7 +182,9 @@ class NotificationFormViewModel {
         isSaving = true
         defer { isSaving = false }
         do {
-            let threshold = NotificationThreshold(count: count, windowSeconds: parsedWindowSeconds)
+            let threshold = NotificationThreshold(
+                count: count, windowSeconds: parsedWindowSeconds, cooldownSeconds: cooldownSeconds
+            )
             if let editing {
                 let body = UpdateNotificationRequest(
                     name: name, description: descriptionOrNil(),

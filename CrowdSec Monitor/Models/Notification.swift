@@ -101,10 +101,12 @@ extension NotificationConditionNode: Codable {
 struct NotificationThreshold: Codable, Hashable, Sendable {
     let count: Int
     let windowSeconds: Int
+    var cooldownSeconds: Int? = nil
 
     enum CodingKeys: String, CodingKey {
         case count
         case windowSeconds
+        case cooldownSeconds
     }
 }
 
