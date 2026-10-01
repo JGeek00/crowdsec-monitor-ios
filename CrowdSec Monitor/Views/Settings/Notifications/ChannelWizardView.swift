@@ -20,14 +20,19 @@ struct ChannelWizardView: View {
                 TabView(selection: $vm.selectedStep) {
                     ChannelWizardIntroStep()
                         .tag(0)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     ChannelWizardProviderStep(viewModel: vm)
                         .tag(1)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     ChannelWizardFormStep(viewModel: vm)
                         .tag(2)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     ChannelWizardFinalStep(viewModel: vm)
                         .tag(3)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
+                .contentShape(Rectangle()).simultaneousGesture(DragGesture())
             }
             .navigationTitle(viewModel.isEditing ? "Edit channel" : "New channel")
             .navigationBarTitleDisplayMode(.inline)

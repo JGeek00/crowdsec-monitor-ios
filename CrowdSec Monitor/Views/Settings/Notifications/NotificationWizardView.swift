@@ -20,16 +20,22 @@ struct NotificationWizardView: View {
                 TabView(selection: $vm.selectedStep) {
                     NotificationWizardInfoStep(viewModel: vm)
                         .tag(0)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     ConditionEditorView(viewModel: vm)
                         .tag(1)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     NotificationWizardMessageStep(viewModel: vm)
                         .tag(2)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     NotificationWizardChannelsStep(viewModel: vm)
                         .tag(3)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                     NotificationWizardReviewStep(viewModel: vm)
                         .tag(4)
+                        .contentShape(Rectangle()).simultaneousGesture(DragGesture())
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
+                .contentShape(Rectangle()).simultaneousGesture(DragGesture())
             }
             .navigationTitle(viewModel.isEditing ? "Edit notification" : "New notification")
             .navigationBarTitleDisplayMode(.inline)
@@ -123,12 +129,6 @@ struct NotificationWizardView: View {
             }
             .task {
                 await vm.loadOptions()
-            }
-            .onAppear {
-                UIScrollView.appearance().isScrollEnabled = false
-            }
-            .onDisappear {
-                UIScrollView.appearance().isScrollEnabled = true
             }
         }
         .background(Color(.systemGroupedBackground))
