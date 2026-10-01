@@ -6,7 +6,7 @@ struct NotificationWizardInfoStep: View {
     var body: some View {
         Form {
             Section {
-                FormInfoBox(label: "Notifications are sent by the backend when new alerts match the condition you build in the next steps. Give it a name so you can recognize it later.")
+                FormInfoBox(label: String(localized: "Notifications are sent by the backend when new alerts match the condition you build in the next steps. Give it a name so you can recognize it later."))
             }
             Section("Details") {
                 TextField("Name", text: $viewModel.name)
@@ -57,7 +57,7 @@ struct NotificationWizardChannelsStep: View {
                                 VStack(alignment: .leading) {
                                     Text(verbatim: channel.name)
                                         .foregroundStyle(Color.primary)
-                                    Text(channel.type == .email ? "Email" : "ntfy")
+                                    Text(channel.type == .email ? String(localized: "Email") : String(localized: "ntfy"))
                                         .font(.subheadline)
                                         .foregroundStyle(Color.secondary)
                                 }

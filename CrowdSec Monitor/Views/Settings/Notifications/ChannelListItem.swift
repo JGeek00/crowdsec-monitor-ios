@@ -28,9 +28,9 @@ struct ChannelListItem: View {
     private var typeLabel: String {
         switch channel.type {
         case .email:
-            return "Email"
+            return String(localized: "Email")
         case .ntfy:
-            return "ntfy"
+            return String(localized: "ntfy")
         }
     }
 

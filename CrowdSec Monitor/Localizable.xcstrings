@@ -485,6 +485,16 @@
         }
       }
     },
+    "2 minutes" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 minutos"
+          }
+        }
+      }
+    },
     "2. How to compare" : {
       "localizations" : {
         "es" : {
@@ -728,6 +738,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Direcciones"
+          }
+        }
+      }
+    },
+    "Advanced condition" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condición avanzada"
+          }
+        }
+      }
+    },
+    "After the notification is sent, matching alerts that arrive within this time are ignored, so a burst of alerts sends only one notification." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una vez enviada la notificación, las alertas coincidentes que lleguen dentro de este tiempo se ignoran, de forma que una ráfaga de alertas solo envía una notificación."
           }
         }
       }
@@ -1871,6 +1901,26 @@
         }
       }
     },
+    "Cooldown" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo de espera"
+          }
+        }
+      }
+    },
+    "Cooldown time" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo de espera"
+          }
+        }
+      }
+    },
     "Copy URL" : {
       "localizations" : {
         "de" : {
@@ -2677,7 +2727,14 @@
       }
     },
     "Email" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correo"
+          }
+        }
+      }
     },
     "Enable blocklist" : {
       "localizations" : {
@@ -4443,7 +4500,14 @@
       }
     },
     "No configuration values" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin valores de configuración"
+          }
+        }
+      }
     },
     "No decisions to display" : {
       "localizations" : {
@@ -4571,6 +4635,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No bloqueada"
+          }
+        }
+      }
+    },
+    "Not configured" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin configurar"
+          }
+        }
+      }
+    },
+    "Notification" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificación"
+          }
+        }
+      }
+    },
+    "Notification saved" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificación guardada"
           }
         }
       }
@@ -5387,7 +5481,14 @@
       }
     },
     "Remove value" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar valor"
+          }
+        }
+      }
     },
     "Replace with simple rules" : {
       "localizations" : {
@@ -5691,7 +5792,14 @@
       }
     },
     "Selected section" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sección seleccionada"
+          }
+        }
+      }
     },
     "Send test notification" : {
       "localizations" : {
