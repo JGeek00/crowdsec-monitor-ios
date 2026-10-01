@@ -63,6 +63,7 @@ struct NotificationWizardView: View {
                         } label: {
                             Label("Back", systemImage: "chevron.left")
                         }
+                        .glassButtonIfAvailable()
                         .disabled(vm.isSaving)
                     }
                 }
@@ -76,10 +77,12 @@ struct NotificationWizardView: View {
                                 vm.selectedStep += 1
                             }
                         } label: {
-                            Label("Next", systemImage: "chevron.right")
-                                .labelStyle(.titleAndIcon)
+                            HStack(spacing: 8) {
+                                Text("Next")
+                                Image(systemName: "chevron.right")
+                            }
                         }
-                        .buttonStyle(.borderedProminent)
+                        .glassButtonIfAvailable()
                         .disabled(!vm.canProceed(step: vm.selectedStep) || vm.isSaving)
                     } else {
                         Button {
@@ -96,7 +99,7 @@ struct NotificationWizardView: View {
                                 Label("Finish", systemImage: "checkmark")
                             }
                         }
-                        .buttonStyle(.borderedProminent)
+                        .prominentButton()
                         .disabled(!vm.canProceed(step: 3) || vm.isSaving)
                     }
                 }

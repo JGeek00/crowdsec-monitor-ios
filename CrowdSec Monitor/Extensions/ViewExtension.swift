@@ -23,6 +23,18 @@ extension View {
         #endif
     }
     
+    /// Default button style before iOS 26, glass effect on iOS 26 and later.
+    @ViewBuilder
+    func glassButtonIfAvailable() -> some View {
+        #if os(iOS)
+        if #available(iOS 26.0, *) {
+            self.buttonStyle(.glass)
+        } else {
+            self
+        }
+        #endif
+    }
+    
     @ViewBuilder
     func condition<Content: View>(@ViewBuilder transform: (Self) -> Content) -> some View {
         transform(self)

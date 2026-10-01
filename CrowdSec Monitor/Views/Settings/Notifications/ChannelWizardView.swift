@@ -61,6 +61,7 @@ struct ChannelWizardView: View {
                         } label: {
                             Label("Back", systemImage: "chevron.left")
                         }
+                        .glassButtonIfAvailable()
                         .disabled(vm.isSaving)
                     }
                 }
@@ -74,10 +75,12 @@ struct ChannelWizardView: View {
                                 vm.selectedStep += 1
                             }
                         } label: {
-                            Label("Next", systemImage: "chevron.right")
-                                .labelStyle(.titleAndIcon)
+                            HStack(spacing: 8) {
+                                Text("Next")
+                                Image(systemName: "chevron.right")
+                            }
                         }
-                        .buttonStyle(.borderedProminent)
+                        .glassButtonIfAvailable()
                         .disabled(!canProceed() || vm.isSaving)
                     } else {
                         Button {
@@ -94,7 +97,7 @@ struct ChannelWizardView: View {
                                 Label("Finish", systemImage: "checkmark")
                             }
                         }
-                        .buttonStyle(.borderedProminent)
+                        .prominentButton()
                         .disabled(!vm.nameValid() || !vm.providerValid() || vm.isSaving)
                     }
                 }
