@@ -114,7 +114,7 @@ struct ConditionEditorSections: View {
             }
         }
         if !viewModel.noCondition && viewModel.advancedCondition == nil {
-            Section("Rules") {
+            Section {
                 if viewModel.rules.isEmpty {
                     Text("No rules yet. Add your first rule below.")
                         .foregroundStyle(Color.secondary)
@@ -146,11 +146,11 @@ struct ConditionEditorSections: View {
                 Button("Add rule", systemImage: "plus") {
                     viewModel.openRuleSheet(draft: viewModel.newDraft(), editing: nil)
                 }
-            }
-            if let issue = viewModel.validationIssue(step: 1) {
-                Section {
+            } header: {
+                Text("Rules")
+            } footer: {
+                if let issue = viewModel.validationIssue(step: 1) {
                     validationHint(issue)
-                        .font(.subheadline)
                         .foregroundStyle(Color.red)
                 }
             }
