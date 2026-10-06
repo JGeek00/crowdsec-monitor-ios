@@ -15,6 +15,14 @@ struct NotificationFilterOptions: Sendable {
     var ipOwners: [String] = []
 }
 
+/// Presentation model for the rule editor sheet. A single optional drives
+/// `.sheet(item:)`, so presentation is atomic: one state, one attempt.
+struct RuleSheetModel: Identifiable {
+    let id = UUID()
+    var draft: EditableLeaf
+    var index: Int? // nil = new rule
+}
+
 @MainActor
 @Observable
 class NotificationFormViewModel {
@@ -62,6 +70,69 @@ class NotificationFormViewModel {
     var isSaving = false
     var saveError = false
     var loadError = false
+
+    /// Rule editor sheet state. `nil` = dismissed. Hosted by the wizard and
+    /// detail roots (never by `Form` rows), so `Form`/`TabView` recycling
+    /// during keyboard transitions cannot re-trigger presentation.
+    var ruleSheet: RuleSheetModel?
+    @ObservationIgnored private var isKeyboardVisible = false
+    @ObservationIgnored private var pendingSheet: (draft: EditableLeaf, index: Int?)?
+    @ObservationIgnored private var sheetTask: Task<Void, Never>?
+
+    /// Opens the rule editor guaranteeing the keyboard is fully closed
+    /// first. Presenting into an open (or resigning) keyboard collapses the
+    /// whole sheet stack, so when the keyboard is visible the sheet is
+    /// staged and only presented after `keyboardDidHide` plus a short
+    /// settle delay; otherwise it is presented synchronously.
+    func openRuleSheet(draft: EditableLeaf, editing index: Int?) {
+        sheetTask?.cancel()
+        sheetTask = nil
+        if isKeyboardVisible {
+            pendingSheet = (draft: draft, index: index)
+            resignKeyboard()
+        } else {
+            ruleSheet = RuleSheetModel(draft: draft, index: index)
+        }
+    }
+
+    func commitRuleSheet() {
+        guard let sheet = ruleSheet else { return }
+        if let index = sheet.index, rules.indices.contains(index) {
+            rules[index] = sheet.draft
+        } else {
+            rules.append(sheet.draft)
+        }
+        ruleSheet = nil
+    }
+
+    func dismissRuleSheet() {
+        ruleSheet = nil
+    }
+
+    func keyboardWillShow() {
+        isKeyboardVisible = true
+    }
+
+    func keyboardDidHide() {
+        isKeyboardVisible = false
+        guard let pending = pendingSheet, ruleSheet == nil else { return }
+        pendingSheet = nil
+        sheetTask?.cancel()
+        sheetTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            guard !Task.isCancelled else { return }
+            self?.ruleSheet = RuleSheetModel(draft: pending.draft, index: pending.index)
+        }
+    }
+
+    private func resignKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+    }
 
     func load(notification: UserNotification) {
         name = notification.name

@@ -60,6 +60,7 @@ struct ChannelWizardView: View {
                 HStack {
                     if vm.selectedStep > 0 {
                         Button {
+                            dismissKeyboard()
                             withAnimation(.default) {
                                 vm.selectedStep -= 1
                             }
@@ -76,6 +77,7 @@ struct ChannelWizardView: View {
                 HStack {
                     if vm.selectedStep < totalSteps - 1 {
                         Button {
+                            dismissKeyboard()
                             withAnimation(.default) {
                                 vm.selectedStep += 1
                             }
@@ -110,6 +112,9 @@ struct ChannelWizardView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
+            .onChange(of: vm.selectedStep) { _, _ in
+                dismissKeyboard()
+            }
             .alert("Error", isPresented: $vm.saveError) {
                 Button("OK", role: .cancel) {
                     vm.saveError = false

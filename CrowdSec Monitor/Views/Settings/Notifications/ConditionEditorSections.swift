@@ -5,11 +5,6 @@ import SwiftUI
 struct ConditionEditorSections: View {
     @Bindable var viewModel: NotificationFormViewModel
 
-    @State private var draft = EditableLeaf.empty
-    @State private var editingIndex: Int?
-    @State private var showRuleSheet = false
-    @State private var sheetToken = UUID()
-
     static func fieldLabel(_ field: ConditionField) -> String {
         switch field {
         case .scenario:
@@ -136,10 +131,7 @@ struct ConditionEditorSections: View {
                         }
                         Spacer()
                         Button("Edit") {
-                            draft = rule
-                            editingIndex = index
-                            sheetToken = UUID()
-                            showRuleSheet = true
+                            viewModel.openRuleSheet(draft: rule, editing: index)
                         }
                         .buttonStyle(.bordered)
                         Button(role: .destructive) {
@@ -152,10 +144,7 @@ struct ConditionEditorSections: View {
                     .padding(.vertical, 4)
                 }
                 Button("Add rule", systemImage: "plus") {
-                    draft = viewModel.newDraft()
-                    editingIndex = nil
-                    sheetToken = UUID()
-                    showRuleSheet = true
+                    viewModel.openRuleSheet(draft: viewModel.newDraft(), editing: nil)
                 }
             }
             if let issue = viewModel.validationIssue(step: 1) {
@@ -204,25 +193,6 @@ struct ConditionEditorSections: View {
             Text("Cooldown")
         } footer: {
             Text("After the notification is sent, matching alerts that arrive within this time are ignored, so a burst of alerts sends only one notification.")
-        }
-        .sheet(isPresented: $showRuleSheet) {
-            RuleEditSheet(
-                draft: $draft,
-                options: viewModel.filterOptions,
-                onSave: {
-                    if let index = editingIndex, viewModel.rules.indices.contains(index) {
-                        viewModel.rules[index] = draft
-                    } else {
-                        viewModel.rules.append(draft)
-                    }
-                    showRuleSheet = false
-                },
-                onCancel: {
-                    showRuleSheet = false
-                }
-            )
-            .id(sheetToken)
-            .interactiveDismissDisabled()
         }
     }
 }

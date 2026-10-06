@@ -63,6 +63,7 @@ struct NotificationWizardView: View {
                 HStack {
                     if vm.selectedStep > 0 {
                         Button {
+                            dismissKeyboard()
                             withAnimation(.default) {
                                 vm.selectedStep -= 1
                             }
@@ -79,6 +80,7 @@ struct NotificationWizardView: View {
                 HStack {
                     if vm.selectedStep < totalSteps - 1 {
                         Button {
+                            dismissKeyboard()
                             withAnimation(.default) {
                                 vm.selectedStep += 1
                             }
@@ -113,6 +115,9 @@ struct NotificationWizardView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
+            .onChange(of: vm.selectedStep) { _, _ in
+                dismissKeyboard()
+            }
             .alert("Error", isPresented: $vm.saveError) {
                 Button("OK", role: .cancel) {
                     vm.saveError = false
@@ -129,6 +134,24 @@ struct NotificationWizardView: View {
             }
             .task {
                 await vm.loadOptions()
+            }
+            .sheet(item: $vm.ruleSheet) { sheet in
+                RuleEditSheet(
+                    draft: Binding(
+                        get: { vm.ruleSheet?.draft ?? sheet.draft },
+                        set: { vm.ruleSheet?.draft = $0 }
+                    ),
+                    options: vm.filterOptions,
+                    onSave: { vm.commitRuleSheet() },
+                    onCancel: { vm.dismissRuleSheet() }
+                )
+                .interactiveDismissDisabled()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+                vm.keyboardWillShow()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+                vm.keyboardDidHide()
             }
         }
         .background(Color(.systemGroupedBackground))

@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 extension View {
     @ViewBuilder
@@ -60,6 +63,20 @@ extension View {
         self
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.background)
+    }
+
+    /// Resigns any first responder (closes the keyboard). Call before
+    /// changing wizard steps or presenting a sheet, so a visible keyboard
+    /// never stays open across steps nor interferes with sheet presentation.
+    func dismissKeyboard() {
+        #if canImport(UIKit)
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+        #endif
     }
 }
 

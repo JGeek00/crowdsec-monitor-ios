@@ -127,6 +127,24 @@ struct NotificationDetailsView: View {
         .task {
             await vm.loadOptions()
         }
+        .sheet(item: $vm.ruleSheet) { sheet in
+            RuleEditSheet(
+                draft: Binding(
+                    get: { vm.ruleSheet?.draft ?? sheet.draft },
+                    set: { vm.ruleSheet?.draft = $0 }
+                ),
+                options: vm.filterOptions,
+                onSave: { vm.commitRuleSheet() },
+                onCancel: { vm.dismissRuleSheet() }
+            )
+            .interactiveDismissDisabled()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+            vm.keyboardWillShow()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+            vm.keyboardDidHide()
+        }
     }
 
     private var channelsSection: some View {
