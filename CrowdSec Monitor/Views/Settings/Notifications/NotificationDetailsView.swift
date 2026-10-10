@@ -67,6 +67,7 @@ struct NotificationDetailsView: View {
                     TextField("Message", text: $vm.message, axis: .vertical)
                         .lineLimit(4...8)
                 }
+                NotificationAlertInfoSections(viewModel: vm)
                 channelsSection
             } else {
                 summarySections
