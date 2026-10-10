@@ -3028,6 +3028,16 @@
         }
       }
     },
+    "Even when enabled, alert information is only sent through channels that support it." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aunque la opción esté activada, la información de las alertas sólo se enviará a través de los canales que lo soporten."
+          }
+        }
+      }
+    },
     "Event details" : {
       "localizations" : {
         "de" : {
@@ -3749,6 +3759,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Información"
+          }
+        }
+      }
+    },
+    "Include alert information" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluir información de las alertas"
           }
         }
       }
@@ -7168,6 +7188,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bienvenido a CrowdSec Monitor"
+          }
+        }
+      }
+    },
+    "Which channels support it?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué canales lo soportan?"
           }
         }
       }
