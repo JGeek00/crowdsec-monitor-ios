@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct ChannelWizardIntroStep: View {
+    @ScaledMetric(relativeTo: .largeTitle) private var infoSymbolSize: CGFloat = 40
+
     var body: some View {
         Form {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
                     Image(systemName: "info.square")
-                        .font(.system(size: 40))
+                        .font(.system(size: infoSymbolSize))
                     Text("A notification channel defines how the backend delivers a notification: through ntfy or by email. Configure the provider access once here, then pick one or more channels in each notification.")
                         .font(.headline)
                 }

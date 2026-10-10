@@ -2,11 +2,13 @@ import SwiftUI
 
 struct FormInfoBox: View {
     let label: String
+
+    @ScaledMetric(relativeTo: .largeTitle) private var infoSymbolSize: CGFloat = 40
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Image(systemName: "info.square")
-                .font(.system(size: 40))
+                .font(.system(size: infoSymbolSize))
             Text(verbatim: label)
                 .font(.headline)
         }
