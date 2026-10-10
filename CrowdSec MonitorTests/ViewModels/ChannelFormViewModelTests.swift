@@ -45,7 +45,10 @@ final class ChannelFormViewModelTests: XCTestCase {
                     "accessToken", type: "password", secret: true,
                     exclusiveWith: ["username", "password"]
                 ),
-                field("priority", type: "select", default: .string("default")),
+                field(
+                    "priority", type: "select", default: .string("default"),
+                    options: ["min", "low", "default", "high", "urgent", "max"]
+                ),
             ]
         )
     }
