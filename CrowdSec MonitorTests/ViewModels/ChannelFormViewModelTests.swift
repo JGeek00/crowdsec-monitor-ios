@@ -31,7 +31,7 @@ final class ChannelFormViewModelTests: XCTestCase {
     private func ntfyProvider() -> NotificationProvider {
         NotificationProvider(
             type: "ntfy", descriptionKey: nil, icon: "ntfy", labelKey: "provider_ntfy",
-            supportsTest: true, sections: [],
+            supportsTest: true, supportsAlertInfo: false, sections: [],
             fields: [
                 field("topic", type: "text", required: true, regex: "^[-_A-Za-z0-9]{1,64}$"),
                 field("server", type: "url", default: .string("https://ntfy.sh")),
@@ -53,7 +53,7 @@ final class ChannelFormViewModelTests: XCTestCase {
     private func emailProvider() -> NotificationProvider {
         NotificationProvider(
             type: "email", descriptionKey: nil, icon: "email", labelKey: "provider_email",
-            supportsTest: true, sections: [],
+            supportsTest: true, supportsAlertInfo: false, sections: [],
             fields: [
                 field("host", type: "text", required: true),
                 field("port", type: "number", default: .int(587), integer: true, min: 1, max: 65535),
@@ -67,7 +67,7 @@ final class ChannelFormViewModelTests: XCTestCase {
     private func makeProvider(fields: [ProviderField], sections: [ProviderSection] = []) -> NotificationProvider {
         NotificationProvider(
             type: "t", descriptionKey: nil, icon: "t", labelKey: "p",
-            supportsTest: true, sections: sections, fields: fields
+            supportsTest: true, supportsAlertInfo: false, sections: sections, fields: fields
         )
 
     }
@@ -110,7 +110,7 @@ final class ChannelFormViewModelTests: XCTestCase {
     private func makeChannel() -> UserNotificationChannel {
         UserNotificationChannel(
             id: 5, name: "phone", type: .ntfy,
-            config: ["topic": .string("alerts")],
+            supportsAlertInfo: false, config: ["topic": .string("alerts")],
             createdAt: nil, updatedAt: nil
         )
     }

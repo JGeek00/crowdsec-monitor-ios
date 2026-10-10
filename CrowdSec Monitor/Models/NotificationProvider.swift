@@ -56,6 +56,7 @@ struct NotificationProvider: Codable, Hashable, Sendable, Identifiable {
     let icon: String
     let labelKey: String
     let supportsTest: Bool
+    let supportsAlertInfo: Bool
     let sections: [ProviderSection]?
     let fields: [ProviderField]
 

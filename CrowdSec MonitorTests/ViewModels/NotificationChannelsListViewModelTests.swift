@@ -11,7 +11,7 @@ final class NotificationChannelsListViewModelTests: XCTestCase {
     private func makeChannel(id: Int = 1) -> UserNotificationChannel {
         UserNotificationChannel(
             id: id, name: "c\(id)", type: .email,
-            config: ["host": .string("h"), "from": .string("a@b.c"), "to": .string("d@e.f")],
+            supportsAlertInfo: true, config: ["host": .string("h"), "from": .string("a@b.c"), "to": .string("d@e.f")],
             createdAt: nil, updatedAt: nil
         )
     }

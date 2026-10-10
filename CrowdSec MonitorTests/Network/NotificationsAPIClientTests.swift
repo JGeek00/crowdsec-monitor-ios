@@ -31,6 +31,7 @@ final class NotificationsAPIClientTests: XCTestCase {
             ],
             "threshold": NSNull(),
             "message": "SSH detected",
+            "includeAlertInfo": true,
             "channelIds": [2],
         ]
     }
@@ -48,7 +49,7 @@ final class NotificationsAPIClientTests: XCTestCase {
         let body = CreateNotificationRequest(
             name: "n", description: nil, enabled: true,
             condition: .leaf(field: "scenario", op: "equals", value: .single("x")),
-            threshold: nil, message: "m", channelIds: [2]
+            threshold: nil, message: "m", includeAlertInfo: false, channelIds: [2]
         )
         let _: HttpResponse<NotificationDetailResponse> = try await makeClient().createNotification(body: body)
         XCTAssertEqual(mockHttp.capturedEndpoint, "/api/v1/notifications")

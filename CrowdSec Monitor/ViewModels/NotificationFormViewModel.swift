@@ -53,6 +53,7 @@ class NotificationFormViewModel {
     var windowSecondsText = "10"
     var cooldownSeconds = Defaults.notificationCooldownSeconds
     var message = ""
+    var includeAlertInfo = false
 
     var windowValid: Bool {
         guard let seconds = Int(windowSecondsText.trimmingCharacters(in: .whitespacesAndNewlines)) else {
@@ -156,6 +157,7 @@ class NotificationFormViewModel {
             cooldownSeconds = threshold.cooldownSeconds ?? Defaults.notificationCooldownSeconds
         }
         message = notification.message
+        includeAlertInfo = notification.includeAlertInfo
         selectedChannelIds = Set(notification.channelIds)
     }
 
@@ -261,6 +263,7 @@ class NotificationFormViewModel {
                     name: name, description: descriptionOrNil(),
                     enabled: nil, condition: buildCondition().toAPI(),
                     threshold: threshold, message: message,
+                    includeAlertInfo: includeAlertInfo,
                     channelIds: Array(selectedChannelIds)
                 )
                 let response = try await apiClient.notifications.updateNotification(
@@ -272,6 +275,7 @@ class NotificationFormViewModel {
                     name: name, description: descriptionOrNil(),
                     enabled: true, condition: buildCondition().toAPI(),
                     threshold: threshold, message: message,
+                    includeAlertInfo: includeAlertInfo,
                     channelIds: Array(selectedChannelIds)
                 )
                 let response = try await apiClient.notifications.createNotification(body: body)

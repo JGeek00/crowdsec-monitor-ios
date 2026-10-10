@@ -39,7 +39,7 @@ final class NotificationFormViewModelTests: XCTestCase {
                 .leaf(field: "scenario", op: "equals", value: .single("a")),
                 .leaf(field: "scenario", op: "equals", value: .single("b")),
             ]),
-            threshold: nil, message: "m", channelIds: [], createdAt: nil, updatedAt: nil
+            threshold: nil, message: "m", includeAlertInfo: false, channelIds: [], createdAt: nil, updatedAt: nil
         )
         let (sut, _) = makeSUT(editing: notification)
         XCTAssertNil(sut.advancedCondition)
@@ -56,7 +56,7 @@ final class NotificationFormViewModelTests: XCTestCase {
                 .leaf(field: "scenario", op: "equals", value: .single("a")),
                 .leaf(field: "country", op: "equals", value: .single("ES")),
             ]),
-            threshold: nil, message: "m", channelIds: [], createdAt: nil, updatedAt: nil
+            threshold: nil, message: "m", includeAlertInfo: false, channelIds: [], createdAt: nil, updatedAt: nil
         )
         let (sut, _) = makeSUT(editing: notification)
         XCTAssertNotNil(sut.advancedCondition)
@@ -122,7 +122,7 @@ final class NotificationFormViewModelTests: XCTestCase {
             id: 2, name: "any", description: nil, enabled: true,
             condition: .and([]),
             threshold: NotificationThreshold(count: 3, windowSeconds: 10),
-            message: "m", channelIds: [], createdAt: nil, updatedAt: nil
+            message: "m", includeAlertInfo: false, channelIds: [], createdAt: nil, updatedAt: nil
         )
         let (sut, _) = makeSUT(editing: notification)
         XCTAssertTrue(sut.noCondition)
@@ -167,7 +167,7 @@ final class NotificationFormViewModelTests: XCTestCase {
             id: 9, name: "orig", description: "d", enabled: true,
             condition: .or([.leaf(field: "country", op: "equals", value: .single("ES"))]),
             threshold: NotificationThreshold(count: 4, windowSeconds: 60, cooldownSeconds: 300),
-            message: "m", channelIds: [3], createdAt: nil, updatedAt: nil
+            message: "m", includeAlertInfo: false, channelIds: [3], createdAt: nil, updatedAt: nil
         )
         let (sut, _) = makeSUT(editing: notification)
         XCTAssertTrue(sut.isEditing)
@@ -182,7 +182,7 @@ final class NotificationFormViewModelTests: XCTestCase {
             id: 10, name: "legacy", description: nil, enabled: true,
             condition: .and([]),
             threshold: NotificationThreshold(count: 2, windowSeconds: 30),
-            message: "m", channelIds: [3], createdAt: nil, updatedAt: nil
+            message: "m", includeAlertInfo: false, channelIds: [3], createdAt: nil, updatedAt: nil
         )
         let (sutLegacy, _) = makeSUT(editing: legacy)
         XCTAssertEqual(sutLegacy.cooldownSeconds, Defaults.notificationCooldownSeconds)
@@ -202,7 +202,7 @@ final class NotificationFormViewModelTests: XCTestCase {
             NotificationDetailResponse(data: UserNotification(
                 id: 1, name: "n", description: nil, enabled: true,
                 condition: .leaf(field: "scenario", op: "equals", value: .single("x")),
-                threshold: nil, message: "m", channelIds: [1], createdAt: nil, updatedAt: nil
+                threshold: nil, message: "m", includeAlertInfo: false, channelIds: [1], createdAt: nil, updatedAt: nil
             ))
         )
         let saved = await sut.save()
@@ -226,7 +226,7 @@ final class NotificationFormViewModelTests: XCTestCase {
             NotificationDetailResponse(data: UserNotification(
                 id: 1, name: "n", description: nil, enabled: true,
                 condition: .leaf(field: "scenario", op: "equals", value: .single("x")),
-                threshold: nil, message: "m", channelIds: [1], createdAt: nil, updatedAt: nil
+                threshold: nil, message: "m", includeAlertInfo: false, channelIds: [1], createdAt: nil, updatedAt: nil
             ))
         )
         let saved = await sut.save()

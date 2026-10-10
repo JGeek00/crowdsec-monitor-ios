@@ -12,7 +12,7 @@ final class NotificationsListViewModelTests: XCTestCase {
         UserNotification(
             id: id, name: "n\(id)", description: nil, enabled: enabled,
             condition: .leaf(field: "scenario", op: "equals", value: .single("x")),
-            threshold: nil, message: "m", channelIds: [1], createdAt: nil, updatedAt: nil
+            threshold: nil, message: "m", includeAlertInfo: false, channelIds: [1], createdAt: nil, updatedAt: nil
         )
     }
 

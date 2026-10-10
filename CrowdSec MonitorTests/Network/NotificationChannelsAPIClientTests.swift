@@ -24,16 +24,18 @@ final class NotificationChannelsAPIClientTests: XCTestCase {
             "id": 3,
             "name": "ops email",
             "type": "email",
+            "supportsAlertInfo": true,
             "config": ["host": "smtp.example.com", "from": "a@b.c", "to": "d@e.f"],
         ]
     }
 
     func testFetchProviders() async throws {
         mockHttp.stubbedResponseData = try JSONSerialization.data(withJSONObject: [
-            "version": 1,
+            "version": 2,
             "providers": [[
                 "type": "ntfy", "icon": "ntfy", "labelKey": "provider_ntfy",
                 "supportsTest": true,
+                "supportsAlertInfo": false,
                 "fields": [["key": "topic", "labelKey": "field_topic", "type": "text", "required": true]],
             ]],
         ])

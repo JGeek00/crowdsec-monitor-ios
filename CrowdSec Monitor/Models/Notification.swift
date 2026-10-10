@@ -120,12 +120,13 @@ struct UserNotification: Codable, Hashable, Sendable, Identifiable {
     let condition: NotificationConditionNode
     let threshold: NotificationThreshold?
     let message: String
+    let includeAlertInfo: Bool
     let channelIds: [Int]
     let createdAt: String?
     let updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description, enabled, condition, threshold, message, channelIds
+        case id, name, description, enabled, condition, threshold, message, includeAlertInfo, channelIds
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -176,10 +177,11 @@ struct CreateNotificationRequest: Encodable, Sendable {
     var condition: NotificationConditionNode
     var threshold: NotificationThreshold?
     var message: String
+    var includeAlertInfo: Bool
     var channelIds: [Int]
 
     enum CodingKeys: String, CodingKey {
-        case name, description, enabled, condition, threshold, message, channelIds
+        case name, description, enabled, condition, threshold, message, includeAlertInfo, channelIds
     }
 
     func encode(to encoder: Encoder) throws {
@@ -190,6 +192,7 @@ struct CreateNotificationRequest: Encodable, Sendable {
         try container.encode(condition, forKey: .condition)
         try container.encodeIfPresent(threshold, forKey: .threshold)
         try container.encode(message, forKey: .message)
+        try container.encode(includeAlertInfo, forKey: .includeAlertInfo)
         try container.encode(channelIds, forKey: .channelIds)
     }
 }
@@ -201,10 +204,11 @@ struct UpdateNotificationRequest: Encodable, Sendable {
     var condition: NotificationConditionNode?
     var threshold: NotificationThreshold?
     var message: String?
+    var includeAlertInfo: Bool?
     var channelIds: [Int]?
 
     enum CodingKeys: String, CodingKey {
-        case name, description, enabled, condition, threshold, message, channelIds
+        case name, description, enabled, condition, threshold, message, includeAlertInfo, channelIds
     }
 
     func encode(to encoder: Encoder) throws {
@@ -215,6 +219,7 @@ struct UpdateNotificationRequest: Encodable, Sendable {
         try container.encodeIfPresent(condition, forKey: .condition)
         try container.encodeIfPresent(threshold, forKey: .threshold)
         try container.encodeIfPresent(message, forKey: .message)
+        try container.encodeIfPresent(includeAlertInfo, forKey: .includeAlertInfo)
         try container.encodeIfPresent(channelIds, forKey: .channelIds)
     }
 }

@@ -19,12 +19,13 @@ struct UserNotificationChannel: Codable, Hashable, Sendable, Identifiable {
     let id: Int
     let name: String
     let type: NotificationChannelType
+    let supportsAlertInfo: Bool
     let config: NotificationChannelConfig
     let createdAt: String?
     let updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, type, config
+        case id, name, type, supportsAlertInfo, config
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
