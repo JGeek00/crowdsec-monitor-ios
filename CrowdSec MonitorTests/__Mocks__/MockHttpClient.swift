@@ -40,6 +40,8 @@ final class MockHttpClient: HttpClient {
     private(set) var capturedQueryParams: [URLQueryItem]?
     /// All endpoints called, in order.
     private(set) var capturedEndpoints: [String] = []
+    /// The last Encodable body that was passed to post/put.
+    private(set) var capturedBody: Any?
 
     private func response(for endpoint: String) throws -> (Data, Int) {
         capturedEndpoint = endpoint
@@ -84,6 +86,7 @@ final class MockHttpClient: HttpClient {
         endpoint: String,
         body: T
     ) async throws -> HttpResponse<R> {
+        capturedBody = body
         let (data, statusCode) = try response(for: endpoint)
         let decodedBody: R = try decode(data)
         return HttpResponse(successful: (200...299).contains(statusCode), statusCode: statusCode, body: decodedBody)
@@ -92,6 +95,16 @@ final class MockHttpClient: HttpClient {
     override func post<R: Decodable>(
         endpoint: String
     ) async throws -> HttpResponse<R> {
+        let (data, statusCode) = try response(for: endpoint)
+        let decodedBody: R = try decode(data)
+        return HttpResponse(successful: (200...299).contains(statusCode), statusCode: statusCode, body: decodedBody)
+    }
+
+    override func put<T: Encodable, R: Decodable>(
+        endpoint: String,
+        body: T
+    ) async throws -> HttpResponse<R> {
+        capturedBody = body
         let (data, statusCode) = try response(for: endpoint)
         let decodedBody: R = try decode(data)
         return HttpResponse(successful: (200...299).contains(statusCode), statusCode: statusCode, body: decodedBody)

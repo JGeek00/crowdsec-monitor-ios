@@ -22,6 +22,14 @@ struct ServerSettingsView: View {
                 }
             }
             
+            Section("Notifications") {
+                NavigationLink {
+                    NotificationsSettingsView()
+                } label: {
+                    ListRowWithIconEntry(systemIcon: "bell", iconColor: .purple, label: "Notifications")
+                }
+            }
+
             ServerInformationSection()
         }
         .navigationTitle("Server settings")
